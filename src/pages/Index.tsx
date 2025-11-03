@@ -1,13 +1,91 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Helmet } from "react-helmet-async";
+import Navigation from "@/components/Navigation";
+import HeroSection from "@/components/HeroSection";
+import SpecialtiesSection from "@/components/SpecialtiesSection";
+import AboutSection from "@/components/AboutSection";
+import TeamSection from "@/components/TeamSection";
+import MentalHealthSection from "@/components/MentalHealthSection";
+import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <>
+      <Helmet>
+        <html lang="pt-BR" />
+        <title>Dr. Gabriel Lopes - Psiquiatra Vila Olímpia | Saúde Mental Integrada</title>
+        <meta
+          name="description"
+          content="Dr. Gabriel Lopes - Psiquiatra especializado em saúde mental infantil e adultos na Vila Olímpia, SP. Tratamento de ansiedade, depressão e TDAH com acompanhamento completo."
+        />
+        <meta
+          name="keywords"
+          content="psiquiatra, psiquiatria, saúde mental, ansiedade, depressão, TDAH, Vila Olímpia, São Paulo, Dr. Gabriel Lopes"
+        />
+        <meta name="author" content="Dr. Gabriel Lopes" />
+        <link rel="canonical" href="https://drgabriellopes.com.br" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="pt_BR" />
+        <meta
+          property="og:title"
+          content="Dr. Gabriel Lopes - Psiquiatra Vila Olímpia | Saúde Mental Integrada"
+        />
+        <meta
+          property="og:description"
+          content="Psiquiatra especializado em saúde mental infantil e adultos. Tratamento de ansiedade, depressão e TDAH com acompanhamento completo."
+        />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Dr. Gabriel Lopes - Psiquiatra Vila Olímpia"
+        />
+        <meta
+          name="twitter:description"
+          content="Saúde mental com acompanhamento completo. Especialista em ansiedade, depressão e TDAH."
+        />
+
+        {/* Structured Data - JSON-LD */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Physician",
+            name: "Dr. Gabriel Lopes",
+            image: "https://drgabriellopes.com.br/og-image.jpg",
+            description:
+              "Psiquiatra especializado em saúde mental infantil e de adultos",
+            medicalSpecialty: "Psychiatry",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "Rua do Rocio, 423. Cj. 402",
+              addressLocality: "São Paulo",
+              addressRegion: "SP",
+              postalCode: "04548-020",
+              addressCountry: "BR",
+            },
+            telephone: "+55-11-94154-3929",
+            url: "https://drgabriellopes.com.br",
+            openingHours: "Mo-Fr 08:00-20:00, Sa 08:00-14:00",
+          })}
+        </script>
+      </Helmet>
+
+      <div className="min-h-screen">
+        <Navigation />
+        <main>
+          <HeroSection />
+          <SpecialtiesSection />
+          <AboutSection />
+          <TeamSection />
+          <MentalHealthSection />
+        </main>
+        <Footer />
+        <WhatsAppButton />
       </div>
-    </div>
+    </>
   );
 };
 
