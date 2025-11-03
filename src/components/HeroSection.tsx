@@ -4,14 +4,24 @@ import heroImage from "@/assets/hero-family.jpg";
 const HeroSection = () => {
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-      {/* Background Image with Overlay */}
+      {/* Curved Background Shape */}
       <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Família feliz na praia"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary/30 to-background">
+          {/* Image Container with Curved Clip Path */}
+          <div 
+            className="absolute top-0 right-0 bottom-0 w-[60%]"
+            style={{
+              clipPath: "ellipse(100% 100% at 100% 50%)",
+            }}
+          >
+            <img
+              src={heroImage}
+              alt="Família feliz na praia"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-background/10 to-background" />
+          </div>
+        </div>
       </div>
 
       {/* Content */}

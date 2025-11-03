@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/logo.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,12 +19,17 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2">
+          <a href="/" className="flex items-center gap-3">
+            <img 
+              src={logo}
+              alt="Logo Dr Gabriel Lopes" 
+              className="h-12 w-12"
+            />
             <div className="flex flex-col">
-              <span className="text-sm font-light text-primary uppercase tracking-wider">
+              <span className="text-xs font-light text-primary uppercase tracking-wider">
                 Saúde Mental Integrada
               </span>
-              <span className="text-2xl font-bold text-primary">
+              <span className="text-xl font-bold text-primary">
                 Dr Gabriel Lopes
               </span>
             </div>

@@ -1,4 +1,5 @@
 import { MapPin, Phone, Mail } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const Footer = () => {
   return (
@@ -7,13 +8,20 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Logo e Descrição */}
           <div>
-            <div className="flex flex-col mb-4">
-              <span className="text-sm font-light text-primary uppercase tracking-wider">
-                Saúde Mental Integrada
-              </span>
-              <span className="text-2xl font-bold text-primary">
-                Dr Gabriel Lopes
-              </span>
+            <div className="flex items-center gap-3 mb-4">
+              <img 
+                src={logo}
+                alt="Logo Dr Gabriel Lopes" 
+                className="h-12 w-12"
+              />
+              <div className="flex flex-col">
+                <span className="text-xs font-light text-primary uppercase tracking-wider">
+                  Saúde Mental Integrada
+                </span>
+                <span className="text-xl font-bold text-primary">
+                  Dr Gabriel Lopes
+                </span>
+              </div>
             </div>
             <p className="text-muted-foreground">
               Cuidado integral e humanizado para o seu bem-estar emocional e mental.
