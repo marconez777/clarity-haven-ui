@@ -1,32 +1,204 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Upload, FileText } from 'lucide-react';
+import { Upload, FileText, CheckCircle2, AlertCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Helmet } from 'react-helmet-async';
+import { supabase } from '@/integrations/supabase/client';
+import { Progress } from '@/components/ui/progress';
+
+interface ImportProgress {
+  total: number;
+  imported: number;
+  failed: number;
+  currentPost: string;
+}
 
 const WordPressImport = () => {
   const [file, setFile] = useState<File | null>(null);
   const [importing, setImporting] = useState(false);
+  const [progress, setProgress] = useState<ImportProgress | null>(null);
+  const [completed, setCompleted] = useState(false);
   const { toast } = useToast();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.[0]) {
       setFile(e.target.files[0]);
+      setProgress(null);
+      setCompleted(false);
     }
+  };
+
+  const parseXML = (xmlText: string): Document => {
+    const parser = new DOMParser();
+    return parser.parseFromString(xmlText, 'text/xml');
+  };
+
+  const getTextContent = (element: Element | null): string => {
+    return element?.textContent?.trim() || '';
+  };
+
+  const getPostMeta = (item: Element, metaKey: string): string => {
+    const metaElements = item.getElementsByTagName('wp:postmeta');
+    for (let i = 0; i < metaElements.length; i++) {
+      const keyElement = metaElements[i].getElementsByTagName('wp:meta_key')[0];
+      if (getTextContent(keyElement) === metaKey) {
+        const valueElement = metaElements[i].getElementsByTagName('wp:meta_value')[0];
+        return getTextContent(valueElement);
+      }
+    }
+    return '';
   };
 
   const handleImport = async () => {
     if (!file) return;
     
     setImporting(true);
-    
-    toast({
-      title: 'Funcionalidade em desenvolvimento',
-      description: 'A importação será implementada após receber o XML de exemplo',
-    });
-    
-    setImporting(false);
+    setProgress({ total: 0, imported: 0, failed: 0, currentPost: '' });
+
+    try {
+      const xmlText = await file.text();
+      const xmlDoc = parseXML(xmlText);
+
+      // Verificar erros de parsing
+      const parserError = xmlDoc.querySelector('parsererror');
+      if (parserError) {
+        throw new Error('Erro ao processar o arquivo XML');
+      }
+
+      // Obter todos os items (posts)
+      const items = xmlDoc.getElementsByTagName('item');
+      const posts = Array.from(items).filter(item => {
+        const postType = getTextContent(item.getElementsByTagName('wp:post_type')[0]);
+        const status = getTextContent(item.getElementsByTagName('wp:status')[0]);
+        return postType === 'post' && status === 'publish';
+      });
+
+      setProgress(prev => prev ? { ...prev, total: posts.length } : null);
+
+      // Criar registro de importação
+      const { data: importRecord, error: importError } = await supabase
+        .from('wordpress_imports')
+        .insert({
+          file_name: file.name,
+          status: 'processing',
+          total_posts: posts.length,
+        })
+        .select()
+        .single();
+
+      if (importError) throw importError;
+
+      let importedCount = 0;
+      let failedCount = 0;
+
+      // Processar cada post
+      for (const item of posts) {
+        try {
+          const title = getTextContent(item.getElementsByTagName('title')[0]);
+          setProgress(prev => prev ? { ...prev, currentPost: title } : null);
+
+          // Extrair dados do post
+          const content = getTextContent(item.getElementsByTagName('content:encoded')[0]);
+          const excerpt = getTextContent(item.getElementsByTagName('excerpt:encoded')[0]);
+          const slug = getTextContent(item.getElementsByTagName('wp:post_name')[0]);
+          const creator = getTextContent(item.getElementsByTagName('dc:creator')[0]);
+          const pubDate = getTextContent(item.getElementsByTagName('wp:post_date_gmt')[0]);
+
+          // Extrair categoria
+          const categoryElements = item.querySelectorAll('category[domain="category"]');
+          let categoryName = 'Geral';
+          if (categoryElements.length > 0) {
+            categoryName = getTextContent(categoryElements[0]);
+          }
+
+          // Buscar ou criar categoria
+          let { data: category } = await supabase
+            .from('blog_categories')
+            .select('id')
+            .eq('name', categoryName)
+            .single();
+
+          if (!category) {
+            const { data: newCategory } = await supabase
+              .from('blog_categories')
+              .insert({
+                name: categoryName,
+                slug: categoryName.toLowerCase().replace(/\s+/g, '-'),
+              })
+              .select('id')
+              .single();
+            category = newCategory;
+          }
+
+          // Extrair dados SEO
+          const seoTitle = getPostMeta(item, '_yoast_wpseo_title') || title;
+          const seoDescription = getPostMeta(item, '_yoast_wpseo_metadesc');
+          const readTime = getPostMeta(item, '_yoast_wpseo_estimated-reading-time-minutes');
+
+          // Inserir post
+          const { error: postError } = await supabase
+            .from('blog_posts')
+            .insert({
+              title,
+              slug,
+              excerpt: excerpt || content.substring(0, 200).replace(/<[^>]*>/g, ''),
+              content,
+              author: creator || 'Dr. Gabriel Lopes',
+              category_id: category?.id,
+              status: 'published',
+              published_at: pubDate ? new Date(pubDate).toISOString() : new Date().toISOString(),
+              seo_title: seoTitle,
+              seo_description: seoDescription,
+              read_time: readTime ? `${readTime} min` : '5 min',
+            });
+
+          if (postError) {
+            console.error('Erro ao importar post:', title, postError);
+            failedCount++;
+          } else {
+            importedCount++;
+          }
+
+          setProgress(prev => prev ? { 
+            ...prev, 
+            imported: importedCount,
+            failed: failedCount 
+          } : null);
+
+        } catch (error) {
+          console.error('Erro ao processar post:', error);
+          failedCount++;
+        }
+      }
+
+      // Atualizar registro de importação
+      await supabase
+        .from('wordpress_imports')
+        .update({
+          status: 'completed',
+          imported_posts: importedCount,
+          failed_posts: failedCount,
+          completed_at: new Date().toISOString(),
+        })
+        .eq('id', importRecord.id);
+
+      setCompleted(true);
+      toast({
+        title: 'Importação concluída!',
+        description: `${importedCount} posts importados com sucesso. ${failedCount} falharam.`,
+      });
+
+    } catch (error: any) {
+      console.error('Erro na importação:', error);
+      toast({
+        title: 'Erro na importação',
+        description: error.message || 'Ocorreu um erro ao importar os posts',
+        variant: 'destructive',
+      });
+    } finally {
+      setImporting(false);
+    }
   };
 
   return (
@@ -66,12 +238,45 @@ const WordPressImport = () => {
               )}
             </div>
 
+            {progress && (
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span>Progresso</span>
+                    <span>{progress.imported + progress.failed} / {progress.total}</span>
+                  </div>
+                  <Progress 
+                    value={((progress.imported + progress.failed) / progress.total) * 100} 
+                  />
+                </div>
+
+                {progress.currentPost && (
+                  <p className="text-sm text-muted-foreground">
+                    Importando: <span className="font-medium">{progress.currentPost}</span>
+                  </p>
+                )}
+
+                <div className="flex gap-4 text-sm">
+                  <div className="flex items-center gap-2 text-green-600">
+                    <CheckCircle2 className="w-4 h-4" />
+                    <span>{progress.imported} importados</span>
+                  </div>
+                  {progress.failed > 0 && (
+                    <div className="flex items-center gap-2 text-destructive">
+                      <AlertCircle className="w-4 h-4" />
+                      <span>{progress.failed} falharam</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
             <Button
               onClick={handleImport}
-              disabled={!file || importing}
+              disabled={!file || importing || completed}
               className="w-full"
             >
-              {importing ? 'Importando...' : 'Iniciar Importação'}
+              {importing ? 'Importando...' : completed ? 'Importação Concluída' : 'Iniciar Importação'}
             </Button>
 
             <div className="text-sm text-muted-foreground">
@@ -82,6 +287,9 @@ const WordPressImport = () => {
                 <li>Aguarde o processamento (pode levar alguns minutos)</li>
                 <li>Verifique os posts importados na lista de posts</li>
               </ol>
+              <p className="mt-4 text-xs">
+                <strong>Nota:</strong> Apenas posts publicados serão importados. As categorias serão criadas automaticamente se não existirem.
+              </p>
             </div>
           </CardContent>
         </Card>
