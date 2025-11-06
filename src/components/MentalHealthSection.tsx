@@ -8,12 +8,11 @@ const MentalHealthSection = () => {
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-[3rem] transform -rotate-3" />
+          <div>
             <img
               src={mentalHealthImage}
               alt="Pessoa relaxando na natureza"
-              className="relative rounded-[3rem] shadow-[var(--shadow-soft)] w-full h-auto transform hover:scale-105 transition-transform duration-300"
+              className="rounded-[3rem] shadow-[var(--shadow-soft)] w-full h-auto"
             />
           </div>
 

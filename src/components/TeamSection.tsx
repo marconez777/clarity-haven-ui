@@ -24,11 +24,12 @@ const TeamSection = () => {
           </div>
         </div>
 
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-5xl mx-auto flex justify-center">
           <img
             src={teamImage}
             alt="Profissionais da equipe"
-            className="w-full rounded-2xl shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-hover)] transition-shadow duration-300"
+            className="rounded-2xl shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-hover)] transition-shadow duration-300"
+            style={{ width: '328px', height: '125px' }}
           />
         </div>
       </div>
