@@ -24,8 +24,9 @@ const TDAH = () => {
             <div className="container mx-auto px-4 py-20">
               <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-                  <h1 className="text-4xl font-bold mb-6 text-foreground md:text-5xl">Dificuldade de Foco, Impulsividade ou Esquecimento Constante? 
-Você pode estar convivendo com TDAH.<span className="block text-primary mt-4 text-4xl">Você pode estar convivendo com TDAH.</span>
+                  <h1 className="text-4xl font-bold mb-6 text-foreground md:text-5xl">
+                    Dificuldade de Foco, Impulsividade ou Esquecimento Constante?
+                    <span className="block text-primary mt-4">Você pode estar convivendo com TDAH.</span>
                   </h1>
                   <p className="text-xl text-muted-foreground mb-8">
                     Avaliação completa e tratamento especializado com o Dr. Gabriel Lopes, psiquiatra referência em saúde mental e TDAH infantil e adulto.
