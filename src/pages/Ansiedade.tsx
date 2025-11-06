@@ -46,14 +46,12 @@ const Ansiedade = () => {
                   </Button>
                 </div>
               </div>
-              <div className="relative animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-primary/20">
-                  <img
-                    src={drGabrielImage}
-                    alt="Dr. Gabriel Lopes - Psiquiatra especialista em ansiedade"
-                    className="w-full h-auto"
-                  />
-                </div>
+              <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                <img
+                  src={drGabrielImage}
+                  alt="Dr. Gabriel Lopes - Psiquiatra especialista em ansiedade"
+                  className="w-full h-auto rounded-2xl shadow-[var(--shadow-soft)]"
+                />
               </div>
             </div>
           </div>
