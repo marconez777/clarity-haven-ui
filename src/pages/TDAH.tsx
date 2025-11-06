@@ -6,21 +6,13 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import { Button } from "@/components/ui/button";
 import { Brain, Heart, Users, CheckCircle2, AlertCircle } from "lucide-react";
 import drGabrielImage from "@/assets/doctors/dr-gabriel.png";
-
 const TDAH = () => {
-  return (
-    <>
+  return <>
       <Helmet>
         <html lang="pt-BR" />
         <title>Tratamento de TDAH - Dr. Gabriel Lopes | Psiquiatra Vila Olímpia</title>
-        <meta
-          name="description"
-          content="Avaliação completa e tratamento especializado para TDAH infantil e adulto com o Dr. Gabriel Lopes. Abordagem integrativa e humanizada na Vila Olímpia, SP."
-        />
-        <meta
-          name="keywords"
-          content="TDAH, déficit de atenção, hiperatividade, tratamento TDAH, TDAH infantil, TDAH adulto, psiquiatra TDAH, Dr. Gabriel Lopes"
-        />
+        <meta name="description" content="Avaliação completa e tratamento especializado para TDAH infantil e adulto com o Dr. Gabriel Lopes. Abordagem integrativa e humanizada na Vila Olímpia, SP." />
+        <meta name="keywords" content="TDAH, déficit de atenção, hiperatividade, tratamento TDAH, TDAH infantil, TDAH adulto, psiquiatra TDAH, Dr. Gabriel Lopes" />
         <link rel="canonical" href="https://drgabriellopes.com.br/tdah" />
       </Helmet>
 
@@ -32,36 +24,23 @@ const TDAH = () => {
             <div className="container mx-auto px-4 py-20">
               <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-                  <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground">
-                    Dificuldade de foco, impulsividade ou esquecimento constante?
-                    <span className="block text-primary mt-4">Você pode estar convivendo com TDAH.</span>
+                  <h1 className="text-4xl font-bold mb-6 text-foreground md:text-5xl">Dificuldade de Foco, Impulsividade ou Esquecimento Constante?
+Você pode estar convivendo com TDAH.<span className="block text-primary mt-4 text-4xl">Você pode estar convivendo com TDAH.</span>
                   </h1>
                   <p className="text-xl text-muted-foreground mb-8">
                     Avaliação completa e tratamento especializado com o Dr. Gabriel Lopes, psiquiatra referência em saúde mental e TDAH infantil e adulto.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <Button 
-                      size="lg" 
-                      className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all"
-                      onClick={() => window.open('https://wa.me/5511941543929', '_blank')}
-                    >
+                    <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
                       Agende sua consulta
                     </Button>
-                    <Button 
-                      size="lg" 
-                      variant="outline"
-                      className="border-2 border-primary text-primary hover:bg-primary/10"
-                    >
+                    <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10">
                       Faça o teste de TDAH gratuito
                     </Button>
                   </div>
                 </div>
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
-                  <img
-                    src={drGabrielImage}
-                    alt="Dr. Gabriel Lopes - Psiquiatra especialista em TDAH"
-                    className="w-full h-auto rounded-2xl shadow-[var(--shadow-soft)]"
-                  />
+                  <img src={drGabrielImage} alt="Dr. Gabriel Lopes - Psiquiatra especialista em TDAH" className="w-full h-auto rounded-2xl shadow-[var(--shadow-soft)]" />
                 </div>
               </div>
             </div>
@@ -100,21 +79,10 @@ const TDAH = () => {
                 </p>
                 
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
-                  {[
-                    "Histórico familiar de TDAH",
-                    "Nascimento com baixo peso",
-                    "Exposição a toxinas como chumbo",
-                    "Uso de cigarro e álcool durante a gestação",
-                    "Experiências traumáticas na infância (negligência, abuso ou violência)"
-                  ].map((factor, index) => (
-                    <div 
-                      key={index}
-                      className="flex items-start gap-3 p-4 bg-background rounded-lg border border-primary/20 hover:border-primary/40 transition-colors"
-                    >
+                  {["Histórico familiar de TDAH", "Nascimento com baixo peso", "Exposição a toxinas como chumbo", "Uso de cigarro e álcool durante a gestação", "Experiências traumáticas na infância (negligência, abuso ou violência)"].map((factor, index) => <div key={index} className="flex items-start gap-3 p-4 bg-background rounded-lg border border-primary/20 hover:border-primary/40 transition-colors">
                       <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                       <span className="text-foreground">{factor}</span>
-                    </div>
-                  ))}
+                    </div>)}
                 </div>
 
                 <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg">
@@ -145,17 +113,10 @@ const TDAH = () => {
                     </div>
                     <h3 className="text-2xl font-bold mb-6 text-foreground">🧒 Em crianças</h3>
                     <ul className="space-y-4">
-                      {[
-                        "Dificuldade de manter atenção em atividades escolares ou brincadeiras",
-                        "Inquietude e agitação constantes",
-                        "Impaciência e dificuldade em esperar",
-                        "Dificuldade de concluir tarefas"
-                      ].map((symptom, index) => (
-                        <li key={index} className="flex items-start gap-3">
+                      {["Dificuldade de manter atenção em atividades escolares ou brincadeiras", "Inquietude e agitação constantes", "Impaciência e dificuldade em esperar", "Dificuldade de concluir tarefas"].map((symptom, index) => <li key={index} className="flex items-start gap-3">
                           <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
                           <span className="text-muted-foreground">{symptom}</span>
-                        </li>
-                      ))}
+                        </li>)}
                     </ul>
                   </div>
 
@@ -166,28 +127,16 @@ const TDAH = () => {
                     </div>
                     <h3 className="text-2xl font-bold mb-6 text-foreground">👩‍💼 Em adultos</h3>
                     <ul className="space-y-4">
-                      {[
-                        "Falta de foco em tarefas diárias e profissionais",
-                        "Esquecimentos e perda de prazos",
-                        "Procrastinação",
-                        "Impulsividade e oscilações de humor",
-                        "Sensação de sobrecarga mental e dificuldade de organização"
-                      ].map((symptom, index) => (
-                        <li key={index} className="flex items-start gap-3">
+                      {["Falta de foco em tarefas diárias e profissionais", "Esquecimentos e perda de prazos", "Procrastinação", "Impulsividade e oscilações de humor", "Sensação de sobrecarga mental e dificuldade de organização"].map((symptom, index) => <li key={index} className="flex items-start gap-3">
                           <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0" />
                           <span className="text-muted-foreground">{symptom}</span>
-                        </li>
-                      ))}
+                        </li>)}
                     </ul>
                   </div>
                 </div>
 
                 <div className="text-center mt-12">
-                  <Button 
-                    size="lg" 
-                    variant="outline"
-                    className="border-2 border-primary text-primary hover:bg-primary/10"
-                  >
+                  <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10">
                     🔹 Identificou-se com esses sintomas? Faça o teste de TDAH online
                   </Button>
                 </div>
@@ -252,10 +201,7 @@ const TDAH = () => {
                 <p className="text-sm text-muted-foreground mb-8 italic">
                   🧩 O teste não substitui o diagnóstico profissional, mas é um ótimo ponto de partida.
                 </p>
-                <Button 
-                  size="lg"
-                  className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all"
-                >
+                <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all">
                   🔹 Iniciar teste gratuito
                 </Button>
               </div>
@@ -313,11 +259,7 @@ const TDAH = () => {
                 </div>
 
                 <div className="text-center">
-                  <Button 
-                    size="lg"
-                    className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all"
-                    onClick={() => window.open('https://wa.me/5511941543929', '_blank')}
-                  >
+                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
                     🔹 Agende sua consulta com o Dr. Gabriel Lopes
                   </Button>
                 </div>
@@ -364,18 +306,10 @@ const TDAH = () => {
                   O tratamento do TDAH pode transformar sua rotina, trazendo mais foco, equilíbrio e qualidade de vida.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button 
-                    size="lg"
-                    className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all"
-                    onClick={() => window.open('https://wa.me/5511941543929', '_blank')}
-                  >
+                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
                     🔹 Agende sua consulta
                   </Button>
-                  <Button 
-                    size="lg" 
-                    variant="outline"
-                    className="border-2 border-primary text-primary hover:bg-primary/10"
-                  >
+                  <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10">
                     🔹 Faça o teste gratuito de TDAH
                   </Button>
                 </div>
@@ -386,8 +320,6 @@ const TDAH = () => {
         <Footer />
         <WhatsAppButton />
       </div>
-    </>
-  );
+    </>;
 };
-
 export default TDAH;
