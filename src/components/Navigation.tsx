@@ -11,7 +11,7 @@ const Navigation = () => {
     { name: "Especialidades", href: "#especialidades" },
     { name: "Nossa Equipe", href: "#equipe" },
     { name: "Testes", href: "#testes" },
-    { name: "Blog", href: "#blog" },
+    { name: "Blog", href: "/blog" },
     { name: "Contato", href: "#contato" },
   ];
 
