@@ -22,7 +22,7 @@ const Ansiedade = () => {
         <main>
           {/* Hero Section */}
           <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-secondary/30 to-background">
-            <div className="container mx-auto px-4 py-20">
+            <div className="container mx-auto px-4 pt-32 pb-20">
               <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
                   <h1 className="text-4xl font-bold mb-6 text-foreground md:text-5xl">
