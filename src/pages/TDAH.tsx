@@ -88,10 +88,10 @@ const TDAH = () => {
                   Não há uma única causa definida, mas estudos apontam fatores genéticos e ambientais como principais influenciadores.
                 </p>
                 
-                <div className="grid md:grid-cols-2 gap-6 mb-8">
-                  {["Histórico familiar de TDAH", "Nascimento com baixo peso", "Exposição a toxinas como chumbo", "Uso de cigarro e álcool durante a gestação", "Experiências traumáticas na infância (negligência, abuso ou violência)"].map((factor, index) => <div key={index} className="flex items-start gap-3 p-4 bg-background rounded-lg border border-primary/20 hover:border-primary/40 transition-colors">
-                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                      <span className="text-foreground">{factor}</span>
+                <div className="grid grid-cols-1 gap-6 mb-8 max-w-3xl mx-auto">
+                  {["Histórico familiar de TDAH", "Nascimento com baixo peso", "Exposição a toxinas como chumbo", "Uso de cigarro e álcool durante a gestação", "Experiências traumáticas na infância (negligência, abuso ou violência)"].map((factor, index) => <div key={index} className="flex items-start gap-4 p-6 bg-background rounded-xl border-2 border-primary/20 hover:border-primary/40 transition-colors">
+                      <CheckCircle2 className="w-7 h-7 text-primary flex-shrink-0 mt-1" />
+                      <span className="text-foreground text-lg">{factor}</span>
                     </div>)}
                 </div>
 
