@@ -55,7 +55,7 @@ const TDAH = () => {
               className="absolute inset-0 bg-fixed bg-center bg-cover"
               style={{ backgroundImage: `url(${consultorioImage})` }}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-blue-950/90 via-blue-900/90 to-blue-950/90" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#087daf]/90 via-[#087daf]/90 to-[#087daf]/90" />
             
             {/* Conteúdo */}
             <div className="container mx-auto px-4 relative z-10">
