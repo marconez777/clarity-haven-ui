@@ -145,7 +145,7 @@ const TDAH = () => {
                 </div>
 
                 <div className="text-center mt-12">
-                  <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10">
+                  <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary">
                     🔹 Identificou-se com esses sintomas? Faça o teste de TDAH online
                   </Button>
                 </div>
