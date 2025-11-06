@@ -116,7 +116,7 @@ const TDAH = () => {
 
                 <div className="grid md:grid-cols-2 gap-8">
                   {/* Em crianças */}
-                  <div className="bg-gradient-to-br from-secondary/20 to-background p-8 rounded-2xl border-2 border-primary/20">
+                  <div className="bg-gradient-to-br from-secondary/20 to-background p-8 rounded-2xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
                     <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mb-6">
                       <Users className="w-8 h-8 text-primary-foreground" />
                     </div>
@@ -130,7 +130,7 @@ const TDAH = () => {
                   </div>
 
                   {/* Em adultos */}
-                  <div className="bg-gradient-to-br from-accent/10 to-background p-8 rounded-2xl border-2 border-accent/20">
+                  <div className="bg-gradient-to-br from-accent/10 to-background p-8 rounded-2xl border-2 border-accent/20 hover:border-accent/40 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
                     <div className="w-16 h-16 bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center mb-6">
                       <Brain className="w-8 h-8 text-primary-foreground" />
                     </div>
