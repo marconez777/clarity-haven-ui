@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -14,7 +15,8 @@ const blogPosts = [
     image: "/placeholder.svg",
     date: "15 Mar 2024",
     author: "Dr. Gabriel Lopes",
-    category: "Ansiedade"
+    category: "Ansiedade",
+    slug: "entendendo-ansiedade"
   },
   {
     id: 2,
@@ -23,7 +25,8 @@ const blogPosts = [
     image: "/placeholder.svg",
     date: "10 Mar 2024",
     author: "Dr. Gabriel Lopes",
-    category: "TDAH"
+    category: "TDAH",
+    slug: "tdah-adultos"
   },
   {
     id: 3,
@@ -99,10 +102,10 @@ const Blog = () => {
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {blogPosts.map((post) => (
-                <Card 
-                  key={post.id} 
-                  className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group"
-                >
+                <Link key={post.id} to={`/blog/${post.slug}`}>
+                  <Card 
+                    className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group h-full"
+                  >
                   <div className="relative h-48 overflow-hidden">
                     <img 
                       src={post.image} 
@@ -129,11 +132,12 @@ const Blog = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <CardDescription className="line-clamp-3">
-                      {post.excerpt}
-                    </CardDescription>
-                  </CardContent>
+                  <CardDescription className="line-clamp-3">
+                    {post.excerpt}
+                  </CardDescription>
+                </CardContent>
                 </Card>
+              </Link>
               ))}
             </div>
           </div>
