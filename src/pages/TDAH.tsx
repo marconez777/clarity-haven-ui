@@ -66,7 +66,7 @@ const TDAH = () => {
                   <div className="w-32 h-1.5 bg-gradient-to-r from-cyan-400 to-blue-400 mx-auto rounded-full shadow-lg shadow-cyan-500/50" />
                 </div>
                 <div className="bg-white/95 backdrop-blur-md p-10 md:p-12 rounded-3xl shadow-2xl border border-white/20">
-                  <p className="text-lg md:text-xl text-gray-700 leading-relaxed text-center">
+                  <p className="text-lg md:text-xl text-foreground leading-relaxed text-center">
                     O TDAH é uma condição neurobiológica que afeta o funcionamento da região frontal do cérebro, 
                     responsável pelo controle da atenção, impulsividade e comportamento. 
                     Cada caso é único e pode se manifestar com diferentes intensidades em crianças, adolescentes ou adultos.
