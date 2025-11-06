@@ -1,72 +1,26 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, User } from "lucide-react";
 
-const blogPosts = [
-  {
-    id: 1,
-    title: "Entendendo a Ansiedade: Sintomas e Tratamentos",
-    excerpt: "A ansiedade é uma resposta natural do corpo, mas quando se torna excessiva pode impactar significativamente a qualidade de vida. Conheça os principais sintomas e opções de tratamento.",
-    image: "/placeholder.svg",
-    date: "15 Mar 2024",
-    author: "Dr. Gabriel Lopes",
-    category: "Ansiedade",
-    slug: "entendendo-ansiedade"
-  },
-  {
-    id: 2,
-    title: "TDAH em Adultos: Mitos e Verdades",
-    excerpt: "O Transtorno de Déficit de Atenção e Hiperatividade não afeta apenas crianças. Descubra como o TDAH se manifesta em adultos e as melhores estratégias de tratamento.",
-    image: "/placeholder.svg",
-    date: "10 Mar 2024",
-    author: "Dr. Gabriel Lopes",
-    category: "TDAH",
-    slug: "tdah-adultos"
-  },
-  {
-    id: 3,
-    title: "A Importância da Saúde Mental no Ambiente de Trabalho",
-    excerpt: "Cuidar da saúde mental no trabalho é essencial para o bem-estar e produtividade. Aprenda estratégias práticas para manter o equilíbrio mental no dia a dia profissional.",
-    image: "/placeholder.svg",
-    date: "5 Mar 2024",
-    author: "Dr. Gabriel Lopes",
-    category: "Bem-estar"
-  },
-  {
-    id: 4,
-    title: "Depressão: Quando Procurar Ajuda Profissional",
-    excerpt: "Reconhecer os sinais da depressão e buscar ajuda no momento certo pode fazer toda a diferença. Saiba quando é hora de procurar um profissional de saúde mental.",
-    image: "/placeholder.svg",
-    date: "28 Fev 2024",
-    author: "Dr. Gabriel Lopes",
-    category: "Depressão"
-  },
-  {
-    id: 5,
-    title: "Nutrição e Saúde Mental: A Conexão que Você Precisa Conhecer",
-    excerpt: "Você sabia que a alimentação pode influenciar diretamente sua saúde mental? Descubra como uma nutrição adequada pode ajudar no tratamento de transtornos mentais.",
-    image: "/placeholder.svg",
-    date: "20 Fev 2024",
-    author: "Dr. Gabriel Lopes",
-    category: "Nutrição"
-  },
-  {
-    id: 6,
-    title: "Acupuntura no Tratamento de Transtornos Mentais",
-    excerpt: "A acupuntura tem se mostrado uma terapia complementar eficaz no tratamento de diversos transtornos mentais. Entenda como essa técnica milenar pode ajudar.",
-    image: "/placeholder.svg",
-    date: "15 Fev 2024",
-    author: "Dr. Gabriel Lopes",
-    category: "Terapias Integrativas"
-  }
-];
-
 const Blog = () => {
+  const { data: posts, isLoading } = useQuery({
+    queryKey: ['blog-posts'],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from('blog_posts')
+        .select('*, blog_categories(name, slug)')
+        .eq('status', 'published')
+        .order('published_at', { ascending: false });
+      return data || [];
+    },
+  });
   return (
     <>
       <Helmet>
@@ -100,46 +54,52 @@ const Blog = () => {
         {/* Blog Posts Grid */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {blogPosts.map((post) => (
-                <Link key={post.id} to={`/blog/${post.slug}`}>
-                  <Card 
-                    className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group h-full"
-                  >
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={post.image} 
-                      alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <Badge className="absolute top-4 left-4 bg-primary">
-                      {post.category}
-                    </Badge>
-                  </div>
-                  <CardHeader>
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground mb-2">
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        {post.date}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <User className="w-4 h-4" />
-                        {post.author}
-                      </span>
-                    </div>
-                    <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                      {post.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                  <CardDescription className="line-clamp-3">
-                    {post.excerpt}
-                  </CardDescription>
-                </CardContent>
-                </Card>
-              </Link>
-              ))}
-            </div>
+            {isLoading ? (
+              <p className="text-center">Carregando posts...</p>
+            ) : posts?.length === 0 ? (
+              <p className="text-center">Nenhum post publicado ainda.</p>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {posts?.map((post) => (
+                  <Link key={post.id} to={`/blog/${post.slug}`}>
+                    <Card className="h-full hover:shadow-lg transition-shadow">
+                      {post.featured_image && (
+                        <div className="relative h-48 overflow-hidden">
+                          <img
+                            src={post.featured_image}
+                            alt={post.title}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      )}
+                      <CardHeader>
+                        <Badge className="mb-2 w-fit">
+                          {post.blog_categories?.name || 'Sem categoria'}
+                        </Badge>
+                        <CardTitle className="hover:text-primary transition-colors">
+                          {post.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-muted-foreground mb-4 line-clamp-3">
+                          {post.excerpt}
+                        </p>
+                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                          <span className="flex items-center gap-1">
+                            <Calendar className="w-4 h-4" />
+                            {new Date(post.published_at).toLocaleDateString('pt-BR')}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <User className="w-4 h-4" />
+                            {post.author}
+                          </span>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </section>
 
