@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import mentalHealthImage from "@/assets/mental-health.jpg";
+import mentalHealthImage from "@/assets/sections/mental-health.png";
 
 const MentalHealthSection = () => {
   const conditions = ["Depressão", "Ansiedade", "TDAH", "Teste sua saúde mental."];
