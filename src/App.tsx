@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import TDAH from "./pages/TDAH";
-import Ansiedade from "./pages/Ansiedade";
 import Team from "./pages/Team";
 import NotFound from "./pages/NotFound";
 
@@ -22,7 +21,6 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/tdah" element={<TDAH />} />
-            <Route path="/ansiedade" element={<Ansiedade />} />
             <Route path="/equipe" element={<Team />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
