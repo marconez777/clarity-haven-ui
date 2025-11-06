@@ -51,10 +51,9 @@ const TDAH = () => {
           {/* O que é o TDAH */}
           <section className="relative py-32 overflow-hidden">
             {/* Background parallax com transparência */}
-            <div 
-              className="absolute inset-0 bg-fixed bg-center bg-cover"
-              style={{ backgroundImage: `url(${consultorioImage})` }}
-            />
+            <div className="absolute inset-0 bg-fixed bg-center bg-cover" style={{
+            backgroundImage: `url(${consultorioImage})`
+          }} />
             <div className="absolute inset-0 bg-gradient-to-b from-[#087daf]/90 via-[#087daf]/90 to-[#087daf]/90" />
             
             {/* Conteúdo */}
@@ -291,7 +290,7 @@ const TDAH = () => {
                   </div>
 
                   <div className="bg-background p-8 rounded-2xl border-2 border-accent/20">
-                    <h3 className="text-2xl font-bold mb-4 text-accent">👩 TDAH em Adultos</h3>
+                    <h3 className="font-bold mb-4 text-[neutral-600neutral-600] text-[#077eb0]">👩 TDAH em Adultos</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       Mesmo surgindo na infância, o TDAH pode continuar na vida adulta, prejudicando relações, 
                       produtividade e autoestima. O tratamento adequado ajuda a retomar o controle e o equilíbrio emocional.
