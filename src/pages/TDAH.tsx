@@ -49,25 +49,25 @@ const TDAH = () => {
           </section>
 
           {/* O que é o TDAH */}
-          <section className="relative py-20 overflow-hidden">
+          <section className="relative py-32 overflow-hidden">
             {/* Background parallax com transparência */}
             <div 
               className="absolute inset-0 bg-fixed bg-center bg-cover"
               style={{ backgroundImage: `url(${consultorioImage})` }}
             />
-            <div className="absolute inset-0 bg-blue-950/85" />
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-950/90 via-blue-900/90 to-blue-950/90" />
             
             {/* Conteúdo */}
             <div className="container mx-auto px-4 relative z-10">
-              <div className="max-w-4xl mx-auto">
-                <div className="text-center mb-12">
-                  <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
+              <div className="max-w-5xl mx-auto">
+                <div className="text-center mb-16">
+                  <h2 className="text-4xl md:text-6xl font-bold mb-8 text-white leading-tight">
                     Entenda o transtorno do déficit de atenção com hiperatividade
                   </h2>
-                  <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-8" />
+                  <div className="w-32 h-1.5 bg-gradient-to-r from-cyan-400 to-blue-400 mx-auto rounded-full shadow-lg shadow-cyan-500/50" />
                 </div>
-                <div className="bg-gradient-to-br from-secondary/20 to-background p-8 rounded-2xl border-2 border-primary/10 backdrop-blur-sm">
-                  <p className="text-lg text-muted-foreground leading-relaxed">
+                <div className="bg-white/95 backdrop-blur-md p-10 md:p-12 rounded-3xl shadow-2xl border border-white/20">
+                  <p className="text-lg md:text-xl text-gray-700 leading-relaxed text-center">
                     O TDAH é uma condição neurobiológica que afeta o funcionamento da região frontal do cérebro, 
                     responsável pelo controle da atenção, impulsividade e comportamento. 
                     Cada caso é único e pode se manifestar com diferentes intensidades em crianças, adolescentes ou adultos.
