@@ -6,6 +6,7 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import { Button } from "@/components/ui/button";
 import { Brain, Heart, Users, CheckCircle2, AlertCircle } from "lucide-react";
 import drGabrielImage from "@/assets/doctors/dr-gabriel.png";
+import consultorioImage from "@/assets/sections/consultori-psiquiatria2.jpg";
 const TDAH = () => {
   return <>
       <Helmet>
@@ -48,8 +49,16 @@ const TDAH = () => {
           </section>
 
           {/* O que é o TDAH */}
-          <section className="py-20 bg-background">
-            <div className="container mx-auto px-4">
+          <section className="relative py-20 overflow-hidden">
+            {/* Background parallax com transparência */}
+            <div 
+              className="absolute inset-0 bg-fixed bg-center bg-cover"
+              style={{ backgroundImage: `url(${consultorioImage})` }}
+            />
+            <div className="absolute inset-0 bg-background/85" />
+            
+            {/* Conteúdo */}
+            <div className="container mx-auto px-4 relative z-10">
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-12">
                   <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
@@ -57,7 +66,7 @@ const TDAH = () => {
                   </h2>
                   <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-8" />
                 </div>
-                <div className="bg-gradient-to-br from-secondary/20 to-background p-8 rounded-2xl border-2 border-primary/10">
+                <div className="bg-gradient-to-br from-secondary/20 to-background p-8 rounded-2xl border-2 border-primary/10 backdrop-blur-sm">
                   <p className="text-lg text-muted-foreground leading-relaxed">
                     O TDAH é uma condição neurobiológica que afeta o funcionamento da região frontal do cérebro, 
                     responsável pelo controle da atenção, impulsividade e comportamento. 
