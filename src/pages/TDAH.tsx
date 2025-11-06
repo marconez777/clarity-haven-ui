@@ -5,6 +5,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import { Button } from "@/components/ui/button";
 import { Brain, Heart, Users, CheckCircle2, AlertCircle } from "lucide-react";
+import drGabrielImage from "@/assets/doctors/dr-gabriel.png";
 
 const TDAH = () => {
   return (
@@ -29,29 +30,38 @@ const TDAH = () => {
           {/* Hero Section */}
           <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-secondary/30 to-background">
             <div className="container mx-auto px-4 py-20">
-              <div className="max-w-4xl mx-auto text-center">
-                <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground animate-in fade-in slide-in-from-bottom-4 duration-700">
-                  Dificuldade de foco, impulsividade ou esquecimento constante?
-                  <span className="block text-primary mt-4">Você pode estar convivendo com TDAH.</span>
-                </h1>
-                <p className="text-xl text-muted-foreground mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
-                  Avaliação completa e tratamento especializado com o Dr. Gabriel Lopes, psiquiatra referência em saúde mental e TDAH infantil e adulto.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
-                  <Button 
-                    size="lg" 
-                    className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all"
-                    onClick={() => window.open('https://wa.me/5511941543929', '_blank')}
-                  >
-                    Agende sua consulta
-                  </Button>
-                  <Button 
-                    size="lg" 
-                    variant="outline"
-                    className="border-2 border-primary text-primary hover:bg-primary/10"
-                  >
-                    Faça o teste de TDAH gratuito
-                  </Button>
+              <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+                <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+                  <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground">
+                    Dificuldade de foco, impulsividade ou esquecimento constante?
+                    <span className="block text-primary mt-4">Você pode estar convivendo com TDAH.</span>
+                  </h1>
+                  <p className="text-xl text-muted-foreground mb-8">
+                    Avaliação completa e tratamento especializado com o Dr. Gabriel Lopes, psiquiatra referência em saúde mental e TDAH infantil e adulto.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button 
+                      size="lg" 
+                      className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all"
+                      onClick={() => window.open('https://wa.me/5511941543929', '_blank')}
+                    >
+                      Agende sua consulta
+                    </Button>
+                    <Button 
+                      size="lg" 
+                      variant="outline"
+                      className="border-2 border-primary text-primary hover:bg-primary/10"
+                    >
+                      Faça o teste de TDAH gratuito
+                    </Button>
+                  </div>
+                </div>
+                <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+                  <img
+                    src={drGabrielImage}
+                    alt="Dr. Gabriel Lopes - Psiquiatra especialista em TDAH"
+                    className="w-full h-auto rounded-2xl shadow-[var(--shadow-soft)]"
+                  />
                 </div>
               </div>
             </div>
