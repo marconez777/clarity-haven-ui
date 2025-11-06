@@ -55,7 +55,7 @@ const TDAH = () => {
               className="absolute inset-0 bg-fixed bg-center bg-cover"
               style={{ backgroundImage: `url(${consultorioImage})` }}
             />
-            <div className="absolute inset-0 bg-background/85" />
+            <div className="absolute inset-0 bg-blue-950/85" />
             
             {/* Conteúdo */}
             <div className="container mx-auto px-4 relative z-10">
