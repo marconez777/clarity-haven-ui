@@ -11,6 +11,7 @@ import Team from "./pages/Team";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
+import Depressao from "./pages/Depressao";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/tdah" element={<TDAH />} />
             <Route path="/ansiedade" element={<Ansiedade />} />
+            <Route path="/depressao" element={<Depressao />} />
             <Route path="/equipe" element={<Team />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
