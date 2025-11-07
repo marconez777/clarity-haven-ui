@@ -12,6 +12,7 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 import Depressao from "./pages/Depressao";
+import Contato from "./pages/Contato";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { ProtectedRoute } from "@/components/admin/ProtectedRoute";
 import Login from "@/pages/admin/Login";
@@ -41,6 +42,7 @@ const App = () => (
             <Route path="/equipe" element={<Team />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/contato" element={<Contato />} />
             
             {/* Admin Routes */}
             <Route path="/admin/login" element={<Login />} />
