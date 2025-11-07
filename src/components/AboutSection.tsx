@@ -49,15 +49,26 @@ const AboutSection = () => {
                 Agende sua consulta
               </Button>
             </div>
+            
+            <div className="mt-8 flex justify-center md:justify-start">
+              <iframe 
+                frameBorder="0" 
+                scrolling="no" 
+                allowTransparency={true}
+                data-id="pnh0yj0mfi" 
+                title="Docplanner Booking Widget" 
+                src="https://widgets.doctoralia.com.br/doctor/widget/certificate/gabriel-lopes?customUtm=null&id=pnh0yj0mfi&header=null&content=null&fullwidth=null&referer=https%3A%2F%2Fdrgabriel.med.br%2Fdr-gabriel-lopes%2F&hide_branding=true&widget_position=bottom&opinion=false&saasonly=false&expand_calendar=false" 
+                style={{ border: "none", overflow: "hidden", width: "245px", height: "284px" }}
+              />
+            </div>
           </div>
 
           <div className="order-1 md:order-2">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent rounded-2xl transform rotate-3" />
               <img
                 src={drGabrielImage}
                 alt="Dr. Gabriel Lopes"
-                className="relative rounded-2xl shadow-[var(--shadow-soft)] w-full h-auto transform hover:scale-105 transition-transform duration-300"
+                className="rounded-2xl shadow-[var(--shadow-soft)] w-full h-auto transform hover:scale-105 transition-transform duration-300"
               />
             </div>
           </div>
