@@ -1,6 +1,12 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import logo from "@/assets/logo.png";
 
 const Navigation = () => {
@@ -8,11 +14,17 @@ const Navigation = () => {
 
   const menuItems = [
     { name: "Dr. Gabriel Lopes", href: "/dr-gabriel-lopes" },
-    { name: "Especialidades", href: "#especialidades" },
-    { name: "Nossa Equipe", href: "#equipe" },
+    { name: "Nossa Equipe", href: "/equipe" },
     { name: "Testes", href: "#testes" },
     { name: "Blog", href: "/blog" },
     { name: "Contato", href: "/contato" },
+  ];
+
+  const especialidadesItems = [
+    { name: "TDAH", href: "/tdah" },
+    { name: "Ansiedade", href: "/ansiedade" },
+    { name: "Depressão", href: "/depressao" },
+    { name: "Transtorno Bipolar", href: "/transtorno-bipolar" },
   ];
 
   return (
@@ -38,7 +50,34 @@ const Navigation = () => {
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-6">
-            {menuItems.map((item) => (
+            {menuItems.slice(0, 1).map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+              >
+                {item.name}
+              </a>
+            ))}
+            
+            {/* Dropdown Especialidades */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary transition-colors">
+                Especialidades
+                <ChevronDown size={16} />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-background border-border">
+                {especialidadesItems.map((item) => (
+                  <DropdownMenuItem key={item.name} asChild>
+                    <a href={item.href} className="cursor-pointer">
+                      {item.name}
+                    </a>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {menuItems.slice(1).map((item) => (
               <a
                 key={item.name}
                 href={item.href}
@@ -66,7 +105,33 @@ const Navigation = () => {
         {isOpen && (
           <div className="lg:hidden py-4 border-t border-border">
             <div className="flex flex-col gap-4">
-              {menuItems.map((item) => (
+              {menuItems.slice(0, 1).map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.name}
+                </a>
+              ))}
+              
+              {/* Especialidades no mobile */}
+              <div className="flex flex-col gap-2 pl-0">
+                <span className="text-sm font-medium text-foreground py-2">Especialidades</span>
+                {especialidadesItems.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors py-2 pl-4"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+
+              {menuItems.slice(1).map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
