@@ -50,6 +50,34 @@ const WordPressImport = () => {
     return '';
   };
 
+  const downloadImage = async (url: string, fileName: string): Promise<string | null> => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Falha ao baixar imagem');
+      
+      const blob = await response.blob();
+      const file = new File([blob], fileName, { type: blob.type });
+      
+      const { data, error } = await supabase.storage
+        .from('blog-images')
+        .upload(fileName, file, {
+          cacheControl: '3600',
+          upsert: true
+        });
+      
+      if (error) throw error;
+      
+      const { data: { publicUrl } } = supabase.storage
+        .from('blog-images')
+        .getPublicUrl(data.path);
+      
+      return publicUrl;
+    } catch (error) {
+      console.error('Erro ao fazer download da imagem:', error);
+      return null;
+    }
+  };
+
   const handleImport = async () => {
     if (!file) return;
     
@@ -66,8 +94,22 @@ const WordPressImport = () => {
         throw new Error('Erro ao processar o arquivo XML');
       }
 
-      // Obter todos os items (posts)
+      // Criar mapa de attachments (imagens)
       const items = xmlDoc.getElementsByTagName('item');
+      const attachmentMap = new Map<string, string>();
+      
+      Array.from(items).forEach(item => {
+        const postType = getTextContent(item.getElementsByTagName('wp:post_type')[0]);
+        if (postType === 'attachment') {
+          const attachmentId = getTextContent(item.getElementsByTagName('wp:post_id')[0]);
+          const attachmentUrl = getTextContent(item.getElementsByTagName('wp:attachment_url')[0]);
+          if (attachmentId && attachmentUrl) {
+            attachmentMap.set(attachmentId, attachmentUrl);
+          }
+        }
+      });
+
+      // Obter todos os posts
       const posts = Array.from(items).filter(item => {
         const postType = getTextContent(item.getElementsByTagName('wp:post_type')[0]);
         const status = getTextContent(item.getElementsByTagName('wp:status')[0]);
@@ -136,6 +178,15 @@ const WordPressImport = () => {
           const seoDescription = getPostMeta(item, '_yoast_wpseo_metadesc');
           const readTime = getPostMeta(item, '_yoast_wpseo_estimated-reading-time-minutes');
 
+          // Extrair e fazer download da imagem destacada
+          let featuredImageUrl: string | null = null;
+          const thumbnailId = getPostMeta(item, '_thumbnail_id');
+          if (thumbnailId && attachmentMap.has(thumbnailId)) {
+            const imageUrl = attachmentMap.get(thumbnailId)!;
+            const imageFileName = `${slug}-${Date.now()}.jpg`;
+            featuredImageUrl = await downloadImage(imageUrl, imageFileName);
+          }
+
           // Inserir post
           const { error: postError } = await supabase
             .from('blog_posts')
@@ -148,6 +199,7 @@ const WordPressImport = () => {
               category_id: category?.id,
               status: 'published',
               published_at: pubDate ? new Date(pubDate).toISOString() : new Date().toISOString(),
+              featured_image: featuredImageUrl,
               seo_title: seoTitle,
               seo_description: seoDescription,
               read_time: readTime ? `${readTime} min` : '5 min',
