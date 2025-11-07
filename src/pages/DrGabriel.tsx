@@ -69,7 +69,7 @@ const DrGabriel = () => {
 
               <TabsContent value="conheca" className="space-y-6">
                 <div className="prose prose-lg max-w-none text-foreground">
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-lg leading-relaxed mb-6">
                     Primeiro de tudo, obrigado pelo seu tempo. Afinal, você poderia estar fazendo outras coisas e está aqui, não é mesmo? Espero de coração que seja útil e proveitoso para você.
                   </p>
 
@@ -79,7 +79,7 @@ const DrGabriel = () => {
                     <p className="font-semibold">Psiquiatria da infância e adolescência (RQE – CREMESP: 48295-1)</p>
                   </div>
 
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-lg leading-relaxed mb-6">
                     Mas antes de ser um acadêmico da área da medicina e da psiquiatria, sou humano. E como humano é que pretendo conseguir ajudar a quem me procura. Como diria Jung:
                   </p>
 
@@ -87,37 +87,37 @@ const DrGabriel = () => {
                     "Conheça todas as teorias, domine todas as técnicas, mas ao tocar uma alma humana, seja apenas outra alma humana".
                   </blockquote>
 
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-lg leading-relaxed mb-6">
                     E é assim que sempre tento ser no meu cotidiano. O mais empático possível com qualquer paciente que me procure. Quem tem dor, emocional ou física, tem pressa. E tento ser o mais assertivo possível no tratamento, para ajudar da melhor forma.
                   </p>
 
                   <h3 className="text-2xl font-bold text-primary mt-12 mb-4">QUEM SOU EU?</h3>
                   
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-lg leading-relaxed mb-6">
                     Olá, sou o Dr. Gabriel M. Lopes, psiquiatra com vasta experiência e especializado no atendimento a adultos e crianças. Possuo um destaque na área de Transtorno de Déficit de Atenção e Hiperatividade (TDAH), mas minha atuação abrange a totalidade da psiquiatria. Meu registro no CRM/SP é 131.339 e adquiri minha formação em Medicina pela prestigiosa Faculdade de Medicina da Santa Casa de São Paulo. Continuei minha jornada acadêmica fazendo Residência Médica em Psiquiatria nesta mesma instituição e um aprofundamento em Psiquiatria da Infância e Adolescência no reconhecido Hospital das Clínicas da Universidade de São Paulo (USP). Adicionalmente, sou um Psicoterapeuta formado em Análise do Comportamento pelo Instituto Paradigma.
                   </p>
 
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-lg leading-relaxed mb-6">
                     Durante minha carreira, acumulei uma rica bagagem de experiências clínicas que me proporcionam segurança para atender a uma ampla gama de demandas psiquiátricas. Vale salientar que, mesmo com essa extensa abrangência, opto por não atender a idosos acima de 65 anos, pois acredito que a psiquiatria geriátrica é uma especialidade que requer um conhecimento distinto. Contudo, tenho a satisfação de encaminhar esses pacientes para colegas altamente qualificados.
                   </p>
 
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-lg leading-relaxed mb-6">
                     Mesmo com um foco significativo em TDAH, minha prática não se limita a este campo. Atendo a uma diversidade de condições, sempre buscando o melhor para meus pacientes, desde aqueles que sofrem de ansiedade e depressão até aqueles que lutam contra transtornos mais complexos. Meu compromisso como psiquiatra é fazer mais do que tratar sintomas; é compreender o indivíduo por trás deles.
                   </p>
 
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-lg leading-relaxed mb-6">
                     Em termos de minha abordagem de tratamento, acredito firmemente que um pouco de humanidade é tão importante quanto a competência técnica. Isto é evidente em minha filosofia de trabalho, resumida pela citação de Jung, "Conheça todas as teorias, domine todas as técnicas, mas ao tocar uma alma humana, seja apenas outra alma humana". Esse é o norte de minha prática, seja ao tratar de TDAH ou de qualquer outra condição psiquiátrica.
                   </p>
 
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-lg leading-relaxed mb-6">
                     Minha dedicação constante a melhorar e atualizar meus conhecimentos e habilidades é parte integrante da minha filosofia de trabalho. Estou sempre me atualizando através de congressos nacionais, internacionais e cursos diversos de aperfeiçoamento. Atualmente, estou envolvido em pesquisas em várias áreas de ponta na psiquiatria, incluindo o uso de fitocanabinóides na prática médica, psiquiatria do estilo de vida e psiconeuroimunologia.
                   </p>
 
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-lg leading-relaxed mb-6">
                     Em meu consultório, cada paciente é valorizado e compreendido, seja qual for sua luta ou desafio. Cada detalhe do tratamento será explicado, incluindo medicamentos, possíveis efeitos colaterais e o tempo esperado para a melhora. Nossa meta é entender os sintomas, traçar uma linha do tempo para entender a evolução do quadro e estabelecer corretamente o diagnóstico para, então, discutir todas as opções terapêuticas disponíveis.
                   </p>
 
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-lg leading-relaxed mb-6">
                     Se você está em busca de um psiquiatra experiente e acolhedor, que atende a uma ampla gama de condições psiquiátricas, incluindo TDAH, estou aqui para ajudar. Espero ter a oportunidade de contribuir para o seu bem-estar e ajudá-lo em sua jornada. Como afirmou Jung, para alcançar uma alma humana, é preciso ser outra alma humana.
                   </p>
                 </div>
@@ -177,37 +177,37 @@ const DrGabriel = () => {
 
                   <h4 className="text-xl font-bold text-primary mt-8 mb-4">No tratamento e acompanhamento</h4>
                   
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-lg leading-relaxed mb-6">
                     O tratamento é explicado em detalhes. Se incluir medicação, qual medicação, qual efeito colateral, quanto tempo para esperarmos uma melhora.
                   </p>
 
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-lg leading-relaxed mb-6">
                     Após a consulta, principalmente após as primeiras consultas, me disponho a manter o acompanhamento por Whatsapp, caso necessário, para dúvidas ou orientações.
                   </p>
 
                   <h4 className="text-xl font-bold text-primary mt-8 mb-4">Na consulta empatia e atenção</h4>
                   
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-lg leading-relaxed mb-6">
                     Na consulta, presencial ou on-line, o meu foco é, única e exclusivamente, o paciente que está em consulta. O objetivo é entender os sintomas e traçar uma linha do tempo para entender a evolução do quadro e estabelecer corretamente o diagnóstico para então discutir contigo todas as opções terapêuticas disponíveis, medicamentosas ou não.
                   </p>
 
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-lg leading-relaxed mb-6">
                     Durante a consulta, muitas vezes, alguns sintomas que muitas vezes são comuns e que os pacientes muitas vezes nem percebem são levantadas e checadas. Às vezes nestes momentos os familiares entram na consulta junto com o paciente para obtenção de dados adicionais de história.
                   </p>
 
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-lg leading-relaxed mb-6">
                     Assim, com a coleta de dados e confirmações e refutações de hipóteses, o diagnóstico é construído com a participação ativa do paciente, eventualmente com uso de alguns questionários, e normalmente são pedidos exames para descartar doenças clínicas que podem causar sintomas psiquiátricos.
                   </p>
 
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-lg leading-relaxed mb-6">
                     Sempre irei tentar ajudar de todas as formas que estiverem ao meu alcance, porém sempre dentro dos limites éticos e profissionais. Procurando estar em contato com profissionais de minha equipe, variados, inovadores, referências nacionais e internacionais, para justamente tentar abranger todo tipo de demanda que surgir tanto para um diagnóstico preciso, quanto para o tratamento eficaz.
                   </p>
 
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-lg leading-relaxed mb-6">
                     Muitas vezes é necessário incluir profissionais qualificados em diversas áreas, bem como inovações no tratamento e nas ferramentas diagnósticas.
                   </p>
 
-                  <p className="text-lg leading-relaxed font-semibold">
+                  <p className="text-lg leading-relaxed font-semibold mb-6">
                     Esse foi o norte e o objetivo de fundar o Instituto Sanapta, com a minha equipe.
                   </p>
 
