@@ -131,7 +131,7 @@ const BlogPost = () => {
               )}
 
               <div 
-                className="prose prose-lg max-w-none prose-headings:font-bold prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl prose-p:mb-6 prose-ul:mb-6 prose-ol:mb-6 prose-li:mb-2 prose-a:text-primary"
+                className="blog-content prose prose-lg max-w-none"
                 dangerouslySetInnerHTML={{ __html: sanitizedContent }}
               />
 
