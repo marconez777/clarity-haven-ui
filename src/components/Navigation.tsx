@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,6 +11,8 @@ import logo from "@/assets/logo.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const closeTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const menuItems = [
     { name: "Dr. Gabriel Lopes", href: "/dr-gabriel-lopes" },
@@ -26,6 +28,20 @@ const Navigation = () => {
     { name: "Depressão", href: "/depressao" },
     { name: "Transtorno Bipolar", href: "/transtorno-bipolar" },
   ];
+
+  const handleMouseEnter = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setIsDropdownOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimerRef.current = setTimeout(() => {
+      setIsDropdownOpen(false);
+    }, 1000);
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm">
@@ -61,21 +77,23 @@ const Navigation = () => {
             ))}
             
             {/* Dropdown Especialidades */}
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary transition-colors">
-                Especialidades
-                <ChevronDown size={16} />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-background border-border">
-                {especialidadesItems.map((item) => (
-                  <DropdownMenuItem key={item.name} asChild>
-                    <a href={item.href} className="cursor-pointer">
-                      {item.name}
-                    </a>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+              <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
+                <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary transition-colors">
+                  Especialidades
+                  <ChevronDown size={16} className={`transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-background border-border animate-in fade-in-0 zoom-in-95 duration-200">
+                  {especialidadesItems.map((item) => (
+                    <DropdownMenuItem key={item.name} asChild>
+                      <a href={item.href} className="cursor-pointer">
+                        {item.name}
+                      </a>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
 
             {menuItems.slice(1).map((item) => (
               <a
