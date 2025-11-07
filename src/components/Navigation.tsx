@@ -7,7 +7,7 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
-    { name: "Dr. Gabriel Lopes", href: "#sobre" },
+    { name: "Dr. Gabriel Lopes", href: "/dr-gabriel-lopes" },
     { name: "Especialidades", href: "#especialidades" },
     { name: "Nossa Equipe", href: "#equipe" },
     { name: "Testes", href: "#testes" },

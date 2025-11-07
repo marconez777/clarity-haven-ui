@@ -13,6 +13,7 @@ import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 import Depressao from "./pages/Depressao";
 import Contato from "./pages/Contato";
+import DrGabriel from "./pages/DrGabriel";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { ProtectedRoute } from "@/components/admin/ProtectedRoute";
 import Login from "@/pages/admin/Login";
@@ -36,6 +37,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/dr-gabriel-lopes" element={<DrGabriel />} />
             <Route path="/tdah" element={<TDAH />} />
             <Route path="/ansiedade" element={<Ansiedade />} />
             <Route path="/depressao" element={<Depressao />} />
