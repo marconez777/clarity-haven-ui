@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -30,28 +31,27 @@ serve(async (req) => {
     const blob = await response.blob();
     console.log(`[DOWNLOAD] Blob baixado: ${blob.size} bytes`);
     
-    // Upload para o storage
-    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-    
-    const uploadResponse = await fetch(
-      `${supabaseUrl}/storage/v1/object/blog-images/${fileName}`,
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${supabaseServiceKey}`,
-          'Content-Type': blob.type,
-        },
-        body: blob,
-      }
+    // Upload para o storage usando o cliente Supabase
+    const supabase = createClient(
+      Deno.env.get('SUPABASE_URL')!,
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
     );
     
-    if (!uploadResponse.ok) {
-      const error = await uploadResponse.text();
-      throw new Error(`Upload falhou: ${error}`);
+    const { data, error: uploadError } = await supabase.storage
+      .from('blog-images')
+      .upload(fileName, blob, {
+        contentType: blob.type,
+        upsert: true
+      });
+    
+    if (uploadError) {
+      throw new Error(`Upload falhou: ${uploadError.message}`);
     }
     
-    const publicUrl = `${supabaseUrl}/storage/v1/object/public/blog-images/${fileName}`;
+    const { data: { publicUrl } } = supabase.storage
+      .from('blog-images')
+      .getPublicUrl(fileName);
+    
     console.log(`[DOWNLOAD] ✅ Sucesso! URL: ${publicUrl}`);
     
     return new Response(
