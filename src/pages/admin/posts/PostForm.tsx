@@ -18,9 +18,19 @@ import ImageUploader from '@/components/admin/ImageUploader';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 
+const RESERVED_SLUGS = [
+  'tdah', 'ansiedade', 'depressao', 'equipe', 'blog', 'contato', 
+  'dr-gabriel-lopes', 'admin', 'login', 'sobre', 'servicos'
+];
+
 const postSchema = z.object({
   title: z.string().min(1, 'Título é obrigatório'),
-  slug: z.string().min(1, 'Slug é obrigatório'),
+  slug: z.string()
+    .min(1, 'Slug é obrigatório')
+    .refine(
+      (slug) => !RESERVED_SLUGS.includes(slug.toLowerCase()),
+      { message: 'Este slug não pode ser usado pois conflita com páginas do site' }
+    ),
   excerpt: z.string().min(1, 'Resumo é obrigatório'),
   content: z.string().min(1, 'Conteúdo é obrigatório'),
   featured_image: z.string().optional(),
@@ -105,7 +115,10 @@ const PostForm = ({ initialData, onSubmit, isSubmitting }: PostFormProps) => {
 
           <div>
             <Label htmlFor="slug">Slug (URL) *</Label>
-            <Input id="slug" {...register('slug')} />
+            <Input id="slug" {...register('slug')} placeholder="ex: tratamento-ansiedade" />
+            <p className="text-xs text-muted-foreground mt-1">
+              O artigo será acessível em: drgabriellopes.com.br/<strong>{watch('slug') || 'seu-slug'}</strong>
+            </p>
             {errors.slug && (
               <p className="text-sm text-destructive mt-1">{errors.slug.message}</p>
             )}

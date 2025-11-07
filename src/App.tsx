@@ -43,7 +43,6 @@ const App = () => (
             <Route path="/depressao" element={<Depressao />} />
             <Route path="/equipe" element={<Team />} />
             <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/contato" element={<Contato />} />
             
             {/* Admin Routes */}
@@ -59,6 +58,9 @@ const App = () => (
               <Route path="pages/edit/:id" element={<PageEditor />} />
               <Route path="import" element={<WordPressImport />} />
             </Route>
+            
+            {/* Dynamic blog post route - BEFORE catch-all */}
+            <Route path="/:slug" element={<BlogPost />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

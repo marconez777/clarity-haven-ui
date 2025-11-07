@@ -61,7 +61,7 @@ const Blog = () => {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {posts?.map((post) => (
-                  <Link key={post.id} to={`/blog/${post.slug}`}>
+                  <Link key={post.id} to={`/${post.slug}`}>
                     <Card className="h-full hover:shadow-lg transition-shadow">
                       {post.featured_image && (
                         <div className="relative h-48 overflow-hidden">

@@ -81,7 +81,7 @@ const BlogPost = () => {
         <title>{post.seo_title || `${post.title} - Dr Gabriel Lopes`}</title>
         <meta name="description" content={post.seo_description || post.excerpt} />
         <meta name="keywords" content={post.seo_keywords || `${post.blog_categories?.name}, saúde mental`} />
-        <link rel="canonical" href={`https://drgabriellopes.com.br/blog/${post.slug}`} />
+        <link rel="canonical" href={`https://drgabriellopes.com.br/${post.slug}`} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
         <meta property="og:image" content={post.featured_image} />
@@ -153,7 +153,7 @@ const BlogPost = () => {
                 <h2 className="text-3xl font-bold mb-8">Artigos Relacionados</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {relatedPosts.map((related) => (
-                    <Link key={related.id} to={`/blog/${related.slug}`}>
+                    <Link key={related.id} to={`/${related.slug}`}>
                       <Card className="hover:shadow-lg transition-shadow">
                         <CardHeader>
                           <Badge className="mb-2 w-fit">{related.blog_categories?.name}</Badge>
