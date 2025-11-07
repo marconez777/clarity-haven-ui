@@ -93,56 +93,29 @@ const WordPressImport = () => {
   };
 
   const downloadImage = async (url: string, fileName: string, retries = 3): Promise<string | null> => {
-    console.log(`[IMAGEM] Tentando baixar: ${url}`);
+    console.log(`[IMAGEM] Tentando baixar via Edge Function: ${url}`);
     
     for (let attempt = 1; attempt <= retries; attempt++) {
       try {
         console.log(`[IMAGEM] Tentativa ${attempt}/${retries} para ${fileName}`);
         
-        // Estratégia 1: Fetch normal
-        let response = await fetch(url, {
-          mode: 'cors',
-          headers: {
-            'Accept': 'image/*',
-          },
+        // Usar Edge Function para fazer download sem CORS
+        const { data, error } = await supabase.functions.invoke('download-image', {
+          body: { imageUrl: url, fileName }
         });
-        
-        // Estratégia 2: Se falhar, tentar com proxy CORS
-        if (!response.ok && attempt === 2) {
-          console.log(`[IMAGEM] Tentando com proxy CORS...`);
-          const corsProxy = 'https://corsproxy.io/?';
-          response = await fetch(corsProxy + encodeURIComponent(url));
-        }
-        
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-        
-        const blob = await response.blob();
-        console.log(`[IMAGEM] Blob baixado: ${blob.size} bytes, tipo: ${blob.type}`);
-        
-        // Verificar se é realmente uma imagem
-        if (!blob.type.startsWith('image/')) {
-          throw new Error(`Tipo de arquivo inválido: ${blob.type}`);
-        }
-        
-        const file = new File([blob], fileName, { type: blob.type });
-        
-        const { data, error } = await supabase.storage
-          .from('blog-images')
-          .upload(fileName, file, {
-            cacheControl: '3600',
-            upsert: true
-          });
         
         if (error) throw error;
         
-        const { data: { publicUrl } } = supabase.storage
-          .from('blog-images')
-          .getPublicUrl(data.path);
+        if (data?.publicUrl) {
+          console.log(`[IMAGEM] ✅ Sucesso! URL pública: ${data.publicUrl}`);
+          return data.publicUrl;
+        }
         
-        console.log(`[IMAGEM] ✅ Sucesso! URL pública: ${publicUrl}`);
-        return publicUrl;
+        if (data?.error) {
+          throw new Error(data.error);
+        }
+        
+        throw new Error('Resposta inválida da Edge Function');
         
       } catch (error: any) {
         console.error(`[IMAGEM] ❌ Erro na tentativa ${attempt}:`, error.message);
