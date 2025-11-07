@@ -10,16 +10,27 @@ export const useAuth = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
 
+  const checkAdminStatus = async (userId: string) => {
+    try {
+      const { data: isAdminData } = await supabase
+        .rpc('is_admin', { _user_id: userId });
+      setIsAdmin(isAdminData || false);
+    } catch (error) {
+      console.error('Error checking admin status:', error);
+      setIsAdmin(false);
+    }
+  };
+
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      (event, session) => {
         setSession(session);
         setUser(session?.user ?? null);
         
         if (session?.user) {
-          const { data: isAdminData } = await supabase
-            .rpc('is_admin', { _user_id: session.user.id });
-          setIsAdmin(isAdminData || false);
+          setTimeout(() => {
+            checkAdminStatus(session.user.id);
+          }, 0);
         } else {
           setIsAdmin(false);
         }
@@ -31,9 +42,7 @@ export const useAuth = () => {
       setUser(session?.user ?? null);
       
       if (session?.user) {
-        const { data: isAdminData } = await supabase
-          .rpc('is_admin', { _user_id: session.user.id });
-        setIsAdmin(isAdminData || false);
+        await checkAdminStatus(session.user.id);
       }
       
       setLoading(false);
