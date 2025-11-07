@@ -6,6 +6,16 @@ import { useToast } from '@/hooks/use-toast';
 import { Helmet } from 'react-helmet-async';
 import { supabase } from '@/integrations/supabase/client';
 import { Progress } from '@/components/ui/progress';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 
 interface ImportProgress {
   total: number;
@@ -19,6 +29,8 @@ const WordPressImport = () => {
   const [importing, setImporting] = useState(false);
   const [progress, setProgress] = useState<ImportProgress | null>(null);
   const [completed, setCompleted] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const { toast } = useToast();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,6 +60,33 @@ const WordPressImport = () => {
       }
     }
     return '';
+  };
+
+  const handleDeleteAll = async () => {
+    setDeleting(true);
+    try {
+      const { error } = await supabase
+        .from('blog_posts')
+        .delete()
+        .neq('id', '00000000-0000-0000-0000-000000000000'); // Delete all posts
+      
+      if (error) throw error;
+      
+      toast({
+        title: 'Posts excluídos com sucesso',
+        description: 'Todos os posts foram removidos do banco de dados.',
+      });
+      
+      setShowDeleteDialog(false);
+    } catch (error: any) {
+      toast({
+        title: 'Erro ao excluir posts',
+        description: error.message,
+        variant: 'destructive',
+      });
+    } finally {
+      setDeleting(false);
+    }
   };
 
   const downloadImage = async (url: string, fileName: string): Promise<string | null> => {
@@ -261,7 +300,16 @@ const WordPressImport = () => {
       </Helmet>
 
       <div className="space-y-6">
-        <h2 className="text-3xl font-bold">Importar do WordPress</h2>
+        <div className="flex items-center justify-between">
+          <h2 className="text-3xl font-bold">Importar do WordPress</h2>
+          <Button
+            variant="destructive"
+            onClick={() => setShowDeleteDialog(true)}
+            disabled={importing || deleting}
+          >
+            Excluir Todos os Posts
+          </Button>
+        </div>
 
         <Card>
           <CardHeader>
@@ -346,6 +394,27 @@ const WordPressImport = () => {
           </CardContent>
         </Card>
       </div>
+
+      <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Confirmar exclusão de todos os posts</AlertDialogTitle>
+            <AlertDialogDescription>
+              Tem certeza que deseja excluir TODOS os posts do blog? Esta ação não pode ser desfeita e removerá permanentemente todos os artigos do banco de dados.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={deleting}>Cancelar</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleDeleteAll}
+              disabled={deleting}
+              className="bg-destructive hover:bg-destructive/90"
+            >
+              {deleting ? 'Excluindo...' : 'Sim, excluir tudo'}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 };
