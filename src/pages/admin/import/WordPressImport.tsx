@@ -22,6 +22,9 @@ interface ImportProgress {
   imported: number;
   failed: number;
   currentPost: string;
+  imagesFound: number;
+  imagesImported: number;
+  imagesFailed: number;
 }
 
 const WordPressImport = () => {
@@ -89,39 +92,87 @@ const WordPressImport = () => {
     }
   };
 
-  const downloadImage = async (url: string, fileName: string): Promise<string | null> => {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error('Falha ao baixar imagem');
-      
-      const blob = await response.blob();
-      const file = new File([blob], fileName, { type: blob.type });
-      
-      const { data, error } = await supabase.storage
-        .from('blog-images')
-        .upload(fileName, file, {
-          cacheControl: '3600',
-          upsert: true
+  const downloadImage = async (url: string, fileName: string, retries = 3): Promise<string | null> => {
+    console.log(`[IMAGEM] Tentando baixar: ${url}`);
+    
+    for (let attempt = 1; attempt <= retries; attempt++) {
+      try {
+        console.log(`[IMAGEM] Tentativa ${attempt}/${retries} para ${fileName}`);
+        
+        // Estratégia 1: Fetch normal
+        let response = await fetch(url, {
+          mode: 'cors',
+          headers: {
+            'Accept': 'image/*',
+          },
         });
-      
-      if (error) throw error;
-      
-      const { data: { publicUrl } } = supabase.storage
-        .from('blog-images')
-        .getPublicUrl(data.path);
-      
-      return publicUrl;
-    } catch (error) {
-      console.error('Erro ao fazer download da imagem:', error);
-      return null;
+        
+        // Estratégia 2: Se falhar, tentar com proxy CORS
+        if (!response.ok && attempt === 2) {
+          console.log(`[IMAGEM] Tentando com proxy CORS...`);
+          const corsProxy = 'https://corsproxy.io/?';
+          response = await fetch(corsProxy + encodeURIComponent(url));
+        }
+        
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const blob = await response.blob();
+        console.log(`[IMAGEM] Blob baixado: ${blob.size} bytes, tipo: ${blob.type}`);
+        
+        // Verificar se é realmente uma imagem
+        if (!blob.type.startsWith('image/')) {
+          throw new Error(`Tipo de arquivo inválido: ${blob.type}`);
+        }
+        
+        const file = new File([blob], fileName, { type: blob.type });
+        
+        const { data, error } = await supabase.storage
+          .from('blog-images')
+          .upload(fileName, file, {
+            cacheControl: '3600',
+            upsert: true
+          });
+        
+        if (error) throw error;
+        
+        const { data: { publicUrl } } = supabase.storage
+          .from('blog-images')
+          .getPublicUrl(data.path);
+        
+        console.log(`[IMAGEM] ✅ Sucesso! URL pública: ${publicUrl}`);
+        return publicUrl;
+        
+      } catch (error: any) {
+        console.error(`[IMAGEM] ❌ Erro na tentativa ${attempt}:`, error.message);
+        
+        if (attempt === retries) {
+          console.error(`[IMAGEM] Falha final após ${retries} tentativas para: ${url}`);
+          return null;
+        }
+        
+        // Aguardar antes de tentar novamente
+        await new Promise(resolve => setTimeout(resolve, 1000 * attempt));
+      }
     }
+    
+    return null;
   };
 
   const handleImport = async () => {
     if (!file) return;
     
     setImporting(true);
-    setProgress({ total: 0, imported: 0, failed: 0, currentPost: '' });
+    setProgress({ 
+      total: 0, 
+      imported: 0, 
+      failed: 0, 
+      currentPost: '',
+      imagesFound: 0,
+      imagesImported: 0,
+      imagesFailed: 0
+    });
 
     try {
       const xmlText = await file.text();
@@ -134,7 +185,10 @@ const WordPressImport = () => {
       }
 
       // Criar mapa de attachments (imagens)
+      console.log('[IMPORTAÇÃO] Iniciando análise do XML...');
       const items = xmlDoc.getElementsByTagName('item');
+      console.log(`[IMPORTAÇÃO] Total de items encontrados: ${items.length}`);
+      
       const attachmentMap = new Map<string, string>();
       
       Array.from(items).forEach(item => {
@@ -144,9 +198,12 @@ const WordPressImport = () => {
           const attachmentUrl = getTextContent(item.getElementsByTagName('wp:attachment_url')[0]);
           if (attachmentId && attachmentUrl) {
             attachmentMap.set(attachmentId, attachmentUrl);
+            console.log(`[ATTACHMENT] ID: ${attachmentId} -> URL: ${attachmentUrl}`);
           }
         }
       });
+      
+      console.log(`[IMPORTAÇÃO] Total de attachments encontrados: ${attachmentMap.size}`);
 
       // Obter todos os posts
       const posts = Array.from(items).filter(item => {
@@ -155,6 +212,7 @@ const WordPressImport = () => {
         return postType === 'post' && status === 'publish';
       });
 
+      console.log(`[IMPORTAÇÃO] Total de posts publicados: ${posts.length}`);
       setProgress(prev => prev ? { ...prev, total: posts.length } : null);
 
       // Criar registro de importação
@@ -172,6 +230,9 @@ const WordPressImport = () => {
 
       let importedCount = 0;
       let failedCount = 0;
+      let imagesFoundCount = 0;
+      let imagesImportedCount = 0;
+      let imagesFailedCount = 0;
 
       // Processar cada post
       for (const item of posts) {
@@ -220,11 +281,41 @@ const WordPressImport = () => {
           // Extrair e fazer download da imagem destacada
           let featuredImageUrl: string | null = null;
           const thumbnailId = getPostMeta(item, '_thumbnail_id');
-          if (thumbnailId && attachmentMap.has(thumbnailId)) {
-            const imageUrl = attachmentMap.get(thumbnailId)!;
-            const imageFileName = `${slug}-${Date.now()}.jpg`;
-            featuredImageUrl = await downloadImage(imageUrl, imageFileName);
+          
+          console.log(`[POST] ${title}`);
+          console.log(`[POST] Thumbnail ID: ${thumbnailId || 'não encontrado'}`);
+          
+          if (thumbnailId) {
+            imagesFoundCount++;
+            
+            if (attachmentMap.has(thumbnailId)) {
+              const imageUrl = attachmentMap.get(thumbnailId)!;
+              console.log(`[POST] URL da imagem encontrada: ${imageUrl}`);
+              
+              const imageFileName = `${slug}-${Date.now()}.jpg`;
+              featuredImageUrl = await downloadImage(imageUrl, imageFileName);
+              
+              if (featuredImageUrl) {
+                imagesImportedCount++;
+                console.log(`[POST] ✅ Imagem importada com sucesso!`);
+              } else {
+                imagesFailedCount++;
+                console.log(`[POST] ❌ Falha ao importar imagem`);
+              }
+            } else {
+              imagesFailedCount++;
+              console.log(`[POST] ❌ Attachment ID ${thumbnailId} não encontrado no mapa`);
+            }
+          } else {
+            console.log(`[POST] ⚠️ Post sem imagem destacada`);
           }
+          
+          setProgress(prev => prev ? { 
+            ...prev, 
+            imagesFound: imagesFoundCount,
+            imagesImported: imagesImportedCount,
+            imagesFailed: imagesFailedCount
+          } : null);
 
           // Inserir post
           const { error: postError } = await supabase
@@ -356,17 +447,33 @@ const WordPressImport = () => {
                   </p>
                 )}
 
-                <div className="flex gap-4 text-sm">
-                  <div className="flex items-center gap-2 text-green-600">
-                    <CheckCircle2 className="w-4 h-4" />
-                    <span>{progress.imported} importados</span>
-                  </div>
-                  {progress.failed > 0 && (
-                    <div className="flex items-center gap-2 text-destructive">
-                      <AlertCircle className="w-4 h-4" />
-                      <span>{progress.failed} falharam</span>
+                <div className="space-y-2">
+                  <div className="flex gap-4 text-sm">
+                    <div className="flex items-center gap-2 text-green-600">
+                      <CheckCircle2 className="w-4 h-4" />
+                      <span>{progress.imported} importados</span>
                     </div>
-                  )}
+                    {progress.failed > 0 && (
+                      <div className="flex items-center gap-2 text-destructive">
+                        <AlertCircle className="w-4 h-4" />
+                        <span>{progress.failed} falharam</span>
+                      </div>
+                    )}
+                  </div>
+                  
+                  <div className="flex gap-4 text-sm border-t pt-2">
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      <span>🖼️ Imagens: {progress.imagesFound} encontradas</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-green-600">
+                      <span>✅ {progress.imagesImported} importadas</span>
+                    </div>
+                    {progress.imagesFailed > 0 && (
+                      <div className="flex items-center gap-2 text-destructive">
+                        <span>❌ {progress.imagesFailed} falharam</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
