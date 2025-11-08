@@ -23,26 +23,26 @@ const Depressao = () => {
         <main>
           {/* Hero Section */}
           <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-secondary/30 to-background">
-            <div className="container mx-auto px-4 pt-32 pb-20">
-              <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <div className="container mx-auto px-4 md:px-6 pt-24 md:pt-32 pb-12 md:pb-20">
+              <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl mx-auto">
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-                  <h1 className="text-4xl font-bold mb-6 text-foreground md:text-5xl">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-foreground leading-tight">
                     Tristeza constante, falta de energia ou perda de interesse pelo que antes trazia prazer?
-                    <span className="block text-primary mt-4">Você pode estar enfrentando um quadro de depressão.</span>
+                    <span className="block text-primary mt-3 md:mt-4">Você pode estar enfrentando um quadro de depressão.</span>
                   </h1>
-                  <p className="text-xl text-muted-foreground mb-8">
+                  <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8">
                     Tratamento especializado com o Dr. Gabriel Lopes, psiquiatra referência em saúde mental e transtornos do humor.
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
+                  <div className="flex flex-col gap-3 md:gap-4">
+                    <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all w-full sm:w-auto" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
                       🔹 Agende sua consulta
                     </Button>
-                    <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
+                    <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary w-full sm:w-auto" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
                       🔹 Faça o teste de depressão gratuito
                     </Button>
                   </div>
                 </div>
-                <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+                <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200 hidden md:block">
                   <img src={drGabrielImage} alt="Dr. Gabriel Lopes - Psiquiatra especialista em Depressão" className="w-full h-auto rounded-2xl shadow-[var(--shadow-soft)]" />
                 </div>
               </div>
@@ -50,8 +50,8 @@ const Depressao = () => {
           </section>
 
           {/* O que é a Depressão? */}
-          <section className="relative py-32 overflow-hidden">
-            <div className="absolute inset-0 bg-fixed bg-center bg-cover" style={{
+          <section className="relative py-16 md:py-32 overflow-hidden">
+            <div className="absolute inset-0 bg-fixed bg-center bg-cover hidden md:block" style={{
             backgroundImage: `url(${consultorioImage})`
           }} />
             <div className="absolute inset-0 bg-gradient-to-b from-[#087daf]/90 via-[#087daf]/90 to-[#087daf]/90" />

@@ -23,26 +23,26 @@ const TranstornoBipolar = () => {
         <main>
           {/* Hero Section */}
           <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-secondary/30 to-background">
-            <div className="container mx-auto px-4 pt-32 pb-20">
-              <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <div className="container mx-auto px-4 md:px-6 pt-24 md:pt-32 pb-12 md:pb-20">
+              <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl mx-auto">
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-                  <h1 className="text-4xl font-bold mb-6 text-foreground md:text-5xl">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-foreground leading-tight">
                   Oscilações intensas de humor, períodos de euforia seguidos por tristeza profunda?
-                    <span className="block text-primary mt-4">Você pode estar convivendo com o transtorno bipolar.</span>
+                    <span className="block text-primary mt-3 md:mt-4">Você pode estar convivendo com o transtorno bipolar.</span>
                   </h1>
-                  <p className="text-xl text-muted-foreground mb-8">
+                  <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8">
                   O Dr. Gabriel Lopes é psiquiatra especializado no diagnóstico e tratamento do transtorno bipolar, unindo ciência, empatia e acompanhamento personalizado.
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
+                  <div className="flex flex-col gap-3 md:gap-4">
+                    <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all w-full sm:w-auto" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
                       🔹 Agende sua consulta
                     </Button>
-                    <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary" onClick={() => {}}>
+                    <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary w-full sm:w-auto" onClick={() => {}}>
                       🔹 Faça o teste de transtorno bipolar gratuito
                     </Button>
                   </div>
                 </div>
-                <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+                <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200 hidden md:block">
                   <img src={drGabrielImage} alt="Dr. Gabriel Lopes - Psiquiatra especialista em Transtorno Bipolar" className="w-full h-auto rounded-2xl shadow-[var(--shadow-soft)]" />
                 </div>
               </div>
@@ -50,9 +50,9 @@ const TranstornoBipolar = () => {
           </section>
 
           {/* O que é o Transtorno Bipolar? */}
-          <section className="relative py-32 overflow-hidden">
-            {/* Background parallax com transparência */}
-            <div className="absolute inset-0 bg-fixed bg-center bg-cover" style={{
+          <section className="relative py-16 md:py-32 overflow-hidden">
+            {/* Background parallax com transparência - Hidden on mobile */}
+            <div className="absolute inset-0 bg-fixed bg-center bg-cover hidden md:block" style={{
             backgroundImage: `url(${consultorioImage})`
           }} />
             <div className="absolute inset-0 bg-gradient-to-b from-[#087daf]/90 via-[#087daf]/90 to-[#087daf]/90" />
