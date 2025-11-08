@@ -291,7 +291,7 @@ const TesteTDAH = () => {
                           className="w-full text-lg h-14"
                           onClick={() => window.open("https://wa.me/5511999999999", "_blank")}
                         >
-                          Agendar Avaliação Profissional
+                          Agendar Consulta
                         </Button>
                       </div>
                     ) : (
