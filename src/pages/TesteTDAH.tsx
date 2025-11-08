@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -71,6 +71,11 @@ const TesteTDAH = () => {
   const progress = ((currentQuestion + 1) / questions.length) * 100;
   const averageScore = 4.6; // Média fornecida no exemplo
 
+  // Scroll to top when question or step changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentQuestion, currentStep]);
+
   const startTest = () => {
     setCurrentStep("questions");
     setCurrentQuestion(0);
@@ -89,16 +94,12 @@ const TesteTDAH = () => {
 
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
-      // Scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       // Calcular pontuação final (soma direta dos pontos)
       const sum = newAnswers.reduce((acc, val) => acc + val, 0);
       const score = parseFloat(sum.toFixed(1));
       setFinalScore(score);
       setCurrentStep("results");
-      // Scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -111,8 +112,6 @@ const TesteTDAH = () => {
       setCurrentQuestion(currentQuestion - 1);
       // Restore previous answer (the one before the last)
       setSelectedAnswer(newAnswers[currentQuestion - 1] ?? null);
-      // Scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
