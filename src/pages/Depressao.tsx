@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import TestimonialsSection from "@/components/TestimonialsSection";
+
 import { Button } from "@/components/ui/button";
 import { Brain, Heart, Users, CheckCircle2 } from "lucide-react";
 import drGabrielImage from "@/assets/doctors/dr-gabriel.png";
@@ -281,13 +281,6 @@ const Depressao = () => {
             </div>
           </section>
 
-          {/* Depoimentos */}
-          <div className="text-center pt-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              O que nossos pacientes dizem
-            </h2>
-          </div>
-          <TestimonialsSection />
 
           {/* CTA Final */}
           <section className="py-20 bg-gradient-to-br from-primary/10 via-accent/5 to-background">

@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import TestimonialsSection from "@/components/TestimonialsSection";
+
 import { Button } from "@/components/ui/button";
 import { Brain, Heart, Users, CheckCircle2, AlertCircle } from "lucide-react";
 import drGabrielImage from "@/assets/doctors/dr-gabriel.png";
@@ -103,8 +103,6 @@ const ModeloLocal = () => {
             </div>
           </section>
 
-          {/* Depoimentos */}
-          <TestimonialsSection />
 
           {/* Seção de Texto Adicional */}
           <section className="py-20 bg-background">

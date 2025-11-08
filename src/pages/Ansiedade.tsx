@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import TestimonialsSection from "@/components/TestimonialsSection";
+
 import { Button } from "@/components/ui/button";
 import { Brain, Heart, Users, CheckCircle2, AlertCircle } from "lucide-react";
 import drGabrielImage from "@/assets/doctors/dr-gabriel.png";
@@ -309,8 +309,6 @@ const Ansiedade = () => {
             </div>
           </section>
 
-          {/* Depoimentos */}
-          <TestimonialsSection />
 
           {/* CTA Final */}
           <section className="py-20 bg-gradient-to-br from-primary/10 via-accent/5 to-background">

@@ -5,7 +5,7 @@ import SpecialtiesSection from "@/components/SpecialtiesSection";
 import AboutSection from "@/components/AboutSection";
 import TeamSection from "@/components/TeamSection";
 import MentalHealthSection from "@/components/MentalHealthSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
+
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
@@ -82,7 +82,7 @@ const Index = () => {
           <AboutSection />
           <TeamSection />
           <MentalHealthSection />
-          <TestimonialsSection />
+          
         </main>
         <Footer />
         <WhatsAppButton />
