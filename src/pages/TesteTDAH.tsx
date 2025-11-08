@@ -73,7 +73,7 @@ const TesteTDAH = () => {
 
   // Scroll to top when question or step changes
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentQuestion, currentStep]);
 
   const startTest = () => {
@@ -88,7 +88,7 @@ const TesteTDAH = () => {
 
     const newAnswers = [...answers, selectedAnswer];
     setAnswers(newAnswers);
-    
+
     // Reset selection immediately
     setSelectedAnswer(null);
 
@@ -144,12 +144,10 @@ const TesteTDAH = () => {
               <div className="container max-w-3xl mx-auto">
                 <div className="text-center mb-8 md:mb-12 animate-fade-in">
                   <Brain className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 text-primary" />
-                  <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6">
-                    Teste de TDAH Online Gratuito
-                  </h1>
+                  <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6">Teste de TDAH Online Gratuito</h1>
                   <p className="text-lg md:text-xl text-muted-foreground mb-8">
-                    Este teste é baseado em critérios clínicos e ajuda a identificar possíveis sintomas de TDAH.
-                    Leva apenas 2 minutos para completar.
+                    Este teste é baseado em critérios clínicos e ajuda a identificar possíveis sintomas de TDAH. Leva
+                    apenas 2 minutos para completar.
                   </p>
                 </div>
 
@@ -163,36 +161,26 @@ const TesteTDAH = () => {
                   <CardContent className="space-y-4">
                     <div className="flex items-start gap-3 p-4 bg-background/50 rounded-lg">
                       <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                      <p className="text-sm">
-                        São apenas 9 perguntas de múltipla escolha
-                      </p>
+                      <p className="text-sm">São apenas 9 perguntas de múltipla escolha</p>
                     </div>
                     <div className="flex items-start gap-3 p-4 bg-background/50 rounded-lg">
                       <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                      <p className="text-sm">
-                        Não existe resposta certa ou errada
-                      </p>
+                      <p className="text-sm">Não existe resposta certa ou errada</p>
                     </div>
                     <div className="flex items-start gap-3 p-4 bg-background/50 rounded-lg">
                       <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                      <p className="text-sm">
-                        O resultado é imediato e gratuito
-                      </p>
+                      <p className="text-sm">O resultado é imediato e gratuito</p>
                     </div>
 
-                    <Button
-                      onClick={startTest}
-                      size="lg"
-                      className="w-full mt-6 text-lg h-14"
-                    >
+                    <Button onClick={startTest} size="lg" className="w-full mt-6 text-lg h-14">
                       Iniciar Teste
                     </Button>
                   </CardContent>
                 </Card>
 
                 <p className="text-sm text-muted-foreground text-center mt-6 max-w-2xl mx-auto">
-                  <strong>Atenção:</strong> Este teste não substitui uma avaliação psiquiátrica profissional.
-                  O resultado não serve como diagnóstico conclusivo nem tem validade jurídica.
+                  <strong>Atenção:</strong> Este teste não substitui uma avaliação psiquiátrica profissional. O
+                  resultado não serve como diagnóstico conclusivo nem tem validade jurídica.
                 </p>
               </div>
             </section>
@@ -208,9 +196,7 @@ const TesteTDAH = () => {
                     <span className="text-sm font-medium text-muted-foreground">
                       Questão {currentQuestion + 1} de {questions.length}
                     </span>
-                    <span className="text-sm font-medium text-primary">
-                      {Math.round(progress)}%
-                    </span>
+                    <span className="text-sm font-medium text-primary">{Math.round(progress)}%</span>
                   </div>
                   <Progress value={progress} className="h-2" />
                 </div>
@@ -277,12 +263,8 @@ const TesteTDAH = () => {
             <section className="pt-28 pb-12 md:py-24 px-4">
               <div className="container max-w-3xl mx-auto">
                 <div className="text-center mb-8 md:mb-12 animate-fade-in">
-                  <h1 className="text-3xl md:text-5xl font-bold mb-4">
-                    Seu Resultado
-                  </h1>
-                  <p className="text-lg md:text-xl text-muted-foreground">
-                    Obrigado por fazer o nosso teste!
-                  </p>
+                  <h1 className="text-3xl md:text-5xl font-bold mb-4">Seu Resultado</h1>
+                  <p className="text-lg md:text-xl text-muted-foreground">Obrigado por fazer o nosso teste!</p>
                 </div>
 
                 <Card className="backdrop-blur-sm bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20 mb-6 animate-scale-in">
@@ -291,39 +273,33 @@ const TesteTDAH = () => {
                       <div className="inline-flex items-center justify-center w-32 h-32 rounded-full bg-primary/10 border-4 border-primary mb-4">
                         <span className="text-5xl font-bold text-primary">{finalScore}</span>
                       </div>
-                      <p className="text-sm text-muted-foreground">
-                        Sua pontuação
-                      </p>
+                      <p className="text-sm text-muted-foreground">Sua pontuação</p>
                     </div>
 
                     {finalScore >= 4 ? (
                       <div className="space-y-6">
                         <div className="p-6 bg-primary/10 rounded-lg border border-primary/20">
-                          <p className="text-lg font-semibold mb-2">
-                            Resultado indicativo de avaliação médica
-                          </p>
+                          <p className="text-lg font-semibold mb-2">Resultado indicativo de avaliação médica</p>
                           <p className="text-muted-foreground">
-                            Neste teste é considerado resultado indicativo de avaliação médica pontuações iguais ou acima de 4.
-                            Seus sintomas sugerem que uma consulta com um profissional seria importante.
+                            Neste teste é considerado resultado indicativo de avaliação médica pontuações iguais ou
+                            acima de 4. Seus sintomas sugerem que uma consulta com um profissional seria importante.
                           </p>
                         </div>
 
                         <Button
                           size="lg"
                           className="w-full text-lg h-14"
-                          onClick={() => window.open('https://wa.me/5511999999999', '_blank')}
+                          onClick={() => window.open("https://wa.me/5511999999999", "_blank")}
                         >
-                          Agende sua Consulta para Avaliação Profissional
+                          Agendar Avaliação Profissional
                         </Button>
                       </div>
                     ) : (
                       <div className="p-6 bg-accent/10 rounded-lg border border-accent/20">
-                        <p className="text-lg font-semibold mb-2">
-                          Resultado abaixo do indicativo
-                        </p>
+                        <p className="text-lg font-semibold mb-2">Resultado abaixo do indicativo</p>
                         <p className="text-muted-foreground">
-                          Sua pontuação está abaixo de 4. No entanto, se você sente que os sintomas afetam sua qualidade de vida,
-                          considere conversar com um profissional de saúde mental.
+                          Sua pontuação está abaixo de 4. No entanto, se você sente que os sintomas afetam sua qualidade
+                          de vida, considere conversar com um profissional de saúde mental.
                         </p>
                       </div>
                     )}
@@ -342,21 +318,11 @@ const TesteTDAH = () => {
                 </Card>
 
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    onClick={restartTest}
-                    className="flex-1"
-                  >
+                  <Button variant="outline" size="lg" onClick={restartTest} className="flex-1">
                     <RefreshCw className="w-4 h-4 mr-2" />
                     Fazer Outro Teste
                   </Button>
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    asChild
-                    className="flex-1"
-                  >
+                  <Button variant="outline" size="lg" asChild className="flex-1">
                     <Link to="/blog">Ver Artigos do Blog</Link>
                   </Button>
                 </div>
@@ -366,8 +332,14 @@ const TesteTDAH = () => {
                     <p className="text-sm text-muted-foreground space-y-2">
                       <strong className="block text-foreground">Atenção:</strong>
                       <span className="block">• Nenhum teste substitui uma avaliação psiquiátrica.</span>
-                      <span className="block">• O resultado deste teste não serve como diagnóstico conclusivo nem tem validade jurídica ou como atestado médico, para nenhuma finalidade.</span>
-                      <span className="block">• Não inicie nenhum tratamento baseado no resultado de qualquer teste da internet, sem uma consulta médica antes.</span>
+                      <span className="block">
+                        • O resultado deste teste não serve como diagnóstico conclusivo nem tem validade jurídica ou
+                        como atestado médico, para nenhuma finalidade.
+                      </span>
+                      <span className="block">
+                        • Não inicie nenhum tratamento baseado no resultado de qualquer teste da internet, sem uma
+                        consulta médica antes.
+                      </span>
                     </p>
                   </CardContent>
                 </Card>
