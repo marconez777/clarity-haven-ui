@@ -5,37 +5,28 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Brain, Heart, Activity, Zap } from "lucide-react";
 
 const Especialidades = () => {
   const especialidades = [
     {
       title: "TDAH",
       description: "Transtorno de Déficit de Atenção e Hiperatividade",
-      icon: Brain,
       href: "/tdah",
-      color: "text-blue-500",
     },
     {
       title: "Ansiedade",
       description: "Transtornos de Ansiedade e Síndrome do Pânico",
-      icon: Heart,
       href: "/ansiedade",
-      color: "text-green-500",
     },
     {
       title: "Depressão",
       description: "Transtorno Depressivo e seus tratamentos",
-      icon: Activity,
       href: "/depressao",
-      color: "text-purple-500",
     },
     {
       title: "Transtorno Bipolar",
       description: "Compreensão e tratamento do Transtorno Bipolar",
-      icon: Zap,
       href: "/transtorno-bipolar",
-      color: "text-orange-500",
     },
   ];
 
@@ -66,14 +57,10 @@ const Especialidades = () => {
 
             <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {especialidades.map((especialidade) => {
-                const Icon = especialidade.icon;
                 return (
                   <Link key={especialidade.href} to={especialidade.href}>
                     <Card className="h-full transition-all hover:shadow-lg hover:-translate-y-1">
                       <CardHeader>
-                        <div className={`${especialidade.color} mb-4`}>
-                          <Icon className="w-12 h-12" />
-                        </div>
                         <CardTitle className="text-2xl">{especialidade.title}</CardTitle>
                         <CardDescription className="text-base">
                           {especialidade.description}
