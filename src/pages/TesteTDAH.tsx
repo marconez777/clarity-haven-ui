@@ -88,12 +88,28 @@ const TesteTDAH = () => {
       setCurrentQuestion(currentQuestion + 1);
       // Reset selection after moving to next question
       setTimeout(() => setSelectedAnswer(null), 0);
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       // Calcular pontuação final (soma direta dos pontos)
       const sum = newAnswers.reduce((acc, val) => acc + val, 0);
       const score = parseFloat(sum.toFixed(1));
       setFinalScore(score);
       setCurrentStep("results");
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handleBack = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(currentQuestion - 1);
+      // Restore previous answer
+      setSelectedAnswer(answers[currentQuestion - 1]);
+      // Remove last answer from array
+      setAnswers(answers.slice(0, -1));
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -227,14 +243,26 @@ const TesteTDAH = () => {
                       ))}
                     </RadioGroup>
 
-                    <Button
-                      onClick={handleAnswer}
-                      disabled={selectedAnswer === null}
-                      size="lg"
-                      className="w-full mt-6 md:mt-8 text-lg h-12 md:h-14"
-                    >
-                      {currentQuestion < questions.length - 1 ? "Próxima" : "Ver Resultado"}
-                    </Button>
+                    <div className="flex flex-col gap-3 mt-6 md:mt-8">
+                      {currentQuestion > 0 && (
+                        <Button
+                          onClick={handleBack}
+                          variant="outline"
+                          size="lg"
+                          className="w-full text-lg h-12 md:h-14"
+                        >
+                          Voltar
+                        </Button>
+                      )}
+                      <Button
+                        onClick={handleAnswer}
+                        disabled={selectedAnswer === null}
+                        size="lg"
+                        className="w-full text-lg h-12 md:h-14"
+                      >
+                        {currentQuestion < questions.length - 1 ? "Próxima" : "Ver Resultado"}
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               </div>
