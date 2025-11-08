@@ -225,6 +225,7 @@ const TesteTDAH = () => {
                   </CardHeader>
                   <CardContent>
                     <RadioGroup
+                      key={currentQuestion}
                       value={selectedAnswer?.toString()}
                       onValueChange={(value) => setSelectedAnswer(parseFloat(value))}
                       className="flex flex-col gap-3"
