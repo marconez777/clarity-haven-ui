@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileQuestion } from "lucide-react";
 
@@ -71,8 +72,9 @@ const Testes = () => {
 
       <div className="min-h-screen flex flex-col">
         <Navigation />
+        <Breadcrumbs items={[{ label: "Testes" }]} />
         
-        <main className="flex-grow pt-20">
+        <main className="flex-grow pt-4">
           {/* Hero Section */}
           <section className="py-16 bg-gradient-to-b from-background to-accent/10">
             <div className="container mx-auto px-4">

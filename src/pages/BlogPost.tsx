@@ -5,6 +5,7 @@ import { supabase } from '@/integrations/supabase/client';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
@@ -47,7 +48,8 @@ const BlogPost = () => {
     return (
       <>
         <Navigation />
-        <div className="min-h-screen pt-32 pb-16 flex items-center justify-center">
+        <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: "Carregando..." }]} />
+        <div className="min-h-screen pt-8 pb-16 flex items-center justify-center">
           <p>Carregando...</p>
         </div>
         <Footer />
@@ -59,7 +61,8 @@ const BlogPost = () => {
     return (
       <>
         <Navigation />
-        <div className="min-h-screen pt-32 pb-16">
+        <Breadcrumbs items={[{ label: "Blog", href: "/blog" }]} />
+        <div className="min-h-screen pt-8 pb-16">
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-3xl font-bold mb-4">Post não encontrado</h1>
             <Link to="/blog">
@@ -89,8 +92,9 @@ const BlogPost = () => {
 
       <div className="min-h-screen flex flex-col">
         <Navigation />
+        <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: post.title }]} />
         
-        <div className="container mx-auto px-4 pt-32">
+        <div className="container mx-auto px-4 pt-8">
           <Link to="/blog">
             <Button variant="ghost" className="mb-6">
               <ArrowLeft className="w-4 h-4 mr-2" />

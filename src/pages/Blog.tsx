@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, User } from "lucide-react";
@@ -35,9 +36,10 @@ const Blog = () => {
 
       <div className="min-h-screen flex flex-col">
         <Navigation />
+        <Breadcrumbs items={[{ label: "Blog" }]} />
         
         {/* Hero Section */}
-        <section className="pt-32 pb-16 bg-gradient-to-br from-background via-primary/5 to-accent/5">
+        <section className="pt-8 pb-16 bg-gradient-to-br from-background via-primary/5 to-accent/5">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">

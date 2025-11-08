@@ -18,6 +18,7 @@ import NotFound from "./pages/NotFound";
 import Depressao from "./pages/Depressao";
 import Contato from "./pages/Contato";
 import DrGabriel from "./pages/DrGabriel";
+import Especialidades from "./pages/Especialidades";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { ProtectedRoute } from "@/components/admin/ProtectedRoute";
 import Login from "@/pages/admin/Login";
@@ -42,6 +43,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/dr-gabriel-lopes" element={<DrGabriel />} />
+            <Route path="/especialidades" element={<Especialidades />} />
             <Route path="/tdah" element={<TDAH />} />
             <Route path="/testes" element={<Testes />} />
             <Route path="/teste-tdah-hiperatividade" element={<TesteTDAH />} />

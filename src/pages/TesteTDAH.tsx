@@ -7,6 +7,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Brain, CheckCircle2, RefreshCw } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -136,6 +137,7 @@ const TesteTDAH = () => {
 
       <div className="min-h-screen flex flex-col">
         <Navigation />
+        <Breadcrumbs items={[{ label: "Testes", href: "/testes" }, { label: "Teste de TDAH" }]} />
 
         <main className="flex-1">
           {/* Welcome Screen */}

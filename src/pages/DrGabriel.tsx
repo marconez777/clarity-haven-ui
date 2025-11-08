@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import drGabrielImage from "@/assets/doctors/gabriel-lopes-sobre.jpg";
 
@@ -18,8 +19,9 @@ const DrGabriel = () => {
       </Helmet>
 
       <Navigation />
+      <Breadcrumbs items={[{ label: "Dr. Gabriel Lopes" }]} />
 
-      <main className="pt-20">
+      <main className="pt-4">
         {/* Hero Section */}
         <section className="py-16 bg-gradient-to-b from-secondary/20 to-background">
           <div className="container mx-auto px-4">

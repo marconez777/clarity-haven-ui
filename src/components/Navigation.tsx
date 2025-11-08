@@ -84,6 +84,11 @@ const Navigation = () => {
                   <ChevronDown size={16} className={`transition-transform duration-300 ease-out ${isDropdownOpen ? 'rotate-180' : ''}`} />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="bg-background/95 backdrop-blur-md border border-border/50 shadow-lg animate-in fade-in-0 slide-in-from-top-2 duration-300 min-w-[200px]">
+                  <DropdownMenuItem asChild>
+                    <a href="/especialidades" className="cursor-pointer text-foreground hover:text-primary hover:bg-accent/50 transition-all duration-200 rounded-sm px-3 py-2 font-semibold">
+                      Ver Todas
+                    </a>
+                  </DropdownMenuItem>
                   {especialidadesItems.map((item) => (
                     <DropdownMenuItem key={item.name} asChild>
                       <a href={item.href} className="cursor-pointer text-foreground hover:text-primary hover:bg-accent/50 transition-all duration-200 rounded-sm px-3 py-2">
@@ -136,7 +141,9 @@ const Navigation = () => {
               
               {/* Especialidades no mobile */}
               <div className="flex flex-col gap-2 pl-0">
-                <span className="text-sm font-medium text-foreground py-2">Especialidades</span>
+                <a href="/especialidades" className="text-sm font-medium text-foreground py-2">
+                  Especialidades
+                </a>
                 {especialidadesItems.map((item) => (
                   <a
                     key={item.name}

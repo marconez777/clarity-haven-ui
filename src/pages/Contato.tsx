@@ -6,6 +6,7 @@ import { z } from "zod";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -78,8 +79,9 @@ const Contato = () => {
       </Helmet>
 
       <Navigation />
+      <Breadcrumbs items={[{ label: "Contato" }]} />
       
-      <main className="min-h-screen pt-20">
+      <main className="min-h-screen pt-4">
         {/* Hero Section */}
         <section className="bg-gradient-to-b from-primary/10 to-background py-16">
           <div className="container mx-auto px-4">

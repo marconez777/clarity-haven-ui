@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -100,9 +101,10 @@ Constantemente buscando atualizar e aprimorar seus conhecimentos, Laura cria sem
 
       <div className="min-h-screen bg-gradient-to-b from-background to-primary/5">
         <Navigation />
+        <Breadcrumbs items={[{ label: "Nossa Equipe" }]} />
         
         {/* Hero Section */}
-        <section className="pt-32 pb-20 px-4">
+        <section className="pt-8 pb-20 px-4">
           <div className="container mx-auto max-w-4xl text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               Nossa Equipe

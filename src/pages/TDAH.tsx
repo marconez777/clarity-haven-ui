@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 import { Button } from "@/components/ui/button";
 import { Brain, Heart, Users, CheckCircle2, AlertCircle } from "lucide-react";
@@ -20,6 +21,7 @@ const TDAH = () => {
 
       <div className="min-h-screen">
         <Navigation />
+        <Breadcrumbs items={[{ label: "Especialidades", href: "/especialidades" }, { label: "TDAH" }]} />
         <main>
           {/* Hero Section */}
           <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-secondary/30 to-background">
