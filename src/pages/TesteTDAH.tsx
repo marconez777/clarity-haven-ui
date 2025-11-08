@@ -83,10 +83,11 @@ const TesteTDAH = () => {
 
     const newAnswers = [...answers, selectedAnswer];
     setAnswers(newAnswers);
-    setSelectedAnswer(null);
 
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
+      // Reset selection after moving to next question
+      setTimeout(() => setSelectedAnswer(null), 0);
     } else {
       // Calcular pontuação final (soma direta dos pontos)
       const sum = newAnswers.reduce((acc, val) => acc + val, 0);
@@ -181,7 +182,7 @@ const TesteTDAH = () => {
 
           {/* Questions Screen */}
           {currentStep === "questions" && (
-            <section className="py-8 md:py-16 px-4">
+            <section className="pt-28 md:pt-32 pb-8 md:pb-16 px-4">
               <div className="container max-w-3xl mx-auto">
                 {/* Progress Bar */}
                 <div className="mb-8 md:mb-12 animate-fade-in">
@@ -207,7 +208,7 @@ const TesteTDAH = () => {
                     <RadioGroup
                       value={selectedAnswer?.toString()}
                       onValueChange={(value) => setSelectedAnswer(parseFloat(value))}
-                      className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4"
+                      className="flex flex-col gap-3"
                     >
                       {options.map((option) => (
                         <div key={option.value}>
@@ -218,7 +219,7 @@ const TesteTDAH = () => {
                           />
                           <Label
                             htmlFor={`option-${option.value}`}
-                            className="flex items-center justify-center rounded-lg border-2 border-muted bg-background/50 p-4 md:p-6 hover:bg-accent hover:border-primary cursor-pointer transition-all peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/10 peer-data-[state=checked]:shadow-lg min-h-[64px] text-center font-medium"
+                            className="flex items-center justify-start rounded-lg border-2 border-muted bg-background/50 p-4 md:p-6 hover:bg-accent hover:border-primary cursor-pointer transition-all peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/10 peer-data-[state=checked]:shadow-lg min-h-[64px] font-medium w-full"
                           >
                             {option.text}
                           </Label>
