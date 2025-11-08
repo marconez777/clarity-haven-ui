@@ -7,6 +7,7 @@ import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import TDAH from "./pages/TDAH";
 import TesteTDAH from "./pages/TesteTDAH";
+import Testes from "./pages/Testes";
 import ModeloLocal from "./pages/ModeloLocal";
 import Ansiedade from "./pages/Ansiedade";
 import TranstornoBipolar from "./pages/TranstornoBipolar";
@@ -42,7 +43,8 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/dr-gabriel-lopes" element={<DrGabriel />} />
             <Route path="/tdah" element={<TDAH />} />
-            <Route path="/teste-tdah" element={<TesteTDAH />} />
+            <Route path="/testes" element={<Testes />} />
+            <Route path="/teste-tdah-hiperatividade" element={<TesteTDAH />} />
             <Route path="/modelo-local" element={<ModeloLocal />} />
             <Route path="/ansiedade" element={<Ansiedade />} />
             <Route path="/transtorno-bipolar" element={<TranstornoBipolar />} />
