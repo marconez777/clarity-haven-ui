@@ -83,11 +83,12 @@ const TesteTDAH = () => {
 
     const newAnswers = [...answers, selectedAnswer];
     setAnswers(newAnswers);
+    
+    // Reset selection immediately
+    setSelectedAnswer(null);
 
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
-      // Reset selection after moving to next question
-      setTimeout(() => setSelectedAnswer(null), 0);
       // Scroll to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
@@ -103,11 +104,13 @@ const TesteTDAH = () => {
 
   const handleBack = () => {
     if (currentQuestion > 0) {
+      // Remove last answer from array first
+      const newAnswers = answers.slice(0, -1);
+      setAnswers(newAnswers);
+      // Move to previous question
       setCurrentQuestion(currentQuestion - 1);
-      // Restore previous answer
-      setSelectedAnswer(answers[currentQuestion - 1]);
-      // Remove last answer from array
-      setAnswers(answers.slice(0, -1));
+      // Restore previous answer (the one before the last)
+      setSelectedAnswer(newAnswers[currentQuestion - 1] ?? null);
       // Scroll to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -243,24 +246,24 @@ const TesteTDAH = () => {
                       ))}
                     </RadioGroup>
 
-                    <div className="flex flex-col gap-3 mt-6 md:mt-8">
+                    <div className="flex gap-3 mt-6 md:mt-8">
                       {currentQuestion > 0 && (
                         <Button
                           onClick={handleBack}
-                          variant="outline"
-                          size="lg"
-                          className="w-full text-lg h-12 md:h-14"
+                          variant="ghost"
+                          size="sm"
+                          className="text-muted-foreground hover:text-foreground"
                         >
-                          Voltar
+                          ← Voltar
                         </Button>
                       )}
                       <Button
                         onClick={handleAnswer}
                         disabled={selectedAnswer === null}
                         size="lg"
-                        className="w-full text-lg h-12 md:h-14"
+                        className="flex-1 text-lg h-12 md:h-14 ml-auto"
                       >
-                        {currentQuestion < questions.length - 1 ? "Próxima" : "Ver Resultado"}
+                        {currentQuestion < questions.length - 1 ? "Próxima →" : "Ver Resultado"}
                       </Button>
                     </div>
                   </CardContent>
