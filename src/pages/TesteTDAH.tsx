@@ -56,9 +56,9 @@ const questions: Question[] = [
 
 const options = [
   { text: "Raramente", value: 0 },
-  { text: "Algumas Vezes", value: 1 },
-  { text: "Frequentemente", value: 2.5 },
-  { text: "Muito Frequentemente", value: 3 },
+  { text: "Algumas Vezes", value: 0.2 },
+  { text: "Frequentemente", value: 1.0 },
+  { text: "Muito Frequentemente", value: 1.35 },
 ];
 
 const TesteTDAH = () => {
@@ -88,9 +88,9 @@ const TesteTDAH = () => {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      // Calcular pontuação final
+      // Calcular pontuação final (soma direta dos pontos)
       const sum = newAnswers.reduce((acc, val) => acc + val, 0);
-      const score = parseFloat(((sum / questions.length) * 1.2).toFixed(1));
+      const score = parseFloat(sum.toFixed(1));
       setFinalScore(score);
       setCurrentStep("results");
     }
