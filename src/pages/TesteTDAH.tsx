@@ -140,7 +140,7 @@ const TesteTDAH = () => {
         <main className="flex-1">
           {/* Welcome Screen */}
           {currentStep === "welcome" && (
-            <section className="py-12 md:py-24 px-4">
+            <section className="pt-28 pb-12 md:py-24 px-4">
               <div className="container max-w-3xl mx-auto">
                 <div className="text-center mb-8 md:mb-12 animate-fade-in">
                   <Brain className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 text-primary" />
@@ -274,7 +274,7 @@ const TesteTDAH = () => {
 
           {/* Results Screen */}
           {currentStep === "results" && (
-            <section className="py-12 md:py-24 px-4">
+            <section className="pt-28 pb-12 md:py-24 px-4">
               <div className="container max-w-3xl mx-auto">
                 <div className="text-center mb-8 md:mb-12 animate-fade-in">
                   <h1 className="text-3xl md:text-5xl font-bold mb-4">
