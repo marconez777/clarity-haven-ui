@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -36,8 +37,8 @@ const TDAH = () => {
                     <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all w-full sm:w-auto" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
                       Agende sua consulta
                     </Button>
-                    <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary w-full sm:w-auto">
-                      Faça o teste de TDAH gratuito
+                    <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary w-full sm:w-auto" asChild>
+                      <Link to="/teste-tdah">Faça o teste de TDAH gratuito</Link>
                     </Button>
                   </div>
                 </div>
@@ -145,8 +146,8 @@ const TDAH = () => {
                 </div>
 
                 <div className="text-center mt-12">
-                  <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary">
-                    🔹 Identificou-se com esses sintomas? Faça o teste de TDAH online
+                  <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary" asChild>
+                    <Link to="/teste-tdah">🔹 Identificou-se com esses sintomas? Faça o teste de TDAH online</Link>
                   </Button>
                 </div>
               </div>
@@ -210,8 +211,8 @@ const TDAH = () => {
                 <p className="text-sm text-muted-foreground mb-8 italic">
                   🧩 O teste não substitui o diagnóstico profissional, mas é um ótimo ponto de partida.
                 </p>
-                <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all">
-                  🔹 Iniciar teste gratuito
+                <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all" asChild>
+                  <Link to="/teste-tdah">🔹 Iniciar teste gratuito</Link>
                 </Button>
               </div>
             </div>
@@ -316,8 +317,8 @@ const TDAH = () => {
                   <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
                     🔹 Agende sua consulta
                   </Button>
-                  <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary">
-                    🔹 Faça o teste gratuito de TDAH
+                  <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary" asChild>
+                    <Link to="/teste-tdah">🔹 Faça o teste gratuito de TDAH</Link>
                   </Button>
                 </div>
               </div>
