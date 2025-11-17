@@ -28,14 +28,17 @@
     <main>
         <!-- Hero Section -->
         <section class="hero-section">
+            <!-- Background Image - Hidden on mobile -->
+            <div class="hero-background">
+                <img src="images/hero-family.jpg" alt="Família feliz na praia">
+            </div>
+            
+            <!-- Content -->
             <div class="hero-content">
                 <div class="hero-text">
                     <h1 class="hero-title">Saúde Mental com acompanhamento completo</h1>
                     <p class="hero-description">Cuidado integral e humanizado para o seu bem-estar emocional e mental</p>
                     <a href="#contato" class="btn btn-primary btn-lg">Conheça a Clínica</a>
-                </div>
-                <div class="hero-image-container">
-                    <img src="images/hero-family.jpg" alt="Família feliz com pipa" class="hero-image">
                 </div>
             </div>
         </section>
