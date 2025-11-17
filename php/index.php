@@ -81,7 +81,7 @@
                 <div class="specialties-grid">
                     <div class="specialty-item">
                         <div class="specialty-icon">
-                            <img src="../src/assets/specialties/psiquiatria.png" alt="Psiquiatria">
+                            <img src="images/specialties/psiquiatria.png" alt="Psiquiatria">
                         </div>
                         <h3 class="specialty-name">Psiquiatria</h3>
                         <p class="specialty-description">Diagnóstico e tratamento de transtornos mentais</p>
@@ -89,7 +89,7 @@
                     
                     <div class="specialty-item">
                         <div class="specialty-icon">
-                            <img src="../src/assets/specialties/psicoterapia.png" alt="Psicoterapia">
+                            <img src="images/specialties/psicoterapia.png" alt="Psicoterapia">
                         </div>
                         <h3 class="specialty-name">Psicoterapia</h3>
                         <p class="specialty-description">Apoio emocional e desenvolvimento pessoal</p>
@@ -97,7 +97,7 @@
                     
                     <div class="specialty-item">
                         <div class="specialty-icon">
-                            <img src="../src/assets/specialties/acupuntura.png" alt="Acupuntura">
+                            <img src="images/specialties/acupuntura.png" alt="Acupuntura">
                         </div>
                         <h3 class="specialty-name">Acupuntura</h3>
                         <p class="specialty-description">Equilíbrio energético e bem-estar</p>
@@ -105,7 +105,7 @@
                     
                     <div class="specialty-item">
                         <div class="specialty-icon">
-                            <img src="../src/assets/specialties/nutricao.png" alt="Nutrição">
+                            <img src="images/specialties/nutricao.png" alt="Nutrição">
                         </div>
                         <h3 class="specialty-name">Nutrição</h3>
                         <p class="specialty-description">Alimentação saudável para mente e corpo</p>
@@ -113,7 +113,7 @@
                     
                     <div class="specialty-item">
                         <div class="specialty-icon">
-                            <img src="../src/assets/specialties/neuropsicologia.png" alt="Neuropsicologia">
+                            <img src="images/specialties/neuropsicologia.png" alt="Neuropsicologia">
                         </div>
                         <h3 class="specialty-name">Neuropsicologia</h3>
                         <p class="specialty-description">Avaliação e reabilitação cognitiva</p>
@@ -153,7 +153,7 @@
                     </div>
                     
                     <div class="about-image">
-                        <img src="../src/assets/doctors/dr-gabriel.png" alt="Dr. Gabriel Lopes">
+                        <img src="images/dr-gabriel.png" alt="Dr. Gabriel Lopes">
                     </div>
                 </div>
             </div>
@@ -181,7 +181,7 @@
                 </div>
                 
                 <div class="team-image-container">
-                    <img src="../src/assets/doctors/team-professionals.png" alt="Profissionais da equipe" class="team-image">
+                    <img src="images/team-professionals.png" alt="Profissionais da equipe" class="team-image">
                 </div>
             </div>
         </section>
@@ -191,7 +191,7 @@
             <div class="container">
                 <div class="mental-health-grid">
                     <div class="mental-health-image">
-                        <img src="../src/assets/sections/mental-health.png" alt="Pessoa relaxando na natureza">
+                        <img src="images/mental-health.png" alt="Pessoa relaxando na natureza">
                     </div>
                     
                     <div class="mental-health-content">
