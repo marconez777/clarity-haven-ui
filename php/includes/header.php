@@ -11,7 +11,7 @@
             <li><a href="/testes">Testes</a></li>
             <li><a href="/blog">Blog</a></li>
             <li><a href="/contato">Contato</a></li>
-            <li><a href="#agendar" class="nav-cta">Agende sua consulta</a></li>
+            <li><a href="#agendar" class="nav-cta" style="color: white;">Agende sua consulta</a></li>
         </ul>
     </div>
 </nav>

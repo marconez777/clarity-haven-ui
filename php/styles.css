@@ -152,9 +152,10 @@ html {
 /* Hero Section */
 .hero-section {
     position: relative;
-    background: linear-gradient(to bottom, white, hsl(var(--secondary) / 0.1));
+    background: linear-gradient(to bottom, white, rgba(185, 223, 237, 0.1));
     overflow: hidden;
     margin-top: 5rem;
+    padding: 6rem 0;
 }
 
 .hero-content {
@@ -162,7 +163,6 @@ html {
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
-    padding: 6rem 0;
     max-width: 1280px;
     margin: 0 auto;
     padding-left: 1rem;
@@ -176,7 +176,7 @@ html {
 .hero-title {
     font-size: 3rem;
     font-weight: bold;
-    color: var(--primary);
+    color: hsl(198, 92%, 36%);
     margin-bottom: 1.5rem;
     line-height: 1.2;
     animation: fadeInUp 0.7s ease-out;
@@ -184,7 +184,7 @@ html {
 
 .hero-description {
     font-size: 1.25rem;
-    color: var(--muted-foreground);
+    color: hsl(210, 10%, 45%);
     margin-bottom: 2rem;
     animation: fadeInUp 0.7s ease-out 0.2s both;
 }
@@ -203,10 +203,25 @@ html {
     box-shadow: 0 20px 60px -20px rgba(0, 153, 204, 0.3);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .hero-content {
         grid-template-columns: 1fr;
-        padding: 3rem 1rem;
+        gap: 2rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 3rem 0;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
         gap: 2rem;
     }
     
