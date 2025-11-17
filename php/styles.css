@@ -159,6 +159,7 @@ html {
     margin-top: 5rem;
 }
 
+
 /* Content */
 .hero-content {
     position: relative;
@@ -205,23 +206,11 @@ html {
 /* Responsive - Show background image on tablet and above */
 @media (min-width: 768px) {
     .hero-section {
-        background-image: url('images/hero-family.jpg');
+        background-image: url('images/banner-principal.jpg');
         background-size: cover;
         background-position: center;
     }
 
-    .hero-section::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        z-index: 1;
-        background: linear-gradient(
-            to right,
-            hsl(0 0% 100% / 0.9),
-            hsl(0 0% 100% / 0.7),
-            hsl(0 0% 100% / 0.1)
-        );
-    }
     
     .hero-title {
         font-size: 2.25rem;
@@ -743,6 +732,7 @@ html {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+
     .hero-title {
         font-size: 2rem;
     }
