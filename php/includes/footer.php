@@ -4,7 +4,7 @@
             <!-- Logo e Descrição -->
             <div>
                 <div class="footer-logo-section">
-                    <img src="../src/assets/logo.png" alt="Logo Dr Gabriel Lopes" class="footer-logo">
+                    <img src="images/logo.png" alt="Logo Dr Gabriel Lopes" class="footer-logo">
                     <div class="footer-logo-text">
                         <span class="footer-logo-subtitle">Saúde Mental Integrada</span>
                         <span class="footer-logo-title">Dr Gabriel Lopes</span>

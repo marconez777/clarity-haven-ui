@@ -1,7 +1,7 @@
 <nav class="navbar">
     <div class="nav-container">
         <a href="/" class="nav-logo">
-            <img src="../src/assets/logo.png" alt="Dr Gabriel Lopes - Saúde Mental Integrada">
+            <img src="images/logo.png" alt="Dr Gabriel Lopes - Saúde Mental Integrada">
         </a>
         
         <ul class="nav-menu">
