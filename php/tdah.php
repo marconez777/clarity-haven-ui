@@ -20,18 +20,15 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <?php include 'includes/header.php'; ?>
+    <?php 
+    include 'includes/header.php';
+    include 'components/breadcrumbs.php';
     
-    <!-- Breadcrumbs -->
-    <nav style="padding: 1.5rem 0; margin-top: 5rem; background: hsl(210, 20%, 96%);">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
-            <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem;">
-                <a href="/especialidades" style="color: hsl(210, 10%, 45%); text-decoration: none; transition: color 0.2s;">Especialidades</a>
-                <span style="color: hsl(210, 10%, 45%);">/</span>
-                <span style="color: hsl(210, 10%, 20%); font-weight: 500;">TDAH</span>
-            </div>
-        </div>
-    </nav>
+    render_breadcrumbs([
+        ['label' => 'Especialidades', 'href' => 'especialidades.php'],
+        ['label' => 'TDAH', 'href' => '#']
+    ]);
+    ?>
     
     <main>
         <!-- Hero Section -->

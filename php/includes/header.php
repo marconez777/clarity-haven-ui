@@ -70,17 +70,17 @@
         <ul class="nav-menu">
             <li><a href="/dr-gabriel-lopes">Dr. Gabriel Lopes</a></li>
             <li class="dropdown">
-                <a href="/especialidades" class="dropdown-toggle">
+                <a href="especialidades.php" class="dropdown-toggle">
                     Especialidades
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
                 </a>
                 <div class="dropdown-menu">
-                    <a href="/tdah" class="dropdown-item">TDAH</a>
-                    <a href="/ansiedade" class="dropdown-item">Ansiedade</a>
-                    <a href="/depressao" class="dropdown-item">Depressão</a>
-                    <a href="/transtorno-bipolar" class="dropdown-item">Transtorno Bipolar</a>
+                    <a href="tdah.php" class="dropdown-item">TDAH</a>
+                    <a href="ansiedade.php" class="dropdown-item">Ansiedade</a>
+                    <a href="depressao.php" class="dropdown-item">Depressão</a>
+                    <a href="transtorno-bipolar.php" class="dropdown-item">Transtorno Bipolar</a>
                 </div>
             </li>
             <li><a href="/equipe">Nossa Equipe</a></li>
