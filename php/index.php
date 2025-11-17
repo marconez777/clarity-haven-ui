@@ -28,11 +28,6 @@
     <main>
         <!-- Hero Section -->
         <section class="hero-section">
-            <!-- Background Image - Hidden on mobile -->
-            <div class="hero-background">
-                <img src="images/hero-family.jpg" alt="Família feliz na praia">
-            </div>
-            
             <!-- Content -->
             <div class="hero-content">
                 <div class="hero-text">
