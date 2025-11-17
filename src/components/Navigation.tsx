@@ -98,7 +98,7 @@ const Navigation = () => {
                 {item.name}
               </a>
             ))}
-            <Button className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all">
+            <Button className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all">
               Agendamento on-line
             </Button>
           </div>
@@ -155,7 +155,7 @@ const Navigation = () => {
                   {item.name}
                 </a>
               ))}
-              <Button className="w-full bg-gradient-to-r from-primary to-accent">
+              <Button className="w-full bg-gradient-to-r from-primary to-accent text-white">
                 Agendamento on-line
               </Button>
             </div>

@@ -35,7 +35,7 @@ const Ansiedade = () => {
                     Tratamento especializado com o Dr. Gabriel Lopes, psiquiatra referência em saúde mental e transtornos de ansiedade.
                   </p>
                   <div className="flex flex-col gap-3 md:gap-4">
-                    <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all w-full sm:w-auto" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
+                    <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all w-full sm:w-auto" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
                       🔹 Agende sua consulta
                     </Button>
                     <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary w-full sm:w-auto" onClick={() => {}}>
@@ -246,7 +246,7 @@ const Ansiedade = () => {
                 <p className="text-sm text-muted-foreground mb-8 italic">
                   🧩 O teste não substitui o diagnóstico profissional, mas é um excelente ponto de partida para o autocuidado.
                 </p>
-                <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => {}}>
+                <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => {}}>
                   🔹 Iniciar teste gratuito
                 </Button>
               </div>
@@ -303,7 +303,7 @@ const Ansiedade = () => {
                 </div>
 
                 <div className="text-center">
-                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
+                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
                     🔹 Agende sua consulta com o Dr. Gabriel Lopes
                   </Button>
                 </div>
@@ -324,7 +324,7 @@ const Ansiedade = () => {
                   Comece hoje mesmo o cuidado com sua saúde mental.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
+                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
                     🔹 Agende sua consulta
                   </Button>
                   <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary" onClick={() => {}}>

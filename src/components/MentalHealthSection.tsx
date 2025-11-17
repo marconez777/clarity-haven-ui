@@ -42,7 +42,7 @@ const MentalHealthSection = () => {
               </Button>
               <Button 
                 size="lg"
-                className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all"
+                className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all"
               >
                 Agende sua consulta
               </Button>
