@@ -206,7 +206,7 @@ html {
 /* Responsive - Show background image on tablet and above */
 @media (min-width: 768px) {
     .hero-section {
-        background-image: url('images/banner-principal.jpg');
+        background-image: url('images/gabriel-lopes-banner-desk.jpg');
         background-size: cover;
         background-position: center;
     }
