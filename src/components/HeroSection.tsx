@@ -25,7 +25,7 @@ const HeroSection = () => {
           </p>
           <Button 
             size="lg" 
-            className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-hover)] transition-all animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 w-full sm:w-auto"
+            className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 w-full sm:w-auto"
           >
             Conheça a Clínica
           </Button>

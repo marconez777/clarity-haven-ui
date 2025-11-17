@@ -176,7 +176,7 @@ const Contato = () => {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-primary to-accent hover:shadow-lg transition-all"
+                    className="w-full bg-gradient-to-r from-primary to-accent text-white hover:shadow-lg transition-all"
                     size="lg"
                   >
                     {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
