@@ -1,0 +1,785 @@
+/*
+ Theme Name: Meu Tema Limpo
+ Theme URI: https://exemplo.com
+ Author: Seu Nome
+ Description: Tema com home opcional via template de página
+ Version: 1.0
+ Text Domain: meu-tema
+*/
+
+/* Design System - All colors must be HSL */
+:root {
+    --background: 0 0% 100%;
+    --foreground: 210 10% 20%;
+    --primary: 198 92% 36%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 185 58% 88%;
+    --secondary-foreground: 198 92% 20%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 210 10% 45%;
+    --accent: 185 58% 58%;
+    --accent-foreground: 0 0% 100%;
+    --border: 210 20% 90%;
+    --radius: 0.75rem;
+
+    /* Gradients and Shadows */
+    --gradient-hero: linear-gradient(135deg, hsl(185, 55%, 95%) 0%, hsl(200, 50%, 98%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(198, 92%, 36%) 0%, hsl(185, 58%, 58%) 100%);
+    --shadow-soft: 0 10px 30px -10px hsl(198 92% 36% / 0.2);
+    --shadow-hover: 0 20px 40px -15px hsl(198 92% 36% / 0.3);
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    color: white !important;
+}
+
+.btn-primary:hover {
+    color: white !important;
+    box-shadow: var(--shadow-hover);
+}
+
+.btn-outline {
+    border: 2px solid hsl(var(--primary));
+    color: hsl(var(--primary));
+    background: transparent;
+}
+
+.btn-outline:hover {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+}
+
+.btn-lg {
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid hsl(var(--border));
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 5rem;
+}
+
+.nav-logo img {
+    height: 3rem;
+    width: auto;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-menu a {
+    color: hsl(var(--foreground));
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-menu a:hover {
+    color: hsl(var(--primary));
+}
+
+.nav-cta {
+    background: var(--gradient-primary);
+    color: white !important;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: box-shadow 0.3s;
+}
+
+.nav-cta:hover {
+    color: white !important;
+    box-shadow: var(--shadow-hover);
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 5rem;
+}
+
+
+/* Content */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.hero-text {
+    max-width: 42rem;
+    padding-top: 3rem;
+}
+
+.hero-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: hsl(198, 92%, 36%);
+    line-height: 1.2;
+    animation: fadeInUp 0.7s ease-out;
+}
+
+.hero-description {
+    font-size: 1rem;
+    color: hsl(210, 10%, 45%);
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.7s ease-out 0.2s both;
+}
+
+.hero-image-container {
+    display: none;
+}
+
+.hero-image {
+    display: none;
+}
+
+.hero-section .btn {
+    animation: fadeInUp 0.7s ease-out 0.3s both;
+}
+
+/* Responsive - Show background image on tablet and above */
+@media (min-width: 768px) {
+    .hero-section {
+        background-image: url('images/gabriel-lopes-banner-desk.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .hero-content {
+        margin: 0;
+    }
+
+    .hero-text {
+        text-align: left;
+        margin-left: 30px;
+    }
+
+    .hero-title {
+        font-size: 2.25rem;
+    }
+
+    .hero-description {
+        font-size: 1.125rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .hero-description {
+        font-size: 1.25rem;
+    }
+
+    .hero-text {
+        padding-top: 5rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .hero-title {
+        font-size: 3.75rem;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Especialidades Home Section */
+.especialidades-home-section {
+    padding: 4rem 0;
+    background: linear-gradient(to bottom, var(--background), hsl(185, 58%, 88%, 0.1));
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--foreground);
+}
+
+.section-description {
+    font-size: 1.125rem;
+    color: var(--muted-foreground);
+    max-width: 42rem;
+    margin: 0 auto;
+}
+
+.section-divider {
+    width: 6rem;
+    height: 0.25rem;
+    background: var(--gradient-primary);
+    margin: 0 auto;
+}
+
+.especialidades-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 90rem;
+    margin: 0 auto;
+}
+
+.especialidade-card {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 2px solid;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.especialidade-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+}
+
+.especialidade-card-primary {
+    background: linear-gradient(to bottom right, hsl(185, 58%, 88%, 0.2), var(--background));
+    border-color: hsl(198, 92%, 36%, 0.2);
+}
+
+.especialidade-card-primary:hover {
+    border-color: hsl(198, 92%, 36%, 0.4);
+}
+
+.especialidade-card-accent {
+    background: linear-gradient(to bottom right, hsl(185, 58%, 58%, 0.1), var(--background));
+    border-color: hsl(185, 58%, 58%, 0.2);
+}
+
+.especialidade-card-accent:hover {
+    border-color: hsl(185, 58%, 58%, 0.4);
+}
+
+.especialidade-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--foreground);
+    margin-bottom: 0.75rem;
+}
+
+.especialidade-description {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+/* Specialties Section */
+.specialties-section {
+    padding: 5rem 0;
+    background: linear-gradient(to bottom, hsl(185, 58%, 88%, 0.2), var(--background));
+}
+
+.specialties-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.specialty-item {
+    text-align: center;
+}
+
+.specialty-icon {
+    width: 6rem;
+    height: 6rem;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.3s;
+    overflow: hidden;
+}
+
+.specialty-icon:hover {
+    box-shadow: var(--shadow-hover);
+    transform: scale(1.1);
+}
+
+.specialty-icon img {
+    width: 4rem;
+    height: 4rem;
+    object-fit: contain;
+}
+
+.specialty-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--foreground);
+    margin-bottom: 0.5rem;
+}
+
+.specialty-description {
+    font-size: 1rem;
+    color: var(--muted-foreground);
+}
+
+/* About Section */
+.about-section {
+    padding: 5rem 0;
+    background: var(--background);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.about-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+.about-text {
+    color: var(--foreground);
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+}
+
+.about-text p {
+    margin-bottom: 1rem;
+}
+
+.link-primary {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.link-primary:hover {
+    text-decoration: underline;
+}
+
+.about-quote {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary);
+    font-style: italic;
+    border-left: 4px solid var(--primary);
+    padding-left: 1rem;
+}
+
+.about-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.doctoralia-widget {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s;
+}
+
+.about-image img:hover {
+    transform: scale(1.05);
+}
+
+/* Team Section */
+.team-section {
+    padding: 5rem 0;
+    background: hsl(198, 92%, 36%, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.team-content {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.team-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--foreground);
+    margin-bottom: 1.5rem;
+}
+
+.team-features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.team-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.feature-dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background: var(--primary);
+}
+
+.team-feature span {
+    color: var(--foreground);
+    font-weight: 500;
+}
+
+.team-image-container {
+    max-width: 40rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.team-image {
+    border-radius: 1rem;
+    box-shadow: var(--shadow-soft);
+    transition: box-shadow 0.3s;
+    width: 328px;
+    height: 125px;
+}
+
+.team-image:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+/* Mental Health Section */
+.mental-health-section {
+    padding: 5rem 0;
+    background: var(--background);
+}
+
+.mental-health-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.mental-health-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 3rem;
+    box-shadow: var(--shadow-soft);
+}
+
+.mental-health-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+.mental-health-text {
+    font-size: 1.125rem;
+    color: var(--foreground);
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+}
+
+.mental-health-list {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.mental-health-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.list-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+}
+
+.mental-health-list span {
+    font-size: 1.125rem;
+    color: var(--foreground);
+}
+
+.mental-health-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(to bottom, hsl(198, 92%, 36%, 0.05), hsl(198, 92%, 36%, 0.1));
+    padding: 4rem 0 2rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-logo-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.footer-logo {
+    height: 3rem;
+    width: 3rem;
+}
+
+.footer-logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-logo-subtitle {
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.footer-logo-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.footer-description {
+    color: var(--muted-foreground);
+    margin-top: 1rem;
+}
+
+.footer-section-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--foreground);
+    margin-bottom: 1rem;
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.footer-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--primary);
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+}
+
+.footer-contact-text {
+    color: var(--muted-foreground);
+}
+
+.footer-contact-text a {
+    color: var(--muted-foreground);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-contact-text a:hover {
+    color: var(--primary);
+}
+
+.footer-hours {
+    color: var(--muted-foreground);
+}
+
+.footer-hours p {
+    margin-bottom: 0.5rem;
+}
+
+.footer-divider {
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+}
+
+.footer-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+    text-align: center;
+}
+
+/* WhatsApp Button */
+.whatsapp-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background: #25D366;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s;
+    z-index: 1000;
+    text-decoration: none;
+}
+
+.whatsapp-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .about-grid,
+    .mental-health-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-image {
+        order: -1;
+    }
+
+    .especialidades-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+
+    .specialties-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
