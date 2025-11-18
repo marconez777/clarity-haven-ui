@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Gabriel Lopes - Psiquiatra Vila Olímpia | Saúde Mental Integrada</title>
+    <meta name="description" content="Dr. Gabriel Lopes - Psiquiatra especializado em saúde mental infantil e adultos na Vila Olímpia, SP. Tratamento de ansiedade, depressão e TDAH com acompanhamento completo.">
+    <meta name="keywords" content="psiquiatra, psiquiatria, saúde mental, ansiedade, depressão, TDAH, Vila Olímpia, São Paulo, Dr. Gabriel Lopes">
+    <meta name="author" content="Dr. Gabriel Lopes">
+    <link rel="canonical" href="https://drgabriellopes.com.br">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:title" content="Dr. Gabriel Lopes - Psiquiatra Vila Olímpia | Saúde Mental Integrada">
+    <meta property="og:description" content="Psiquiatra especializado em saúde mental infantil e adultos. Tratamento de ansiedade, depressão e TDAH com acompanhamento completo.">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dr. Gabriel Lopes - Psiquiatra Vila Olímpia">
+    <meta name="twitter:description" content="Saúde mental com acompanhamento completo. Especialista em ansiedade, depressão e TDAH.">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <style>
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.dropdown-toggle svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s;
+}
+
+.dropdown.active .dropdown-toggle svg {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 8px;
+    margin-top: 8px;
+    z-index: 1000;
+}
+
+.dropdown.active .dropdown-menu {
+    display: block;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: #f5f5f5;
+}
+
+@media (max-width: 768px) {
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        padding-left: 20px;
+        margin-top: 0;
+    }
+}
+</style>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <img src="images/logo.png" alt="Dr Gabriel Lopes - Saúde Mental Integrada">
+        </a>
+        
+        <ul class="nav-menu">
+            <li><a href="dr-gabriel.html">Dr. Gabriel Lopes</a></li>
+            <li class="dropdown">
+                <a href="especialidades.html" class="dropdown-toggle">
+                    Especialidades
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="tdah.html" class="dropdown-item">TDAH</a>
+                    <a href="ansiedade.html" class="dropdown-item">Ansiedade</a>
+                    <a href="depressao.html" class="dropdown-item">Depressão</a>
+                    <a href="transtorno-bipolar.html" class="dropdown-item">Transtorno Bipolar</a>
+                </div>
+            </li>
+            <li><a href="equipe.html">Nossa Equipe</a></li>
+            <li><a href="testes.html">Testes</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="#agendar" class="nav-cta" style="color: white;">Agende sua consulta</a></li>
+        </ul>
+    </div>
+</nav>
+    
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <!-- Content -->
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">Saúde Mental com acompanhamento completo</h1>
+                        <p class="hero-description">Cuidado integral e humanizado para o seu bem-estar emocional e mental</p>
+                        <a href="#contato" class="btn btn-primary btn-lg">Conheça a Clínica</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Principais Especialidades -->
+        <section class="especialidades-home-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Principais Especialidades</h2>
+                    <p class="section-description">Atendimento especializado para suas necessidades</p>
+                </div>
+                
+                <div class="especialidades-grid">
+                    <a href="tdah.html" class="especialidade-card especialidade-card-primary">
+                        <h3 class="especialidade-title">TDAH</h3>
+                        <p class="especialidade-description">Transtorno de Déficit de Atenção e Hiperatividade com tratamento especializado</p>
+                    </a>
+                    
+                    <a href="ansiedade.html" class="especialidade-card especialidade-card-accent">
+                        <h3 class="especialidade-title">Ansiedade</h3>
+                        <p class="especialidade-description">Tratamento para transtornos de ansiedade e síndrome do pânico</p>
+                    </a>
+                    
+                    <a href="depressao.html" class="especialidade-card especialidade-card-primary">
+                        <h3 class="especialidade-title">Depressão</h3>
+                        <p class="especialidade-description">Acompanhamento e tratamento do transtorno depressivo</p>
+                    </a>
+                    
+                    <a href="transtorno-bipolar.html" class="especialidade-card especialidade-card-accent">
+                        <h3 class="especialidade-title">Transtorno Bipolar</h3>
+                        <p class="especialidade-description">Diagnóstico e tratamento do transtorno bipolar</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Saúde Mental Integrada -->
+        <section class="specialties-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Saúde Mental Integrada</h2>
+                    <p class="section-description">Cuidado integral com equipe multidisciplinar</p>
+                </div>
+                
+                <div class="specialties-grid">
+                    <div class="specialty-card">
+                        <div class="specialty-icon">
+                            <img src="images/specialties/psiquiatria.png" alt="Psiquiatria">
+                        </div>
+                        <h3>Psiquiatria</h3>
+                        <p>Diagnóstico e tratamento de transtornos mentais e emocionais</p>
+                    </div>
+                    
+                    <div class="specialty-card">
+                        <div class="specialty-icon">
+                            <img src="images/specialties/psicoterapia.png" alt="Psicoterapia">
+                        </div>
+                        <h3>Psicoterapia</h3>
+                        <p>Acompanhamento psicológico e terapia cognitivo-comportamental</p>
+                    </div>
+                    
+                    <div class="specialty-card">
+                        <div class="specialty-icon">
+                            <img src="images/specialties/acupuntura.png" alt="Acupuntura">
+                        </div>
+                        <h3>Acupuntura</h3>
+                        <p>Terapia complementar para equilíbrio físico e emocional</p>
+                    </div>
+                    
+                    <div class="specialty-card">
+                        <div class="specialty-icon">
+                            <img src="images/specialties/nutricao.png" alt="Nutrição">
+                        </div>
+                        <h3>Nutrição</h3>
+                        <p>Orientação nutricional para saúde mental e bem-estar</p>
+                    </div>
+                    
+                    <div class="specialty-card">
+                        <div class="specialty-icon">
+                            <img src="images/specialties/neuropsicologia.png" alt="Neuropsicologia">
+                        </div>
+                        <h3>Neuropsicologia</h3>
+                        <p>Avaliação neuropsicológica e reabilitação cognitiva</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="images/dr-gabriel.png" alt="Dr. Gabriel Lopes">
+                    </div>
+                    <div class="about-text">
+                        <h2>Dr. Gabriel Lopes</h2>
+                        <h3>CRM/SP: 131.339</h3>
+                        <p>
+                            Psiquiatra com ampla experiência no tratamento de transtornos mentais, 
+                            especializado em saúde mental infantil, adolescência e adultos.
+                        </p>
+                        <p>
+                            Com formação em Psiquiatria pela Santa Casa de São Paulo e especialização 
+                            em Psiquiatria da Infância e Adolescência pela USP, oferece tratamento 
+                            integrado e humanizado.
+                        </p>
+                        <a href="dr-gabriel.html" class="btn btn-outline">Saiba Mais</a>
+                        
+                        <!-- Doctoralia Widget -->
+                        <div style="margin-top: 2rem;">
+                            <a id="zl-url" class="zl-url" href="https://www.doctoralia.com.br/gabriel-lopes-12/psiquiatra/sao-paulo" rel="nofollow" data-zlw-doctor="gabriel-lopes-12" data-zlw-type="big_with_calendar" data-zlw-opinion="false" data-zlw-hide-branding="true">Gabriel Lopes - Doctoralia.com.br</a>
+                            <script>!function($){$.fn.dg_widget=function(d){var n=$(this);return n.each(function(){d=d||{};var e=d.zlw_hidebranding||!1,r=d.zlw_doctor||"",s=d.zlw_type||"big",t=d.zlw_opinion||!1,i=d.zlw_calendar||!1,a="https://www.doctoralia.com.br/";n.html(a+"booking-widget/"+r+"?lock=false&amp;type="+s+"&amp;load_iframe=true&amp;ref_url="+window.location.href+"&amp;hide_branding="+e+"&amp;calendar="+i+"&amp;show_opinion="+t)})},$(document).ready(function(){var d=$("a.zl-url"),n=$("a.zl-url").attr("rel")||!1;!function(d,e){void 0===$.fn.dg_widget&&setTimeout(function(){arguments.callee(d,e)},500),$.fn.dg_widget&&d.length&&d.dg_widget(e)}(d,{"zlw_doctor":d.attr("data-zlw-doctor")||void 0,"zlw_type":d.attr("data-zlw-type")||void 0,"zlw_opinion":d.attr("data-zlw-opinion")||void 0,"zlw_hidebranding":d.attr("data-zlw-hide-branding")||void 0})})}(jQuery);</script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Nossa Equipe Multidisciplinar</h2>
+                    <p class="section-description">Profissionais especializados comprometidos com o seu bem-estar</p>
+                </div>
+                <div class="team-content">
+                    <img src="images/team-professionals.png" alt="Equipe de profissionais" class="team-image">
+                    <a href="equipe.html" class="btn btn-primary">Conheça Nossa Equipe</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mental Health Section -->
+        <section class="mental-health-section">
+            <div class="container">
+                <div class="mental-health-content">
+                    <div class="mental-health-text">
+                        <h2>Cuidando da sua Saúde Mental</h2>
+                        <p>
+                            A saúde mental é essencial para o bem-estar geral. Transtornos como ansiedade, 
+                            depressão e TDAH são condições comuns que podem ser tratadas com acompanhamento 
+                            profissional adequado.
+                        </p>
+                        <p>
+                            No Instituto Sanapta, oferecemos um ambiente acolhedor e tratamento personalizado 
+                            para cada paciente, sempre com respeito e humanização.
+                        </p>
+                        <div class="mental-health-buttons">
+                            <a href="contato.html" class="btn btn-primary">Agende uma Consulta</a>
+                            <a href="testes.html" class="btn btn-outline">Faça um Teste Online</a>
+                        </div>
+                    </div>
+                    <div class="mental-health-image">
+                        <img src="images/mental-health.png" alt="Saúde Mental">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Logo e Descrição -->
+            <div>
+                <div class="footer-logo-section">
+                    <img src="images/logo.png" alt="Logo Dr Gabriel Lopes" class="footer-logo">
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-subtitle">Saúde Mental Integrada</span>
+                        <span class="footer-logo-title">Dr Gabriel Lopes</span>
+                    </div>
+                </div>
+                <p class="footer-description">
+                    Cuidado integral e humanizado para o seu bem-estar emocional e mental.
+                </p>
+            </div>
+
+            <!-- Contato -->
+            <div>
+                <h3 class="footer-section-title">Contato</h3>
+                <div class="footer-contact">
+                    <div class="footer-contact-item">
+                        <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <div class="footer-contact-text">
+                            <p>Rua do Rocio, 423. Cj. 402. (Vila Olímpia)</p>
+                            <p>São Paulo, CEP: 04548-020</p>
+                        </div>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        <div class="footer-contact-text">
+                            <a href="tel:1194154-3929">11 94154-3929</a> | 
+                            <a href="tel:1130441690">11 3044-1690</a>
+                        </div>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <div class="footer-contact-text">
+                            <a href="mailto:contato@drgabriellopes.com.br">contato@drgabriellopes.com.br</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Horário -->
+            <div>
+                <h3 class="footer-section-title">Horário de Atendimento</h3>
+                <div class="footer-hours">
+                    <p>Segunda a Sexta: 8h às 20h</p>
+                    <p>Sábado: 8h às 14h</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="footer-divider">
+            <div class="footer-bottom">
+                <p>Diretor Técnico Médico: Dr. Gabriel Lopes – CRM/SP: 131.339 RQE: 48295 RQE: 48295-1.</p>
+                <p>Todos os Direitos Reservados © 2025</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <!-- WhatsApp Button -->
+    <a 
+    href="https://wa.me/5511941543929?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta."
+    target="_blank"
+    rel="noopener noreferrer"
+    class="whatsapp-button"
+    aria-label="Contato via WhatsApp"
+>
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+    </svg>
+    <span class="whatsapp-tooltip">Fale conosco</span>
+</a>
+
+    <script>
+// Dropdown functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdown = document.querySelector('.dropdown');
+    const dropdownToggle = dropdown?.querySelector('.dropdown-toggle');
+    
+    if (dropdown && dropdownToggle) {
+        // Toggle on click
+        dropdownToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            dropdown.classList.toggle('active');
+        });
+        
+        // Close on outside click
+        document.addEventListener('click', function(e) {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+    }
+});
+</script>
+</body>
+</html>
