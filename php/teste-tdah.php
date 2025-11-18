@@ -326,11 +326,15 @@ $average_score = 4.6;
         
         // Enhanced radio button interactions
         document.querySelectorAll('.radio-item').forEach(item => {
-            item.addEventListener('click', function() {
-                document.querySelectorAll('.radio-item').forEach(i => i.classList.remove('selected'));
-                this.classList.add('selected');
-                this.querySelector('input[type="radio"]').checked = true;
-                document.getElementById('nextBtn').disabled = false;
+            item.addEventListener('click', function(e) {
+                // Allow clicking anywhere on the label to select the radio
+                if (e.target.tagName !== 'INPUT') {
+                    const input = this.querySelector('input[type="radio"]');
+                    if (input) {
+                        input.checked = true;
+                        document.getElementById('nextBtn').disabled = false;
+                    }
+                }
             });
         });
         
