@@ -157,6 +157,9 @@ html {
     align-items: center;
     overflow: hidden;
     margin-top: 5rem;
+    background-image: url('../images/gabriel-lopes-banner-desk.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 
@@ -166,13 +169,15 @@ html {
     z-index: 10;
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0;
     padding: 0 1.5rem;
 }
 
 .hero-text {
     max-width: 42rem;
     padding-top: 3rem;
+    text-align: left;
+    margin-left: 30px;
 }
 
 .hero-title {
@@ -341,7 +346,7 @@ html {
 
 .especialidade-description {
     font-size: 0.875rem;
-    color: var(--muted-foreground);
+    color: hsl(var(--foreground));
 }
 
 /* Specialties Section */
@@ -476,13 +481,20 @@ html {
 /* Team Section */
 .team-section {
     padding: 5rem 0;
-    background: hsl(198, 92%, 36%, 0.05);
-    backdrop-filter: blur(10px);
 }
 
 .team-content {
     text-align: center;
     margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.team-text p {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
 }
 
 .team-title {
@@ -543,7 +555,7 @@ html {
     background: var(--background);
 }
 
-.mental-health-grid {
+.mental-health-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
@@ -754,7 +766,7 @@ html {
     }
     
     .about-grid,
-    .mental-health-grid {
+    .mental-health-content {
         grid-template-columns: 1fr;
     }
     
