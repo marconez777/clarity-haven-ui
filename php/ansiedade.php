@@ -4,20 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tratamento de Ansiedade - Dr. Gabriel Lopes | Psiquiatra Vila Olímpia</title>
-    <meta name="description" content="Tratamento especializado para transtornos de ansiedade com o Dr. Gabriel Lopes. Abordagem integrativa e humanizada na Vila Olímpia, SP.">
-    <meta name="keywords" content="ansiedade, transtorno de ansiedade, síndrome do pânico, tratamento ansiedade, psiquiatra ansiedade, Dr. Gabriel Lopes">
+    <meta name="description" content="Tratamento especializado para transtornos de ansiedade com o Dr. Gabriel Lopes. Abordagem humanizada para uma vida com mais tranquilidade na Vila Olímpia, SP.">
+    <meta name="keywords" content="ansiedade, transtorno de ansiedade, tratamento para ansiedade, psiquiatra para ansiedade, TAG, pânico, ansiedade social, Dr. Gabriel Lopes">
     <link rel="canonical" href="https://drgabriellopes.com.br/ansiedade">
     
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:title" content="Tratamento de Ansiedade - Dr. Gabriel Lopes | Psiquiatra Vila Olímpia">
-    <meta property="og:description" content="Tratamento especializado para transtornos de ansiedade com abordagem integrativa.">
+    <meta property="og:description" content="Tratamento especializado para transtornos de ansiedade com abordagem humanizada para uma vida com mais tranquilidade.">
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Tratamento de Ansiedade - Dr. Gabriel Lopes">
-    <meta name="twitter:description" content="Tratamento especializado para transtornos de ansiedade com abordagem integrativa.">
+    <meta name="twitter:description" content="Tratamento especializado para transtornos de ansiedade com abordagem humanizada para uma vida com mais tranquilidade.">
     
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .parallax-section {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .parallax-bg {
+            position: absolute;
+            inset: 0;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+        
+        .parallax-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(8, 125, 175, 0.9), rgba(8, 125, 175, 0.9), rgba(8, 125, 175, 0.9));
+        }
+        
+        @media (max-width: 768px) {
+            .parallax-bg {
+                display: none;
+            }
+            .hidden-mobile {
+                display: none !important;
+            }
+            
+            .hero-grid,
+            .symptoms-grid,
+            .treatment-grid,
+            .types-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .cta-buttons {
+                flex-direction: column !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <?php 
@@ -34,134 +74,380 @@
         <!-- Hero Section -->
         <section style="position: relative; min-height: 85vh; display: flex; align-items: center; overflow: hidden; background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.3), rgba(255, 255, 255, 1));">
             <div class="container" style="margin: 0 auto; padding: 6rem 1rem 3rem; max-width: 1200px;">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 72rem; margin: 0 auto;">
-                    <div>
-                        <h1 style="font-size: 2.25rem; font-weight: bold; margin-bottom: 1.5rem; color: hsl(210, 10%, 20%); line-height: 1.2;">
-                            Preocupação Excessiva, Tensão ou Medo Constante?
-                            <span style="display: block; color: hsl(198, 92%, 36%); margin-top: 1rem;">Transtornos de Ansiedade têm tratamento.</span>
+                <div class="hero-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 72rem; margin: 0 auto;">
+                    <div style="animation: fadeInUp 0.7s ease-out;">
+                        <h1 style="font-size: 2.25rem; font-weight: bold; margin-bottom: 1.5rem; color: hsl(var(--foreground)); line-height: 1.2;">
+                            Sente angústia constante, medo ou preocupação em excesso?
+                            <span style="display: block; color: hsl(var(--primary)); margin-top: 1rem;">Você pode estar convivendo com um transtorno de ansiedade.</span>
                         </h1>
-                        <p style="font-size: 1.125rem; color: hsl(210, 10%, 45%); margin-bottom: 2rem;">
-                            Tratamento especializado para ansiedade generalizada, síndrome do pânico e fobias com o Dr. Gabriel Lopes.
+                        <p style="font-size: 1.125rem; color: hsl(var(--muted-foreground)); margin-bottom: 2rem;">
+                            Tratamento especializado com o Dr. Gabriel Lopes, psiquiatra referência em saúde mental e transtornos de ansiedade.
                         </p>
                         <div style="display: flex; flex-direction: column; gap: 0.75rem;">
                             <a href="https://wa.me/5511941543929" target="_blank" class="btn btn-primary btn-lg" style="text-align: center;">
-                                Agende sua consulta
+                                🔹 Agende sua consulta
+                            </a>
+                            <a href="teste-ansiedade.php" class="btn btn-outline btn-lg" style="text-align: center;">
+                                🔹 Faça o teste de ansiedade gratuito
                             </a>
                         </div>
                     </div>
-                    <div class="hidden-mobile">
-                        <img src="images/mental-health.png" alt="Tratamento de Ansiedade" style="width: 100%; height: auto; border-radius: 1rem; box-shadow: 0 10px 30px -10px hsl(198 92% 36% / 0.2);">
+                    <div class="hidden-mobile" style="animation: fadeInUp 0.7s ease-out 0.2s; animation-fill-mode: backwards;">
+                        <img src="images/dr-gabriel.png" alt="Dr. Gabriel Lopes - Psiquiatra especialista em Ansiedade" style="width: 100%; height: auto; border-radius: 1rem; box-shadow: 0 10px 30px -10px hsl(198 92% 36% / 0.2);">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- O que é Ansiedade -->
-        <section style="position: relative; padding: 4rem 0; overflow: hidden;">
-            <div class="container" style="margin: 0 auto; padding: 0 1rem; max-width: 1200px;">
-                <div style="max-width: 48rem; margin: 0 auto;">
-                    <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 2rem; color: hsl(210, 10%, 20%); text-align: center;">
-                        O que são Transtornos de Ansiedade?
+        <!-- O que é a Ansiedade? -->
+        <section class="parallax-section" style="padding: 8rem 0;">
+            <div class="parallax-bg" style="background-image: url('images/consultori-psiquiatria2.jpg');"></div>
+            <div class="parallax-overlay"></div>
+
+            <div class="container" style="position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+                <div style="max-width: 80rem; margin: 0 auto;">
+                    <div style="text-align: center; margin-bottom: 4rem;">
+                        <h2 style="font-size: 3rem; font-weight: bold; margin-bottom: 2rem; color: white; line-height: 1.2;">
+                            O que é a <span style="color: #22d3ee;">Ansiedade</span>?
+                        </h2>
+                        <div style="width: 8rem; height: 0.375rem; background: linear-gradient(to right, #22d3ee, #3b82f6); margin: 0 auto; border-radius: 9999px; box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);"></div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); padding: 2.5rem 3rem; border-radius: 1.5rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); border: 1px solid rgba(255, 255, 255, 0.2);">
+                        <p style="font-size: 1.125rem; color: hsl(var(--foreground)); line-height: 1.75; text-align: center;">
+                            A ansiedade é uma resposta natural do corpo a situações de estresse ou risco.
+                            Todos sentimos ansiedade em algum momento — ela nos prepara para agir e enfrentar desafios.
+                            No entanto, quando o medo, a apreensão e a tensão passam a ser constantes e desproporcionais, afetando a qualidade de vida, estamos diante de um transtorno de ansiedade, que requer acompanhamento médico especializado.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Causas e fatores de risco -->
+        <section style="padding: 5rem 0; background: linear-gradient(to bottom, hsl(var(--background)), hsl(var(--secondary) / 0.1));">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+                <div style="max-width: 80rem; margin: 0 auto;">
+                    <h2 style="font-size: 2rem; font-weight: bold; margin-bottom: 1rem; text-align: center; color: hsl(var(--foreground));">
+                        Causas e Fatores de Risco
                     </h2>
-                    <p style="font-size: 1.125rem; color: hsl(210, 10%, 45%); margin-bottom: 1.5rem; line-height: 1.8;">
-                        Os transtornos de ansiedade são condições caracterizadas por preocupação excessiva, medo intenso e tensão constante que interferem na vida diária. A ansiedade pode se manifestar em diferentes formas, incluindo ansiedade generalizada, síndrome do pânico, fobias específicas e ansiedade social.
+                    <p style="font-size: 1.125rem; color: hsl(var(--muted-foreground)); text-align: center; margin-bottom: 3rem; max-width: 48rem; margin-left: auto; margin-right: auto;">
+                        A ansiedade pode ter origens multifatoriais, envolvendo aspectos genéticos, biológicos e ambientais. Entre os fatores mais comuns estão:
                     </p>
-                    <p style="font-size: 1.125rem; color: hsl(210, 10%, 45%); line-height: 1.8;">
-                        É importante entender que a ansiedade é uma resposta natural do organismo, mas quando se torna excessiva e desproporcional, pode indicar um transtorno que necessita de tratamento especializado.
-                    </p>
-                </div>
-            </div>
-        </section>
 
-        <!-- Sintomas -->
-        <section style="position: relative; padding: 4rem 0; background: hsl(210, 20%, 98%);">
-            <div class="container" style="margin: 0 auto; padding: 0 1rem; max-width: 1200px;">
-                <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 3rem; color: hsl(210, 10%, 20%); text-align: center;">
-                    Principais Sintomas
-                </h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-                    <div style="background: white; padding: 2rem; border-radius: 0.75rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
-                        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: hsl(198, 92%, 36%);">Sintomas Físicos</h3>
-                        <ul style="list-style: disc; padding-left: 1.5rem; color: hsl(210, 10%, 45%); line-height: 1.8;">
-                            <li>Palpitações e taquicardia</li>
-                            <li>Sudorese excessiva</li>
-                            <li>Tremores</li>
-                            <li>Tensão muscular</li>
-                            <li>Falta de ar</li>
-                            <li>Problemas gastrointestinais</li>
-                        </ul>
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2rem; max-width: 48rem; margin-left: auto; margin-right: auto;">
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; background: hsl(var(--background)); border-radius: 0.75rem; border: 2px solid hsl(var(--primary) / 0.2); transition: border-color 0.3s;">
+                            <svg style="width: 1.75rem; height: 1.75rem; color: hsl(var(--primary)); flex-shrink: 0; margin-top: 0.25rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span style="color: hsl(var(--foreground)); font-size: 1.125rem;">Predisposição genética (histórico familiar)</span>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; background: hsl(var(--background)); border-radius: 0.75rem; border: 2px solid hsl(var(--primary) / 0.2); transition: border-color 0.3s;">
+                            <svg style="width: 1.75rem; height: 1.75rem; color: hsl(var(--primary)); flex-shrink: 0; margin-top: 0.25rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span style="color: hsl(var(--foreground)); font-size: 1.125rem;">Experiências traumáticas ou situações de estresse intenso</span>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; background: hsl(var(--background)); border-radius: 0.75rem; border: 2px solid hsl(var(--primary) / 0.2); transition: border-color 0.3s;">
+                            <svg style="width: 1.75rem; height: 1.75rem; color: hsl(var(--primary)); flex-shrink: 0; margin-top: 0.25rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span style="color: hsl(var(--foreground)); font-size: 1.125rem;">Uso de substâncias como álcool, cafeína e estimulantes</span>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; background: hsl(var(--background)); border-radius: 0.75rem; border: 2px solid hsl(var(--primary) / 0.2); transition: border-color 0.3s;">
+                            <svg style="width: 1.75rem; height: 1.75rem; color: hsl(var(--primary)); flex-shrink: 0; margin-top: 0.25rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span style="color: hsl(var(--foreground)); font-size: 1.125rem;">Desequilíbrios hormonais e doenças cardíacas ou respiratórias</span>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; background: hsl(var(--background)); border-radius: 0.75rem; border: 2px solid hsl(var(--primary) / 0.2); transition: border-color 0.3s;">
+                            <svg style="width: 1.75rem; height: 1.75rem; color: hsl(var(--primary)); flex-shrink: 0; margin-top: 0.25rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span style="color: hsl(var(--foreground)); font-size: 1.125rem;">Personalidade mais sensível a críticas e mudanças</span>
+                        </div>
                     </div>
-                    <div style="background: white; padding: 2rem; border-radius: 0.75rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
-                        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: hsl(198, 92%, 36%);">Sintomas Emocionais</h3>
-                        <ul style="list-style: disc; padding-left: 1.5rem; color: hsl(210, 10%, 45%); line-height: 1.8;">
-                            <li>Preocupação constante</li>
-                            <li>Medo excessivo</li>
-                            <li>Sensação de perigo iminente</li>
-                            <li>Irritabilidade</li>
-                            <li>Dificuldade de concentração</li>
-                            <li>Insônia</li>
-                        </ul>
-                    </div>
-                    <div style="background: white; padding: 2rem; border-radius: 0.75rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
-                        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: hsl(198, 92%, 36%);">Sintomas Comportamentais</h3>
-                        <ul style="list-style: disc; padding-left: 1.5rem; color: hsl(210, 10%, 45%); line-height: 1.8;">
-                            <li>Evitação de situações</li>
-                            <li>Isolamento social</li>
-                            <li>Procrastinação</li>
-                            <li>Necessidade de controle</li>
-                            <li>Compulsões</li>
-                            <li>Dificuldade de tomar decisões</li>
-                        </ul>
+
+                    <div style="background: hsl(var(--primary) / 0.05); border-left: 4px solid hsl(var(--primary)); padding: 1.5rem; border-radius: 0 0.5rem 0.5rem 0;">
+                        <p style="color: hsl(var(--foreground)); font-weight: 500; font-size: 1.125rem;">
+                            👉 Cada pessoa manifesta a ansiedade de forma diferente — o diagnóstico individual é essencial.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Tratamento -->
-        <section style="position: relative; padding: 4rem 0;">
-            <div class="container" style="margin: 0 auto; padding: 0 1rem; max-width: 1200px;">
-                <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 3rem; color: hsl(210, 10%, 20%); text-align: center;">
-                    Abordagem de Tratamento
-                </h2>
-                <div style="max-width: 48rem; margin: 0 auto;">
-                    <p style="font-size: 1.125rem; color: hsl(210, 10%, 45%); margin-bottom: 2rem; line-height: 1.8;">
-                        O tratamento dos transtornos de ansiedade combina diferentes estratégias terapêuticas, incluindo:
+        <!-- Tipos de Transtornos de Ansiedade -->
+        <section style="padding: 5rem 0; background: hsl(var(--background));">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+                <div style="max-width: 72rem; margin: 0 auto;">
+                    <div style="text-align: center; margin-bottom: 4rem;">
+                        <h2 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem; color: hsl(var(--foreground));">
+                            Tipos de Transtornos de <span style="color: hsl(var(--primary));">Ansiedade</span>
+                        </h2>
+                        <div style="width: 6rem; height: 0.25rem; background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent))); margin: 0 auto;"></div>
+                    </div>
+
+                    <div class="types-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                        <div style="background: linear-gradient(to bottom right, hsl(var(--secondary) / 0.2), hsl(var(--background))); padding: 2rem; border-radius: 1rem; border: 2px solid hsl(var(--primary) / 0.2); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.borderColor='hsl(var(--primary) / 0.4)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1)'; this.style.transform='scale(1.02)';" onmouseout="this.style.borderColor='hsl(var(--primary) / 0.2)'; this.style.boxShadow='none'; this.style.transform='scale(1)';">
+                            <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem; color: hsl(var(--foreground));">Transtorno de Ansiedade Generalizada (TAG)</h3>
+                            <p style="color: hsl(var(--muted-foreground));">preocupação intensa e persistente em diversas áreas da vida.</p>
+                        </div>
+
+                        <div style="background: linear-gradient(to bottom right, hsl(var(--accent) / 0.1), hsl(var(--background))); padding: 2rem; border-radius: 1rem; border: 2px solid hsl(var(--accent) / 0.2); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.borderColor='hsl(var(--accent) / 0.4)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1)'; this.style.transform='scale(1.02)';" onmouseout="this.style.borderColor='hsl(var(--accent) / 0.2)'; this.style.boxShadow='none'; this.style.transform='scale(1)';">
+                            <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem; color: hsl(var(--foreground));">Transtorno de Pânico</h3>
+                            <p style="color: hsl(var(--muted-foreground));">crises súbitas de medo extremo com sintomas físicos intensos.</p>
+                        </div>
+
+                        <div style="background: linear-gradient(to bottom right, hsl(var(--secondary) / 0.2), hsl(var(--background))); padding: 2rem; border-radius: 1rem; border: 2px solid hsl(var(--primary) / 0.2); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.borderColor='hsl(var(--primary) / 0.4)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1)'; this.style.transform='scale(1.02)';" onmouseout="this.style.borderColor='hsl(var(--primary) / 0.2)'; this.style.boxShadow='none'; this.style.transform='scale(1)';">
+                            <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem; color: hsl(var(--foreground));">Ansiedade Social</h3>
+                            <p style="color: hsl(var(--muted-foreground));">medo excessivo de interações ou situações sociais.</p>
+                        </div>
+
+                        <div style="background: linear-gradient(to bottom right, hsl(var(--accent) / 0.1), hsl(var(--background))); padding: 2rem; border-radius: 1rem; border: 2px solid hsl(var(--accent) / 0.2); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.borderColor='hsl(var(--accent) / 0.4)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1)'; this.style.transform='scale(1.02)';" onmouseout="this.style.borderColor='hsl(var(--accent) / 0.2)'; this.style.boxShadow='none'; this.style.transform='scale(1)';">
+                            <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem; color: hsl(var(--foreground));">Agorafobia</h3>
+                            <p style="color: hsl(var(--muted-foreground));">medo de locais públicos ou situações em que a pessoa se sinta "presa".</p>
+                        </div>
+
+                        <div style="background: linear-gradient(to bottom right, hsl(var(--secondary) / 0.2), hsl(var(--background))); padding: 2rem; border-radius: 1rem; border: 2px solid hsl(var(--primary) / 0.2); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.borderColor='hsl(var(--primary) / 0.4)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1)'; this.style.transform='scale(1.02)';" onmouseout="this.style.borderColor='hsl(var(--primary) / 0.2)'; this.style.boxShadow='none'; this.style.transform='scale(1)';">
+                            <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem; color: hsl(var(--foreground));">Transtorno de Estresse Pós-Traumático (TEPT)</h3>
+                            <p style="color: hsl(var(--muted-foreground));">ansiedade após experiências traumáticas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sintomas da Ansiedade -->
+        <section style="padding: 5rem 0; background: hsl(var(--background));">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+                <div style="max-width: 72rem; margin: 0 auto;">
+                    <div style="text-align: center; margin-bottom: 4rem;">
+                        <h2 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem; color: hsl(var(--foreground));">
+                            Sintomas da <span style="color: hsl(var(--primary));">Ansiedade</span>
+                        </h2>
+                        <div style="width: 6rem; height: 0.25rem; background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent))); margin: 0 auto;"></div>
+                    </div>
+
+                    <div class="symptoms-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+                        <div style="background: linear-gradient(to bottom right, hsl(var(--secondary) / 0.2), hsl(var(--background))); padding: 2rem; border-radius: 1rem; border: 2px solid hsl(var(--primary) / 0.2); transition: all 0.3s;" onmouseover="this.style.borderColor='hsl(var(--primary) / 0.4)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1)'; this.style.transform='scale(1.02)';" onmouseout="this.style.borderColor='hsl(var(--primary) / 0.2)'; this.style.boxShadow='none'; this.style.transform='scale(1)';">
+                            <div style="width: 4rem; height: 4rem; background: linear-gradient(to bottom right, hsl(var(--primary)), hsl(var(--accent))); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                                <svg style="width: 2rem; height: 2rem; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </div>
+                            <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem; color: hsl(var(--foreground));">🩺 Sintomas físicos</h3>
+                            <ul style="display: flex; flex-direction: column; gap: 1rem;">
+                                <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                    <div style="width: 0.5rem; height: 0.5rem; background: hsl(var(--primary)); border-radius: 50%; margin-top: 0.5rem; flex-shrink: 0;"></div>
+                                    <span style="color: hsl(var(--muted-foreground));">Palpitações e falta de ar</span>
+                                </li>
+                                <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                    <div style="width: 0.5rem; height: 0.5rem; background: hsl(var(--primary)); border-radius: 50%; margin-top: 0.5rem; flex-shrink: 0;"></div>
+                                    <span style="color: hsl(var(--muted-foreground));">Tensão muscular, tremores e sudorese</span>
+                                </li>
+                                <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                    <div style="width: 0.5rem; height: 0.5rem; background: hsl(var(--primary)); border-radius: 50%; margin-top: 0.5rem; flex-shrink: 0;"></div>
+                                    <span style="color: hsl(var(--muted-foreground));">Tontura e sensação de desmaio</span>
+                                </li>
+                                <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                    <div style="width: 0.5rem; height: 0.5rem; background: hsl(var(--primary)); border-radius: 50%; margin-top: 0.5rem; flex-shrink: 0;"></div>
+                                    <span style="color: hsl(var(--muted-foreground));">Dores no peito, de cabeça e no estômago</span>
+                                </li>
+                                <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                    <div style="width: 0.5rem; height: 0.5rem; background: hsl(var(--primary)); border-radius: 50%; margin-top: 0.5rem; flex-shrink: 0;"></div>
+                                    <span style="color: hsl(var(--muted-foreground));">Alterações no sono e no apetite</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div style="background: linear-gradient(to bottom right, hsl(var(--accent) / 0.1), hsl(var(--background))); padding: 2rem; border-radius: 1rem; border: 2px solid hsl(var(--accent) / 0.2); transition: all 0.3s;" onmouseover="this.style.borderColor='hsl(var(--accent) / 0.4)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1)'; this.style.transform='scale(1.02)';" onmouseout="this.style.borderColor='hsl(var(--accent) / 0.2)'; this.style.boxShadow='none'; this.style.transform='scale(1)';">
+                            <div style="width: 4rem; height: 4rem; background: linear-gradient(to bottom right, hsl(var(--accent)), hsl(var(--primary))); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                                <svg style="width: 2rem; height: 2rem; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                </svg>
+                            </div>
+                            <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem; color: hsl(var(--foreground));">💭 Sintomas psicológicos</h3>
+                            <ul style="display: flex; flex-direction: column; gap: 1rem;">
+                                <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                    <div style="width: 0.5rem; height: 0.5rem; background: hsl(var(--accent)); border-radius: 50%; margin-top: 0.5rem; flex-shrink: 0;"></div>
+                                    <span style="color: hsl(var(--muted-foreground));">Preocupação excessiva e medo constante</span>
+                                </li>
+                                <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                    <div style="width: 0.5rem; height: 0.5rem; background: hsl(var(--accent)); border-radius: 50%; margin-top: 0.5rem; flex-shrink: 0;"></div>
+                                    <span style="color: hsl(var(--muted-foreground));">Irritabilidade e impaciência</span>
+                                </li>
+                                <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                    <div style="width: 0.5rem; height: 0.5rem; background: hsl(var(--accent)); border-radius: 50%; margin-top: 0.5rem; flex-shrink: 0;"></div>
+                                    <span style="color: hsl(var(--muted-foreground));">Sensação de perda de controle</span>
+                                </li>
+                                <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                    <div style="width: 0.5rem; height: 0.5rem; background: hsl(var(--accent)); border-radius: 50%; margin-top: 0.5rem; flex-shrink: 0;"></div>
+                                    <span style="color: hsl(var(--muted-foreground));">Pensamentos obsessivos</span>
+                                </li>
+                                <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                    <div style="width: 0.5rem; height: 0.5rem; background: hsl(var(--accent)); border-radius: 50%; margin-top: 0.5rem; flex-shrink: 0;"></div>
+                                    <span style="color: hsl(var(--muted-foreground));">Dificuldade de concentração e relaxamento</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 3rem;">
+                        <a href="teste-ansiedade.php" class="btn btn-outline btn-lg" style="display: inline-block;">
+                            🔹 Identificou-se com esses sintomas? Faça o teste gratuito de ansiedade
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Diagnóstico da Ansiedade -->
+        <section style="padding: 5rem 0; background: linear-gradient(to bottom, hsl(var(--secondary) / 0.1), hsl(var(--background)));">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+                <div style="max-width: 64rem; margin: 0 auto;">
+                    <h2 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 1.5rem; text-align: center; color: hsl(var(--foreground));">
+                        Diagnóstico da <span style="color: hsl(var(--primary));">Ansiedade</span>
+                    </h2>
+                    <div style="width: 6rem; height: 0.25rem; background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent))); margin: 0 auto 3rem;"></div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <p style="font-size: 1.125rem; color: hsl(var(--muted-foreground)); line-height: 1.75;">
+                            O diagnóstico é clínico e deve ser realizado por um médico psiquiatra.
+                            Durante a consulta, o profissional avalia sintomas físicos e emocionais, sua frequência e intensidade, além de investigar possíveis condições associadas, como depressão ou transtornos do sono.
+                        </p>
+                    </div>
+
+                    <div style="background: linear-gradient(to right, hsl(var(--primary) / 0.1), hsl(var(--accent) / 0.1)); padding: 2rem; border-radius: 1rem; border: 2px solid hsl(var(--primary) / 0.3);">
+                        <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                            <svg style="width: 2rem; height: 2rem; color: hsl(var(--primary)); flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                            </svg>
+                            <p style="font-size: 1.125rem; font-weight: 500; color: hsl(var(--foreground));">
+                                👉 Um diagnóstico preciso é o primeiro passo para o tratamento eficaz.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Teste de Ansiedade -->
+        <section style="padding: 5rem 0; background: linear-gradient(to bottom right, hsl(var(--primary) / 0.05), hsl(var(--accent) / 0.05));">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+                <div style="max-width: 48rem; margin: 0 auto; text-align: center;">
+                    <div style="width: 5rem; height: 5rem; background: linear-gradient(to bottom right, hsl(var(--primary)), hsl(var(--accent))); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                        <svg style="width: 2.5rem; height: 2.5rem; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <h2 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 1.5rem; color: hsl(var(--foreground));">
+                        Faça o teste gratuito de ansiedade
+                    </h2>
+                    <p style="font-size: 1.125rem; color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem;">
+                        Nosso teste online ajuda a identificar sinais que podem indicar um transtorno ansioso.
+                        Em poucos minutos, você saberá se é recomendado buscar uma avaliação médica detalhada.
                     </p>
-                    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-                        <div style="padding: 1.5rem; background: hsl(210, 20%, 98%); border-left: 4px solid hsl(198, 92%, 36%); border-radius: 0.5rem;">
-                            <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: hsl(210, 10%, 20%);">Psicoterapia</h3>
-                            <p style="color: hsl(210, 10%, 45%); line-height: 1.8;">Terapia cognitivo-comportamental (TCC) e outras abordagens comprovadamente eficazes.</p>
+                    <p style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 2rem; font-style: italic;">
+                        🧩 O teste não substitui o diagnóstico profissional, mas é um excelente ponto de partida para o autocuidado.
+                    </p>
+                    <a href="teste-ansiedade.php" class="btn btn-primary btn-lg" style="display: inline-block;">
+                        🔹 Iniciar teste gratuito
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tratamento da Ansiedade -->
+        <section style="padding: 5rem 0; background: hsl(var(--background));">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+                <div style="max-width: 80rem; margin: 0 auto;">
+                    <div style="text-align: center; margin-bottom: 4rem;">
+                        <h2 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem; color: hsl(var(--foreground));">
+                            Tratamento da <span style="color: hsl(var(--primary));">Ansiedade</span>
+                        </h2>
+                        <div style="width: 6rem; height: 0.25rem; background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent))); margin: 0 auto;"></div>
+                    </div>
+
+                    <div class="treatment-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                        <div style="padding: 1.5rem; background: linear-gradient(to bottom right, hsl(var(--primary) / 0.1), hsl(var(--background))); border-radius: 0.75rem; border: 2px solid hsl(var(--primary) / 0.2); transition: border-color 0.3s;" onmouseover="this.style.borderColor='hsl(var(--primary) / 0.4)';" onmouseout="this.style.borderColor='hsl(var(--primary) / 0.2)';">
+                            <div style="width: 3rem; height: 3rem; background: hsl(var(--primary) / 0.2); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                                <svg style="width: 1.5rem; height: 1.5rem; color: hsl(var(--primary));" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </div>
+                            <h3 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.75rem; color: hsl(var(--foreground));">Medicamentos</h3>
+                            <p style="color: hsl(var(--muted-foreground));">
+                                Ansiolíticos ou antidepressivos, prescritos conforme o caso.
+                            </p>
                         </div>
-                        <div style="padding: 1.5rem; background: hsl(210, 20%, 98%); border-left: 4px solid hsl(198, 92%, 36%); border-radius: 0.5rem;">
-                            <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: hsl(210, 10%, 20%);">Medicação</h3>
-                            <p style="color: hsl(210, 10%, 45%); line-height: 1.8;">Quando necessário, medicamentos podem ajudar a controlar os sintomas.</p>
+
+                        <div style="padding: 1.5rem; background: linear-gradient(to bottom right, hsl(var(--accent) / 0.1), hsl(var(--background))); border-radius: 0.75rem; border: 2px solid hsl(var(--accent) / 0.2); transition: border-color 0.3s;" onmouseover="this.style.borderColor='hsl(var(--accent) / 0.4)';" onmouseout="this.style.borderColor='hsl(var(--accent) / 0.2)';">
+                            <div style="width: 3rem; height: 3rem; background: hsl(var(--accent) / 0.2); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                                <svg style="width: 1.5rem; height: 1.5rem; color: hsl(var(--accent));" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                </svg>
+                            </div>
+                            <h3 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.75rem; color: hsl(var(--foreground));">Psicoterapia</h3>
+                            <p style="color: hsl(var(--muted-foreground));">
+                                Para controle de pensamentos e reeducação emocional.
+                            </p>
                         </div>
-                        <div style="padding: 1.5rem; background: hsl(210, 20%, 98%); border-left: 4px solid hsl(198, 92%, 36%); border-radius: 0.5rem;">
-                            <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: hsl(210, 10%, 20%);">Mudanças no Estilo de Vida</h3>
-                            <p style="color: hsl(210, 10%, 45%); line-height: 1.8;">Orientações sobre exercícios, alimentação, sono e técnicas de relaxamento.</p>
+
+                        <div style="padding: 1.5rem; background: linear-gradient(to bottom right, hsl(var(--secondary) / 0.2), hsl(var(--background))); border-radius: 0.75rem; border: 2px solid hsl(var(--secondary) / 0.3); transition: border-color 0.3s;" onmouseover="this.style.borderColor='hsl(var(--secondary) / 0.5)';" onmouseout="this.style.borderColor='hsl(var(--secondary) / 0.3)';">
+                            <div style="width: 3rem; height: 3rem; background: hsl(var(--secondary) / 0.3); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                                <svg style="width: 1.5rem; height: 1.5rem; color: hsl(var(--primary));" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                </svg>
+                            </div>
+                            <h3 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.75rem; color: hsl(var(--foreground));">Terapias complementares</h3>
+                            <p style="color: hsl(var(--muted-foreground));">
+                                Acupuntura integrativa e práticas de relaxamento.
+                            </p>
                         </div>
+                    </div>
+
+                    <div style="background: linear-gradient(to right, hsl(var(--primary) / 0.1), hsl(var(--accent) / 0.1)); padding: 2rem; border-radius: 1rem; border: 2px solid hsl(var(--primary) / 0.2); margin-bottom: 2rem;">
+                        <p style="font-size: 1.125rem; color: hsl(var(--foreground)); text-align: center;">
+                            <strong>No Instituto Sanapta, o tratamento é conduzido de forma integrada</strong>, unindo medicina tradicional e abordagens complementares para promover o equilíbrio físico e mental.
+                        </p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <a href="https://wa.me/5511941543929" target="_blank" class="btn btn-primary btn-lg" style="display: inline-block;">
+                            🔹 Agende sua consulta com o Dr. Gabriel Lopes
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- CTA Final -->
-        <section style="position: relative; padding: 4rem 0; background: linear-gradient(135deg, hsl(198, 92%, 36%), hsl(185, 58%, 58%));">
-            <div class="container" style="margin: 0 auto; padding: 0 1rem; max-width: 1200px; text-align: center;">
-                <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem; color: white;">
-                    Pronto para dar o primeiro passo?
-                </h2>
-                <p style="font-size: 1.125rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 2rem; max-width: 36rem; margin-left: auto; margin-right: auto;">
-                    Agende uma consulta e comece seu tratamento com uma abordagem personalizada e humanizada.
-                </p>
-                <a href="https://wa.me/5511941543929" target="_blank" class="btn btn-secondary btn-lg" style="background: white; color: hsl(198, 92%, 36%);">
-                    Fale com Dr. Gabriel Lopes
-                </a>
+        <section style="padding: 5rem 0; background: linear-gradient(to bottom right, hsl(var(--primary) / 0.1), hsl(var(--accent) / 0.05), hsl(var(--background)));">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+                <div style="max-width: 48rem; margin: 0 auto; text-align: center;">
+                    <h2 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 1.5rem; color: hsl(var(--foreground));">
+                        Você não precisa conviver com a ansiedade sozinho(a)
+                    </h2>
+                    <p style="font-size: 1.25rem; color: hsl(var(--muted-foreground)); margin-bottom: 2.5rem;">
+                        O tratamento certo pode transformar sua rotina e devolver sua tranquilidade e equilíbrio emocional.
+                        Comece hoje mesmo o cuidado com sua saúde mental.
+                    </p>
+                    <div class="cta-buttons" style="display: flex; flex-direction: column; gap: 1rem; justify-content: center; align-items: center;">
+                        <a href="https://wa.me/5511941543929" target="_blank" class="btn btn-primary btn-lg" style="display: inline-block; width: 100%; max-width: 400px;">
+                            🔹 Agende sua consulta
+                        </a>
+                        <a href="teste-ansiedade.php" class="btn btn-outline btn-lg" style="display: inline-block; width: 100%; max-width: 400px;">
+                            🔹 Faça o teste gratuito de ansiedade
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <?php include 'includes/footer.php'; ?>
-    <?php include 'components/whatsapp-button.php'; ?>
+    <?php 
+    include 'includes/footer.php';
+    include 'components/whatsapp-button.php';
+    ?>
 </body>
 </html>
