@@ -102,6 +102,46 @@ $average_score = 4.6;
     <meta name="twitter:description" content="Teste online de TDAH para adultos. Avalie sintomas de hiperatividade e déficit de atenção.">
     
     <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* Hover effects for buttons */
+        .btn-primary:hover:not(:disabled) {
+            background: linear-gradient(to bottom right, hsl(198, 92%, 42%), hsl(185, 58%, 64%)) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px hsl(198 92% 36% / 0.3);
+        }
+        
+        .btn-outline:hover:not(:disabled) {
+            background: hsl(198, 92%, 36%) !important;
+            color: white !important;
+            border-color: hsl(198, 92%, 36%) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px hsl(198 92% 36% / 0.2);
+        }
+        
+        .btn-primary:active:not(:disabled),
+        .btn-outline:active:not(:disabled) {
+            transform: translateY(0);
+        }
+        
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Hover effects for radio options */
+        label[style*="cursor: pointer"]:hover span {
+            background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.15), rgba(255, 255, 255, 1)) !important;
+            border-color: hsl(198, 92%, 36%) !important;
+            transform: translateX(4px);
+        }
+        
+        /* Smooth transitions */
+        .btn-primary,
+        .btn-outline {
+            transition: all 0.3s ease;
+        }
+    </style>
 </head>
 <body>
     <?php include 'includes/header.php'; ?>
