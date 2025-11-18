@@ -280,7 +280,7 @@ html {
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 1rem;
-    color: hsl(var(--primary));
+    color: hsl(var(--foreground));
 }
 
 .section-description {
@@ -308,45 +308,47 @@ html {
 .especialidade-card {
     padding: 1.5rem;
     border-radius: 1rem;
-    border: 2px solid;
+    border: 2px solid hsl(185, 58%, 88%);
     text-decoration: none;
     transition: all 0.3s ease;
     height: 100%;
+    background: linear-gradient(to bottom right, hsl(185, 58%, 95%), hsl(0, 0%, 100%));
 }
 
 .especialidade-card:hover {
     transform: scale(1.02);
     box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    border-color: hsl(185, 58%, 70%);
 }
 
 .especialidade-card-primary {
-    background: linear-gradient(to bottom right, hsl(185, 58%, 88%, 0.2), var(--background));
-    border-color: hsl(198, 92%, 36%, 0.2);
+    background: linear-gradient(to bottom right, hsl(185, 58%, 95%), hsl(0, 0%, 100%));
+    border-color: hsl(185, 58%, 88%);
 }
 
 .especialidade-card-primary:hover {
-    border-color: hsl(198, 92%, 36%, 0.4);
+    border-color: hsl(185, 58%, 70%);
 }
 
 .especialidade-card-accent {
-    background: linear-gradient(to bottom right, hsl(185, 58%, 58%, 0.1), var(--background));
-    border-color: hsl(185, 58%, 58%, 0.2);
+    background: linear-gradient(to bottom right, hsl(185, 58%, 95%), hsl(0, 0%, 100%));
+    border-color: hsl(185, 58%, 88%);
 }
 
 .especialidade-card-accent:hover {
-    border-color: hsl(185, 58%, 58%, 0.4);
+    border-color: hsl(185, 58%, 70%);
 }
 
 .especialidade-title {
     font-size: 1.25rem;
     font-weight: bold;
-    color: hsl(var(--primary));
+    color: hsl(var(--foreground));
     margin-bottom: 0.75rem;
 }
 
 .especialidade-description {
     font-size: 0.875rem;
-    color: hsl(var(--muted-foreground));
+    color: hsl(var(--foreground));
 }
 
 /* Specialties Section */
