@@ -280,7 +280,7 @@ html {
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 1rem;
-    color: hsl(var(--foreground));
+    color: hsl(var(--primary));
 }
 
 .section-description {
@@ -340,13 +340,13 @@ html {
 .especialidade-title {
     font-size: 1.25rem;
     font-weight: bold;
-    color: hsl(var(--foreground));
+    color: hsl(var(--primary));
     margin-bottom: 0.75rem;
 }
 
 .especialidade-description {
     font-size: 0.875rem;
-    color: hsl(var(--foreground));
+    color: hsl(var(--muted-foreground));
 }
 
 /* Specialties Section */
