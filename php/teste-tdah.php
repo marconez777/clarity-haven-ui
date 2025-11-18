@@ -91,8 +91,17 @@ $average_score = 4.6;
     <meta name="description" content="Teste online de TDAH para adultos. Avalie sintomas de hiperatividade e déficit de atenção. Resultado imediato e orientações profissionais.">
     <meta name="keywords" content="teste TDAH, TDAH adulto, hiperatividade, déficit de atenção, teste online TDAH">
     <link rel="canonical" href="https://drgabriellopes.com.br/teste-tdah">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:title" content="Teste de TDAH - Hiperatividade Adulto | Dr Gabriel Lopes">
+    <meta property="og:description" content="Teste online de TDAH para adultos. Avalie sintomas de hiperatividade e déficit de atenção. Resultado imediato e orientações profissionais.">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Teste de TDAH - Hiperatividade Adulto | Dr Gabriel Lopes">
+    <meta name="twitter:description" content="Teste online de TDAH para adultos. Avalie sintomas de hiperatividade e déficit de atenção.">
+    
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="styles-testes.css">
 </head>
 <body>
     <?php include 'includes/header.php'; ?>
@@ -100,254 +109,248 @@ $average_score = 4.6;
     <?php 
     include 'components/breadcrumbs.php';
     render_breadcrumbs([
-        ['label' => 'Testes', 'href' => '/testes'],
-        ['label' => 'Teste TDAH']
+        ['label' => 'Especialidades', 'href' => 'especialidades.php'],
+        ['label' => 'TDAH', 'href' => 'tdah.php'],
+        ['label' => 'Teste de TDAH', 'href' => '#']
     ]);
     ?>
     
     <main>
-        <div class="test-container animate-fade-in">
             
             <?php if ($step === 'welcome'): ?>
                 <!-- Welcome Screen -->
-                <div class="card animate-scale-in">
-                    <div class="test-header">
-                        <div class="test-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"></path>
-                                <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"></path>
-                            </svg>
-                        </div>
-                        <h1 class="test-title">Teste de TDAH - Hiperatividade</h1>
-                        <p class="test-description">
-                            Este questionário avalia sintomas de hiperatividade e impulsividade em adultos.
-                        </p>
-                    </div>
-                    
-                    <ul class="info-list">
-                        <li class="info-item">
-                            <svg class="info-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                            </svg>
-                            <span>9 perguntas rápidas</span>
-                        </li>
-                        <li class="info-item">
-                            <svg class="info-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                            </svg>
-                            <span>Resultado imediato</span>
-                        </li>
-                        <li class="info-item">
-                            <svg class="info-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                            </svg>
-                            <span>Orientações de um especialista</span>
-                        </li>
-                    </ul>
-                    
-                    <div class="alert alert-info">
-                        <svg class="alert-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="16" x2="12" y2="12"></line>
-                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                        </svg>
-                        <p style="margin: 0; font-size: 0.875rem;">
-                            Este teste não substitui uma avaliação médica profissional. Ele serve como uma ferramenta de triagem inicial.
-                        </p>
-                    </div>
-                    
-                    <form method="POST" style="margin-top: 2rem;">
-                        <input type="hidden" name="action" value="start">
-                        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
-                            Iniciar Teste
-                        </button>
-                    </form>
-                </div>
-                
-            <?php elseif ($step === 'questions'): ?>
-                <!-- Questions Screen -->
-                <div class="card animate-fade-in">
-                    <div class="progress-container">
-                        <p class="progress-text">
-                            Pergunta <?php echo $current_question + 1; ?> de <?php echo count($questions); ?>
-                        </p>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: <?php echo (($current_question + 1) / count($questions)) * 100; ?>%;"></div>
-                        </div>
-                    </div>
-                    
-                    <h2 class="test-title" style="font-size: 1.5rem; margin-bottom: 2rem;">
-                        <?php echo htmlspecialchars($questions[$current_question]); ?>
-                    </h2>
-                    
-                    <form method="POST" id="questionForm">
-                        <input type="hidden" name="action" value="answer">
-                        
-                        <div class="radio-group">
-                            <?php foreach ($options as $option): ?>
-                                <label class="radio-item">
-                                    <input 
-                                        type="radio" 
-                                        name="answer" 
-                                        value="<?php echo $option['value']; ?>" 
-                                        class="radio-input"
-                                        required
-                                        onchange="document.getElementById('nextBtn').disabled = false"
-                                    >
-                                    <span class="radio-label"><?php echo htmlspecialchars($option['text']); ?></span>
-                                </label>
-                            <?php endforeach; ?>
-                        </div>
-                        
-                        <div class="btn-group" style="margin-top: 2rem;">
-                            <?php if ($current_question > 0): ?>
-                                <button 
-                                    type="submit" 
-                                    formaction="<?php echo $_SERVER['PHP_SELF']; ?>"
-                                    name="action"
-                                    value="back"
-                                    class="btn btn-outline"
-                                    style="flex: 1;"
-                                >
-                                    Voltar
-                                </button>
-                            <?php endif; ?>
-                            <button 
-                                type="submit" 
-                                id="nextBtn"
-                                class="btn btn-primary" 
-                                style="flex: 1;"
-                                disabled
-                            >
-                                <?php echo $current_question < count($questions) - 1 ? 'Próxima' : 'Ver Resultados'; ?>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                
-            <?php elseif ($step === 'results'): ?>
-                <!-- Results Screen -->
-                <div class="results-container animate-scale-in">
-                    <div class="card">
-                        <div class="test-header">
-                            <h1 class="test-title">Resultado do Teste</h1>
-                            <p class="test-description">Pontuação de Hiperatividade e Impulsividade</p>
-                        </div>
-                        
-                        <div class="score-circle">
-                            <div class="score-number"><?php echo $final_score; ?></div>
-                            <div class="score-label">pontos</div>
-                        </div>
-                        
-                        <?php if ($final_score >= 4): ?>
-                            <div class="alert alert-warning">
-                                <svg class="alert-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <line x1="12" y1="8" x2="12" y2="12"></line>
-                                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                                </svg>
-                                <div>
-                                    <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Sintomas Significativos</h3>
-                                    <p style="margin: 0; font-size: 0.875rem; line-height: 1.5;">
-                                        Sua pontuação sugere sintomas consistentes com TDAH. Recomendamos fortemente agendar uma consulta para avaliação profissional.
-                                    </p>
-                                </div>
-                            </div>
-                        <?php else: ?>
-                            <div class="alert alert-info">
-                                <svg class="alert-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                </svg>
-                                <div>
-                                    <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Sintomas Abaixo da Média</h3>
-                                    <p style="margin: 0; font-size: 0.875rem; line-height: 1.5;">
-                                        Sua pontuação está abaixo do limite. Se você ainda tem preocupações, considere consultar um profissional.
-                                    </p>
-                                </div>
-                            </div>
-                        <?php endif; ?>
-                        
-                        <div class="comparison-grid">
-                            <div class="comparison-item">
-                                <div class="comparison-value"><?php echo $final_score; ?></div>
-                                <div class="comparison-label">Seus Pontos</div>
-                            </div>
-                            <div class="comparison-item">
-                                <div class="comparison-value"><?php echo $average_score; ?></div>
-                                <div class="comparison-label">Média de Corte</div>
-                            </div>
-                        </div>
-                        
-                        <div class="btn-group" style="margin-top: 2rem;">
-                            <a href="https://wa.me/5511941543929?text=<?php echo urlencode('Olá! Gostaria de agendar uma consulta para avaliação de TDAH.'); ?>" 
-                               target="_blank" 
-                               rel="noopener noreferrer"
-                               class="btn btn-primary" 
-                               style="flex: 1; text-align: center;">
-                                Agendar Consulta
-                            </a>
-                            <form method="POST" style="flex: 1;">
-                                <input type="hidden" name="action" value="restart">
-                                <button type="submit" class="btn btn-outline" style="width: 100%;">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+                <section style="min-height: 85vh; display: flex; align-items: center; padding: 6rem 1rem 3rem; background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.3), rgba(255, 255, 255, 1));">
+                    <div class="container" style="max-width: 56rem; margin: 0 auto;">
+                        <div style="background: white; border-radius: 1rem; padding: 3rem; box-shadow: 0 10px 30px -10px hsl(198 92% 36% / 0.2);">
+                            <div style="text-align: center; margin-bottom: 3rem;">
+                                <div style="width: 5rem; height: 5rem; background: linear-gradient(to bottom right, hsl(198, 92%, 36%), hsl(185, 58%, 58%)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; box-shadow: 0 10px 30px -10px hsl(198 92% 36% / 0.3);">
+                                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                        <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"></path>
+                                        <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"></path>
                                     </svg>
-                                    Fazer Outro Teste
+                                </div>
+                                <h1 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem; color: hsl(210, 10%, 20%);">
+                                    Teste de TDAH - Hiperatividade
+                                </h1>
+                                <p style="font-size: 1.125rem; color: hsl(210, 10%, 45%);">
+                                    Este questionário avalia sintomas de hiperatividade e impulsividade em adultos.
+                                </p>
+                            </div>
+                            
+                            <div style="background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.2), rgba(255, 255, 255, 1)); padding: 2rem; border-radius: 0.75rem; margin-bottom: 2rem; border: 2px solid rgba(0, 153, 204, 0.1);">
+                                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1rem;">
+                                    <li style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <div style="width: 2rem; height: 2rem; background: linear-gradient(to bottom right, hsl(198, 92%, 36%), hsl(185, 58%, 58%)); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+                                                <polyline points="20 6 9 17 4 12"></polyline>
+                                            </svg>
+                                        </div>
+                                        <span style="color: hsl(210, 10%, 30%); font-size: 1rem;">9 perguntas rápidas</span>
+                                    </li>
+                                    <li style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <div style="width: 2rem; height: 2rem; background: linear-gradient(to bottom right, hsl(198, 92%, 36%), hsl(185, 58%, 58%)); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+                                                <polyline points="20 6 9 17 4 12"></polyline>
+                                            </svg>
+                                        </div>
+                                        <span style="color: hsl(210, 10%, 30%); font-size: 1rem;">Resultado imediato</span>
+                                    </li>
+                                    <li style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <div style="width: 2rem; height: 2rem; background: linear-gradient(to bottom right, hsl(198, 92%, 36%), hsl(185, 58%, 58%)); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+                                                <polyline points="20 6 9 17 4 12"></polyline>
+                                            </svg>
+                                        </div>
+                                        <span style="color: hsl(210, 10%, 30%); font-size: 1rem;">Orientações de um especialista</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div style="background: rgba(0, 153, 204, 0.05); border-left: 4px solid hsl(198, 92%, 36%); padding: 1.5rem; border-radius: 0 0.5rem 0.5rem 0; margin-bottom: 2rem;">
+                                <div style="display: flex; gap: 1rem;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="hsl(198, 92%, 36%)" stroke-width="2" style="flex-shrink: 0; margin-top: 0.125rem;">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                    </svg>
+                                    <p style="margin: 0; font-size: 0.875rem; color: hsl(210, 10%, 35%); line-height: 1.6;">
+                                        Este teste não substitui uma avaliação médica profissional. Ele serve como uma ferramenta de triagem inicial.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <form method="POST">
+                                <input type="hidden" name="action" value="start">
+                                <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                                    Iniciar Teste
                                 </button>
                             </form>
                         </div>
-                        
-                        <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid hsl(var(--border));">
-                            <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">Importante Saber</h3>
-                            <ul style="list-style: disc; padding-left: 1.5rem; font-size: 0.875rem; color: hsl(var(--muted-foreground)); line-height: 1.6;">
-                                <li>Este teste é uma ferramenta de triagem, não um diagnóstico definitivo</li>
-                                <li>Um profissional qualificado pode fornecer uma avaliação completa</li>
-                                <li>O tratamento adequado pode melhorar significativamente a qualidade de vida</li>
-                                <li>TDAH é uma condição tratável com diversas opções terapêuticas</li>
-                            </ul>
+                    </div>
+                </section>
+                
+            <?php elseif ($step === 'questions'): ?>
+                <!-- Questions Screen -->
+                <section style="min-height: 85vh; display: flex; align-items: center; padding: 6rem 1rem 3rem; background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.3), rgba(255, 255, 255, 1));">
+                    <div class="container" style="max-width: 56rem; margin: 0 auto;">
+                        <div style="background: white; border-radius: 1rem; padding: 3rem; box-shadow: 0 10px 30px -10px hsl(198 92% 36% / 0.2);">
+                            <div style="margin-bottom: 2rem;">
+                                <p style="color: hsl(198, 92%, 36%); font-weight: 600; margin-bottom: 0.5rem;">
+                                    Pergunta <?php echo $current_question + 1; ?> de <?php echo count($questions); ?>
+                                </p>
+                                <div style="width: 100%; height: 0.5rem; background: rgba(0, 153, 204, 0.1); border-radius: 9999px; overflow: hidden;">
+                                    <div style="width: <?php echo (($current_question + 1) / count($questions)) * 100; ?>%; height: 100%; background: linear-gradient(to right, hsl(198, 92%, 36%), hsl(185, 58%, 58%)); transition: width 0.3s; border-radius: 9999px;"></div>
+                                </div>
+                            </div>
+                            
+                            <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 2rem; color: hsl(210, 10%, 20%); line-height: 1.5;">
+                                <?php echo htmlspecialchars($questions[$current_question]); ?>
+                            </h2>
+                            
+                            <form method="POST" id="questionForm">
+                                <input type="hidden" name="action" value="answer">
+                                
+                                <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
+                                    <?php foreach ($options as $option): ?>
+                                        <label style="position: relative; display: block; cursor: pointer;">
+                                            <input 
+                                                type="radio" 
+                                                name="answer" 
+                                                value="<?php echo $option['value']; ?>" 
+                                                style="position: absolute; opacity: 0; width: 0; height: 0;"
+                                                required
+                                                onchange="document.getElementById('nextBtn').disabled = false; this.parentElement.parentElement.querySelectorAll('label').forEach(l => l.style.background = 'white'); this.parentElement.style.background = 'linear-gradient(to bottom right, rgba(185, 223, 237, 0.2), rgba(255, 255, 255, 1))'; this.parentElement.style.borderColor = 'hsl(198, 92%, 36%)';"
+                                            >
+                                            <span style="display: block; padding: 1.25rem 1.5rem; border: 2px solid rgba(0, 153, 204, 0.2); border-radius: 0.75rem; background: white; transition: all 0.3s; font-size: 1rem; color: hsl(210, 10%, 30%);">
+                                                <?php echo htmlspecialchars($option['text']); ?>
+                                            </span>
+                                        </label>
+                                    <?php endforeach; ?>
+                                </div>
+                                
+                                <div style="display: flex; gap: 1rem;">
+                                    <?php if ($current_question > 0): ?>
+                                        <button 
+                                            type="submit" 
+                                            formaction="<?php echo $_SERVER['PHP_SELF']; ?>"
+                                            name="action"
+                                            value="back"
+                                            class="btn btn-outline"
+                                            style="flex: 1;"
+                                        >
+                                            Voltar
+                                        </button>
+                                    <?php endif; ?>
+                                    <button 
+                                        type="submit" 
+                                        id="nextBtn"
+                                        class="btn btn-primary" 
+                                        style="flex: 1;"
+                                        disabled
+                                    >
+                                        <?php echo $current_question < count($questions) - 1 ? 'Próxima' : 'Ver Resultados'; ?>
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                </div>
+                </section>
+                
+            <?php elseif ($step === 'results'): ?>
+                <!-- Results Screen -->
+                <section style="min-height: 85vh; display: flex; align-items: center; padding: 6rem 1rem 3rem; background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.3), rgba(255, 255, 255, 1));">
+                    <div class="container" style="max-width: 56rem; margin: 0 auto;">
+                        <div style="background: white; border-radius: 1rem; padding: 3rem; box-shadow: 0 10px 30px -10px hsl(198 92% 36% / 0.2);">
+                            <div style="text-align: center; margin-bottom: 3rem;">
+                                <div style="width: 5rem; height: 5rem; background: linear-gradient(to bottom right, hsl(198, 92%, 36%), hsl(185, 58%, 58%)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; box-shadow: 0 10px 30px -10px hsl(198 92% 36% / 0.3);">
+                                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <h1 style="font-size: 2rem; font-weight: bold; margin-bottom: 1rem; color: hsl(210, 10%, 20%);">
+                                    Resultado do Teste
+                                </h1>
+                                <p style="font-size: 1rem; color: hsl(210, 10%, 45%);">
+                                    Sua pontuação foi calculada com base nas suas respostas
+                                </p>
+                            </div>
+                            
+                            <div style="background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.2), rgba(255, 255, 255, 1)); padding: 2rem; border-radius: 0.75rem; text-align: center; margin-bottom: 2rem; border: 2px solid rgba(0, 153, 204, 0.2);">
+                                <p style="font-size: 0.875rem; color: hsl(210, 10%, 45%); margin-bottom: 0.5rem;">
+                                    Sua Pontuação
+                                </p>
+                                <p style="font-size: 3.75rem; font-weight: bold; color: hsl(198, 92%, 36%); margin-bottom: 0.5rem; line-height: 1;">
+                                    <?php echo number_format($final_score, 1); ?>
+                                </p>
+                                <p style="font-size: 0.875rem; color: hsl(210, 10%, 45%);">
+                                    Média populacional: <?php echo number_format($average_score, 1); ?>
+                                </p>
+                            </div>
+                            
+                            <div style="background: rgba(0, 153, 204, 0.05); border-left: 4px solid hsl(198, 92%, 36%); padding: 1.5rem; border-radius: 0 0.5rem 0.5rem 0; margin-bottom: 2rem;">
+                                <h3 style="font-weight: 600; margin-bottom: 0.75rem; color: hsl(210, 10%, 20%);">
+                                    O que significa este resultado?
+                                </h3>
+                                <?php if ($final_score > $average_score): ?>
+                                    <p style="margin-bottom: 1rem; color: hsl(210, 10%, 35%); line-height: 1.6;">
+                                        Sua pontuação está acima da média populacional, o que pode indicar a presença de sintomas significativos de hiperatividade e impulsividade.
+                                    </p>
+                                    <p style="margin: 0; color: hsl(210, 10%, 35%); line-height: 1.6;">
+                                        Recomendamos fortemente que você agende uma consulta com um especialista para uma avaliação completa e discussão sobre possíveis estratégias de tratamento.
+                                    </p>
+                                <?php else: ?>
+                                    <p style="margin-bottom: 1rem; color: hsl(210, 10%, 35%); line-height: 1.6;">
+                                        Sua pontuação está dentro ou abaixo da média populacional. No entanto, se você ainda está preocupado com sintomas de TDAH, recomendamos uma consulta com um especialista.
+                                    </p>
+                                    <p style="margin: 0; color: hsl(210, 10%, 35%); line-height: 1.6;">
+                                        Lembre-se de que este teste não substitui uma avaliação profissional completa.
+                                    </p>
+                                <?php endif; ?>
+                            </div>
+                            
+                            <div style="background: rgba(255, 193, 7, 0.1); border-left: 4px solid #ffc107; padding: 1.5rem; border-radius: 0 0.5rem 0.5rem 0; margin-bottom: 2rem;">
+                                <div style="display: flex; gap: 1rem;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffc107" stroke-width="2" style="flex-shrink: 0; margin-top: 0.125rem;">
+                                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                    </svg>
+                                    <p style="margin: 0; font-size: 0.875rem; color: hsl(210, 10%, 35%); line-height: 1.6;">
+                                        <strong style="display: block; margin-bottom: 0.25rem;">Importante:</strong>
+                                        Este teste é uma ferramenta de triagem e não substitui o diagnóstico médico. Apenas um profissional qualificado pode fazer uma avaliação completa considerando seu histórico médico e situação individual.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                <a href="https://wa.me/5511941543929?text=Olá! Gostaria de agendar uma consulta para avaliação de TDAH." target="_blank" class="btn btn-primary btn-lg" style="text-align: center; text-decoration: none;">
+                                    Agende sua Avaliação
+                                </a>
+                                <form method="POST">
+                                    <input type="hidden" name="action" value="restart">
+                                    <button type="submit" class="btn btn-outline btn-lg" style="width: 100%;">
+                                        Refazer o Teste
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             <?php endif; ?>
-            
-        </div>
+        
     </main>
-
+    
     <?php include 'includes/footer.php'; ?>
     <?php include 'components/whatsapp-button.php'; ?>
     
     <script>
-        // Auto scroll to top on page load
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Prevent form resubmission on refresh
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
         
-        // Enhanced radio button interactions
-        document.querySelectorAll('.radio-item').forEach(item => {
-            item.addEventListener('click', function(e) {
-                // Allow clicking anywhere on the label to select the radio
-                if (e.target.tagName !== 'INPUT') {
-                    const input = this.querySelector('input[type="radio"]');
-                    if (input) {
-                        input.checked = true;
-                        document.getElementById('nextBtn').disabled = false;
-                    }
-                }
-            });
-        });
-        
-        // Prevent double submit
-        document.querySelectorAll('form').forEach(form => {
-            form.addEventListener('submit', function() {
-                const buttons = form.querySelectorAll('button[type="submit"]');
-                buttons.forEach(btn => {
-                    btn.disabled = true;
-                    btn.style.opacity = '0.6';
-                });
-            });
-        });
+        // Scroll to top on step change
+        window.scrollTo({top: 0, behavior: 'smooth'});
     </script>
 </body>
 </html>
