@@ -1,31 +1,50 @@
 <!-- Breadcrumbs Component (Static HTML Template) -->
-<!-- To use: Copy this structure and replace {{HOME}}, {{ITEMS}} with actual values -->
+<!-- To use: Copy this structure and replace with actual values -->
 
-<div class="breadcrumbs-container">
-    <nav aria-label="Breadcrumb" class="breadcrumbs">
-        <ol class="breadcrumbs-list">
-            <li class="breadcrumb-item">
-                <a href="index.html" class="breadcrumb-link">Home</a>
-            </li>
-            <!-- Add breadcrumb items here -->
-            <!-- Example:
-            <li class="breadcrumb-separator">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="especialidades.html" class="breadcrumb-link">Especialidades</a>
-            </li>
-            <li class="breadcrumb-separator">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-            </li>
-            <li class="breadcrumb-item">
-                <span class="breadcrumb-current">Current Page</span>
-            </li>
-            -->
-        </ol>
-    </nav>
-</div>
+<nav aria-label="Breadcrumb" style="padding: 1.5rem 1rem; max-width: 1200px; margin: 0 auto;">
+    <ol style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; list-style: none; margin: 0; padding: 0;">
+        <li style="display: flex; align-items: center;">
+            <a href="index.html" style="color: hsl(210, 10%, 45%); text-decoration: none; font-size: 0.875rem; transition: color 0.2s;">
+                Home
+            </a>
+        </li>
+        <!-- Add breadcrumb items here -->
+        <!-- Example:
+        <li style="display: flex; align-items: center; color: hsl(210, 10%, 60%);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 0.25rem;">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        </li>
+        <li style="display: flex; align-items: center;">
+            <a href="especialidades.html" style="color: hsl(210, 10%, 45%); text-decoration: none; font-size: 0.875rem; transition: color 0.2s;">
+                Especialidades
+            </a>
+        </li>
+        <li style="display: flex; align-items: center; color: hsl(210, 10%, 60%);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 0.25rem;">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        </li>
+        <li style="display: flex; align-items: center;">
+            <span style="color: hsl(210, 10%, 30%); font-size: 0.875rem; font-weight: 500;">
+                Current Page
+            </span>
+        </li>
+        -->
+    </ol>
+</nav>
+
+<style>
+    nav[aria-label="Breadcrumb"] a:hover {
+        color: hsl(198, 92%, 36%);
+    }
+    
+    @media (max-width: 768px) {
+        nav[aria-label="Breadcrumb"] {
+            padding: 1rem 1rem;
+        }
+        nav[aria-label="Breadcrumb"] ol {
+            font-size: 0.8125rem;
+        }
+    }
+</style>
