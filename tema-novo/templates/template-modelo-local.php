@@ -75,16 +75,9 @@ tema_novo_breadcrumbs();
 
     <!-- Seção Entenda o transtorno -->
     <section style="position: relative; padding: 4rem 0; overflow: hidden;">
-        <!-- Background parallax - Hidden on mobile -->
         <div class="hidden-mobile" style="position: absolute; inset: 0; background-image: url('<?php echo esc_url( TEMA_NOVO_URI . '/assets/images/consultori-psiquiatria2.jpg' ); ?>'); background-size: cover; background-position: center; background-attachment: fixed;"></div>
+        <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8, 125, 175, 0.9), rgba(8, 125, 175, 0.9), rgba(8, 125, 175, 0.9));"></div>
         
-        <!-- Overlay -->
-        <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8, 125, 175, 0.9), rgba(8, 125, 175, 0.9));"></div>
-        
-        <!-- Mobile background azul sólido -->
-        <div class="visible-mobile" style="position: absolute; inset: 0; background: #087daf;"></div>
-        
-        <!-- Conteúdo -->
         <div class="container" style="position: relative; z-index: 10; margin: 0 auto; padding: 0 1rem; max-width: 1200px;">
             <div style="max-width: 80rem; margin: 0 auto;">
                 <div style="text-align: center; margin-bottom: 4rem;">
