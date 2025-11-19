@@ -69,33 +69,36 @@ tema_novo_breadcrumbs();
         </div>
     </section>
 
-    <!-- Seção Entenda o transtorno -->
-    <section style="position: relative; padding: 8rem 0; overflow: hidden;">
-        <!-- Background parallax - Hidden on mobile -->
+    <!-- O que é o TDAH -->
+    <section style="position: relative; padding: 4rem 0; overflow: hidden;">
         <div class="hidden-mobile" style="position: absolute; inset: 0; background-image: url('<?php echo esc_url( TEMA_NOVO_URI . '/assets/images/consultori-psiquiatria2.jpg' ); ?>'); background-size: cover; background-position: center; background-attachment: fixed;"></div>
+        <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8, 125, 175, 0.9), rgba(8, 125, 175, 0.9), rgba(8, 125, 175, 0.9));"></div>
         
-        <!-- Overlay -->
-        <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8, 125, 175, 0.9), rgba(8, 125, 175, 0.9));"></div>
-        
-        <!-- Mobile background azul sólido -->
-        <div class="visible-mobile" style="position: absolute; inset: 0; background: #087daf;"></div>
-        
-        <!-- Conteúdo -->
-        <div class="container" style="position: relative; z-index: 10; margin: 0 auto; padding: 0 1rem; max-width: 1200px;">
+        <div class="container" style="position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
             <div style="max-width: 80rem; margin: 0 auto;">
                 <div style="text-align: center; margin-bottom: 4rem;">
                     <h2 style="font-size: clamp(2.25rem, 6vw, 3.75rem); font-weight: bold; margin-bottom: 2rem; color: white; line-height: 1.2;">
-                        Entenda o transtorno do déficit de atenção com hiperatividade
+                        O que é o TDAH?
                     </h2>
-                    <div style="width: 8rem; height: 0.375rem; background: linear-gradient(to right, rgb(34, 211, 238), rgb(59, 130, 246)); margin: 0 auto; border-radius: 9999px; box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);"></div>
+                    <div style="width: 8rem; height: 0.375rem; background: linear-gradient(to right, #67e8f9, #3b82f6); margin: 0 auto; border-radius: 9999px; box-shadow: 0 0 40px rgba(103, 232, 249, 0.5);"></div>
                 </div>
                 
-                <div style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); padding: 2.5rem; border-radius: 1.5rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); border: 1px solid rgba(255, 255, 255, 0.2);">
-                    <p style="font-size: 1.25rem; line-height: 1.8; color: hsl(var(--foreground));">
-                        O TDAH é uma condição neurobiológica que afeta o funcionamento da região frontal do cérebro,
-                        responsável pelo controle da atenção, impulsividade e comportamento.
-                        Cada caso é único e pode se manifestar com diferentes intensidades em crianças, adolescentes ou adultos.
+                <div style="max-width: 80rem; margin: 0 auto; color: white;">
+                    <p style="font-size: 1.125rem; margin-bottom: 1.5rem; line-height: 1.8;">
+                        O Transtorno de Déficit de Atenção e Hiperatividade (TDAH) é uma condição neurobiológica crônica que afeta a capacidade de manter o foco, controlar impulsos e regular o nível de atividade.
                     </p>
+                    <p style="font-size: 1.125rem; margin-bottom: 1.5rem; line-height: 1.8;">
+                        Embora muitas vezes seja identificado na infância, o TDAH pode persistir durante toda a vida, interferindo no desempenho acadêmico, profissional e nas relações pessoais.
+                    </p>
+                    <p style="font-size: 1.125rem; margin-bottom: 1.5rem; line-height: 1.8;">
+                        Com diagnóstico preciso e tratamento adequado, é possível gerenciar os sintomas e alcançar melhor qualidade de vida e bem-estar emocional.
+                    </p>
+                    
+                    <div style="background: rgba(0, 153, 204, 0.1); border-left: 4px solid white; padding: 1.5rem; border-radius: 0 0.5rem 0.5rem 0; margin-top: 2rem;">
+                        <p style="color: white; font-weight: 500; margin: 0;">
+                            👉 Cada paciente é único — por isso o diagnóstico deve ser sempre individualizado e conduzido por um médico especialista.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
