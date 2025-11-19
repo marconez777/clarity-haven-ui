@@ -39,6 +39,18 @@ if ( function_exists( 'have_rows' ) && have_rows( 'perguntas', $post_id ) ) {
     }
 }
 
+// Debug: Adicionar informação de quantas perguntas foram carregadas
+if ( current_user_can( 'administrator' ) && isset( $_GET['debug'] ) ) {
+    echo '<div style="background: yellow; padding: 1rem; margin: 1rem;">';
+    echo '<strong>DEBUG:</strong> ' . count( $questions ) . ' perguntas carregadas<br>';
+    echo '<strong>ACF ativo:</strong> ' . ( function_exists( 'have_rows' ) ? 'Sim' : 'Não' ) . '<br>';
+    echo '<strong>Post ID:</strong> ' . $post_id . '<br>';
+    if ( count( $questions ) > 0 ) {
+        echo '<strong>Primeira pergunta:</strong> ' . htmlspecialchars( $questions[0] );
+    }
+    echo '</div>';
+}
+
 $options = [
     [ 'text' => 'Raramente', 'value' => 0 ],
     [ 'text' => 'Algumas Vezes', 'value' => 0.2 ],
@@ -72,6 +84,9 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
         if ( $_SESSION[ $session_key ]['current_question'] > 0 ) {
             array_pop( $_SESSION[ $session_key ]['answers'] );
             $_SESSION[ $session_key ]['current_question']--;
+        } else {
+            // Volta para a tela de boas-vindas se estiver na primeira pergunta
+            $_SESSION[ $session_key ]['step'] = 'welcome';
         }
     } elseif ( $action === 'restart' ) {
         $_SESSION[ $session_key ] = [
@@ -119,6 +134,33 @@ tema_novo_breadcrumbs();
         opacity: 0.5;
         cursor: not-allowed;
     }
+    
+    /* Feedback visual para radio buttons selecionados */
+    input[type="radio"]:checked + span {
+        background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.3), rgba(255, 255, 255, 1)) !important;
+        border-color: hsl(198, 92%, 36%) !important;
+        border-width: 2px;
+        box-shadow: 0 4px 12px -2px hsl(198 92% 36% / 0.3);
+        font-weight: 600;
+    }
+    
+    /* Adiciona um indicador visual de seleção */
+    input[type="radio"]:checked + span::before {
+        content: '✓';
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: hsl(198, 92%, 36%);
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    
+    /* Melhora o estilo do span para aceitar o ::before */
+    label span {
+        position: relative;
+    }
+    
     label[style*="cursor: pointer"]:hover span {
         background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.15), rgba(255, 255, 255, 1)) !important;
         border-color: hsl(198, 92%, 36%) !important;
@@ -161,14 +203,37 @@ tema_novo_breadcrumbs();
             </section>
 
         <?php elseif ( $step === 'questions' ) : ?>
-            <!-- Tela de Perguntas -->
-            <section style="min-height: 85vh; display: flex; align-items: center; padding: 6rem 1rem 3rem; background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.3), rgba(255, 255, 255, 1));">
-                <div class="container" style="max-width: 56rem; margin: 0 auto;">
-                    <div style="background: white; border-radius: 1rem; padding: 3rem; box-shadow: 0 10px 30px -10px hsl(198 92% 36% / 0.2);">
-                        <div style="margin-bottom: 2rem;">
-                            <p style="color: hsl(198, 92%, 36%); font-weight: 600; margin-bottom: 0.5rem;">
-                                Pergunta <?php echo $current_question + 1; ?> de <?php echo count( $questions ); ?>
-                            </p>
+            <?php if ( empty( $questions ) ) : ?>
+                <!-- Mensagem de erro se não houver perguntas -->
+                <section style="min-height: 85vh; display: flex; align-items: center; padding: 6rem 1rem 3rem; background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.3), rgba(255, 255, 255, 1));">
+                    <div class="container" style="max-width: 56rem; margin: 0 auto;">
+                        <div style="background: white; border-radius: 1rem; padding: 3rem; box-shadow: 0 10px 30px -10px hsl(198 92% 36% / 0.2);">
+                            <div style="text-align: center;">
+                                <h1 style="font-size: 2rem; font-weight: bold; margin-bottom: 1rem; color: hsl(0, 70%, 50%);">
+                                    ⚠️ Erro: Teste não configurado
+                                </h1>
+                                <p style="font-size: 1.125rem; color: hsl(210, 10%, 45%); margin-bottom: 2rem;">
+                                    Este teste ainda não possui perguntas cadastradas. Por favor, entre em contato com o administrador do site.
+                                </p>
+                                <form method="POST">
+                                    <input type="hidden" name="action" value="restart">
+                                    <button type="submit" class="btn btn-outline btn-lg">
+                                        Voltar para o início
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            <?php else : ?>
+                <!-- Tela de Perguntas -->
+                <section style="min-height: 85vh; display: flex; align-items: center; padding: 6rem 1rem 3rem; background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.3), rgba(255, 255, 255, 1));">
+                    <div class="container" style="max-width: 56rem; margin: 0 auto;">
+                        <div style="background: white; border-radius: 1rem; padding: 3rem; box-shadow: 0 10px 30px -10px hsl(198 92% 36% / 0.2);">
+                            <div style="margin-bottom: 2rem;">
+                                <p style="color: hsl(198, 92%, 36%); font-weight: 600; margin-bottom: 0.5rem;">
+                                    Pergunta <?php echo $current_question + 1; ?> de <?php echo count( $questions ); ?>
+                                </p>
                             <div style="width: 100%; height: 0.5rem; background: rgba(0, 153, 204, 0.1); border-radius: 9999px; overflow: hidden;">
                                 <div style="width: <?php echo ( ( $current_question + 1 ) / count( $questions ) ) * 100; ?>%; height: 100%; background: linear-gradient(to right, hsl(198, 92%, 36%), hsl(185, 58%, 58%)); transition: width 0.3s; border-radius: 9999px;"></div>
                             </div>
@@ -189,19 +254,19 @@ tema_novo_breadcrumbs();
                                 <?php endforeach; ?>
                             </div>
                             <div style="display: flex; gap: 1rem;">
-                                <?php if ( $current_question > 0 ) : ?>
-                                    <button type="submit" formaction="<?php the_permalink(); ?>" name="action" value="back" class="btn btn-outline" style="flex: 1;">
-                                        Voltar
-                                    </button>
-                                <?php endif; ?>
-                                <button type="submit" id="nextBtn" class="btn btn-primary" style="flex: 1;" disabled>
-                                    <?php echo $current_question < count( $questions ) - 1 ? 'Próxima' : 'Ver Resultados'; ?>
+                                <!-- Sempre mostrar o botão Voltar -->
+                                <button type="submit" formaction="<?php the_permalink(); ?>" name="action" value="back" class="btn btn-outline" style="flex: 1;">
+                                    ← Voltar
+                                </button>
+                                <button type="submit" id="nextBtn" class="btn btn-primary" style="flex: 2;" disabled>
+                                    <?php echo $current_question < count( $questions ) - 1 ? 'Próxima →' : 'Ver Resultados →'; ?>
                                 </button>
                             </div>
                         </form>
                     </div>
                 </div>
             </section>
+            <?php endif; ?>
 
         <?php elseif ( $step === 'results' ) : ?>
             <!-- Tela de Resultados -->
