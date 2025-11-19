@@ -39,18 +39,6 @@ if ( function_exists( 'have_rows' ) && have_rows( 'perguntas', $post_id ) ) {
     }
 }
 
-// Debug: Adicionar informação de quantas perguntas foram carregadas
-if ( current_user_can( 'administrator' ) && isset( $_GET['debug'] ) ) {
-    echo '<div style="background: yellow; padding: 1rem; margin: 1rem;">';
-    echo '<strong>DEBUG:</strong> ' . count( $questions ) . ' perguntas carregadas<br>';
-    echo '<strong>ACF ativo:</strong> ' . ( function_exists( 'have_rows' ) ? 'Sim' : 'Não' ) . '<br>';
-    echo '<strong>Post ID:</strong> ' . $post_id . '<br>';
-    if ( count( $questions ) > 0 ) {
-        echo '<strong>Primeira pergunta:</strong> ' . htmlspecialchars( $questions[0] );
-    }
-    echo '</div>';
-}
-
 $options = [
     [ 'text' => 'Raramente', 'value' => 0 ],
     [ 'text' => 'Algumas Vezes', 'value' => 0.2 ],
@@ -97,8 +85,12 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
         ];
     }
 
-    // Redireciona para evitar reenvio do formulário.
-    header( 'Location: ' . get_permalink() );
+    // Redireciona para evitar reenvio do formulário, preservando o parâmetro debug se existir
+    $redirect_url = get_permalink();
+    if ( isset( $_GET['debug'] ) ) {
+        $redirect_url = add_query_arg( 'debug', '1', $redirect_url );
+    }
+    header( 'Location: ' . $redirect_url );
     exit;
 }
 
@@ -111,6 +103,25 @@ $average_score    = 4.6;
 get_header();
 tema_novo_breadcrumbs();
 ?>
+
+<?php if ( current_user_can( 'administrator' ) && isset( $_GET['debug'] ) ) : ?>
+    <div style="background: #ffeb3b; padding: 1rem; margin: 1rem; border: 2px solid #f57c00; border-radius: 0.5rem; font-family: monospace; font-size: 0.875rem;">
+        <strong style="display: block; margin-bottom: 0.5rem; color: #e65100;">🔍 DEBUG MODE (somente para administradores)</strong>
+        <strong>Perguntas carregadas:</strong> <?php echo count( $questions ); ?><br>
+        <strong>ACF ativo:</strong> <?php echo function_exists( 'have_rows' ) ? 'Sim ✅' : 'Não ❌'; ?><br>
+        <strong>Post ID:</strong> <?php echo $post_id; ?><br>
+        <strong>Step atual:</strong> <?php echo $step; ?><br>
+        <strong>Questão atual:</strong> <?php echo $current_question + 1; ?> de <?php echo count( $questions ); ?><br>
+        <strong>Respostas registradas:</strong> <?php echo count( $_SESSION[ $session_key ]['answers'] ); ?><br>
+        <?php if ( count( $questions ) > 0 ) : ?>
+            <strong>Primeira pergunta:</strong> <?php echo htmlspecialchars( $questions[0] ); ?><br>
+            <strong>Última pergunta:</strong> <?php echo htmlspecialchars( $questions[ count( $questions ) - 1 ] ); ?>
+        <?php else : ?>
+            <strong style="color: #d32f2f;">⚠️ NENHUMA PERGUNTA ENCONTRADA!</strong><br>
+            <em>Verifique se o campo ACF 'perguntas' está configurado corretamente.</em>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>
 
 <style>
     /* Estilos copiados do teste-tdah.php, com alguns ajustes */
