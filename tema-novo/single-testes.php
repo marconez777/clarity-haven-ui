@@ -29,8 +29,8 @@ if ( ! isset( $_SESSION[ $session_key ] ) ) {
 
 // Carrega as perguntas do campo repetidor do ACF.
 $questions = [];
-if ( have_rows( 'perguntas' ) ) {
-    while ( have_rows( 'perguntas' ) ) {
+if ( function_exists( 'have_rows' ) && have_rows( 'perguntas', $post_id ) ) {
+    while ( have_rows( 'perguntas', $post_id ) ) {
         the_row();
         $texto_pergunta = get_sub_field( 'texto_da_pergunta' );
         if ( $texto_pergunta ) {
@@ -50,7 +50,7 @@ $options = [
 if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
     $action = $_POST['action'] ?? '';
 
-    if ( $action === 'start' ) {
+    if ( $action === 'start' && ! empty( $questions ) ) {
         $_SESSION[ $session_key ] = [
             'step'             => 'questions',
             'current_question' => 0,
