@@ -39,12 +39,31 @@ if ( function_exists( 'have_rows' ) && have_rows( 'perguntas', $post_id ) ) {
     }
 }
 
-$options = [
-    [ 'text' => 'Raramente', 'value' => 0 ],
-    [ 'text' => 'Algumas Vezes', 'value' => 0.2 ],
-    [ 'text' => 'Frequentemente', 'value' => 1.0 ],
-    [ 'text' => 'Muito Frequentemente', 'value' => 1.35 ],
-];
+// Carrega as opções de resposta do ACF (se configuradas) ou usa padrão
+$options = [];
+if ( function_exists( 'have_rows' ) && have_rows( 'opcoes_resposta', $post_id ) ) {
+	while ( have_rows( 'opcoes_resposta', $post_id ) ) {
+		the_row();
+		$texto_opcao = get_sub_field( 'texto_opcao' );
+		$valor_opcao = get_sub_field( 'valor_opcao' );
+		if ( $texto_opcao !== null && $valor_opcao !== null ) {
+			$options[] = [
+				'text'  => $texto_opcao,
+				'value' => floatval( $valor_opcao ),
+			];
+		}
+	}
+}
+
+// Fallback para opções padrão se não houver configuradas no ACF
+if ( empty( $options ) ) {
+	$options = [
+		[ 'text' => 'Raramente', 'value' => 0 ],
+		[ 'text' => 'Algumas Vezes', 'value' => 0.2 ],
+		[ 'text' => 'Frequentemente', 'value' => 1.0 ],
+		[ 'text' => 'Muito Frequentemente', 'value' => 1.35 ],
+	];
+}
 
 // Lógica de processamento do formulário.
 if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
@@ -98,7 +117,20 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 $step             = $_SESSION[ $session_key ]['step'];
 $current_question = $_SESSION[ $session_key ]['current_question'];
 $final_score      = $_SESSION[ $session_key ]['final_score'];
-$average_score    = 4.6;
+$error_message    = $_SESSION[ $session_key ]['error'] ?? null;
+$previous_answer  = $_SESSION[ $session_key ]['previous_answer'] ?? null;
+
+// Carrega pontuação média do ACF ou usa padrão
+$average_score = floatval( get_field( 'pontuacao_media', $post_id ) );
+if ( ! $average_score || $average_score <= 0 ) {
+	$average_score = 4.6; // Valor padrão
+}
+
+// Carrega número do WhatsApp do ACF ou usa padrão
+$whatsapp_number = get_field( 'whatsapp_numero', $post_id );
+if ( empty( $whatsapp_number ) ) {
+	$whatsapp_number = '5511941543929'; // Número padrão
+}
 
 get_header();
 tema_novo_breadcrumbs();
@@ -208,149 +240,248 @@ tema_novo_breadcrumbs();
 </style>
 
 <main>
-    <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+			<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-        <?php if ( $step === 'welcome' ) : ?>
-            <!-- Tela de Boas-vindas -->
-            <section style="min-height: 85vh; display: flex; align-items: center; padding: 6rem 1rem 3rem; background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.3), rgba(255, 255, 255, 1));">
-                <div class="container" style="max-width: 56rem; margin: 0 auto;">
-                    <div style="background: white; border-radius: 1rem; padding: 3rem; box-shadow: 0 10px 30px -10px hsl(198 92% 36% / 0.2);">
-                        <div style="text-align: center; margin-bottom: 3rem;">
-                            <h1 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem; color: hsl(210, 10%, 20%);">
-                                <?php the_title(); ?>
-                            </h1>
-                            <div class="post-content" style="font-size: 1.125rem; color: hsl(210, 10%, 45%);">
-                                <?php the_content(); ?>
-                            </div>
-                        </div>
-                        <div style="background: rgba(0, 153, 204, 0.05); border-left: 4px solid hsl(198, 92%, 36%); padding: 1.5rem; border-radius: 0 0.5rem 0.5rem 0; margin-bottom: 2rem;">
-                            <p style="margin: 0; font-size: 0.875rem; color: hsl(210, 10%, 35%); line-height: 1.6;">
-                                Este teste não substitui uma avaliação médica profissional. Ele serve como uma ferramenta de triagem inicial.
-                            </p>
-                        </div>
-                        <form method="POST">
-                            <input type="hidden" name="action" value="start">
-                            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
-                                Iniciar Teste
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </section>
+		<?php if ( $step === 'welcome' ) : ?>
+			<!-- Tela de Boas-vindas -->
+			<section style="min-height: 85vh; display: flex; align-items: center; padding: 6rem 1rem 3rem; background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.3), rgba(255, 255, 255, 1));">
+				<div class="container" style="max-width: 56rem; margin: 0 auto;">
+					<div style="background: white; border-radius: 1rem; padding: 3rem; box-shadow: 0 10px 30px -10px hsl(198 92% 36% / 0.2);">
+						<div style="text-align: center; margin-bottom: 3rem;">
+							<h1 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem; color: hsl(210, 10%, 20%);">
+								<?php the_title(); ?>
+							</h1>
+							<div class="post-content" style="font-size: 1.125rem; color: hsl(210, 10%, 45%);">
+								<?php the_content(); ?>
+							</div>
+						</div>
+						<div style="background: rgba(0, 153, 204, 0.05); border-left: 4px solid hsl(198, 92%, 36%); padding: 1.5rem; border-radius: 0 0.5rem 0.5rem 0; margin-bottom: 2rem;">
+							<p style="margin: 0; font-size: 0.875rem; color: hsl(210, 10%, 35%); line-height: 1.6;">
+								Este teste não substitui uma avaliação médica profissional. Ele serve como uma ferramenta de triagem inicial.
+							</p>
+						</div>
+						<form method="POST">
+							<?php wp_nonce_field( 'teste_form_action', 'teste_nonce' ); ?>
+							<input type="hidden" name="action" value="start">
+							<button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+								Iniciar Teste
+							</button>
+						</form>
+					</div>
+				</div>
+			</section>
 
         <?php elseif ( $step === 'questions' ) : ?>
             <?php if ( empty( $questions ) ) : ?>
-                <!-- Mensagem de erro se não houver perguntas -->
-                <section style="min-height: 85vh; display: flex; align-items: center; padding: 6rem 1rem 3rem; background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.3), rgba(255, 255, 255, 1));">
-                    <div class="container" style="max-width: 56rem; margin: 0 auto;">
-                        <div style="background: white; border-radius: 1rem; padding: 3rem; box-shadow: 0 10px 30px -10px hsl(198 92% 36% / 0.2);">
-                            <div style="text-align: center;">
-                                <h1 style="font-size: 2rem; font-weight: bold; margin-bottom: 1rem; color: hsl(0, 70%, 50%);">
-                                    ⚠️ Erro: Teste não configurado
-                                </h1>
-                                <p style="font-size: 1.125rem; color: hsl(210, 10%, 45%); margin-bottom: 2rem;">
-                                    Este teste ainda não possui perguntas cadastradas. Por favor, entre em contato com o administrador do site.
-                                </p>
-                                <form method="POST">
-                                    <input type="hidden" name="action" value="restart">
-                                    <button type="submit" class="btn btn-outline btn-lg">
-                                        Voltar para o início
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            <?php else : ?>
-                <!-- Tela de Perguntas -->
-                <section style="min-height: 85vh; display: flex; align-items: center; padding: 6rem 1rem 3rem; background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.3), rgba(255, 255, 255, 1));">
-                    <div class="container" style="max-width: 56rem; margin: 0 auto;">
-                        <div style="background: white; border-radius: 1rem; padding: 3rem; box-shadow: 0 10px 30px -10px hsl(198 92% 36% / 0.2);">
-                            <div style="margin-bottom: 2rem;">
-                                <p style="color: hsl(198, 92%, 36%); font-weight: 600; margin-bottom: 0.5rem;">
-                                    Pergunta <?php echo $current_question + 1; ?> de <?php echo count( $questions ); ?>
-                                </p>
-                            <div style="width: 100%; height: 0.5rem; background: rgba(0, 153, 204, 0.1); border-radius: 9999px; overflow: hidden;">
-                                <div style="width: <?php echo ( ( $current_question + 1 ) / count( $questions ) ) * 100; ?>%; height: 100%; background: linear-gradient(to right, hsl(198, 92%, 36%), hsl(185, 58%, 58%)); transition: width 0.3s; border-radius: 9999px;"></div>
-                            </div>
-                        </div>
-                        <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 2rem; color: hsl(210, 10%, 20%); line-height: 1.5;">
-                            <?php echo htmlspecialchars( $questions[ $current_question ] ); ?>
-                        </h2>
-                        <form method="POST" id="questionForm">
-                            <input type="hidden" name="action" value="answer">
-                            <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
-                                <?php foreach ( $options as $option ) : ?>
-                                    <label style="position: relative; display: block; cursor: pointer;">
-                                        <input type="radio" name="answer" value="<?php echo $option['value']; ?>" style="position: absolute; opacity: 0; width: 0; height: 0;" required onchange="document.getElementById('nextBtn').disabled = false;">
-                                        <span style="display: block; padding: 1.25rem 1.5rem; border: 2px solid rgba(0, 153, 204, 0.2); border-radius: 0.75rem; background: white; transition: all 0.3s; font-size: 1rem; color: hsl(210, 10%, 30%);">
-                                            <?php echo htmlspecialchars( $option['text'] ); ?>
-                                        </span>
-                                    </label>
-                                <?php endforeach; ?>
-                            </div>
-                            <div style="display: flex; gap: 1rem;">
-                                <!-- Sempre mostrar o botão Voltar -->
-                                <button type="submit" formaction="<?php the_permalink(); ?>" name="action" value="back" class="btn btn-outline" style="flex: 1;">
-                                    ← Voltar
-                                </button>
-                                <button type="submit" id="nextBtn" class="btn btn-primary" style="flex: 2;" disabled>
-                                    <?php echo $current_question < count( $questions ) - 1 ? 'Próxima →' : 'Ver Resultados →'; ?>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </section>
-            <?php endif; ?>
+				<!-- Mensagem de erro se não houver perguntas -->
+				<section style="min-height: 85vh; display: flex; align-items: center; padding: 6rem 1rem 3rem; background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.3), rgba(255, 255, 255, 1));">
+					<div class="container" style="max-width: 56rem; margin: 0 auto;">
+						<div style="background: white; border-radius: 1rem; padding: 3rem; box-shadow: 0 10px 30px -10px hsl(198 92% 36% / 0.2);">
+							<div style="text-align: center;">
+								<h1 style="font-size: 2rem; font-weight: bold; margin-bottom: 1rem; color: hsl(0, 70%, 50%);">
+									⚠️ Erro: Teste não configurado
+								</h1>
+								<p style="font-size: 1.125rem; color: hsl(210, 10%, 45%); margin-bottom: 2rem;">
+									Este teste ainda não possui perguntas cadastradas. Por favor, entre em contato com o administrador do site.
+								</p>
+								<form method="POST">
+									<?php wp_nonce_field( 'teste_form_action', 'teste_nonce' ); ?>
+									<input type="hidden" name="action" value="restart">
+									<button type="submit" class="btn btn-outline btn-lg">
+										Voltar para o início
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</section>
+			<?php else : ?>
+				<?php
+				// Validação: verifica se o índice da pergunta atual é válido
+				if ( ! isset( $questions[ $current_question ] ) ) {
+					$_SESSION[ $session_key ]['step'] = 'welcome';
+					$_SESSION[ $session_key ]['error'] = 'Erro ao carregar a pergunta.';
+					header( 'Location: ' . get_permalink() );
+					exit;
+				}
+				$question_text = $questions[ $current_question ];
+				$progress_percentage = ( ( $current_question + 1 ) / count( $questions ) ) * 100;
+				?>
+				<!-- Tela de Perguntas -->
+				<section style="min-height: 85vh; display: flex; align-items: center; padding: 6rem 1rem 3rem; background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.3), rgba(255, 255, 255, 1));">
+					<div class="container" style="max-width: 56rem; margin: 0 auto;">
+						<div style="background: white; border-radius: 1rem; padding: 3rem; box-shadow: 0 10px 30px -10px hsl(198 92% 36% / 0.2);">
+							
+							<?php if ( $error_message ) : ?>
+								<!-- Mensagem de erro -->
+								<div style="background: rgba(239, 68, 68, 0.1); border-left: 4px solid hsl(0, 70%, 50%); padding: 1rem; border-radius: 0 0.5rem 0.5rem 0; margin-bottom: 1.5rem;">
+									<p style="margin: 0; color: hsl(0, 70%, 50%); font-weight: 600;">
+										<?php echo esc_html( $error_message ); ?>
+									</p>
+								</div>
+							<?php endif; ?>
+							
+							<div style="margin-bottom: 2rem;">
+								<p style="color: hsl(198, 92%, 36%); font-weight: 600; margin-bottom: 0.5rem;">
+									Pergunta <?php echo $current_question + 1; ?> de <?php echo count( $questions ); ?> (<?php echo round( $progress_percentage ); ?>%)
+								</p>
+								<div style="width: 100%; height: 0.5rem; background: rgba(0, 153, 204, 0.1); border-radius: 9999px; overflow: hidden;">
+									<div style="width: <?php echo $progress_percentage; ?>%; height: 100%; background: linear-gradient(to right, hsl(198, 92%, 36%), hsl(185, 58%, 58%)); transition: width 0.3s ease; border-radius: 9999px;"></div>
+								</div>
+							</div>
+							<h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 2rem; color: hsl(210, 10%, 20%); line-height: 1.5;">
+								<?php echo esc_html( $question_text ); ?>
+							</h2>
+							<form method="POST" id="questionForm">
+								<?php wp_nonce_field( 'teste_form_action', 'teste_nonce' ); ?>
+								<input type="hidden" name="action" value="answer">
+								<div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
+									<?php foreach ( $options as $option ) : ?>
+										<label style="position: relative; display: block; cursor: pointer;">
+											<input 
+												type="radio" 
+												name="answer" 
+												value="<?php echo esc_attr( $option['value'] ); ?>" 
+												style="position: absolute; opacity: 0; width: 0; height: 0;" 
+												<?php checked( $previous_answer, $option['value'] ); ?>
+											>
+											<span style="display: block; padding: 1.25rem 1.5rem; border: 2px solid rgba(0, 153, 204, 0.2); border-radius: 0.75rem; background: white; transition: all 0.3s; font-size: 1rem; color: hsl(210, 10%, 30%);">
+												<?php echo esc_html( $option['text'] ); ?>
+											</span>
+										</label>
+									<?php endforeach; ?>
+								</div>
+							<div style="display: flex; gap: 1rem;">
+								<!-- Sempre mostrar o botão Voltar -->
+								<button type="submit" formaction="<?php the_permalink(); ?>" name="action" value="back" class="btn btn-outline" style="flex: 1;">
+									← Voltar
+								</button>
+								<button type="submit" id="nextBtn" class="btn btn-primary" style="flex: 2;">
+									<?php echo $current_question < count( $questions ) - 1 ? 'Próxima →' : 'Ver Resultados →'; ?>
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				
+				<script>
+				// Scroll suave para o topo ao carregar nova pergunta
+				window.scrollTo({ top: 0, behavior: 'smooth' });
+				
+				// Controle do botão "Próxima" - desabilita até seleção
+				document.addEventListener('DOMContentLoaded', function() {
+					const nextBtn = document.getElementById('nextBtn');
+					const radioButtons = document.querySelectorAll('input[type="radio"][name="answer"]');
+					
+					// Verificar se já há resposta selecionada (ao voltar)
+					const hasSelection = Array.from(radioButtons).some(radio => radio.checked);
+					if (!hasSelection && nextBtn) {
+						nextBtn.disabled = true;
+						nextBtn.style.opacity = '0.5';
+						nextBtn.style.cursor = 'not-allowed';
+					}
+					
+					// Habilitar quando resposta for selecionada
+					radioButtons.forEach(radio => {
+						radio.addEventListener('change', function() {
+							if (nextBtn) {
+								nextBtn.disabled = false;
+								nextBtn.style.opacity = '1';
+								nextBtn.style.cursor = 'pointer';
+							}
+						});
+					});
+				});
+				
+				// Prevenir reenvio do formulário ao atualizar página
+				if (window.history.replaceState) {
+					window.history.replaceState(null, null, window.location.href);
+				}
+				</script>
+			</section>
+			<?php endif; ?>
 
-        <?php elseif ( $step === 'results' ) : ?>
-            <!-- Tela de Resultados -->
-            <section style="min-height: 85vh; display: flex; align-items: center; padding: 6rem 1rem 3rem; background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.3), rgba(255, 255, 255, 1));">
-                <div class="container" style="max-width: 56rem; margin: 0 auto;">
-                    <div style="background: white; border-radius: 1rem; padding: 3rem; box-shadow: 0 10px 30px -10px hsl(198 92% 36% / 0.2);">
-                        <div style="text-align: center; margin-bottom: 3rem;">
-                            <h1 style="font-size: 2rem; font-weight: bold; margin-bottom: 1rem; color: hsl(210, 10%, 20%);">
-                                Resultado do Teste
-                            </h1>
-                        </div>
-                        <div style="background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.2), rgba(255, 255, 255, 1)); padding: 2rem; border-radius: 0.75rem; text-align: center; margin-bottom: 2rem; border: 2px solid rgba(0, 153, 204, 0.2);">
-                            <p style="font-size: 3.75rem; font-weight: bold; color: hsl(198, 92%, 36%); margin-bottom: 0.5rem; line-height: 1;">
-                                <?php echo number_format( $final_score, 1 ); ?>
-                            </p>
-                        </div>
-                        <div style="background: rgba(0, 153, 204, 0.05); border-left: 4px solid hsl(198, 92%, 36%); padding: 1.5rem; border-radius: 0 0.5rem 0.5rem 0; margin-bottom: 2rem;">
-                            <?php if ( $final_score > $average_score ) : ?>
-                                <p>Sua pontuação está acima da média, o que pode indicar a presença de sintomas significativos. Recomendamos que você agende uma consulta com um especialista.</p>
-                            <?php else : ?>
-                                <p>Sua pontuação está dentro ou abaixo da média. No entanto, se você ainda está preocupado com os sintomas, recomendamos uma consulta com um especialista.</p>
-                            <?php endif; ?>
-                        </div>
-                        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-                            <a href="https://wa.me/5511941543929?text=Olá! Gostaria de agendar uma consulta." target="_blank" class="btn btn-primary btn-lg" style="text-align: center; text-decoration: none;">
-                                Agende sua Avaliação
-                            </a>
-                            <form method="POST">
-                                <input type="hidden" name="action" value="restart">
-                                <button type="submit" class="btn btn-outline btn-lg" style="width: 100%;">
-                                    Refazer o Teste
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        <?php endif; ?>
+		<?php elseif ( $step === 'results' ) : ?>
+			<?php
+			// Carrega mensagens de resultado do ACF
+			$mensagens_resultado = [];
+			if ( function_exists( 'have_rows' ) && have_rows( 'mensagens_resultado', $post_id ) ) {
+				while ( have_rows( 'mensagens_resultado', $post_id ) ) {
+					the_row();
+					$mensagens_resultado[] = [
+						'condicao'  => get_sub_field( 'condicao' ),
+						'titulo'    => get_sub_field( 'titulo_resultado' ),
+						'descricao' => get_sub_field( 'descricao_resultado' ),
+					];
+				}
+			}
 
-    <?php endwhile; endif; ?>
+			// Determina a mensagem baseada na pontuação
+			$mensagem_exibir = null;
+			foreach ( $mensagens_resultado as $msg ) {
+				if ( $msg['condicao'] === 'abaixo' && $final_score <= $average_score ) {
+					$mensagem_exibir = $msg;
+					break;
+				} elseif ( $msg['condicao'] === 'acima' && $final_score > $average_score ) {
+					$mensagem_exibir = $msg;
+					break;
+				}
+			}
+
+			// Fallback para mensagens padrão
+			$titulo_resultado = $mensagem_exibir['titulo'] ?? 'Resultado do Teste';
+			if ( empty( $mensagem_exibir['descricao'] ) ) {
+				if ( $final_score > $average_score ) {
+					$descricao_resultado = 'Sua pontuação está acima da média, o que pode indicar a presença de sintomas significativos. Recomendamos que você agende uma consulta com um especialista.';
+				} else {
+					$descricao_resultado = 'Sua pontuação está dentro ou abaixo da média. No entanto, se você ainda está preocupado com os sintomas, recomendamos uma consulta com um especialista.';
+				}
+			} else {
+				$descricao_resultado = $mensagem_exibir['descricao'];
+			}
+
+			// URL do WhatsApp configurável
+			$whatsapp_url = "https://wa.me/{$whatsapp_number}?text=" . urlencode( 'Olá! Gostaria de agendar uma consulta.' );
+			?>
+			<!-- Tela de Resultados -->
+			<section style="min-height: 85vh; display: flex; align-items: center; padding: 6rem 1rem 3rem; background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.3), rgba(255, 255, 255, 1));">
+				<div class="container" style="max-width: 56rem; margin: 0 auto;">
+					<div style="background: white; border-radius: 1rem; padding: 3rem; box-shadow: 0 10px 30px -10px hsl(198 92% 36% / 0.2);">
+						<div style="text-align: center; margin-bottom: 3rem;">
+							<h1 style="font-size: 2rem; font-weight: bold; margin-bottom: 1rem; color: hsl(210, 10%, 20%);">
+								<?php echo esc_html( $titulo_resultado ); ?>
+							</h1>
+						</div>
+						<div style="background: linear-gradient(to bottom right, rgba(185, 223, 237, 0.2), rgba(255, 255, 255, 1)); padding: 2rem; border-radius: 0.75rem; text-align: center; margin-bottom: 2rem; border: 2px solid rgba(0, 153, 204, 0.2);">
+							<p style="font-size: 3.75rem; font-weight: bold; color: hsl(198, 92%, 36%); margin-bottom: 0.5rem; line-height: 1;">
+								<?php echo number_format( $final_score, 1 ); ?>
+							</p>
+							<p style="font-size: 0.875rem; color: hsl(210, 10%, 45%); margin: 0;">
+								Pontuação média de referência: <?php echo number_format( $average_score, 1 ); ?>
+							</p>
+						</div>
+						<div style="background: rgba(0, 153, 204, 0.05); border-left: 4px solid hsl(198, 92%, 36%); padding: 1.5rem; border-radius: 0 0.5rem 0.5rem 0; margin-bottom: 2rem;">
+							<p style="margin: 0; line-height: 1.6;"><?php echo wp_kses_post( wpautop( $descricao_resultado ) ); ?></p>
+						</div>
+						<div style="display: flex; flex-direction: column; gap: 0.75rem;">
+							<a href="<?php echo esc_url( $whatsapp_url ); ?>" target="_blank" class="btn btn-primary btn-lg" style="text-align: center; text-decoration: none;">
+								Agende sua Avaliação
+							</a>
+							<form method="POST">
+								<?php wp_nonce_field( 'teste_form_action', 'teste_nonce' ); ?>
+								<input type="hidden" name="action" value="restart">
+								<button type="submit" class="btn btn-outline btn-lg" style="width: 100%;">
+									Refazer o Teste
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+		<?php endif; ?>
+
+	<?php endwhile; endif; ?>
 </main>
-
-<script>
-    // Previne o reenvio do formulário ao atualizar a página.
-    if (window.history.replaceState) {
-        window.history.replaceState(null, null, window.location.href);
-    }
-</script>
 
 <?php
 get_footer();
