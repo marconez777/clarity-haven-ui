@@ -280,12 +280,12 @@ html {
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 1rem;
-    color: var(--foreground);
+    color: hsl(var(--foreground));
 }
 
 .section-description {
     font-size: 1.125rem;
-    color: var(--muted-foreground);
+    color: hsl(var(--muted-foreground));
     max-width: 42rem;
     margin: 0 auto;
 }
@@ -308,39 +308,41 @@ html {
 .especialidade-card {
     padding: 1.5rem;
     border-radius: 1rem;
-    border: 2px solid;
+    border: 2px solid hsl(185, 58%, 88%);
     text-decoration: none;
     transition: all 0.3s ease;
     height: 100%;
+    background: linear-gradient(to bottom right, hsl(185, 58%, 95%), hsl(0, 0%, 100%));
 }
 
 .especialidade-card:hover {
     transform: scale(1.02);
     box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    border-color: hsl(185, 58%, 70%);
 }
 
 .especialidade-card-primary {
-    background: linear-gradient(to bottom right, hsl(185, 58%, 88%, 0.2), var(--background));
-    border-color: hsl(198, 92%, 36%, 0.2);
+    background: linear-gradient(to bottom right, hsl(185, 58%, 95%), hsl(0, 0%, 100%));
+    border-color: hsl(185, 58%, 88%);
 }
 
 .especialidade-card-primary:hover {
-    border-color: hsl(198, 92%, 36%, 0.4);
+    border-color: hsl(185, 58%, 70%);
 }
 
 .especialidade-card-accent {
-    background: linear-gradient(to bottom right, hsl(185, 58%, 58%, 0.1), var(--background));
-    border-color: hsl(185, 58%, 58%, 0.2);
+    background: linear-gradient(to bottom right, hsl(185, 58%, 95%), hsl(0, 0%, 100%));
+    border-color: hsl(185, 58%, 88%);
 }
 
 .especialidade-card-accent:hover {
-    border-color: hsl(185, 58%, 58%, 0.4);
+    border-color: hsl(185, 58%, 70%);
 }
 
 .especialidade-title {
     font-size: 1.25rem;
     font-weight: bold;
-    color: var(--foreground);
+    color: hsl(var(--foreground));
     margin-bottom: 0.75rem;
 }
 
@@ -394,13 +396,13 @@ html {
 .specialty-name {
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--foreground);
+    color: hsl(var(--foreground));
     margin-bottom: 0.5rem;
 }
 
 .specialty-description {
     font-size: 1rem;
-    color: var(--muted-foreground);
+    color: hsl(var(--muted-foreground));
 }
 
 /* About Section */
@@ -419,12 +421,12 @@ html {
 .about-title {
     font-size: 2.5rem;
     font-weight: bold;
-    color: var(--primary);
+    color: hsl(var(--primary));
     margin-bottom: 1.5rem;
 }
 
 .about-text {
-    color: var(--foreground);
+    color: hsl(var(--foreground));
     opacity: 0.9;
     margin-bottom: 1.5rem;
 }
@@ -434,7 +436,7 @@ html {
 }
 
 .link-primary {
-    color: var(--primary);
+    color: hsl(var(--primary));
     text-decoration: none;
     font-weight: 500;
 }
@@ -447,9 +449,9 @@ html {
     margin-top: 2rem;
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--primary);
+    color: hsl(var(--primary));
     font-style: italic;
-    border-left: 4px solid var(--primary);
+    border-left: 4px solid hsl(var(--primary));
     padding-left: 1rem;
 }
 
@@ -500,7 +502,7 @@ html {
 .team-title {
     font-size: 2.5rem;
     font-weight: bold;
-    color: var(--foreground);
+    color: hsl(var(--foreground));
     margin-bottom: 1.5rem;
 }
 
@@ -522,11 +524,11 @@ html {
     width: 0.75rem;
     height: 0.75rem;
     border-radius: 50%;
-    background: var(--primary);
+    background: hsl(var(--primary));
 }
 
 .team-feature span {
-    color: var(--foreground);
+    color: hsl(var(--foreground));
     font-weight: 500;
 }
 
@@ -572,13 +574,13 @@ html {
 .mental-health-title {
     font-size: 2.5rem;
     font-weight: bold;
-    color: var(--primary);
+    color: hsl(var(--primary));
     margin-bottom: 1.5rem;
 }
 
 .mental-health-text {
     font-size: 1.125rem;
-    color: var(--foreground);
+    color: hsl(var(--foreground));
     opacity: 0.9;
     margin-bottom: 1.5rem;
 }
@@ -604,7 +606,7 @@ html {
 
 .mental-health-list span {
     font-size: 1.125rem;
-    color: var(--foreground);
+    color: hsl(var(--foreground));
 }
 
 .mental-health-buttons {
@@ -646,7 +648,7 @@ html {
 .footer-logo-subtitle {
     font-size: 0.75rem;
     font-weight: 300;
-    color: var(--primary);
+    color: hsl(var(--primary));
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -654,18 +656,18 @@ html {
 .footer-logo-title {
     font-size: 1.25rem;
     font-weight: bold;
-    color: var(--primary);
+    color: hsl(var(--primary));
 }
 
 .footer-description {
-    color: var(--muted-foreground);
+    color: hsl(var(--muted-foreground));
     margin-top: 1rem;
 }
 
 .footer-section-title {
     font-size: 1.125rem;
     font-weight: 600;
-    color: var(--foreground);
+    color: hsl(var(--foreground));
     margin-bottom: 1rem;
 }
 
@@ -684,27 +686,27 @@ html {
 .footer-icon {
     width: 1.25rem;
     height: 1.25rem;
-    color: var(--primary);
+    color: hsl(var(--primary));
     flex-shrink: 0;
     margin-top: 0.25rem;
 }
 
 .footer-contact-text {
-    color: var(--muted-foreground);
+    color: hsl(var(--muted-foreground));
 }
 
 .footer-contact-text a {
-    color: var(--muted-foreground);
+    color: hsl(var(--muted-foreground));
     text-decoration: none;
     transition: color 0.2s;
 }
 
 .footer-contact-text a:hover {
-    color: var(--primary);
+    color: hsl(var(--primary));
 }
 
 .footer-hours {
-    color: var(--muted-foreground);
+    color: hsl(var(--muted-foreground));
 }
 
 .footer-hours p {
@@ -785,4 +787,51 @@ html {
     .specialties-grid {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
+}
+
+/* Blog Content Styles */
+.blog-content {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: hsl(var(--foreground));
+}
+
+.blog-content h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: hsl(var(--foreground));
+    line-height: 1.3;
+}
+
+.blog-content h2 {
+    font-size: 1.875rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: hsl(var(--foreground));
+    line-height: 1.3;
+}
+
+.blog-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: hsl(var(--foreground));
+    line-height: 1.3;
+}
+
+.blog-content p {
+    margin-bottom: 1.5rem;
+}
+
+.blog-content ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    list-style-type: disc;
+}
+
+.blog-content li {
+    margin-bottom: 0.5rem;
 }

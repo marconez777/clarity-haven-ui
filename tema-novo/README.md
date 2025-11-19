@@ -53,12 +53,34 @@ Crie as seguintes páginas e aplique os respectivos templates:
 
 ### 3. Configurar Blog
 
-1. Crie uma página com o título "Blog"
-2. Não adicione nenhum conteúdo
-3. Publique a página
-4. Vá em **Configurações > Leitura**
-5. Em "Página de posts", selecione a página "Blog"
-6. Salve as alterações
+O tema possui um sistema de blog completo. Para configurá-lo:
+
+1. **Criar página "Home"** (se ainda não criou)
+   - Vá em **Páginas > Adicionar Nova**
+   - Título: "Home"
+   - Não selecione nenhum template
+   - Publique a página
+
+2. **Criar página "Blog"**
+   - Vá em **Páginas > Adicionar Nova**
+   - Título: "Blog"
+   - Não selecione nenhum template (deixar padrão)
+   - Não adicione conteúdo
+   - Publique a página
+
+3. **Configurar Páginas Estáticas**
+   - Vá em **Configurações > Leitura**
+   - Marque "Uma página estática"
+   - Em "Página inicial", selecione **Home**
+   - Em "Página de posts", selecione **Blog**
+   - Salve as alterações
+
+**Como funciona:**
+- `drgabriellopes.com.br/` → Exibe a home estática com todas as seções
+- `drgabriellopes.com.br/blog/` → Exibe a lista de posts do blog
+- `drgabriellopes.com.br/blog/titulo-do-post/` → Exibe o post individual
+
+**Importante:** O arquivo `home.php` será usado automaticamente pelo WordPress para exibir a lista de posts quando você configurar uma "Página de posts" nas configurações
 
 ### 4. Configurar Menus
 
