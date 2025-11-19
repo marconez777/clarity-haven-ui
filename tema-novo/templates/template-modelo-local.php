@@ -104,6 +104,23 @@ tema_novo_breadcrumbs();
         </div>
     </section>
 
+    <!-- Entenda o transtorno -->
+    <section style="padding: 5rem 0; background: white;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+            <div style="max-width: 72rem; margin: 0 auto;">
+                <div style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); padding: 2.5rem; border-radius: 1.5rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); border: 1px solid rgba(185, 223, 237, 0.3);">
+                    <p style="font-size: 1.25rem; line-height: 1.8; color: hsl(var(--foreground)); margin-bottom: 1.5rem;">
+                        O TDAH é uma condição neurobiológica que afeta o funcionamento da região frontal do cérebro,
+                        responsável pelo controle da atenção, impulsividade e comportamento.
+                    </p>
+                    <p style="font-size: 1.25rem; line-height: 1.8; color: hsl(var(--foreground));">
+                        Cada caso é único e pode se manifestar com diferentes intensidades em crianças, adolescentes ou adultos.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Seção Por que o TDAH acontece -->
     <section style="padding: 5rem 0; background: linear-gradient(to bottom, hsl(var(--background)), rgba(185, 223, 237, 0.1));">
         <div class="container" style="margin: 0 auto; padding: 0 1rem; max-width: 1200px;">
