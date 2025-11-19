@@ -104,23 +104,48 @@ get_header();
 tema_novo_breadcrumbs();
 ?>
 
-<?php if ( current_user_can( 'administrator' ) && isset( $_GET['debug'] ) ) : ?>
-    <div style="background: #ffeb3b; padding: 1rem; margin: 1rem; border: 2px solid #f57c00; border-radius: 0.5rem; font-family: monospace; font-size: 0.875rem;">
-        <strong style="display: block; margin-bottom: 0.5rem; color: #e65100;">🔍 DEBUG MODE (somente para administradores)</strong>
-        <strong>Perguntas carregadas:</strong> <?php echo count( $questions ); ?><br>
-        <strong>ACF ativo:</strong> <?php echo function_exists( 'have_rows' ) ? 'Sim ✅' : 'Não ❌'; ?><br>
-        <strong>Post ID:</strong> <?php echo $post_id; ?><br>
-        <strong>Step atual:</strong> <?php echo $step; ?><br>
-        <strong>Questão atual:</strong> <?php echo $current_question + 1; ?> de <?php echo count( $questions ); ?><br>
-        <strong>Respostas registradas:</strong> <?php echo count( $_SESSION[ $session_key ]['answers'] ); ?><br>
-        <?php if ( count( $questions ) > 0 ) : ?>
-            <strong>Primeira pergunta:</strong> <?php echo htmlspecialchars( $questions[0] ); ?><br>
-            <strong>Última pergunta:</strong> <?php echo htmlspecialchars( $questions[ count( $questions ) - 1 ] ); ?>
-        <?php else : ?>
-            <strong style="color: #d32f2f;">⚠️ NENHUMA PERGUNTA ENCONTRADA!</strong><br>
-            <em>Verifique se o campo ACF 'perguntas' está configurado corretamente.</em>
-        <?php endif; ?>
-    </div>
+<?php if ( isset( $_GET['debug'] ) ) : ?>
+    <?php if ( ! current_user_can( 'administrator' ) ) : ?>
+        <div style="background: #ff5252; color: white; padding: 1rem; margin: 1rem; border-radius: 0.5rem; font-weight: bold;">
+            ⚠️ Você precisa estar logado como ADMINISTRADOR para ver o modo debug!
+        </div>
+    <?php else : ?>
+        <div style="background: #ffeb3b; padding: 1.5rem; margin: 1rem; border: 3px solid #f57c00; border-radius: 0.5rem; font-family: monospace; font-size: 0.9rem; position: relative; z-index: 9999;">
+            <strong style="display: block; margin-bottom: 1rem; color: #e65100; font-size: 1.2rem; border-bottom: 2px solid #f57c00; padding-bottom: 0.5rem;">🔍 DEBUG MODE ATIVO</strong>
+            
+            <div style="background: white; padding: 1rem; border-radius: 0.25rem; margin-bottom: 1rem;">
+                <strong style="color: #1976d2;">📊 Informações do Teste:</strong><br>
+                <strong>Post ID:</strong> <?php echo $post_id; ?><br>
+                <strong>Perguntas carregadas:</strong> <span style="color: <?php echo count( $questions ) > 0 ? 'green' : 'red'; ?>; font-weight: bold;"><?php echo count( $questions ); ?></span><br>
+                <strong>ACF ativo:</strong> <?php echo function_exists( 'have_rows' ) ? '<span style="color: green;">✅ Sim</span>' : '<span style="color: red;">❌ Não</span>'; ?><br>
+            </div>
+            
+            <div style="background: white; padding: 1rem; border-radius: 0.25rem; margin-bottom: 1rem;">
+                <strong style="color: #1976d2;">🎯 Estado da Sessão:</strong><br>
+                <strong>Step atual:</strong> <span style="color: #1976d2; font-weight: bold;"><?php echo $step; ?></span><br>
+                <strong>Questão atual:</strong> <?php echo $current_question + 1; ?> de <?php echo count( $questions ); ?><br>
+                <strong>Respostas registradas:</strong> <?php echo count( $_SESSION[ $session_key ]['answers'] ); ?><br>
+                <strong>Pontuação final:</strong> <?php echo $final_score; ?><br>
+            </div>
+            
+            <?php if ( count( $questions ) > 0 ) : ?>
+                <div style="background: white; padding: 1rem; border-radius: 0.25rem;">
+                    <strong style="color: #1976d2;">📝 Perguntas:</strong><br>
+                    <strong>Primeira:</strong> <?php echo htmlspecialchars( substr( $questions[0], 0, 100 ) ); ?>...<br>
+                    <strong>Última:</strong> <?php echo htmlspecialchars( substr( $questions[ count( $questions ) - 1 ], 0, 100 ) ); ?>...
+                </div>
+            <?php else : ?>
+                <div style="background: #ffcdd2; padding: 1rem; border-radius: 0.25rem; border: 2px solid #d32f2f;">
+                    <strong style="color: #d32f2f; font-size: 1.1rem;">⚠️ NENHUMA PERGUNTA ENCONTRADA!</strong><br>
+                    <em style="color: #c62828;">Verifique se o campo ACF 'perguntas' com sub-campo 'texto_da_pergunta' está configurado corretamente no WordPress Admin.</em>
+                </div>
+            <?php endif; ?>
+            
+            <div style="margin-top: 1rem; padding-top: 1rem; border-top: 2px solid #f57c00; font-size: 0.8rem; color: #666;">
+                <strong>Dica:</strong> Para desativar o debug, remova <code>?debug=1</code> da URL
+            </div>
+        </div>
+    <?php endif; ?>
 <?php endif; ?>
 
 <style>
