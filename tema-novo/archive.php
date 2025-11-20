@@ -15,12 +15,12 @@ tema_novo_breadcrumbs();
 
 <style>
 .blog-hero {
-    padding: 2rem 0 4rem;
-    background: linear-gradient(to bottom right, hsl(var(--background)), hsl(var(--primary) / 0.05), hsl(var(--accent) / 0.05));
+    padding: 3rem 0 4rem;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(185, 223, 237, 0.1));
 }
 
 .blog-hero-content {
-    max-width: 48rem;
+    max-width: 1200px;
     margin: 0 auto;
     text-align: center;
     padding: 0 1rem;
@@ -45,13 +45,15 @@ tema_novo_breadcrumbs();
 }
 
 .blog-posts-section {
-    padding: 4rem 0;
+    padding: 3rem 0 4rem;
 }
 
 .blog-posts-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 0 1rem;
 }
 
@@ -178,9 +180,8 @@ tema_novo_breadcrumbs();
 
     <!-- Posts Grid -->
     <section class="blog-posts-section">
-        <div class="container" style="max-width: 1200px; margin: 0 auto;">
-            <?php if ( have_posts() ) : ?>
-                <div class="blog-posts-grid">
+        <?php if ( have_posts() ) : ?>
+            <div class="blog-posts-grid">
                     <?php while ( have_posts() ) : the_post(); ?>
                         <a href="<?php the_permalink(); ?>" class="blog-card">
                             <?php if ( has_post_thumbnail() ) : ?>
@@ -216,28 +217,27 @@ tema_novo_breadcrumbs();
                             </div>
                         </a>
                     <?php endwhile; ?>
-                </div>
+            </div>
 
-                <!-- Pagination -->
-                <div style="margin-top: 4rem; text-align: center;">
-                    <?php
-                    the_posts_pagination( array(
-                        'mid_size'  => 2,
-                        'prev_text' => __( '← Anterior', 'tema-novo' ),
-                        'next_text' => __( 'Próximo →', 'tema-novo' ),
-                    ) );
-                    ?>
-                </div>
-            <?php else : ?>
-                <div class="blog-empty">
-                    <h2><?php esc_html_e( 'Nenhum post encontrado', 'tema-novo' ); ?></h2>
-                    <p><?php esc_html_e( 'Ainda não há posts publicados. Volte em breve!', 'tema-novo' ); ?></p>
-                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn btn-primary">
-                        <?php esc_html_e( 'Voltar para Home', 'tema-novo' ); ?>
-                    </a>
-                </div>
-            <?php endif; ?>
-        </div>
+            <!-- Pagination -->
+            <div style="margin-top: 4rem; text-align: center; max-width: 1200px; margin-left: auto; margin-right: auto; padding: 0 1rem;">
+                <?php
+                the_posts_pagination( array(
+                    'mid_size'  => 2,
+                    'prev_text' => __( '← Anterior', 'tema-novo' ),
+                    'next_text' => __( 'Próximo →', 'tema-novo' ),
+                ) );
+                ?>
+            </div>
+        <?php else : ?>
+            <div class="blog-empty" style="max-width: 1200px; margin: 0 auto;">
+                <h2><?php esc_html_e( 'Nenhum post encontrado', 'tema-novo' ); ?></h2>
+                <p><?php esc_html_e( 'Ainda não há posts publicados. Volte em breve!', 'tema-novo' ); ?></p>
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn btn-primary">
+                    <?php esc_html_e( 'Voltar para Home', 'tema-novo' ); ?>
+                </a>
+            </div>
+        <?php endif; ?>
     </section>
 </main>
 
