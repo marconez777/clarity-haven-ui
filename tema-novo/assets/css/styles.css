@@ -190,6 +190,7 @@ html {
     padding-top: 3rem;
     text-align: left;
     margin-left: 30px;
+    margin-right: auto;
 }
 
 .hero-title {
@@ -230,11 +231,13 @@ html {
 
     .hero-content {
         margin: 0;
+        margin-left: 0;
     }
 
     .hero-text {
         text-align: left;
-        margin-left: 30px;
+        margin-left: 60px;
+        margin-right: auto;
     }
     
     .hero-title {
@@ -257,6 +260,7 @@ html {
     
     .hero-text {
         padding-top: 5rem;
+        margin-left: 80px;
     }
 }
 
