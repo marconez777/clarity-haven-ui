@@ -1,0 +1,314 @@
+import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { ArrowLeft, ArrowRight, Brain } from "lucide-react";
+
+interface Question {
+  id: number;
+  text: string;
+}
+
+const questions: Question[] = [
+  { id: 1, text: "Acho difícil entender como as outras pessoas se sentem." },
+  { id: 2, text: "Gosto de fazer coisas da mesma maneira o tempo todo." },
+  { id: 3, text: "Fico tão absorvido em algo que esqueço o que está ao meu redor." },
+  { id: 4, text: "Costumo perceber facilmente se alguém está aborrecido comigo." },
+  { id: 5, text: "Gosto de coletar informações sobre categorias de coisas (tipos de carros, tipos de pássaros, etc.)." },
+  { id: 6, text: "Acho difícil fazer novos amigos." },
+  { id: 7, text: "Acho difícil imaginar como seria estar no lugar de outra pessoa." },
+  { id: 8, text: "Percebo padrões facilmente em coisas ao meu redor." },
+  { id: 9, text: "Acho desconfortável em situações sociais novas." },
+];
+
+const options = [
+  { text: "NÃO", value: 0 },
+  { text: "SIM", value: 1 },
+];
+
+const TesteAutismoAQ10 = () => {
+  const [currentStep, setCurrentStep] = useState<"welcome" | "questions" | "results">("welcome");
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answers, setAnswers] = useState<number[]>([]);
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [finalScore, setFinalScore] = useState(0);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentQuestion, currentStep]);
+
+  const startTest = () => {
+    setCurrentStep("questions");
+    setAnswers([]);
+    setCurrentQuestion(0);
+    setSelectedAnswer(null);
+  };
+
+  const handleAnswer = () => {
+    if (selectedAnswer === null) return;
+
+    const newAnswers = [...answers];
+    newAnswers[currentQuestion] = selectedAnswer;
+    setAnswers(newAnswers);
+
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+      setSelectedAnswer(newAnswers[currentQuestion + 1] ?? null);
+    } else {
+      const sum = newAnswers.reduce((acc, val) => acc + val, 0);
+      setFinalScore(sum);
+      setCurrentStep("results");
+    }
+  };
+
+  const handleBack = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(currentQuestion - 1);
+      setSelectedAnswer(answers[currentQuestion - 1] ?? null);
+    }
+  };
+
+  const restartTest = () => {
+    setCurrentStep("welcome");
+    setCurrentQuestion(0);
+    setAnswers([]);
+    setSelectedAnswer(null);
+    setFinalScore(0);
+  };
+
+  const progress = ((currentQuestion + 1) / questions.length) * 100;
+
+  return (
+    <>
+      <Helmet>
+        <title>Teste de Autismo AQ-10 Online Gratuito | Dr. Gabriel Lopes</title>
+        <meta
+          name="description"
+          content="Faça o teste de autismo AQ-10 online gratuito. Questionário rápido de triagem para adultos. Resultado imediato."
+        />
+        <meta
+          name="keywords"
+          content="teste autismo, aq-10, teste autismo online, espectro autista, autismo adulto"
+        />
+        <link rel="canonical" href="https://drgabriellopes.com.br/teste-autismo-aq10" />
+      </Helmet>
+
+      <div className="min-h-screen flex flex-col">
+        <Navigation />
+        <Breadcrumbs
+          items={[
+            { label: "Testes", href: "/testes" },
+            { label: "Teste de Autismo AQ-10" },
+          ]}
+        />
+
+        <main className="flex-grow py-12">
+          <div className="container mx-auto px-4 max-w-3xl">
+            {/* Welcome Screen */}
+            {currentStep === "welcome" && (
+              <div className="space-y-8 animate-fade-in">
+                <div className="text-center space-y-4">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+                    <Brain className="w-8 h-8 text-primary" />
+                  </div>
+                  <h1 className="text-3xl md:text-4xl font-bold text-primary">
+                    Teste de Autismo Adulto AQ-10
+                  </h1>
+                  <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                    Questionário rápido de triagem para características do espectro autista
+                  </p>
+                </div>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Sobre este teste</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <p className="text-muted-foreground">
+                      O AQ-10 é uma versão resumida do Quociente do Espectro Autista (AQ), desenvolvida para 
+                      uma triagem rápida de características associadas ao espectro autista em adultos.
+                    </p>
+                    <div className="bg-accent/50 p-4 rounded-lg space-y-2">
+                      <h3 className="font-semibold">Como funciona:</h3>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        <li className="flex items-start gap-2">
+                          <span className="text-primary">•</span>
+                          <span>9 perguntas sobre comportamentos e preferências</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-primary">•</span>
+                          <span>Responda SIM ou NÃO para cada pergunta</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-primary">•</span>
+                          <span>Leva aproximadamente 2-3 minutos</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-primary">•</span>
+                          <span>Resultado imediato ao final</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 p-4 rounded-lg">
+                      <p className="text-sm font-medium text-yellow-900 dark:text-yellow-200">
+                        <strong>Importante:</strong> Este teste não substitui uma avaliação médica profissional. 
+                        Os resultados são apenas indicativos e devem ser interpretados por um profissional de saúde qualificado.
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <div className="text-center">
+                  <Button onClick={startTest} size="lg" className="gap-2">
+                    Iniciar Teste
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </div>
+              </div>
+            )}
+
+            {/* Questions Screen */}
+            {currentStep === "questions" && (
+              <div className="space-y-6 animate-fade-in">
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-sm text-muted-foreground">
+                    <span>Pergunta {currentQuestion + 1} de {questions.length}</span>
+                    <span>{Math.round(progress)}%</span>
+                  </div>
+                  <Progress value={progress} className="h-2" />
+                </div>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-xl">
+                      {questions[currentQuestion].text}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <RadioGroup
+                      value={selectedAnswer?.toString()}
+                      onValueChange={(value) => setSelectedAnswer(Number(value))}
+                      className="space-y-3"
+                    >
+                      {options.map((option) => (
+                        <div
+                          key={option.value}
+                          className="flex items-center space-x-3 p-4 rounded-lg border-2 border-border hover:border-primary/50 transition-colors cursor-pointer"
+                          onClick={() => setSelectedAnswer(option.value)}
+                        >
+                          <RadioGroupItem value={option.value.toString()} id={`option-${option.value}`} />
+                          <Label
+                            htmlFor={`option-${option.value}`}
+                            className="flex-1 cursor-pointer font-medium"
+                          >
+                            {option.text}
+                          </Label>
+                        </div>
+                      ))}
+                    </RadioGroup>
+                  </CardContent>
+                </Card>
+
+                <div className="flex justify-between gap-4">
+                  <Button
+                    onClick={handleBack}
+                    variant="outline"
+                    disabled={currentQuestion === 0}
+                    className="gap-2"
+                  >
+                    <ArrowLeft className="w-4 h-4" />
+                    Anterior
+                  </Button>
+                  <Button
+                    onClick={handleAnswer}
+                    disabled={selectedAnswer === null}
+                    className="gap-2"
+                  >
+                    {currentQuestion === questions.length - 1 ? "Ver Resultado" : "Próxima"}
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </div>
+              </div>
+            )}
+
+            {/* Results Screen */}
+            {currentStep === "results" && (
+              <div className="space-y-8 animate-fade-in">
+                <div className="text-center space-y-4">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+                    <Brain className="w-8 h-8 text-primary" />
+                  </div>
+                  <h1 className="text-3xl md:text-4xl font-bold text-primary">
+                    Resultado do Teste
+                  </h1>
+                </div>
+
+                <Card>
+                  <CardContent className="pt-6 space-y-6">
+                    <div className="text-center space-y-4">
+                      <div className="inline-flex flex-col items-center justify-center w-32 h-32 rounded-full bg-primary/10 border-4 border-primary">
+                        <span className="text-4xl font-bold text-primary">{finalScore}</span>
+                        <span className="text-sm text-muted-foreground">de {questions.length} pontos</span>
+                      </div>
+
+                      <div className="space-y-2">
+                        <h2 className="text-2xl font-bold">
+                          {finalScore >= 5 ? "Resultado Positivo" : "Resultado Negativo"}
+                        </h2>
+                        <p className="text-muted-foreground max-w-2xl mx-auto">
+                          {finalScore >= 5 ? (
+                            <>
+                              Sua pontuação de {finalScore} pontos sugere a presença de características associadas ao 
+                              espectro autista. Recomendamos uma avaliação com um profissional especializado para 
+                              uma análise detalhada.
+                            </>
+                          ) : (
+                            <>
+                              Sua pontuação de {finalScore} pontos está abaixo do indicativo. No entanto, se você 
+                              identifica dificuldades significativas no seu dia a dia, considere conversar com um 
+                              profissional de saúde mental.
+                            </>
+                          )}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="bg-accent/50 p-4 rounded-lg">
+                      <p className="text-sm text-muted-foreground text-center">
+                        <strong>Lembre-se:</strong> Este teste é apenas uma triagem inicial. 
+                        Um diagnóstico preciso requer avaliação profissional completa.
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button onClick={restartTest} variant="outline" size="lg">
+                    Refazer Teste
+                  </Button>
+                  <Button asChild size="lg">
+                    <a href="https://wa.me/5511999999999?text=Olá! Gostaria de agendar uma consulta para avaliação." target="_blank" rel="noopener noreferrer">
+                      Agendar Consulta
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            )}
+          </div>
+        </main>
+
+        <Footer />
+        <WhatsAppButton />
+      </div>
+    </>
+  );
+};
+
+export default TesteAutismoAQ10;
