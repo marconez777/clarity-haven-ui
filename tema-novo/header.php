@@ -66,7 +66,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 </li>
                 <li><a href="<?php echo esc_url( home_url( '/equipe' ) ); ?>">Nossa Equipe</a></li>
                 <li><a href="<?php echo esc_url( home_url( '/testes' ) ); ?>">Testes</a></li>
-                <li><a href="<?php echo esc_url( home_url( '/blog' ) ); ?>">Blog</a></li>
+                <li><a href="<?php echo esc_url( get_post_type_archive_link( 'post' ) ?: home_url( '/blog' ) ); ?>">Blog</a></li>
                 <li><a href="<?php echo esc_url( home_url( '/contato' ) ); ?>">Contato</a></li>
                 <li><a href="#agendar" class="nav-cta" style="color: white;">Agende sua consulta</a></li>
             </ul>
