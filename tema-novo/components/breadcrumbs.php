@@ -68,6 +68,7 @@ function tema_novo_breadcrumbs() {
         echo '</li>';
         
     } elseif ( is_page() ) {
+        global $post;
         // Parent pages
         if ( $post->post_parent ) {
             $parent_id = $post->post_parent;

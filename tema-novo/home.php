@@ -15,10 +15,10 @@ tema_novo_breadcrumbs();
     }
 
     .blog-hero-content {
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 0 auto;
         text-align: center;
-        padding: 0 1rem;
+        padding: 0 2rem;
     }
 
     .blog-hero h1 {
@@ -47,9 +47,9 @@ tema_novo_breadcrumbs();
         display: grid;
         grid-template-columns: 1fr;
         gap: 2rem;
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 0 auto;
-        padding: 0 1rem;
+        padding: 0 2rem;
     }
 
     @media (min-width: 768px) {
@@ -162,8 +162,8 @@ tema_novo_breadcrumbs();
         justify-content: center;
         gap: 0.5rem;
         margin-top: 3rem;
-        padding: 0 1rem;
-        max-width: 1200px;
+        padding: 0 2rem;
+        max-width: 1400px;
         margin-left: auto;
         margin-right: auto;
     }

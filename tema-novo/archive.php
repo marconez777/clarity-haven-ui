@@ -19,12 +19,12 @@ tema_novo_breadcrumbs();
     background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(185, 223, 237, 0.1));
 }
 
-.blog-hero-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 0 1rem;
-}
+    .blog-hero-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 0 2rem;
+    }
 
 .blog-hero h1 {
     font-size: 2.5rem;
@@ -48,14 +48,14 @@ tema_novo_breadcrumbs();
     padding: 3rem 0 4rem;
 }
 
-.blog-posts-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
+    .blog-posts-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
 
 @media (min-width: 768px) {
     .blog-posts-grid {
@@ -220,7 +220,7 @@ tema_novo_breadcrumbs();
             </div>
 
             <!-- Pagination -->
-            <div style="margin-top: 4rem; text-align: center; max-width: 1200px; margin-left: auto; margin-right: auto; padding: 0 1rem;">
+            <div style="margin-top: 4rem; text-align: center; max-width: 1400px; margin-left: auto; margin-right: auto; padding: 0 2rem;">
                 <?php
                 the_posts_pagination( array(
                     'mid_size'  => 2,
@@ -230,7 +230,7 @@ tema_novo_breadcrumbs();
                 ?>
             </div>
         <?php else : ?>
-            <div class="blog-empty" style="max-width: 1200px; margin: 0 auto;">
+            <div class="blog-empty" style="max-width: 1400px; margin: 0 auto; padding: 0 2rem;">
                 <h2><?php esc_html_e( 'Nenhum post encontrado', 'tema-novo' ); ?></h2>
                 <p><?php esc_html_e( 'Ainda não há posts publicados. Volte em breve!', 'tema-novo' ); ?></p>
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn btn-primary">
@@ -242,4 +242,6 @@ tema_novo_breadcrumbs();
 </main>
 
 <?php
+get_template_part('components/whatsapp-button');
 get_footer();
+?>
