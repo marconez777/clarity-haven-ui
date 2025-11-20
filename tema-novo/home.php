@@ -203,11 +203,25 @@ tema_novo_breadcrumbs();
         </div>
     </section>
 
+    <?php
+    // Setup Custom Query
+    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : ( ( get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1 );
+
+    $args = array(
+        'post_type'      => 'post',
+        'post_status'    => 'publish',
+        'posts_per_page' => get_option('posts_per_page', 10),
+        'paged'          => $paged
+    );
+
+    $blog_query = new WP_Query( $args );
+    ?>
+
     <!-- Blog Posts Grid -->
     <section class="blog-posts-section">
-        <?php if ( have_posts() ) : ?>
+        <?php if ( $blog_query->have_posts() ) : ?>
             <div class="blog-posts-grid">
-                    <?php while ( have_posts() ) : the_post(); 
+                    <?php while ( $blog_query->have_posts() ) : $blog_query->the_post();
                         $categories = get_the_category();
                         $category_name = !empty($categories) ? esc_html($categories[0]->name) : 'Sem categoria';
                         
@@ -249,12 +263,23 @@ tema_novo_breadcrumbs();
 
             <?php
             // Paginação
-            the_posts_pagination(array(
-                'mid_size' => 2,
+            $pagination_args = array(
+                'mid_size'  => 2,
                 'prev_text' => '← Anterior',
                 'next_text' => 'Próxima →',
-                'class' => 'pagination'
-            ));
+                'total'     => $blog_query->max_num_pages,
+                'current'   => $paged
+            );
+
+            $pagination_links = paginate_links( $pagination_args );
+
+            if ( $pagination_links ) {
+                echo '<div class="pagination">';
+                echo $pagination_links;
+                echo '</div>';
+            }
+
+            wp_reset_postdata();
             ?>
 
         <?php else : ?>
