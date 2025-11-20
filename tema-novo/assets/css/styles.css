@@ -156,7 +156,7 @@ html {
     display: flex;
     align-items: center;
     overflow: hidden;
-    margin-top: 5rem;
+    margin-top: 1rem;
     background-image: url('../images/hero-family.jpg');
     background-size: cover;
     background-position: center;
