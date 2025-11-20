@@ -20,8 +20,8 @@ const Testes = () => {
     },
     {
       title: "Teste de Depressão – PHQ9",
-      href: "#",
-      disabled: true,
+      href: "/teste-depressao-phq9",
+      disabled: false,
     },
     {
       title: "Teste de TDAH – Hiperatividade Adulto",
@@ -30,13 +30,13 @@ const Testes = () => {
     },
     {
       title: "Teste de Déficit de Atenção – TDAH Adulto",
-      href: "#",
-      disabled: true,
+      href: "/teste-tdah-adulto",
+      disabled: false,
     },
     {
       title: "Teste de Ansiedade – GAD-7",
-      href: "#",
-      disabled: true,
+      href: "/teste-ansiedade-gad7",
+      disabled: false,
     },
     {
       title: "Teste de Compulsão Alimentar",
