@@ -157,11 +157,23 @@ html {
     align-items: center;
     overflow: hidden;
     margin-top: 5rem;
-    background-image: url('../images/gabriel-lopes-banner-desk.jpg');
+    background-image: url('../images/hero-family.jpg');
     background-size: cover;
     background-position: center;
 }
 
+.hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, 
+        rgba(255, 255, 255, 0.95) 0%, 
+        rgba(255, 255, 255, 0.7) 40%, 
+        rgba(255, 255, 255, 0.2) 70%,
+        transparent 100%
+    );
+    z-index: 1;
+}
 
 /* Content */
 .hero-content {
@@ -211,7 +223,7 @@ html {
 /* Responsive - Show background image on tablet and above */
 @media (min-width: 768px) {
     .hero-section {
-        background-image: url('images/gabriel-lopes-banner-desk.jpg');
+        background-image: url('../images/hero-family.jpg');
         background-size: cover;
         background-position: center;
     }
