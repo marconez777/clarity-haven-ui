@@ -65,11 +65,28 @@ if ( empty( $options ) ) {
 	];
 }
 
+// Debug mode para facilitar diagnóstico
+if ( isset( $_GET['debug'] ) && current_user_can( 'administrator' ) ) {
+    error_log( "=== DEBUG TESTE ===" );
+    error_log( "Post ID: " . $post_id );
+    error_log( "Total de perguntas: " . count( $questions ) );
+    error_log( "Primeira pergunta: " . ( ! empty( $questions ) ? print_r( $questions[0], true ) : 'NENHUMA' ) );
+}
+
 // Lógica de processamento do formulário.
 if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
+    // Validação de segurança do nonce
+    if ( ! isset( $_POST['teste_nonce'] ) || ! wp_verify_nonce( $_POST['teste_nonce'], 'teste_form_action' ) ) {
+        wp_die( '⚠️ Erro de segurança: Token de validação inválido. Por favor, atualize a página e tente novamente.' );
+    }
+
     $action = $_POST['action'] ?? '';
 
-    if ( $action === 'start' && ! empty( $questions ) ) {
+    if ( $action === 'start' ) {
+        // Valida se existem perguntas configuradas
+        if ( empty( $questions ) ) {
+            wp_die( '⚠️ Erro: Este teste não possui perguntas configuradas. Por favor, configure as perguntas no painel administrativo.' );
+        }
         $_SESSION[ $session_key ] = [
             'step'             => 'questions',
             'current_question' => 0,
@@ -77,7 +94,18 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
             'final_score'      => 0,
         ];
     } elseif ( $action === 'answer' ) {
-        $answer_value = floatval( $_POST['answer'] ?? 0 );
+        // Valida se uma resposta foi selecionada
+        if ( ! isset( $_POST['answer'] ) || $_POST['answer'] === '' ) {
+            // Não processa, apenas redireciona sem avançar
+            $redirect_url = get_permalink();
+            if ( isset( $_GET['debug'] ) ) {
+                $redirect_url = add_query_arg( 'debug', '1', $redirect_url );
+            }
+            header( 'Location: ' . $redirect_url );
+            exit;
+        }
+        
+        $answer_value = floatval( $_POST['answer'] );
         $_SESSION[ $session_key ]['answers'][] = $answer_value;
 
         if ( $_SESSION[ $session_key ]['current_question'] < count( $questions ) - 1 ) {
