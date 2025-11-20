@@ -40,8 +40,8 @@ const Testes = () => {
     },
     {
       title: "Teste de Compulsão Alimentar",
-      href: "#",
-      disabled: true,
+      href: "/teste-compulsao-alimentar",
+      disabled: false,
     },
     {
       title: "Teste de Burnout",

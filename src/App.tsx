@@ -15,6 +15,7 @@ import TesteAnsiedadeGAD7 from "./pages/TesteAnsiedadeGAD7";
 import TesteBurnout from "./pages/TesteBurnout";
 import TesteTranstornoBipolar from "./pages/TesteTranstornoBipolar";
 import TesteSofrimentoMental from "./pages/TesteSofrimentoMental";
+import TesteCompulsaoAlimentar from "./pages/TesteCompulsaoAlimentar";
 import Testes from "./pages/Testes";
 import ModeloLocal from "./pages/ModeloLocal";
 import Ansiedade from "./pages/Ansiedade";
@@ -63,6 +64,7 @@ const App = () => (
             <Route path="/teste-burnout" element={<TesteBurnout />} />
             <Route path="/teste-transtorno-bipolar" element={<TesteTranstornoBipolar />} />
             <Route path="/teste-sofrimento-mental" element={<TesteSofrimentoMental />} />
+            <Route path="/teste-compulsao-alimentar" element={<TesteCompulsaoAlimentar />} />
             <Route path="/modelo-local" element={<ModeloLocal />} />
             <Route path="/ansiedade" element={<Ansiedade />} />
             <Route path="/transtorno-bipolar" element={<TranstornoBipolar />} />
