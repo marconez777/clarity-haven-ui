@@ -9,7 +9,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft, ArrowRight, Brain } from "lucide-react";
+import { ArrowLeft, ArrowRight, Brain, AlertCircle } from "lucide-react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 interface Question {
   id: number;
@@ -279,24 +280,30 @@ const TesteDepressaoPHQ9 = () => {
                           )}
                         </p>
                       </div>
+                      
+                      {finalScore >= 16 && (
+                        <div className="pt-2">
+                          <Button asChild size="lg" className="w-full sm:w-auto">
+                            <a href="https://wa.me/5511999999999?text=Olá! Gostaria de agendar uma consulta para avaliação." target="_blank" rel="noopener noreferrer">
+                              Agendar Consulta
+                            </a>
+                          </Button>
+                        </div>
+                      )}
                     </div>
 
-                    <div className="bg-[hsl(180,60%,85%)] dark:bg-[hsl(180,60%,25%)] p-4 rounded-lg">
-                      <p className="text-sm text-muted-foreground text-center">
+                    <Alert className="bg-[hsl(180,60%,85%)] dark:bg-[hsl(180,60%,25%)] border-[hsl(180,60%,50%)]">
+                      <AlertCircle className="h-5 w-5 text-[hsl(180,60%,40%)]" />
+                      <AlertDescription className="text-foreground">
                         <strong>Lembre-se:</strong> Este teste é apenas uma ferramenta de triagem. Um diagnóstico preciso requer avaliação profissional completa e multidisciplinar.
-                      </p>
-                    </div>
+                      </AlertDescription>
+                    </Alert>
                   </CardContent>
                 </Card>
 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex justify-center">
                   <Button onClick={restartTest} variant="outline" size="lg">
                     Refazer Teste
-                  </Button>
-                  <Button asChild size="lg">
-                    <a href="https://wa.me/5511999999999?text=Olá! Gostaria de agendar uma consulta para avaliação." target="_blank" rel="noopener noreferrer">
-                      Agendar Consulta
-                    </a>
                   </Button>
                 </div>
               </div>

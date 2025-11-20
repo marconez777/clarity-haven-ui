@@ -375,6 +375,16 @@ const TesteCompulsaoAlimentar = () => {
                             : "Sua pontuação está dentro da faixa que não sugere compulsão alimentar significativa no momento."}
                         </p>
                       </div>
+                      
+                      {isPositive && (
+                        <div className="pt-2">
+                          <Button asChild size="lg" className="w-full sm:w-auto">
+                            <a href="/contato">
+                              Agendar Consulta
+                            </a>
+                          </Button>
+                        </div>
+                      )}
                     </div>
 
                     <Alert className="bg-[hsl(180,60%,85%)] dark:bg-[hsl(180,60%,25%)] border-[hsl(180,60%,50%)]">
@@ -384,24 +394,18 @@ const TesteCompulsaoAlimentar = () => {
                         Um diagnóstico preciso requer avaliação profissional completa e multidisciplinar.
                       </AlertDescription>
                     </Alert>
-
-                    <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                      <Button
-                        variant="outline"
-                        onClick={restartTest}
-                        className="flex-1"
-                      >
-                        Refazer Teste
-                      </Button>
-                      <Button
-                        onClick={() => window.location.href = "/contato"}
-                        className="flex-1"
-                      >
-                        Agendar Consulta
-                      </Button>
-                    </div>
                   </CardContent>
                 </Card>
+
+                <div className="flex justify-center">
+                  <Button
+                    variant="outline"
+                    onClick={restartTest}
+                    size="lg"
+                  >
+                    Refazer Teste
+                  </Button>
+                </div>
               </div>
             )}
           </div>
