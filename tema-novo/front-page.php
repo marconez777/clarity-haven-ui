@@ -14,16 +14,14 @@ get_header();
 
 <main>
     <!-- Hero Section -->
-   <section class="hero-section">
-                       <div class="hero-text">
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
                     <h1 class="hero-title">Saúde Mental com acompanhamento completo</h1>
                     <p class="hero-description">Cuidado integral e humanizado para o seu bem-estar emocional e mental</p>
                     <a href="#contato" class="btn btn-primary btn-lg">Conheça a Clínica</a>
                 </div>
-    <div class="container">
-            <!-- Content -->
-            <div class="hero-content">
-
             </div>
         </div>
     </section>
