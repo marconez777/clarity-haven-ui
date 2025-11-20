@@ -162,13 +162,6 @@ html {
     background-position: center;
 }
 
-.hero-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-}
-
 /* Content */
 .hero-content {
     position: relative;
