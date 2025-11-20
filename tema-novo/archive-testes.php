@@ -1,7 +1,7 @@
 <?php
 /**
  * Archive Template for Testes Custom Post Type
- * Redirects to the main Testes page
+ * Loads the template-testes.php directly
  *
  * @package Tema_Novo
  */
@@ -10,6 +10,5 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-// Redirect to the main testes page (template-testes.php)
-wp_redirect( home_url( '/testes' ) );
-exit;
+// Load the testes template directly
+get_template_part( 'templates/template-testes' );
