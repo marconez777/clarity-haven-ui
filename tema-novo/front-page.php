@@ -13,14 +13,17 @@ get_header();
 ?>
 
 <main>
-    <!-- Hero Section - Iframe from Lovable -->
-    <section class="hero-section" style="padding: 0; min-height: 90vh;">
-        <iframe 
-            src="https://clarity-haven-ui.lovable.app" 
-            style="width: 100%; height: 90vh; border: none; display: block;"
-            title="Hero Section"
-            loading="eager">
-        </iframe>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Saúde Mental com acompanhamento completo</h1>
+                    <p class="hero-description">Cuidado integral e humanizado para o seu bem-estar emocional e mental</p>
+                    <a href="#contato" class="btn btn-primary btn-lg">Conheça a Clínica</a>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Principais Especialidades -->
