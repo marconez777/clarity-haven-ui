@@ -180,6 +180,18 @@ tema_novo_breadcrumbs();
 
     <!-- Posts Grid -->
     <section class="blog-posts-section">
+        <?php
+        // Force query to only show regular blog posts (type 'post'), not 'testes'
+        if ( ! is_category() && ! is_tag() && ! is_date() && ! is_author() ) {
+            $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+            $args = array(
+                'post_type' => 'post',
+                'posts_per_page' => get_option( 'posts_per_page' ),
+                'paged' => $paged,
+            );
+            query_posts( $args );
+        }
+        ?>
         <?php if ( have_posts() ) : ?>
             <div class="blog-posts-grid">
                     <?php while ( have_posts() ) : the_post(); ?>
