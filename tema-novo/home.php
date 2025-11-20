@@ -5,7 +5,7 @@
  */
 
 get_header();
-get_template_part('components/breadcrumbs');
+tema_novo_breadcrumbs();
 ?>
 
 <style>
