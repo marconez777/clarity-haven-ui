@@ -10,12 +10,12 @@ tema_novo_breadcrumbs();
 
 <style>
     .blog-hero {
-        padding: 2rem 0 4rem;
-        background: linear-gradient(to bottom right, hsl(var(--background)), hsl(var(--primary) / 0.05), hsl(var(--accent) / 0.05));
+        padding: 3rem 0 4rem;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(185, 223, 237, 0.1));
     }
 
     .blog-hero-content {
-        max-width: 48rem;
+        max-width: 1200px;
         margin: 0 auto;
         text-align: center;
         padding: 0 1rem;
@@ -40,13 +40,15 @@ tema_novo_breadcrumbs();
     }
 
     .blog-posts-section {
-        padding: 4rem 0;
+        padding: 3rem 0 4rem;
     }
 
     .blog-posts-grid {
         display: grid;
         grid-template-columns: 1fr;
         gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
         padding: 0 1rem;
     }
 
@@ -161,6 +163,9 @@ tema_novo_breadcrumbs();
         gap: 0.5rem;
         margin-top: 3rem;
         padding: 0 1rem;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .pagination .page-numbers {
@@ -200,9 +205,8 @@ tema_novo_breadcrumbs();
 
     <!-- Blog Posts Grid -->
     <section class="blog-posts-section">
-        <div class="container">
-            <?php if ( have_posts() ) : ?>
-                <div class="blog-posts-grid">
+        <?php if ( have_posts() ) : ?>
+            <div class="blog-posts-grid">
                     <?php while ( have_posts() ) : the_post(); 
                         $categories = get_the_category();
                         $category_name = !empty($categories) ? esc_html($categories[0]->name) : 'Sem categoria';
@@ -243,23 +247,22 @@ tema_novo_breadcrumbs();
                     <?php endwhile; ?>
                 </div>
 
-                <?php
-                // Paginação
-                the_posts_pagination(array(
-                    'mid_size' => 2,
-                    'prev_text' => '← Anterior',
-                    'next_text' => 'Próxima →',
-                    'class' => 'pagination'
-                ));
-                ?>
+            <?php
+            // Paginação
+            the_posts_pagination(array(
+                'mid_size' => 2,
+                'prev_text' => '← Anterior',
+                'next_text' => 'Próxima →',
+                'class' => 'pagination'
+            ));
+            ?>
 
-            <?php else : ?>
-                <div class="empty-state">
-                    <p>Nenhum post publicado ainda.</p>
-                    <p style="margin-top: 1rem; font-size: 0.875rem;">Em breve teremos novos conteúdos sobre saúde mental.</p>
-                </div>
-            <?php endif; ?>
-        </div>
+        <?php else : ?>
+            <div class="empty-state" style="max-width: 1200px; margin: 0 auto;">
+                <p>Nenhum post publicado ainda.</p>
+                <p style="margin-top: 1rem; font-size: 0.875rem;">Em breve teremos novos conteúdos sobre saúde mental.</p>
+            </div>
+        <?php endif; ?>
     </section>
 </main>
 
