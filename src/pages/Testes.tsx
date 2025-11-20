@@ -10,13 +10,13 @@ const Testes = () => {
   const testes = [
     {
       title: "Teste de Autismo Adulto – AQ-10",
-      href: "#",
-      disabled: true,
+      href: "/teste-autismo-aq10",
+      disabled: false,
     },
     {
       title: "Teste de Autismo Adulto – AQ-50",
-      href: "#",
-      disabled: true,
+      href: "/teste-autismo-aq50",
+      disabled: false,
     },
     {
       title: "Teste de Depressão – PHQ9",
