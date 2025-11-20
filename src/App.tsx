@@ -9,6 +9,9 @@ import TDAH from "./pages/TDAH";
 import TesteTDAH from "./pages/TesteTDAH";
 import TesteAutismoAQ10 from "./pages/TesteAutismoAQ10";
 import TesteAutismoAQ50 from "./pages/TesteAutismoAQ50";
+import TesteDepressaoPHQ9 from "./pages/TesteDepressaoPHQ9";
+import TesteTDAHAdulto from "./pages/TesteTDAHAdulto";
+import TesteAnsiedadeGAD7 from "./pages/TesteAnsiedadeGAD7";
 import Testes from "./pages/Testes";
 import ModeloLocal from "./pages/ModeloLocal";
 import Ansiedade from "./pages/Ansiedade";
@@ -51,6 +54,9 @@ const App = () => (
             <Route path="/teste-tdah-hiperatividade" element={<TesteTDAH />} />
             <Route path="/teste-autismo-aq10" element={<TesteAutismoAQ10 />} />
             <Route path="/teste-autismo-aq50" element={<TesteAutismoAQ50 />} />
+            <Route path="/teste-depressao-phq9" element={<TesteDepressaoPHQ9 />} />
+            <Route path="/teste-tdah-adulto" element={<TesteTDAHAdulto />} />
+            <Route path="/teste-ansiedade-gad7" element={<TesteAnsiedadeGAD7 />} />
             <Route path="/modelo-local" element={<ModeloLocal />} />
             <Route path="/ansiedade" element={<Ansiedade />} />
             <Route path="/transtorno-bipolar" element={<TranstornoBipolar />} />
