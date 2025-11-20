@@ -12,6 +12,9 @@ import TesteAutismoAQ50 from "./pages/TesteAutismoAQ50";
 import TesteDepressaoPHQ9 from "./pages/TesteDepressaoPHQ9";
 import TesteTDAHAdulto from "./pages/TesteTDAHAdulto";
 import TesteAnsiedadeGAD7 from "./pages/TesteAnsiedadeGAD7";
+import TesteBurnout from "./pages/TesteBurnout";
+import TesteTranstornoBipolar from "./pages/TesteTranstornoBipolar";
+import TesteSofrimentoMental from "./pages/TesteSofrimentoMental";
 import Testes from "./pages/Testes";
 import ModeloLocal from "./pages/ModeloLocal";
 import Ansiedade from "./pages/Ansiedade";
@@ -57,6 +60,9 @@ const App = () => (
             <Route path="/teste-depressao-phq9" element={<TesteDepressaoPHQ9 />} />
             <Route path="/teste-tdah-adulto" element={<TesteTDAHAdulto />} />
             <Route path="/teste-ansiedade-gad7" element={<TesteAnsiedadeGAD7 />} />
+            <Route path="/teste-burnout" element={<TesteBurnout />} />
+            <Route path="/teste-transtorno-bipolar" element={<TesteTranstornoBipolar />} />
+            <Route path="/teste-sofrimento-mental" element={<TesteSofrimentoMental />} />
             <Route path="/modelo-local" element={<ModeloLocal />} />
             <Route path="/ansiedade" element={<Ansiedade />} />
             <Route path="/transtorno-bipolar" element={<TranstornoBipolar />} />

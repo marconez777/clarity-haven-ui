@@ -45,18 +45,18 @@ const Testes = () => {
     },
     {
       title: "Teste de Burnout",
-      href: "#",
-      disabled: true,
+      href: "/teste-burnout",
+      disabled: false,
     },
     {
       title: "Teste de Transtorno Bipolar",
-      href: "#",
-      disabled: true,
+      href: "/teste-transtorno-bipolar",
+      disabled: false,
     },
     {
       title: "Teste de Sofrimento Mental",
-      href: "#",
-      disabled: true,
+      href: "/teste-sofrimento-mental",
+      disabled: false,
     },
   ];
 
