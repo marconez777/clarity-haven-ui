@@ -159,7 +159,7 @@ const TesteAutismoAQ50 = () => {
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
                     <Brain className="w-8 h-8 text-primary" />
                   </div>
-                  <h1 className="text-3xl md:text-4xl font-bold text-primary">
+                  <h1 className="text-3xl md:text-4xl font-bold text-foreground">
                     Teste de Autismo Adulto AQ-50
                   </h1>
                   <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -176,12 +176,12 @@ const TesteAutismoAQ50 = () => {
                       O AQ-50 é o Quociente do Espectro Autista completo, desenvolvido para uma avaliação 
                       abrangente de características associadas ao espectro autista em adultos.
                     </p>
-                    <div className="bg-accent/50 p-4 rounded-lg space-y-2">
-                      <h3 className="font-semibold">Como funciona:</h3>
+                    <div className="bg-[hsl(180,60%,85%)] dark:bg-[hsl(180,60%,25%)] p-4 rounded-lg space-y-2">
+                      <h3 className="font-semibold text-foreground">Como funciona:</h3>
                       <ul className="space-y-2 text-sm text-muted-foreground">
                         <li className="flex items-start gap-2">
                           <span className="text-primary">•</span>
-                          <span>50 perguntas sobre comportamentos, interações sociais e preferências</span>
+                          <span>{questions.length} perguntas sobre comportamentos, interações sociais e preferências</span>
                         </li>
                         <li className="flex items-start gap-2">
                           <span className="text-primary">•</span>
@@ -197,8 +197,8 @@ const TesteAutismoAQ50 = () => {
                         </li>
                       </ul>
                     </div>
-                    <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 p-4 rounded-lg">
-                      <p className="text-sm font-medium text-yellow-900 dark:text-yellow-200">
+                    <div className="bg-[hsl(45,100%,95%)] dark:bg-[hsl(45,100%,15%)] border border-[hsl(45,100%,70%)] dark:border-[hsl(45,100%,30%)] p-4 rounded-lg">
+                      <p className="text-sm font-medium text-[hsl(45,100%,20%)] dark:text-[hsl(45,100%,80%)]">
                         <strong>Importante:</strong> Este teste não substitui uma avaliação médica profissional. 
                         Os resultados são apenas indicativos e devem ser interpretados por um profissional de saúde qualificado.
                       </p>
@@ -294,13 +294,13 @@ const TesteAutismoAQ50 = () => {
                 <Card>
                   <CardContent className="pt-6 space-y-6">
                     <div className="text-center space-y-4">
-                      <div className="inline-flex flex-col items-center justify-center w-32 h-32 rounded-full bg-primary/10 border-4 border-primary">
+                      <div className="inline-flex flex-col items-center justify-center w-32 h-32 rounded-full bg-[hsl(var(--primary)/0.1)] border-4 border-primary">
                         <span className="text-4xl font-bold text-primary">{finalScore}</span>
                         <span className="text-sm text-muted-foreground">de {questions.length} pontos</span>
                       </div>
 
                       <div className="space-y-2">
-                        <h2 className="text-2xl font-bold">
+                        <h2 className="text-2xl font-bold text-foreground">
                           {finalScore >= 25 ? "Resultado Positivo" : "Resultado Negativo"}
                         </h2>
                         <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -312,18 +312,18 @@ const TesteAutismoAQ50 = () => {
                             </>
                           ) : (
                             <>
-                              Sua pontuação de {finalScore} pontos está abaixo do indicativo. Se você sente que suas 
-                              experiências afetam sua qualidade de vida, não hesite em buscar orientação profissional.
+                              Sua pontuação de {finalScore} pontos está abaixo do indicativo. No entanto, se você 
+                              identifica dificuldades significativas no seu dia a dia, considere conversar com um 
+                              profissional de saúde mental.
                             </>
                           )}
                         </p>
                       </div>
                     </div>
 
-                    <div className="bg-accent/50 p-4 rounded-lg">
+                    <div className="bg-[hsl(180,60%,85%)] dark:bg-[hsl(180,60%,25%)] p-4 rounded-lg">
                       <p className="text-sm text-muted-foreground text-center">
-                        <strong>Lembre-se:</strong> Este teste é apenas uma ferramenta de triagem. 
-                        Um diagnóstico preciso requer avaliação profissional completa e multidisciplinar.
+                        <strong>Lembre-se:</strong> Este teste é apenas uma ferramenta de triagem. Um diagnóstico preciso requer avaliação profissional completa e multidisciplinar.
                       </p>
                     </div>
                   </CardContent>

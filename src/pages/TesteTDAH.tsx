@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { Brain, CheckCircle2, RefreshCw } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Brain, ArrowLeft, ArrowRight } from "lucide-react";
 
 interface Question {
   id: number;
@@ -69,50 +68,40 @@ const TesteTDAH = () => {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [finalScore, setFinalScore] = useState(0);
 
-  const progress = ((currentQuestion + 1) / questions.length) * 100;
-  const averageScore = 4.6; // Média fornecida no exemplo
+  const totalPossibleScore = questions.length * 1.35;
 
-  // Scroll to top when question or step changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentQuestion, currentStep]);
 
   const startTest = () => {
     setCurrentStep("questions");
-    setCurrentQuestion(0);
     setAnswers([]);
+    setCurrentQuestion(0);
     setSelectedAnswer(null);
   };
 
   const handleAnswer = () => {
     if (selectedAnswer === null) return;
 
-    const newAnswers = [...answers, selectedAnswer];
+    const newAnswers = [...answers];
+    newAnswers[currentQuestion] = selectedAnswer;
     setAnswers(newAnswers);
-
-    // Reset selection immediately
-    setSelectedAnswer(null);
 
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
+      setSelectedAnswer(newAnswers[currentQuestion + 1] ?? null);
     } else {
-      // Calcular pontuação final (soma direta dos pontos)
       const sum = newAnswers.reduce((acc, val) => acc + val, 0);
-      const score = parseFloat(sum.toFixed(1));
-      setFinalScore(score);
+      setFinalScore(sum);
       setCurrentStep("results");
     }
   };
 
   const handleBack = () => {
     if (currentQuestion > 0) {
-      // Remove last answer from array first
-      const newAnswers = answers.slice(0, -1);
-      setAnswers(newAnswers);
-      // Move to previous question
       setCurrentQuestion(currentQuestion - 1);
-      // Restore previous answer (the one before the last)
-      setSelectedAnswer(newAnswers[currentQuestion - 1] ?? null);
+      setSelectedAnswer(answers[currentQuestion - 1] ?? null);
     }
   };
 
@@ -124,230 +113,222 @@ const TesteTDAH = () => {
     setFinalScore(0);
   };
 
+  const progress = ((currentQuestion + 1) / questions.length) * 100;
+
   return (
     <>
       <Helmet>
         <title>Teste de TDAH Online Gratuito | Dr. Gabriel Lopes</title>
         <meta
           name="description"
-          content="Faça o teste de TDAH online gratuito em 2 minutos. Descubra se você apresenta sintomas que indicam necessidade de avaliação profissional."
+          content="Faça o teste de TDAH online gratuito. Questionário rápido para identificar sintomas de TDAH. Resultado imediato."
         />
-        <meta name="keywords" content="teste tdah, teste tdah online, teste tdah gratuito, sintomas tdah" />
+        <meta
+          name="keywords"
+          content="teste tdah, teste tdah online, tdah adulto, teste hiperatividade"
+        />
+        <link rel="canonical" href="https://drgabriellopes.com.br/teste-tdah" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">
         <Navigation />
-        <Breadcrumbs items={[{ label: "Testes", href: "/testes" }, { label: "Teste de TDAH" }]} />
+        <Breadcrumbs
+          items={[
+            { label: "Testes", href: "/testes" },
+            { label: "Teste de TDAH" },
+          ]}
+        />
 
-        <main className="flex-1">
-          {/* Welcome Screen */}
-          {currentStep === "welcome" && (
-            <section className="pt-28 pb-12 md:py-24 px-4">
-              <div className="container max-w-3xl mx-auto">
-                <div className="text-center mb-8 md:mb-12 animate-fade-in">
-                  <Brain className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 text-primary" />
-                  <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6">Teste de TDAH Online Gratuito</h1>
-                  <p className="text-lg md:text-xl text-muted-foreground mb-8">
-                    Este teste é baseado em critérios clínicos e ajuda a identificar possíveis sintomas de TDAH. Leva
-                    apenas 2 minutos para completar.
+        <main className="flex-grow py-12">
+          <div className="container mx-auto px-4 max-w-3xl">
+            {/* Welcome Screen */}
+            {currentStep === "welcome" && (
+              <div className="space-y-8 animate-fade-in">
+                <div className="text-center space-y-4">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+                    <Brain className="w-8 h-8 text-primary" />
+                  </div>
+                  <h1 className="text-3xl md:text-4xl font-bold text-foreground">
+                    Teste de TDAH Online Gratuito
+                  </h1>
+                  <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                    Este teste é baseado em critérios clínicos e ajuda a identificar possíveis sintomas de TDAH.
                   </p>
                 </div>
 
-                <Card className="backdrop-blur-sm bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20 animate-scale-in">
+                <Card>
                   <CardHeader>
-                    <CardTitle className="text-2xl">Antes de começar</CardTitle>
-                    <CardDescription className="text-base">
-                      Responda às 9 perguntas com sinceridade, pensando no seu comportamento nos últimos 6 meses.
-                    </CardDescription>
+                    <CardTitle>Sobre este teste</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="flex items-start gap-3 p-4 bg-background/50 rounded-lg">
-                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                      <p className="text-sm">São apenas 9 perguntas de múltipla escolha</p>
+                    <p className="text-muted-foreground">
+                      Este questionário ajuda a identificar sintomas de TDAH baseado em critérios validados cientificamente.
+                    </p>
+                    <div className="bg-[hsl(180,60%,85%)] dark:bg-[hsl(180,60%,25%)] p-4 rounded-lg space-y-2">
+                      <h3 className="font-semibold text-foreground">Como funciona:</h3>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        <li className="flex items-start gap-2">
+                          <span className="text-primary">•</span>
+                          <span>{questions.length} perguntas sobre comportamentos nos últimos 6 meses</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-primary">•</span>
+                          <span>Responda com sinceridade - não há respostas certas ou erradas</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-primary">•</span>
+                          <span>Leva aproximadamente 2 minutos</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-primary">•</span>
+                          <span>Resultado imediato ao final</span>
+                        </li>
+                      </ul>
                     </div>
-                    <div className="flex items-start gap-3 p-4 bg-background/50 rounded-lg">
-                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                      <p className="text-sm">Não existe resposta certa ou errada</p>
+                    <div className="bg-[hsl(45,100%,95%)] dark:bg-[hsl(45,100%,15%)] border border-[hsl(45,100%,70%)] dark:border-[hsl(45,100%,30%)] p-4 rounded-lg">
+                      <p className="text-sm font-medium text-[hsl(45,100%,20%)] dark:text-[hsl(45,100%,80%)]">
+                        <strong>Importante:</strong> Este teste não substitui uma avaliação médica profissional. 
+                        Os resultados são apenas indicativos e devem ser interpretados por um profissional de saúde qualificado.
+                      </p>
                     </div>
-                    <div className="flex items-start gap-3 p-4 bg-background/50 rounded-lg">
-                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                      <p className="text-sm">O resultado é imediato e gratuito</p>
-                    </div>
-
-                    <Button onClick={startTest} size="lg" className="w-full mt-6 text-lg h-14">
-                      Iniciar Teste
-                    </Button>
                   </CardContent>
                 </Card>
 
-                <p className="text-sm text-muted-foreground text-center mt-6 max-w-2xl mx-auto">
-                  <strong>Atenção:</strong> Este teste não substitui uma avaliação psiquiátrica profissional. O
-                  resultado não serve como diagnóstico conclusivo nem tem validade jurídica.
-                </p>
+                <div className="text-center">
+                  <Button onClick={startTest} size="lg" className="gap-2">
+                    Iniciar Teste
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </div>
               </div>
-            </section>
-          )}
+            )}
 
-          {/* Questions Screen */}
-          {currentStep === "questions" && (
-            <section className="pt-28 md:pt-32 pb-8 md:pb-16 px-4">
-              <div className="container max-w-3xl mx-auto">
-                {/* Progress Bar */}
-                <div className="mb-8 md:mb-12 animate-fade-in">
-                  <div className="flex justify-between items-center mb-3">
-                    <span className="text-sm font-medium text-muted-foreground">
-                      Questão {currentQuestion + 1} de {questions.length}
-                    </span>
-                    <span className="text-sm font-medium text-primary">{Math.round(progress)}%</span>
+            {/* Questions Screen */}
+            {currentStep === "questions" && (
+              <div className="space-y-6 animate-fade-in">
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-sm text-muted-foreground">
+                    <span>Pergunta {currentQuestion + 1} de {questions.length}</span>
+                    <span>{Math.round(progress)}%</span>
                   </div>
                   <Progress value={progress} className="h-2" />
                 </div>
 
-                {/* Question Card */}
-                <Card className="backdrop-blur-sm bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20 animate-in fade-in slide-in-from-right duration-500">
+                <Card>
                   <CardHeader>
-                    <CardTitle className="text-xl md:text-2xl leading-relaxed">
+                    <CardTitle className="text-xl">
                       {questions[currentQuestion].text}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <RadioGroup
-                      key={currentQuestion}
                       value={selectedAnswer?.toString()}
-                      onValueChange={(value) => setSelectedAnswer(parseFloat(value))}
-                      className="flex flex-col gap-3"
+                      onValueChange={(value) => setSelectedAnswer(Number(value))}
+                      className="space-y-3"
                     >
                       {options.map((option) => (
-                        <div key={option.value}>
-                          <RadioGroupItem
-                            value={option.value.toString()}
-                            id={`option-${option.value}`}
-                            className="peer sr-only"
-                          />
+                        <div
+                          key={option.value}
+                          className="flex items-center space-x-3 p-4 rounded-lg border-2 border-border hover:border-primary/50 transition-colors cursor-pointer"
+                          onClick={() => setSelectedAnswer(option.value)}
+                        >
+                          <RadioGroupItem value={option.value.toString()} id={`option-${option.value}`} />
                           <Label
                             htmlFor={`option-${option.value}`}
-                            className="flex items-center justify-start rounded-lg border-2 border-muted bg-background/50 p-4 md:p-6 hover:bg-accent hover:border-primary cursor-pointer transition-all peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/10 peer-data-[state=checked]:shadow-lg min-h-[64px] font-medium w-full"
+                            className="flex-1 cursor-pointer font-medium"
                           >
                             {option.text}
                           </Label>
                         </div>
                       ))}
                     </RadioGroup>
-
-                    <div className="flex gap-3 mt-6 md:mt-8">
-                      {currentQuestion > 0 && (
-                        <Button
-                          onClick={handleBack}
-                          variant="ghost"
-                          size="sm"
-                          className="text-muted-foreground hover:text-foreground"
-                        >
-                          ← Voltar
-                        </Button>
-                      )}
-                      <Button
-                        onClick={handleAnswer}
-                        disabled={selectedAnswer === null}
-                        size="lg"
-                        className="flex-1 text-lg h-12 md:h-14 ml-auto"
-                      >
-                        {currentQuestion < questions.length - 1 ? "Próxima →" : "Ver Resultado"}
-                      </Button>
-                    </div>
                   </CardContent>
                 </Card>
-              </div>
-            </section>
-          )}
 
-          {/* Results Screen */}
-          {currentStep === "results" && (
-            <section className="pt-28 pb-12 md:py-24 px-4">
-              <div className="container max-w-3xl mx-auto">
-                <div className="text-center mb-8 md:mb-12 animate-fade-in">
-                  <h1 className="text-3xl md:text-5xl font-bold mb-4">Seu Resultado</h1>
-                  <p className="text-lg md:text-xl text-muted-foreground">Obrigado por fazer o nosso teste!</p>
+                <div className="flex justify-between gap-4">
+                  <Button
+                    onClick={handleBack}
+                    variant="outline"
+                    disabled={currentQuestion === 0}
+                    className="gap-2"
+                  >
+                    <ArrowLeft className="w-4 h-4" />
+                    Anterior
+                  </Button>
+                  <Button
+                    onClick={handleAnswer}
+                    disabled={selectedAnswer === null}
+                    className="gap-2"
+                  >
+                    {currentQuestion === questions.length - 1 ? "Ver Resultado" : "Próxima"}
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </div>
+              </div>
+            )}
+
+            {/* Results Screen */}
+            {currentStep === "results" && (
+              <div className="space-y-8 animate-fade-in">
+                <div className="text-center space-y-4">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+                    <Brain className="w-8 h-8 text-primary" />
+                  </div>
+                  <h1 className="text-3xl md:text-4xl font-bold text-primary">
+                    Resultado do Teste
+                  </h1>
                 </div>
 
-                <Card className="backdrop-blur-sm bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20 mb-6 animate-scale-in">
-                  <CardContent className="pt-8 pb-8">
-                    <div className="text-center mb-8">
-                      <div className="inline-flex items-center justify-center w-32 h-32 rounded-full bg-primary/10 border-4 border-primary mb-4">
-                        <span className="text-5xl font-bold text-primary">{finalScore}</span>
+                <Card>
+                  <CardContent className="pt-6 space-y-6">
+                    <div className="text-center space-y-4">
+                      <div className="inline-flex flex-col items-center justify-center w-32 h-32 rounded-full bg-[hsl(var(--primary)/0.1)] border-4 border-primary">
+                        <span className="text-4xl font-bold text-primary">{finalScore.toFixed(1)}</span>
+                        <span className="text-sm text-muted-foreground">de {totalPossibleScore.toFixed(1)} pontos</span>
                       </div>
-                      <p className="text-sm text-muted-foreground">Sua pontuação</p>
-                    </div>
 
-                    {finalScore >= 4 ? (
-                      <div className="space-y-6">
-                        <div className="p-6 bg-primary/10 rounded-lg border border-primary/20">
-                          <p className="text-lg font-semibold mb-2">Resultado indicativo de avaliação médica</p>
-                          <p className="text-muted-foreground">
-                            Neste teste é considerado resultado indicativo de avaliação médica pontuações iguais ou
-                            acima de 4. Seus sintomas sugerem que uma consulta com um profissional seria importante.
-                          </p>
-                        </div>
-
-                        <Button
-                          size="lg"
-                          className="w-full text-lg h-14"
-                          onClick={() => window.open("https://wa.me/5511999999999", "_blank")}
-                        >
-                          Agendar Consulta
-                        </Button>
-                      </div>
-                    ) : (
-                      <div className="p-6 bg-accent/10 rounded-lg border border-accent/20">
-                        <p className="text-lg font-semibold mb-2">Resultado abaixo do indicativo</p>
-                        <p className="text-muted-foreground">
-                          Sua pontuação está abaixo de 4. No entanto, se você sente que os sintomas afetam sua qualidade
-                          de vida, considere conversar com um profissional de saúde mental.
+                      <div className="space-y-2">
+                        <h2 className="text-2xl font-bold text-foreground">
+                          {finalScore >= 5 ? "Resultado Positivo" : "Resultado Negativo"}
+                        </h2>
+                        <p className="text-muted-foreground max-w-2xl mx-auto">
+                          {finalScore >= 5 ? (
+                            <>
+                              Sua pontuação de {finalScore.toFixed(1)} pontos sugere a presença de sintomas compatíveis com TDAH. 
+                              Recomendamos uma avaliação com um profissional especializado para uma análise detalhada.
+                            </>
+                          ) : (
+                            <>
+                              Sua pontuação de {finalScore.toFixed(1)} pontos está abaixo do indicativo de TDAH. No entanto, se você 
+                              identifica dificuldades significativas no seu dia a dia, considere conversar com um 
+                              profissional de saúde mental.
+                            </>
+                          )}
                         </p>
                       </div>
-                    )}
+                    </div>
 
-                    <div className="grid grid-cols-2 gap-4 mt-8 p-4 bg-background/50 rounded-lg">
-                      <div className="text-center">
-                        <p className="text-2xl font-bold text-primary">{finalScore}</p>
-                        <p className="text-sm text-muted-foreground">Seus pontos</p>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-2xl font-bold text-primary">{averageScore}</p>
-                        <p className="text-sm text-muted-foreground">Média de pontos</p>
-                      </div>
+                    <div className="bg-[hsl(180,60%,85%)] dark:bg-[hsl(180,60%,25%)] p-4 rounded-lg">
+                      <p className="text-sm text-muted-foreground text-center">
+                        <strong>Lembre-se:</strong> Este teste é apenas uma ferramenta de triagem. Um diagnóstico preciso requer avaliação profissional completa e multidisciplinar.
+                      </p>
                     </div>
                   </CardContent>
                 </Card>
 
-                <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                  <Button variant="outline" size="lg" onClick={restartTest} className="flex-1">
-                    <RefreshCw className="w-4 h-4 mr-2" />
-                    Fazer Outro Teste
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button onClick={restartTest} variant="outline" size="lg">
+                    Refazer Teste
                   </Button>
-                  <Button variant="outline" size="lg" asChild className="flex-1">
-                    <Link to="/blog">Ver Artigos do Blog</Link>
+                  <Button asChild size="lg">
+                    <a href="https://wa.me/5511999999999?text=Olá! Gostaria de agendar uma consulta para avaliação de TDAH." target="_blank" rel="noopener noreferrer">
+                      Agendar Consulta
+                    </a>
                   </Button>
                 </div>
-
-                <Card className="bg-muted/50">
-                  <CardContent className="pt-6">
-                    <p className="text-sm text-muted-foreground space-y-2">
-                      <strong className="block text-foreground">Atenção:</strong>
-                      <span className="block">• Nenhum teste substitui uma avaliação psiquiátrica.</span>
-                      <span className="block">
-                        • O resultado deste teste não serve como diagnóstico conclusivo nem tem validade jurídica ou
-                        como atestado médico, para nenhuma finalidade.
-                      </span>
-                      <span className="block">
-                        • Não inicie nenhum tratamento baseado no resultado de qualquer teste da internet, sem uma
-                        consulta médica antes.
-                      </span>
-                    </p>
-                  </CardContent>
-                </Card>
               </div>
-            </section>
-          )}
+            )}
+          </div>
         </main>
 
         <Footer />
