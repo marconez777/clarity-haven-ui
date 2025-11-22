@@ -70,7 +70,7 @@ const Navigation = () => {
             
             {/* Dropdown Especialidades */}
             <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-              <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
+              <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen} modal={false}>
                 <DropdownMenuTrigger asChild>
                   <a href="/especialidades" className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary transition-all duration-200 focus:outline-none focus-visible:outline-none data-[state=open]:text-primary">
                     Especialidades
