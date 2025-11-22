@@ -39,6 +39,7 @@ import CategoryManager from "@/pages/admin/categories/CategoryManager";
 import PageList from "@/pages/admin/pages/PageList";
 import PageEditor from "@/pages/admin/pages/PageEditor";
 import WordPressImport from "@/pages/admin/import/WordPressImport";
+import LocalPage from "@/pages/LocalPage";
 
 const queryClient = new QueryClient();
 
@@ -87,7 +88,8 @@ const App = () => (
               <Route path="import" element={<WordPressImport />} />
             </Route>
             
-            {/* Dynamic blog post route - BEFORE catch-all */}
+            {/* Dynamic routes - BEFORE catch-all */}
+            <Route path="/local/:slug" element={<LocalPage />} />
             <Route path="/:slug" element={<BlogPost />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
