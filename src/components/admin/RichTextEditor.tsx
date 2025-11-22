@@ -1,10 +1,11 @@
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Link from '@tiptap/extension-link';
+import Paragraph from '@tiptap/extension-paragraph';
 import { Button } from '@/components/ui/button';
 import { 
   Bold, Italic, List, ListOrdered, 
-  Heading1, Heading2, Heading3, Link as LinkIcon 
+  Heading1, Heading2, Heading3, Link as LinkIcon, PilcrowIcon 
 } from 'lucide-react';
 
 interface RichTextEditorProps {
@@ -15,7 +16,24 @@ interface RichTextEditorProps {
 const RichTextEditor = ({ content, onChange }: RichTextEditorProps) => {
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        paragraph: {
+          HTMLAttributes: {
+            class: 'mb-4',
+          },
+        },
+        heading: {
+          levels: [1, 2, 3],
+          HTMLAttributes: {
+            class: 'font-bold mb-3 mt-6',
+          },
+        },
+      }),
+      Paragraph.configure({
+        HTMLAttributes: {
+          class: 'mb-4',
+        },
+      }),
       Link.configure({
         openOnClick: false,
         HTMLAttributes: {
@@ -26,6 +44,11 @@ const RichTextEditor = ({ content, onChange }: RichTextEditorProps) => {
     content,
     onUpdate: ({ editor }) => {
       onChange(editor.getHTML());
+    },
+    editorProps: {
+      attributes: {
+        class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-xl focus:outline-none min-h-[400px] p-4',
+      },
     },
   });
 
@@ -67,6 +90,16 @@ const RichTextEditor = ({ content, onChange }: RichTextEditorProps) => {
           className={editor.isActive('heading', { level: 3 }) ? 'bg-accent' : ''}
         >
           <Heading3 className="w-4 h-4" />
+        </Button>
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          onClick={() => editor.chain().focus().setParagraph().run()}
+          className={editor.isActive('paragraph') ? 'bg-accent' : ''}
+          title="Parágrafo normal"
+        >
+          <PilcrowIcon className="w-4 h-4" />
         </Button>
         <div className="w-px h-6 bg-border mx-1" />
         <Button
@@ -120,7 +153,7 @@ const RichTextEditor = ({ content, onChange }: RichTextEditorProps) => {
 
       <EditorContent 
         editor={editor}
-        className="prose max-w-none p-4 min-h-[400px] focus:outline-none"
+        className="prose prose-slate max-w-none focus:outline-none [&_.ProseMirror]:min-h-[400px] [&_.ProseMirror]:p-4 [&_.ProseMirror_p]:mb-4 [&_.ProseMirror_h1]:text-3xl [&_.ProseMirror_h1]:font-bold [&_.ProseMirror_h1]:mb-4 [&_.ProseMirror_h1]:mt-6 [&_.ProseMirror_h2]:text-2xl [&_.ProseMirror_h2]:font-bold [&_.ProseMirror_h2]:mb-3 [&_.ProseMirror_h2]:mt-5 [&_.ProseMirror_h3]:text-xl [&_.ProseMirror_h3]:font-bold [&_.ProseMirror_h3]:mb-3 [&_.ProseMirror_h3]:mt-4"
       />
     </div>
   );
