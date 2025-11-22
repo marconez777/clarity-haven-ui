@@ -40,7 +40,7 @@ const Navigation = () => {
   const handleMouseLeave = () => {
     closeTimerRef.current = setTimeout(() => {
       setIsDropdownOpen(false);
-    }, 1000);
+    }, 500);
   };
 
   return (
