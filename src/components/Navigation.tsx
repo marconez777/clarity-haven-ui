@@ -77,7 +77,11 @@ const Navigation = () => {
                     <ChevronDown size={16} className={`transition-transform duration-300 ease-out ${isDropdownOpen ? 'rotate-180' : ''}`} />
                   </a>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-background/95 backdrop-blur-md border border-border/50 shadow-lg animate-in fade-in-0 slide-in-from-top-2 duration-300 min-w-[200px]">
+                <DropdownMenuContent 
+                  className="bg-background/95 backdrop-blur-md border border-border/50 shadow-lg min-w-[200px] data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out"
+                  sideOffset={8}
+                  onCloseAutoFocus={(e) => e.preventDefault()}
+                >
                   {especialidadesItems.map((item) => (
                     <DropdownMenuItem key={item.name} asChild>
                       <a href={item.href} className="cursor-pointer text-foreground hover:text-primary hover:bg-accent/50 transition-all duration-200 rounded-sm px-3 py-2">
