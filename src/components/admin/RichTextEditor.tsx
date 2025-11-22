@@ -1,7 +1,6 @@
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Link from '@tiptap/extension-link';
-import Paragraph from '@tiptap/extension-paragraph';
 import { Button } from '@/components/ui/button';
 import { 
   Bold, Italic, List, ListOrdered, 
@@ -27,11 +26,6 @@ const RichTextEditor = ({ content, onChange }: RichTextEditorProps) => {
           HTMLAttributes: {
             class: 'font-bold mb-3 mt-6',
           },
-        },
-      }),
-      Paragraph.configure({
-        HTMLAttributes: {
-          class: 'mb-4',
         },
       }),
       Link.configure({
