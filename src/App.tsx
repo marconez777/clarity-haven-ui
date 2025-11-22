@@ -18,6 +18,7 @@ import TesteSofrimentoMental from "./pages/TesteSofrimentoMental";
 import TesteCompulsaoAlimentar from "./pages/TesteCompulsaoAlimentar";
 import Testes from "./pages/Testes";
 import ModeloLocal from "./pages/ModeloLocal";
+import ConsultaTDAHOnline from "./pages/ConsultaTDAHOnline";
 import Ansiedade from "./pages/Ansiedade";
 import TranstornoBipolar from "./pages/TranstornoBipolar";
 import Team from "./pages/Team";
@@ -67,6 +68,7 @@ const App = () => (
             <Route path="/teste-sofrimento-mental" element={<TesteSofrimentoMental />} />
             <Route path="/teste-compulsao-alimentar" element={<TesteCompulsaoAlimentar />} />
             <Route path="/modelo-local" element={<ModeloLocal />} />
+            <Route path="/consulta-para-tdah-online" element={<ConsultaTDAHOnline />} />
             <Route path="/ansiedade" element={<Ansiedade />} />
             <Route path="/transtorno-bipolar" element={<TranstornoBipolar />} />
             <Route path="/depressao" element={<Depressao />} />
