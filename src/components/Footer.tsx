@@ -8,21 +8,13 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Logo e Descrição */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
+            <a href="/" className="inline-block mb-4">
               <img 
                 src={logo}
-                alt="Logo Dr Gabriel Lopes" 
-                className="h-12 w-12"
+                alt="Dr Gabriel Lopes - Saúde Mental Integrada" 
+                className="h-12 w-auto"
               />
-              <div className="flex flex-col">
-                <span className="text-xs font-light text-primary uppercase tracking-wider">
-                  Saúde Mental Integrada
-                </span>
-                <span className="text-xl font-bold text-primary">
-                  Dr Gabriel Lopes
-                </span>
-              </div>
-            </div>
+            </a>
             <p className="text-muted-foreground">
               Cuidado integral e humanizado para o seu bem-estar emocional e mental.
             </p>
