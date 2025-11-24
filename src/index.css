@@ -157,7 +157,7 @@ All colors MUST be HSL.
   }
 
   .blog-content p {
-    @apply mb-6 text-base leading-relaxed;
+    @apply mb-8 text-base leading-relaxed;
   }
 
   .blog-content strong {
