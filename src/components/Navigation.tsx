@@ -102,7 +102,7 @@ const Navigation = () => {
                 {item.name}
               </a>
             ))}
-            <Button className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all">
+            <Button className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://agendarconsulta.com/perfil/dr-gabriel-magalhaes-lopes-1618791448?origin=profile_search', '_blank')}>
               Agendamento on-line
             </Button>
           </div>
@@ -159,7 +159,7 @@ const Navigation = () => {
                   {item.name}
                 </a>
               ))}
-              <Button className="w-full bg-gradient-to-r from-primary to-accent text-white">
+              <Button className="w-full bg-gradient-to-r from-primary to-accent text-white" onClick={() => window.open('https://agendarconsulta.com/perfil/dr-gabriel-magalhaes-lopes-1618791448?origin=profile_search', '_blank')}>
                 Agendamento on-line
               </Button>
             </div>

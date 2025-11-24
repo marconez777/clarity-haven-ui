@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -36,11 +37,11 @@ const TranstornoBipolar = () => {
                   O Dr. Gabriel Lopes é psiquiatra especializado no diagnóstico e tratamento do transtorno bipolar, unindo ciência, empatia e acompanhamento personalizado.
                   </p>
                   <div className="flex flex-col gap-3 md:gap-4">
-                    <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all w-full sm:w-auto" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
+                    <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all w-full sm:w-auto" onClick={() => window.open('https://agendarconsulta.com/perfil/dr-gabriel-magalhaes-lopes-1618791448?origin=profile_search', '_blank')}>
                       🔹 Agende sua consulta
                     </Button>
-                    <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary w-full sm:w-auto" onClick={() => {}}>
-                      🔹 Faça o teste de transtorno bipolar gratuito
+                    <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary w-full sm:w-auto" asChild>
+                      <Link to="/teste-transtorno-bipolar">🔹 Faça o teste de transtorno bipolar gratuito</Link>
                     </Button>
                   </div>
                 </div>
@@ -140,8 +141,8 @@ const TranstornoBipolar = () => {
                 </div>
 
                 <div className="text-center mt-12">
-                  <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary" onClick={() => {}}>
-                  🔹 Identificou-se com esses sintomas? Faça o teste gratuito de transtorno bipolar
+                  <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary" asChild>
+                    <Link to="/teste-transtorno-bipolar">🔹 Identificou-se com esses sintomas? Faça o teste gratuito de transtorno bipolar</Link>
                   </Button>
                 </div>
               </div>
@@ -243,8 +244,8 @@ const TranstornoBipolar = () => {
                 <p className="text-sm text-muted-foreground mb-8 italic">
                 🧩 O teste não substitui o diagnóstico profissional, mas pode ser o primeiro passo para entender o que você está sentindo.
                 </p>
-                <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => {}}>
-                  🔹 Iniciar teste gratuito
+                <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" asChild>
+                  <Link to="/teste-transtorno-bipolar">🔹 Iniciar teste gratuito</Link>
                 </Button>
               </div>
             </div>
@@ -300,7 +301,7 @@ const TranstornoBipolar = () => {
                 </div>
 
                 <div className="text-center">
-                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
+                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://agendarconsulta.com/perfil/dr-gabriel-magalhaes-lopes-1618791448?origin=profile_search', '_blank')}>
                     🔹 Agende sua consulta com o Dr. Gabriel Lopes
                   </Button>
                 </div>
@@ -320,11 +321,11 @@ const TranstornoBipolar = () => {
                 O transtorno bipolar tem tratamento, e com o acompanhamento certo, é possível alcançar estabilidade emocional, bem-estar e qualidade de vida. Dê o primeiro passo hoje.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
+                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://agendarconsulta.com/perfil/dr-gabriel-magalhaes-lopes-1618791448?origin=profile_search', '_blank')}>
                     🔹 Agende sua consulta
                   </Button>
-                  <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary" onClick={() => {}}>
-                    🔹 Faça o teste gratuito de transtorno bipolar
+                  <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary" asChild>
+                    <Link to="/teste-transtorno-bipolar">🔹 Faça o teste gratuito de transtorno bipolar</Link>
                   </Button>
                 </div>
               </div>
