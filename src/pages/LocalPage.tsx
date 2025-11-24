@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams, Navigate, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -72,8 +72,8 @@ const LocalPage = () => {
                     <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all w-full sm:w-auto" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
                       Agende sua consulta
                     </Button>
-                    <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary w-full sm:w-auto">
-                      Faça o teste de TDAH gratuito
+                    <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary w-full sm:w-auto" asChild>
+                      <Link to="/teste-tdah-hiperatividade">Faça o teste de TDAH gratuito</Link>
                     </Button>
                   </div>
                 </div>
@@ -171,8 +171,8 @@ const LocalPage = () => {
                   <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
                     🔹 Agende sua consulta
                   </Button>
-                  <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary">
-                    🔹 Faça o teste gratuito de TDAH
+                  <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary" asChild>
+                    <Link to="/teste-tdah-hiperatividade">🔹 Faça o teste gratuito de TDAH</Link>
                   </Button>
                 </div>
               </div>
