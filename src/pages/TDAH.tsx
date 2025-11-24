@@ -36,11 +36,11 @@ const TDAH = () => {
                     Avaliação completa e tratamento especializado com o Dr. Gabriel Lopes, psiquiatra referência em saúde mental e TDAH infantil e adulto.
                   </p>
                   <div className="flex flex-col gap-3 md:gap-4">
-                    <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all w-full sm:w-auto" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
+                    <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all w-full sm:w-auto" onClick={() => window.open('https://agendarconsulta.com/perfil/dr-gabriel-magalhaes-lopes-1618791448?origin=profile_search', '_blank')}>
                       Agende sua consulta
                     </Button>
                     <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary w-full sm:w-auto" asChild>
-                      <Link to="/teste-tdah">Faça o teste de TDAH gratuito</Link>
+                      <Link to="/teste-tdah-hiperatividade">Faça o teste de TDAH gratuito</Link>
                     </Button>
                   </div>
                 </div>
@@ -149,7 +149,7 @@ const TDAH = () => {
 
                 <div className="text-center mt-12">
                   <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary" asChild>
-                    <Link to="/teste-tdah">🔹 Identificou-se com esses sintomas? Faça o teste de TDAH online</Link>
+                    <Link to="/teste-tdah-hiperatividade">🔹 Identificou-se com esses sintomas? Faça o teste de TDAH online</Link>
                   </Button>
                 </div>
               </div>
@@ -214,7 +214,7 @@ const TDAH = () => {
                   🧩 O teste não substitui o diagnóstico profissional, mas é um ótimo ponto de partida.
                 </p>
                 <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" asChild>
-                  <Link to="/teste-tdah">🔹 Iniciar teste gratuito</Link>
+                  <Link to="/teste-tdah-hiperatividade">🔹 Iniciar teste gratuito</Link>
                 </Button>
               </div>
             </div>
@@ -271,7 +271,7 @@ const TDAH = () => {
                 </div>
 
                 <div className="text-center">
-                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
+                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://agendarconsulta.com/perfil/dr-gabriel-magalhaes-lopes-1618791448?origin=profile_search', '_blank')}>
                     🔹 Agende sua consulta com o Dr. Gabriel Lopes
                   </Button>
                 </div>
@@ -316,11 +316,11 @@ const TDAH = () => {
                   O tratamento do TDAH pode transformar sua rotina, trazendo mais foco, equilíbrio e qualidade de vida.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
+                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://agendarconsulta.com/perfil/dr-gabriel-magalhaes-lopes-1618791448?origin=profile_search', '_blank')}>
                     🔹 Agende sua consulta
                   </Button>
                   <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary" asChild>
-                    <Link to="/teste-tdah">🔹 Faça o teste gratuito de TDAH</Link>
+                    <Link to="/teste-tdah-hiperatividade">🔹 Faça o teste gratuito de TDAH</Link>
                   </Button>
                 </div>
               </div>

@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -36,11 +37,11 @@ const Depressao = () => {
                     Tratamento especializado com o Dr. Gabriel Lopes, psiquiatra referência em saúde mental e transtornos do humor.
                   </p>
                   <div className="flex flex-col gap-3 md:gap-4">
-                    <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all w-full sm:w-auto" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
+                    <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all w-full sm:w-auto" onClick={() => window.open('https://agendarconsulta.com/perfil/dr-gabriel-magalhaes-lopes-1618791448?origin=profile_search', '_blank')}>
                       🔹 Agende sua consulta
                     </Button>
-                    <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary w-full sm:w-auto" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
-                      🔹 Faça o teste de depressão gratuito
+                    <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary w-full sm:w-auto" asChild>
+                      <Link to="/teste-depressao-phq9">🔹 Faça o teste de depressão gratuito</Link>
                     </Button>
                   </div>
                 </div>
@@ -144,8 +145,8 @@ const Depressao = () => {
                 </div>
 
                 <div className="text-center mt-12">
-                  <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
-                    🔹 Identificou-se com esses sintomas? → Faça o teste gratuito de depressão
+                  <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary" asChild>
+                    <Link to="/teste-depressao-phq9">🔹 Identificou-se com esses sintomas? → Faça o teste gratuito de depressão</Link>
                   </Button>
                 </div>
               </div>
@@ -208,8 +209,8 @@ const Depressao = () => {
                 <p className="text-sm text-muted-foreground mb-8 italic">
                   🧩 O teste não substitui o diagnóstico profissional, mas é um ótimo primeiro passo para o autoconhecimento.
                 </p>
-                <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
-                  🔹 Iniciar teste gratuito
+                <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" asChild>
+                  <Link to="/teste-depressao-phq9">🔹 Iniciar teste gratuito</Link>
                 </Button>
               </div>
             </div>
@@ -275,7 +276,7 @@ const Depressao = () => {
                 </div>
 
                 <div className="text-center">
-                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
+                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://agendarconsulta.com/perfil/dr-gabriel-magalhaes-lopes-1618791448?origin=profile_search', '_blank')}>
                     🔹 Agende sua consulta com o Dr. Gabriel Lopes
                   </Button>
                 </div>
@@ -295,11 +296,11 @@ const Depressao = () => {
                   A depressão tem tratamento — e a recuperação é possível. Com acompanhamento médico adequado e apoio multidisciplinar, é possível retomar o equilíbrio emocional e viver com leveza novamente.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
+                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://agendarconsulta.com/perfil/dr-gabriel-magalhaes-lopes-1618791448?origin=profile_search', '_blank')}>
                     🔹 Agende sua consulta
                   </Button>
-                  <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary" onClick={() => window.open('https://wa.me/5511941543929', '_blank')}>
-                    🔹 Faça o teste gratuito de depressão
+                  <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary" asChild>
+                    <Link to="/teste-depressao-phq9">🔹 Faça o teste gratuito de depressão</Link>
                   </Button>
                 </div>
               </div>

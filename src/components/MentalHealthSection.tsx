@@ -40,10 +40,7 @@ const MentalHealthSection = () => {
               >
                 Saiba mais
               </Button>
-              <Button 
-                size="lg"
-                className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all"
-              >
+              <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://agendarconsulta.com/perfil/dr-gabriel-magalhaes-lopes-1618791448?origin=profile_search', '_blank')}>
                 Agende sua consulta
               </Button>
             </div>
