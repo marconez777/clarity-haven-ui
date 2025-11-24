@@ -41,7 +41,7 @@ import CategoryManager from "@/pages/admin/categories/CategoryManager";
 import PageList from "@/pages/admin/pages/PageList";
 import PageEditor from "@/pages/admin/pages/PageEditor";
 import WordPressImport from "@/pages/admin/import/WordPressImport";
-import LocalPage from "@/pages/LocalPage";
+import DynamicPage from "@/pages/DynamicPage";
 
 const queryClient = new QueryClient();
 
@@ -93,8 +93,7 @@ const App = () => (
             </Route>
             
             {/* Dynamic routes - BEFORE catch-all */}
-            <Route path="/local/:slug" element={<LocalPage />} />
-            <Route path="/:slug" element={<BlogPost />} />
+            <Route path="/:slug" element={<DynamicPage />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
