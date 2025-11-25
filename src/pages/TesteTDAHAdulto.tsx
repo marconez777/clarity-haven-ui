@@ -101,7 +101,7 @@ const TesteTDAHAdulto = () => {
           name="keywords"
           content="teste tdah adulto, déficit de atenção, teste desatenção, tdah adulto online"
         />
-        <link rel="canonical" href="https://drgabriellopes.com.br/teste-tdah-adulto" />
+        <link rel="canonical" href="https://drgabriel.med.br/teste-tdah-adulto" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

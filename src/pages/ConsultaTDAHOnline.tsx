@@ -15,7 +15,7 @@ const ConsultaTDAHOnline = () => {
         <title>Consulta para TDAH Online | DR Gabriel Lopes</title>
         <meta name="description" content="Agende sua consulta para TDAH online, receba avaliação cuidadosa e inicie um plano de tratamento personalizado sem sair de casa." />
         <meta name="keywords" content="TDAH, consulta online, psiquiatra, Dr. Gabriel Lopes" />
-        <link rel="canonical" href="https://drgabriellopes.com.br/consulta-para-tdah-online" />
+        <link rel="canonical" href="https://drgabriel.med.br/consulta-para-tdah-online" />
       </Helmet>
 
       <div className="min-h-screen">

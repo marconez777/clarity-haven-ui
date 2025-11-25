@@ -92,7 +92,7 @@ Constantemente buscando atualizar e aprimorar seus conhecimentos, Laura cria sem
     "@type": "MedicalOrganization",
     "name": "Instituto Sanapta",
     "description": "Equipe multidisciplinar especializada em saúde mental: psiquiatras, psicólogos, neuropsicóloga e profissionais especializados em TDAH, ansiedade e depressão.",
-    "url": "https://drgabriellopes.com.br/equipe",
+    "url": "https://drgabriel.med.br/equipe",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Rua do Rocio, 423. Cj. 402",
@@ -113,14 +113,14 @@ Constantemente buscando atualizar e aprimorar seus conhecimentos, Laura cria sem
           content="Conheça a equipe multidisciplinar do Instituto Sanapta: psiquiatras, psicólogos, neuropsicóloga e profissionais especializados em TDAH, ansiedade e depressão."
         />
         <meta name="keywords" content="equipe médica, psiquiatras, psicólogos, neuropsicologia, TDAH, saúde mental, Instituto Sanapta" />
-        <link rel="canonical" href="https://drgabriellopes.com.br/equipe" />
+        <link rel="canonical" href="https://drgabriel.med.br/equipe" />
         
         {/* Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://drgabriellopes.com.br/equipe" />
+        <meta property="og:url" content="https://drgabriel.med.br/equipe" />
         <meta property="og:title" content="Nossa Equipe - Instituto Sanapta | Profissionais Especializados em Saúde Mental" />
         <meta property="og:description" content="Conheça a equipe multidisciplinar do Instituto Sanapta: psiquiatras, psicólogos, neuropsicóloga e profissionais especializados." />
-        <meta property="og:image" content="https://drgabriellopes.com.br/og-image.jpg" />
+        <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
         <meta property="og:locale" content="pt_BR" />
         <meta property="og:site_name" content="Dr. Gabriel Lopes - Psiquiatra" />
         

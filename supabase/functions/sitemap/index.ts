@@ -6,7 +6,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-const DOMAIN = 'https://drgabriellopes.com.br';
+const DOMAIN = 'https://drgabriel.med.br';
 
 // Static routes with their priorities
 const staticRoutes = [

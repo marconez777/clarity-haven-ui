@@ -31,7 +31,7 @@ const Blog = () => {
           content="Artigos e conteúdos sobre saúde mental, TDAH, ansiedade, depressão e bem-estar escritos pelo Dr. Gabriel Lopes. Informação confiável para cuidar da sua mente." 
         />
         <meta name="keywords" content="blog saúde mental, artigos psiquiatria, TDAH, ansiedade, depressão, bem-estar mental" />
-        <link rel="canonical" href="https://drgabriellopes.com.br/blog" />
+        <link rel="canonical" href="https://drgabriel.med.br/blog" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

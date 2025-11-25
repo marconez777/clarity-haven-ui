@@ -17,7 +17,7 @@ const Depressao = () => {
         <title>Tratamento de Depressão - Dr. Gabriel Lopes | Psiquiatra Vila Olímpia</title>
         <meta name="description" content="Tratamento especializado para depressão com o Dr. Gabriel Lopes. Abordagem integrativa e humanizada na Vila Olímpia, SP." />
         <meta name="keywords" content="depressão, tratamento depressão, psiquiatra depressão, Dr. Gabriel Lopes" />
-        <link rel="canonical" href="https://drgabriellopes.com.br/depressao" />
+        <link rel="canonical" href="https://drgabriel.med.br/depressao" />
       </Helmet>
 
       <div className="min-h-screen">

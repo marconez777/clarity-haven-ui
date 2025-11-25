@@ -15,7 +15,7 @@ const ModeloLocal = () => {
         <title>Modelo Local - Dr. Gabriel Lopes</title>
         <meta name="description" content="Página modelo para novas seções e conteúdos." />
         <meta name="keywords" content="modelo, psiquiatra, Dr. Gabriel Lopes" />
-        <link rel="canonical" href="https://drgabriellopes.com.br/modelo-local" />
+        <link rel="canonical" href="https://drgabriel.med.br/modelo-local" />
       </Helmet>
 
       <div className="min-h-screen">

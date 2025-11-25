@@ -112,7 +112,7 @@ const TesteBurnout = () => {
           name="keywords"
           content="teste burnout, burnout profissional, esgotamento trabalho, síndrome de burnout"
         />
-        <link rel="canonical" href="https://drgabriellopes.com.br/teste-burnout" />
+        <link rel="canonical" href="https://drgabriel.med.br/teste-burnout" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

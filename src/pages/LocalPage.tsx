@@ -50,7 +50,7 @@ const LocalPage = () => {
         <title>{page.seo_title || page.title}</title>
         <meta name="description" content={page.seo_description || ''} />
         {page.seo_keywords && <meta name="keywords" content={page.seo_keywords} />}
-        <link rel="canonical" href={`https://drgabriellopes.com.br/${page.slug}`} />
+        <link rel="canonical" href={`https://drgabriel.med.br/${page.slug}`} />
       </Helmet>
 
       <div className="min-h-screen">

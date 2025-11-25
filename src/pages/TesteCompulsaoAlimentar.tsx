@@ -222,14 +222,14 @@ const TesteCompulsaoAlimentar = () => {
           content="Avalie seus padrões alimentares com o teste de Compulsão Alimentar. Ferramenta de triagem validada para identificar possíveis sintomas de transtorno de compulsão alimentar."
         />
         <meta name="keywords" content="teste compulsão alimentar, transtorno alimentar, binge eating, avaliação alimentar" />
-        <link rel="canonical" href="https://drgabriellopes.com.br/teste-compulsao-alimentar" />
+        <link rel="canonical" href="https://drgabriel.med.br/teste-compulsao-alimentar" />
         
         {/* Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://drgabriellopes.com.br/teste-compulsao-alimentar" />
+        <meta property="og:url" content="https://drgabriel.med.br/teste-compulsao-alimentar" />
         <meta property="og:title" content="Teste de Compulsão Alimentar | Dr Gabriel Lopes" />
         <meta property="og:description" content="Avalie seus padrões alimentares com o teste de Compulsão Alimentar. Ferramenta de triagem validada." />
-        <meta property="og:image" content="https://drgabriellopes.com.br/og-image.jpg" />
+        <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
         <meta property="og:locale" content="pt_BR" />
         <meta property="og:site_name" content="Dr. Gabriel Lopes - Psiquiatra" />
       </Helmet>

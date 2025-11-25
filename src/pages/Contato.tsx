@@ -75,7 +75,7 @@ const Contato = () => {
         <title>Contato - Dr Gabriel Lopes - Psiquiatra em São Paulo</title>
         <meta name="description" content="Entre em contato com o Dr Gabriel Lopes. Estamos na Vila Olímpia, São Paulo. Agende sua consulta de psiquiatria." />
         <meta name="keywords" content="contato psiquiatra, agendar consulta psiquiatria, Vila Olímpia, São Paulo" />
-        <link rel="canonical" href="https://drgabriellopes.com.br/contato" />
+        <link rel="canonical" href="https://drgabriel.med.br/contato" />
       </Helmet>
 
       <Navigation />
@@ -232,8 +232,8 @@ const Contato = () => {
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">Email</h3>
                         <p className="text-muted-foreground">
-                          <a href="mailto:contato@drgabriellopes.com.br" className="hover:text-primary transition-colors">
-                            contato@drgabriellopes.com.br
+                          <a href="mailto:contato@drgabriel.med.br" className="hover:text-primary transition-colors">
+                            contato@drgabriel.med.br
                           </a>
                         </p>
                       </div>

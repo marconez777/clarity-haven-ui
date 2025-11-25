@@ -65,14 +65,14 @@ const Testes = () => {
     "@type": "CollectionPage",
     "name": "Testes de Saúde Mental",
     "description": "Testes online gratuitos de avaliação de saúde mental: TDAH, ansiedade, depressão, transtorno bipolar e outros testes validados.",
-    "url": "https://drgabriellopes.com.br/testes",
+    "url": "https://drgabriel.med.br/testes",
     "mainEntity": {
       "@type": "ItemList",
       "itemListElement": testes.map((teste, index) => ({
         "@type": "ListItem",
         "position": index + 1,
         "name": teste.title,
-        "url": `https://drgabriellopes.com.br${teste.href}`
+        "url": `https://drgabriel.med.br${teste.href}`
       }))
     }
   };
@@ -86,14 +86,14 @@ const Testes = () => {
           content="Realize testes online de avaliação de saúde mental. TDAH, ansiedade, depressão, transtorno bipolar e outros testes validados."
         />
         <meta name="keywords" content="teste saúde mental, teste TDAH, teste ansiedade, teste depressão, teste bipolar, teste online gratuito" />
-        <link rel="canonical" href="https://drgabriellopes.com.br/testes" />
+        <link rel="canonical" href="https://drgabriel.med.br/testes" />
         
         {/* Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://drgabriellopes.com.br/testes" />
+        <meta property="og:url" content="https://drgabriel.med.br/testes" />
         <meta property="og:title" content="Testes de Saúde Mental | Dr Gabriel Lopes" />
         <meta property="og:description" content="Realize testes online de avaliação de saúde mental. TDAH, ansiedade, depressão, transtorno bipolar e outros testes validados." />
-        <meta property="og:image" content="https://drgabriellopes.com.br/og-image.jpg" />
+        <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
         <meta property="og:locale" content="pt_BR" />
         <meta property="og:site_name" content="Dr. Gabriel Lopes - Psiquiatra" />
         

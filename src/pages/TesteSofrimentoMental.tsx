@@ -110,7 +110,7 @@ const TesteSofrimentoMental = () => {
           name="keywords"
           content="teste sofrimento mental, teste saúde mental, distress psicológico, bem-estar mental"
         />
-        <link rel="canonical" href="https://drgabriellopes.com.br/teste-sofrimento-mental" />
+        <link rel="canonical" href="https://drgabriel.med.br/teste-sofrimento-mental" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">
