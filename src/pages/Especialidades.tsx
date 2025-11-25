@@ -30,6 +30,24 @@ const Especialidades = () => {
     },
   ];
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Especialidades em Saúde Mental",
+    "description": "Especialidades do Dr. Gabriel Lopes: TDAH, Ansiedade, Depressão e Transtorno Bipolar. Tratamento especializado com abordagem integrada.",
+    "url": "https://drgabriellopes.com.br/especialidades",
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": especialidades.map((esp, index) => ({
+        "@type": "MedicalCondition",
+        "position": index + 1,
+        "name": esp.title,
+        "description": esp.description,
+        "url": `https://drgabriellopes.com.br${esp.href}`
+      }))
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -38,6 +56,22 @@ const Especialidades = () => {
           name="description"
           content="Conheça nossas especialidades: TDAH, Ansiedade, Depressão e Transtorno Bipolar. Tratamento especializado com abordagem integrada na Vila Olímpia/SP."
         />
+        <meta name="keywords" content="especialidades psiquiatria, TDAH, ansiedade, depressão, transtorno bipolar, saúde mental" />
+        <link rel="canonical" href="https://drgabriellopes.com.br/especialidades" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://drgabriellopes.com.br/especialidades" />
+        <meta property="og:title" content="Especialidades em Saúde Mental | Dr. Gabriel Lopes" />
+        <meta property="og:description" content="Conheça nossas especialidades: TDAH, Ansiedade, Depressão e Transtorno Bipolar. Tratamento especializado com abordagem integrada." />
+        <meta property="og:image" content="https://drgabriellopes.com.br/og-image.jpg" />
+        <meta property="og:locale" content="pt_BR" />
+        <meta property="og:site_name" content="Dr. Gabriel Lopes - Psiquiatra" />
+        
+        {/* JSON-LD */}
+        <script type="application/ld+json">
+          {JSON.stringify(jsonLd)}
+        </script>
       </Helmet>
 
       <Navigation />

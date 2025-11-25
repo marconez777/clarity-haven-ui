@@ -7,6 +7,30 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import drGabrielImage from "@/assets/doctors/gabriel-lopes-sobre.jpg";
 
 const DrGabriel = () => {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Physician",
+    "name": "Dr. Gabriel Lopes",
+    "image": "https://drgabriellopes.com.br/og-image.jpg",
+    "description": "Psiquiatra especializado em TDAH, adultos e infância. CRM/SP 131.339.",
+    "medicalSpecialty": ["Psychiatry", "Child and Adolescent Psychiatry"],
+    "alumniOf": [
+      { "@type": "EducationalOrganization", "name": "Faculdade de Medicina da Santa Casa de São Paulo" },
+      { "@type": "EducationalOrganization", "name": "Hospital das Clínicas da USP" }
+    ],
+    "memberOf": { "@type": "Organization", "name": "Instituto Sanapta" },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua do Rocio, 423. Cj. 402",
+      "addressLocality": "São Paulo",
+      "addressRegion": "SP",
+      "postalCode": "04548-020",
+      "addressCountry": "BR"
+    },
+    "telephone": "+55-11-94154-3929",
+    "url": "https://drgabriellopes.com.br/dr-gabriel-lopes"
+  };
+
   return (
     <div className="min-h-screen">
       <Helmet>
@@ -16,6 +40,21 @@ const DrGabriel = () => {
           content="Conheça o Dr. Gabriel Lopes, psiquiatra especializado em TDAH, adultos e infância. CRM/SP 131.339. Formação pela Santa Casa e HC-USP." 
         />
         <meta name="keywords" content="dr gabriel lopes, psiquiatra, TDAH, psiquiatria infantil, psiquiatra são paulo" />
+        <link rel="canonical" href="https://drgabriellopes.com.br/dr-gabriel-lopes" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="profile" />
+        <meta property="og:url" content="https://drgabriellopes.com.br/dr-gabriel-lopes" />
+        <meta property="og:title" content="Dr. Gabriel Lopes - Psiquiatra | CRM/SP 131.339" />
+        <meta property="og:description" content="Conheça o Dr. Gabriel Lopes, psiquiatra especializado em TDAH, adultos e infância." />
+        <meta property="og:image" content="https://drgabriellopes.com.br/og-image.jpg" />
+        <meta property="og:locale" content="pt_BR" />
+        <meta property="og:site_name" content="Dr. Gabriel Lopes - Psiquiatra" />
+        
+        {/* JSON-LD */}
+        <script type="application/ld+json">
+          {JSON.stringify(jsonLd)}
+        </script>
       </Helmet>
 
       <Navigation />

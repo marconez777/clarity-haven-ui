@@ -87,6 +87,23 @@ Constantemente buscando atualizar e aprimorar seus conhecimentos, Laura cria sem
     }
   ];
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MedicalOrganization",
+    "name": "Instituto Sanapta",
+    "description": "Equipe multidisciplinar especializada em saúde mental: psiquiatras, psicólogos, neuropsicóloga e profissionais especializados em TDAH, ansiedade e depressão.",
+    "url": "https://drgabriellopes.com.br/equipe",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua do Rocio, 423. Cj. 402",
+      "addressLocality": "São Paulo",
+      "addressRegion": "SP",
+      "postalCode": "04548-020",
+      "addressCountry": "BR"
+    },
+    "medicalSpecialty": ["Psychiatry", "Psychology", "Neuropsychology"]
+  };
+
   return (
     <>
       <Helmet>
@@ -96,7 +113,21 @@ Constantemente buscando atualizar e aprimorar seus conhecimentos, Laura cria sem
           content="Conheça a equipe multidisciplinar do Instituto Sanapta: psiquiatras, psicólogos, neuropsicóloga e profissionais especializados em TDAH, ansiedade e depressão."
         />
         <meta name="keywords" content="equipe médica, psiquiatras, psicólogos, neuropsicologia, TDAH, saúde mental, Instituto Sanapta" />
-        <link rel="canonical" href="https://institutosanapta.com/equipe" />
+        <link rel="canonical" href="https://drgabriellopes.com.br/equipe" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://drgabriellopes.com.br/equipe" />
+        <meta property="og:title" content="Nossa Equipe - Instituto Sanapta | Profissionais Especializados em Saúde Mental" />
+        <meta property="og:description" content="Conheça a equipe multidisciplinar do Instituto Sanapta: psiquiatras, psicólogos, neuropsicóloga e profissionais especializados." />
+        <meta property="og:image" content="https://drgabriellopes.com.br/og-image.jpg" />
+        <meta property="og:locale" content="pt_BR" />
+        <meta property="og:site_name" content="Dr. Gabriel Lopes - Psiquiatra" />
+        
+        {/* JSON-LD */}
+        <script type="application/ld+json">
+          {JSON.stringify(jsonLd)}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-b from-background to-primary/5">
