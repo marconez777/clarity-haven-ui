@@ -139,7 +139,7 @@ const TesteAutismoAQ50 = () => {
           name="keywords"
           content="teste autismo, aq-50, teste autismo completo, espectro autista adulto, avaliação autismo"
         />
-        <link rel="canonical" href="https://drgabriellopes.com.br/teste-autismo-aq50" />
+        <link rel="canonical" href="https://drgabriel.med.br/teste-autismo-aq50" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

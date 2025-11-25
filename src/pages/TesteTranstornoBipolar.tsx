@@ -108,7 +108,7 @@ const TesteTranstornoBipolar = () => {
           name="keywords"
           content="teste transtorno bipolar, teste bipolaridade, alteração humor, mania hipomania"
         />
-        <link rel="canonical" href="https://drgabriellopes.com.br/teste-transtorno-bipolar" />
+        <link rel="canonical" href="https://drgabriel.med.br/teste-transtorno-bipolar" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

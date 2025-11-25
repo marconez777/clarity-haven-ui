@@ -90,7 +90,7 @@ const BlogPost = () => {
         <title>{post.seo_title || `${post.title} - Dr Gabriel Lopes`}</title>
         <meta name="description" content={post.seo_description || post.excerpt} />
         <meta name="keywords" content={post.seo_keywords || `${post.blog_categories?.name}, saúde mental`} />
-        <link rel="canonical" href={`https://drgabriellopes.com.br/${post.slug}`} />
+        <link rel="canonical" href={`https://drgabriel.med.br/${post.slug}`} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
         <meta property="og:image" content={post.featured_image} />

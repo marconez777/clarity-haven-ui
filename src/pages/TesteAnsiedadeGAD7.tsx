@@ -99,7 +99,7 @@ const TesteAnsiedadeGAD7 = () => {
           name="keywords"
           content="teste ansiedade, gad-7, teste ansiedade online, ansiedade generalizada, sintomas ansiedade"
         />
-        <link rel="canonical" href="https://drgabriellopes.com.br/teste-ansiedade-gad7" />
+        <link rel="canonical" href="https://drgabriel.med.br/teste-ansiedade-gad7" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

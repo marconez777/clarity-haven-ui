@@ -25,7 +25,7 @@ const Index = () => {
           content="psiquiatra, psiquiatria, saúde mental, ansiedade, depressão, TDAH, Vila Olímpia, São Paulo, Dr. Gabriel Lopes"
         />
         <meta name="author" content="Dr. Gabriel Lopes" />
-        <link rel="canonical" href="https://drgabriellopes.com.br" />
+        <link rel="canonical" href="https://drgabriel.med.br" />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
@@ -56,7 +56,7 @@ const Index = () => {
             "@context": "https://schema.org",
             "@type": "Physician",
             name: "Dr. Gabriel Lopes",
-            image: "https://drgabriellopes.com.br/og-image.jpg",
+            image: "https://drgabriel.med.br/og-image.jpg",
             description:
               "Psiquiatra especializado em saúde mental infantil e de adultos",
             medicalSpecialty: "Psychiatry",
@@ -69,7 +69,7 @@ const Index = () => {
               addressCountry: "BR",
             },
             telephone: "+55-11-94154-3929",
-            url: "https://drgabriellopes.com.br",
+            url: "https://drgabriel.med.br",
             openingHours: "Mo-Fr 08:00-20:00, Sa 08:00-14:00",
           })}
         </script>

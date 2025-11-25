@@ -98,7 +98,7 @@ const TesteAutismoAQ10 = () => {
           name="keywords"
           content="teste autismo, aq-10, teste autismo online, espectro autista, autismo adulto"
         />
-        <link rel="canonical" href="https://drgabriellopes.com.br/teste-autismo-aq10" />
+        <link rel="canonical" href="https://drgabriel.med.br/teste-autismo-aq10" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

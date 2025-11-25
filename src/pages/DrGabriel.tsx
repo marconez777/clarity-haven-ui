@@ -11,7 +11,7 @@ const DrGabriel = () => {
     "@context": "https://schema.org",
     "@type": "Physician",
     "name": "Dr. Gabriel Lopes",
-    "image": "https://drgabriellopes.com.br/og-image.jpg",
+    "image": "https://drgabriel.med.br/og-image.jpg",
     "description": "Psiquiatra especializado em TDAH, adultos e infância. CRM/SP 131.339.",
     "medicalSpecialty": ["Psychiatry", "Child and Adolescent Psychiatry"],
     "alumniOf": [
@@ -28,7 +28,7 @@ const DrGabriel = () => {
       "addressCountry": "BR"
     },
     "telephone": "+55-11-94154-3929",
-    "url": "https://drgabriellopes.com.br/dr-gabriel-lopes"
+    "url": "https://drgabriel.med.br/dr-gabriel-lopes"
   };
 
   return (
@@ -40,14 +40,14 @@ const DrGabriel = () => {
           content="Conheça o Dr. Gabriel Lopes, psiquiatra especializado em TDAH, adultos e infância. CRM/SP 131.339. Formação pela Santa Casa e HC-USP." 
         />
         <meta name="keywords" content="dr gabriel lopes, psiquiatra, TDAH, psiquiatria infantil, psiquiatra são paulo" />
-        <link rel="canonical" href="https://drgabriellopes.com.br/dr-gabriel-lopes" />
+        <link rel="canonical" href="https://drgabriel.med.br/dr-gabriel-lopes" />
         
         {/* Open Graph */}
         <meta property="og:type" content="profile" />
-        <meta property="og:url" content="https://drgabriellopes.com.br/dr-gabriel-lopes" />
+        <meta property="og:url" content="https://drgabriel.med.br/dr-gabriel-lopes" />
         <meta property="og:title" content="Dr. Gabriel Lopes - Psiquiatra | CRM/SP 131.339" />
         <meta property="og:description" content="Conheça o Dr. Gabriel Lopes, psiquiatra especializado em TDAH, adultos e infância." />
-        <meta property="og:image" content="https://drgabriellopes.com.br/og-image.jpg" />
+        <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
         <meta property="og:locale" content="pt_BR" />
         <meta property="og:site_name" content="Dr. Gabriel Lopes - Psiquiatra" />
         

@@ -117,7 +117,7 @@ const PostForm = ({ initialData, onSubmit, isSubmitting }: PostFormProps) => {
             <Label htmlFor="slug">Slug (URL) *</Label>
             <Input id="slug" {...register('slug')} placeholder="ex: tratamento-ansiedade" />
             <p className="text-xs text-muted-foreground mt-1">
-              O artigo será acessível em: drgabriellopes.com.br/<strong>{watch('slug') || 'seu-slug'}</strong>
+              O artigo será acessível em: drgabriel.med.br/<strong>{watch('slug') || 'seu-slug'}</strong>
             </p>
             {errors.slug && (
               <p className="text-sm text-destructive mt-1">{errors.slug.message}</p>

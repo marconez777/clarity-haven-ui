@@ -17,7 +17,7 @@ const TranstornoBipolar = () => {
         <title>Tratamento de Transtorno Bipolar - Dr. Gabriel Lopes | Psiquiatra Vila Olímpia</title>
         <meta name="description" content="Tratamento especializado para transtorno bipolar com o Dr. Gabriel Lopes. Abordagem humanizada para uma vida com mais equilíbrio na Vila Olímpia, SP." />
         <meta name="keywords" content="transtorno bipolar, bipolaridade, tratamento para transtorno bipolar, psiquiatra para transtorno bipolar, mania, hipomania, depressão, Dr. Gabriel Lopes" />
-        <link rel="canonical" href="https://drgabriellopes.com.br/transtorno-bipolar" />
+        <link rel="canonical" href="https://drgabriel.med.br/transtorno-bipolar" />
       </Helmet>
 
       <div className="min-h-screen">

@@ -101,7 +101,7 @@ const TesteDepressaoPHQ9 = () => {
           name="keywords"
           content="teste depressão, phq-9, teste depressão online, sintomas depressão, depressão adulto"
         />
-        <link rel="canonical" href="https://drgabriellopes.com.br/teste-depressao-phq9" />
+        <link rel="canonical" href="https://drgabriel.med.br/teste-depressao-phq9" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

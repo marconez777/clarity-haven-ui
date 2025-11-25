@@ -16,7 +16,7 @@ const Ansiedade = () => {
         <title>Tratamento de Ansiedade - Dr. Gabriel Lopes | Psiquiatra Vila Olímpia</title>
         <meta name="description" content="Tratamento especializado para transtornos de ansiedade com o Dr. Gabriel Lopes. Abordagem humanizada para uma vida com mais tranquilidade na Vila Olímpia, SP." />
         <meta name="keywords" content="ansiedade, transtorno de ansiedade, tratamento para ansiedade, psiquiatra para ansiedade, TAG, pânico, ansiedade social, Dr. Gabriel Lopes" />
-        <link rel="canonical" href="https://drgabriellopes.com.br/ansiedade" />
+        <link rel="canonical" href="https://drgabriel.med.br/ansiedade" />
       </Helmet>
 
       <div className="min-h-screen">

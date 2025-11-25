@@ -15,7 +15,7 @@ const PsiquiatraDeTDAH = () => {
         <title>Psiquiatra de TDAH | DR Gabriel Lopes</title>
         <meta name="description" content="Marque uma consulta com psiquiatra de TDAH, esclareça seus sintomas e comece um acompanhamento estruturado para organizar sua rotina." />
         <meta name="keywords" content="psiquiatra, TDAH, consulta, online, especialista" />
-        <link rel="canonical" href="https://drgabriellopes.com.br/psiquiatra-de-tdah" />
+        <link rel="canonical" href="https://drgabriel.med.br/psiquiatra-de-tdah" />
       </Helmet>
 
       <div className="min-h-screen">
