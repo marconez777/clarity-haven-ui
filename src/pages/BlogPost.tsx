@@ -149,6 +149,46 @@ const BlogPost = () => {
                 />
               )}
 
+              {/* Cards de testes - exibidos apenas no post sobre TDAH */}
+              {slug === 'teste-online-para-saber-se-voce-tem-deficit-de-atencao-dr-gabriel' && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+                  <Link to="/teste-tdah-adulto">
+                    <div className="flex items-start gap-4 p-5 rounded-xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all duration-300 group">
+                      <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                          Teste de Desatenção – TDAH Adulto
+                        </h3>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          ASRS-18 Parte 1
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                  <Link to="/teste-tdah">
+                    <div className="flex items-start gap-4 p-5 rounded-xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all duration-300 group">
+                      <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                          Teste de Hiperatividade – TDAH Adulto
+                        </h3>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          ASRS-18 Parte 2
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              )}
+
               <div 
                 className="blog-content prose prose-lg max-w-none"
                 dangerouslySetInnerHTML={{ __html: sanitizedContent }}
