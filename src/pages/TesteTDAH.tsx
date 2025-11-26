@@ -128,7 +128,7 @@ const TesteTDAH = () => {
           name="keywords"
           content="teste tdah, teste tdah online, tdah adulto, teste hiperatividade"
         />
-        <link rel="canonical" href="https://drgabriel.med.br/teste-tdah" />
+        <link rel="canonical" href="https://drgabriel.med.br/teste-tdah-hiperatividade" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">
