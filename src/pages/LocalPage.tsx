@@ -51,6 +51,16 @@ const LocalPage = () => {
         <meta name="description" content={page.seo_description || ''} />
         {page.seo_keywords && <meta name="keywords" content={page.seo_keywords} />}
         <link rel="canonical" href={`https://drgabriel.med.br/${page.slug}`} />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://drgabriel.med.br/${page.slug}`} />
+        <meta property="og:title" content={page.seo_title || page.title} />
+        <meta property="og:description" content={page.seo_description || ''} />
+        
+        {/* Twitter */}
+        <meta name="twitter:title" content={page.seo_title || page.title} />
+        <meta name="twitter:description" content={page.seo_description || ''} />
       </Helmet>
 
       <div className="min-h-screen">

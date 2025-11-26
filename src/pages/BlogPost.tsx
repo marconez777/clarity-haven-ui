@@ -91,9 +91,18 @@ const BlogPost = () => {
         <meta name="description" content={post.seo_description || post.excerpt} />
         <meta name="keywords" content={post.seo_keywords || `${post.blog_categories?.name}, saúde mental`} />
         <link rel="canonical" href={`https://drgabriel.med.br/${post.slug}`} />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.excerpt} />
-        <meta property="og:image" content={post.featured_image} />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`https://drgabriel.med.br/${post.slug}`} />
+        <meta property="og:title" content={post.seo_title || post.title} />
+        <meta property="og:description" content={post.seo_description || post.excerpt} />
+        {post.featured_image && <meta property="og:image" content={post.featured_image} />}
+        
+        {/* Twitter */}
+        <meta name="twitter:title" content={post.seo_title || post.title} />
+        <meta name="twitter:description" content={post.seo_description || post.excerpt} />
+        {post.featured_image && <meta name="twitter:image" content={post.featured_image} />}
       </Helmet>
 
       <div className="min-h-screen flex flex-col">
