@@ -150,7 +150,12 @@ const BlogPost = () => {
                 <p className="text-muted-foreground mb-6">
                   Agende uma consulta e descubra como podemos ajudá-lo.
                 </p>
-                <Button size="lg">Agendar Consulta</Button>
+                <Button 
+                  size="lg"
+                  onClick={() => window.open('https://api.whatsapp.com/send/?phone=5511941543929&text=Ol%C3%A1%21+Gostaria+de+agendar+uma+consulta.&type=phone_number&app_absent=0', '_blank')}
+                >
+                  Agendar Consulta
+                </Button>
               </div>
             </div>
           </div>
