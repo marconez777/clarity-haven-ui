@@ -124,6 +124,12 @@ Constantemente buscando atualizar e aprimorar seus conhecimentos, Laura cria sem
         <meta property="og:locale" content="pt_BR" />
         <meta property="og:site_name" content="Dr. Gabriel Lopes - Psiquiatra" />
         
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Nossa Equipe - Instituto Sanapta | Profissionais Especializados" />
+        <meta name="twitter:description" content="Conheça a equipe multidisciplinar do Instituto Sanapta: psiquiatras, psicólogos e especialistas." />
+        <meta name="twitter:image" content="https://drgabriel.med.br/og-image.jpg" />
+        
         {/* JSON-LD */}
         <script type="application/ld+json">
           {JSON.stringify(jsonLd)}

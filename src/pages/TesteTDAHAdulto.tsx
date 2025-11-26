@@ -92,6 +92,7 @@ const TesteTDAHAdulto = () => {
   return (
     <>
       <Helmet>
+        <html lang="pt-BR" />
         <title>Teste de Déficit de Atenção TDAH Adulto Online | Dr. Gabriel Lopes</title>
         <meta
           name="description"
@@ -102,6 +103,19 @@ const TesteTDAHAdulto = () => {
           content="teste tdah adulto, déficit de atenção, teste desatenção, tdah adulto online"
         />
         <link rel="canonical" href="https://drgabriel.med.br/teste-tdah-adulto" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://drgabriel.med.br/teste-tdah-adulto" />
+        <meta property="og:title" content="Teste de Déficit de Atenção TDAH Adulto Online | Dr. Gabriel Lopes" />
+        <meta property="og:description" content="Faça o teste de déficit de atenção para adultos online. Avalie sintomas de desatenção." />
+        <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Teste de Déficit de Atenção TDAH Adulto Online | Dr. Gabriel Lopes" />
+        <meta name="twitter:description" content="Faça o teste de déficit de atenção para adultos online. Resultado imediato." />
+        <meta name="twitter:image" content="https://drgabriel.med.br/og-image.jpg" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

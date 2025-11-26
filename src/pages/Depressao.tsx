@@ -18,6 +18,19 @@ const Depressao = () => {
         <meta name="description" content="Tratamento especializado para depressão com o Dr. Gabriel Lopes. Abordagem integrativa e humanizada na Vila Olímpia, SP." />
         <meta name="keywords" content="depressão, tratamento depressão, psiquiatra depressão, Dr. Gabriel Lopes" />
         <link rel="canonical" href="https://drgabriel.med.br/depressao" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://drgabriel.med.br/depressao" />
+        <meta property="og:title" content="Tratamento de Depressão - Dr. Gabriel Lopes | Psiquiatra Vila Olímpia" />
+        <meta property="og:description" content="Tratamento especializado para depressão com o Dr. Gabriel Lopes. Abordagem integrativa e humanizada." />
+        <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Tratamento de Depressão - Dr. Gabriel Lopes | Psiquiatra Vila Olímpia" />
+        <meta name="twitter:description" content="Tratamento especializado para depressão com o Dr. Gabriel Lopes." />
+        <meta name="twitter:image" content="https://drgabriel.med.br/og-image.jpg" />
       </Helmet>
 
       <div className="min-h-screen">

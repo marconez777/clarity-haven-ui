@@ -72,10 +72,24 @@ const Contato = () => {
   return (
     <>
       <Helmet>
+        <html lang="pt-BR" />
         <title>Contato - Dr Gabriel Lopes - Psiquiatra em São Paulo</title>
         <meta name="description" content="Entre em contato com o Dr Gabriel Lopes. Estamos na Vila Olímpia, São Paulo. Agende sua consulta de psiquiatria." />
         <meta name="keywords" content="contato psiquiatra, agendar consulta psiquiatria, Vila Olímpia, São Paulo" />
         <link rel="canonical" href="https://drgabriel.med.br/contato" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://drgabriel.med.br/contato" />
+        <meta property="og:title" content="Contato - Dr Gabriel Lopes - Psiquiatra em São Paulo" />
+        <meta property="og:description" content="Entre em contato com o Dr Gabriel Lopes. Estamos na Vila Olímpia, São Paulo." />
+        <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contato - Dr Gabriel Lopes - Psiquiatra em São Paulo" />
+        <meta name="twitter:description" content="Entre em contato com o Dr Gabriel Lopes. Estamos na Vila Olímpia, São Paulo." />
+        <meta name="twitter:image" content="https://drgabriel.med.br/og-image.jpg" />
       </Helmet>
 
       <Navigation />

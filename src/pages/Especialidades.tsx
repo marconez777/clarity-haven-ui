@@ -68,6 +68,12 @@ const Especialidades = () => {
         <meta property="og:locale" content="pt_BR" />
         <meta property="og:site_name" content="Dr. Gabriel Lopes - Psiquiatra" />
         
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Especialidades em Saúde Mental | Dr. Gabriel Lopes" />
+        <meta name="twitter:description" content="Conheça nossas especialidades: TDAH, Ansiedade, Depressão e Transtorno Bipolar." />
+        <meta name="twitter:image" content="https://drgabriel.med.br/og-image.jpg" />
+        
         {/* JSON-LD */}
         <script type="application/ld+json">
           {JSON.stringify(jsonLd)}
