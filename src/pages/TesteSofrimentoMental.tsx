@@ -101,6 +101,7 @@ const TesteSofrimentoMental = () => {
   return (
     <>
       <Helmet>
+        <html lang="pt-BR" />
         <title>Teste de Sofrimento Mental Online Gratuito | Dr. Gabriel Lopes</title>
         <meta
           name="description"
@@ -111,6 +112,19 @@ const TesteSofrimentoMental = () => {
           content="teste sofrimento mental, teste saúde mental, distress psicológico, bem-estar mental"
         />
         <link rel="canonical" href="https://drgabriel.med.br/teste-sofrimento-mental" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://drgabriel.med.br/teste-sofrimento-mental" />
+        <meta property="og:title" content="Teste de Sofrimento Mental Online Gratuito | Dr. Gabriel Lopes" />
+        <meta property="og:description" content="Faça o teste de sofrimento mental online gratuito. Avalie sintomas de distress psicológico." />
+        <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Teste de Sofrimento Mental Online Gratuito | Dr. Gabriel Lopes" />
+        <meta name="twitter:description" content="Faça o teste de sofrimento mental online gratuito. Resultado imediato." />
+        <meta name="twitter:image" content="https://drgabriel.med.br/og-image.jpg" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

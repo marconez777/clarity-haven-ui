@@ -103,6 +103,7 @@ const TesteBurnout = () => {
   return (
     <>
       <Helmet>
+        <html lang="pt-BR" />
         <title>Teste de Burnout Online Gratuito | Dr. Gabriel Lopes</title>
         <meta
           name="description"
@@ -113,6 +114,19 @@ const TesteBurnout = () => {
           content="teste burnout, burnout profissional, esgotamento trabalho, síndrome de burnout"
         />
         <link rel="canonical" href="https://drgabriel.med.br/teste-burnout" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://drgabriel.med.br/teste-burnout" />
+        <meta property="og:title" content="Teste de Burnout Online Gratuito | Dr. Gabriel Lopes" />
+        <meta property="og:description" content="Faça o teste de burnout online gratuito. Avalie sintomas de esgotamento profissional." />
+        <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Teste de Burnout Online Gratuito | Dr. Gabriel Lopes" />
+        <meta name="twitter:description" content="Faça o teste de burnout online gratuito. Resultado imediato." />
+        <meta name="twitter:image" content="https://drgabriel.med.br/og-image.jpg" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

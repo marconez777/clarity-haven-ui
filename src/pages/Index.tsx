@@ -29,6 +29,7 @@ const Index = () => {
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://drgabriel.med.br" />
         <meta property="og:locale" content="pt_BR" />
         <meta
           property="og:title"
@@ -38,17 +39,19 @@ const Index = () => {
           property="og:description"
           content="Psiquiatra especializado em saúde mental infantil e adultos. Tratamento de ansiedade, depressão e TDAH com acompanhamento completo."
         />
+        <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Dr. Gabriel Lopes - Psiquiatra Vila Olímpia"
+          content="Dr. Gabriel Lopes - Psiquiatra Vila Olímpia | Saúde Mental Integrada"
         />
         <meta
           name="twitter:description"
-          content="Saúde mental com acompanhamento completo. Especialista em ansiedade, depressão e TDAH."
+          content="Psiquiatra especializado em saúde mental infantil e adultos. Tratamento de ansiedade, depressão e TDAH."
         />
+        <meta name="twitter:image" content="https://drgabriel.med.br/og-image.jpg" />
 
         {/* Structured Data - JSON-LD */}
         <script type="application/ld+json">

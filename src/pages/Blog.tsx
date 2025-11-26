@@ -25,6 +25,7 @@ const Blog = () => {
   return (
     <>
       <Helmet>
+        <html lang="pt-BR" />
         <title>Blog - Dr Gabriel Lopes | Artigos sobre Saúde Mental</title>
         <meta 
           name="description" 
@@ -32,6 +33,19 @@ const Blog = () => {
         />
         <meta name="keywords" content="blog saúde mental, artigos psiquiatria, TDAH, ansiedade, depressão, bem-estar mental" />
         <link rel="canonical" href="https://drgabriel.med.br/blog" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://drgabriel.med.br/blog" />
+        <meta property="og:title" content="Blog - Dr Gabriel Lopes | Artigos sobre Saúde Mental" />
+        <meta property="og:description" content="Artigos e conteúdos sobre saúde mental, TDAH, ansiedade, depressão e bem-estar escritos pelo Dr. Gabriel Lopes." />
+        <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Blog - Dr Gabriel Lopes | Artigos sobre Saúde Mental" />
+        <meta name="twitter:description" content="Artigos e conteúdos sobre saúde mental, TDAH, ansiedade, depressão e bem-estar." />
+        <meta name="twitter:image" content="https://drgabriel.med.br/og-image.jpg" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

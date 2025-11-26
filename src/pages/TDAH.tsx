@@ -17,6 +17,19 @@ const TDAH = () => {
         <meta name="description" content="Avaliação completa e tratamento especializado para TDAH infantil e adulto com o Dr. Gabriel Lopes. Abordagem integrativa e humanizada na Vila Olímpia, SP." />
         <meta name="keywords" content="TDAH, déficit de atenção, hiperatividade, tratamento TDAH, TDAH infantil, TDAH adulto, psiquiatra TDAH, Dr. Gabriel Lopes" />
         <link rel="canonical" href="https://drgabriel.med.br/tdah" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://drgabriel.med.br/tdah" />
+        <meta property="og:title" content="Tratamento de TDAH - Dr. Gabriel Lopes | Psiquiatra Vila Olímpia" />
+        <meta property="og:description" content="Avaliação completa e tratamento especializado para TDAH infantil e adulto com o Dr. Gabriel Lopes." />
+        <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Tratamento de TDAH - Dr. Gabriel Lopes | Psiquiatra Vila Olímpia" />
+        <meta name="twitter:description" content="Avaliação completa e tratamento especializado para TDAH infantil e adulto." />
+        <meta name="twitter:image" content="https://drgabriel.med.br/og-image.jpg" />
       </Helmet>
 
       <div className="min-h-screen">

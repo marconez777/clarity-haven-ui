@@ -92,6 +92,7 @@ const TesteDepressaoPHQ9 = () => {
   return (
     <>
       <Helmet>
+        <html lang="pt-BR" />
         <title>Teste de Depressão PHQ-9 Online Gratuito | Dr. Gabriel Lopes</title>
         <meta
           name="description"
@@ -102,6 +103,19 @@ const TesteDepressaoPHQ9 = () => {
           content="teste depressão, phq-9, teste depressão online, sintomas depressão, depressão adulto"
         />
         <link rel="canonical" href="https://drgabriel.med.br/teste-depressao-phq9" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://drgabriel.med.br/teste-depressao-phq9" />
+        <meta property="og:title" content="Teste de Depressão PHQ-9 Online Gratuito | Dr. Gabriel Lopes" />
+        <meta property="og:description" content="Faça o teste de depressão PHQ-9 online gratuito. Questionário validado para avaliar sintomas depressivos." />
+        <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Teste de Depressão PHQ-9 Online Gratuito | Dr. Gabriel Lopes" />
+        <meta name="twitter:description" content="Faça o teste de depressão PHQ-9 online gratuito. Resultado imediato." />
+        <meta name="twitter:image" content="https://drgabriel.med.br/og-image.jpg" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

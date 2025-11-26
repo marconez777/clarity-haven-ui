@@ -99,6 +99,7 @@ const TesteTranstornoBipolar = () => {
   return (
     <>
       <Helmet>
+        <html lang="pt-BR" />
         <title>Teste de Transtorno Bipolar Online Gratuito | Dr. Gabriel Lopes</title>
         <meta
           name="description"
@@ -109,6 +110,19 @@ const TesteTranstornoBipolar = () => {
           content="teste transtorno bipolar, teste bipolaridade, alteração humor, mania hipomania"
         />
         <link rel="canonical" href="https://drgabriel.med.br/teste-transtorno-bipolar" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://drgabriel.med.br/teste-transtorno-bipolar" />
+        <meta property="og:title" content="Teste de Transtorno Bipolar Online Gratuito | Dr. Gabriel Lopes" />
+        <meta property="og:description" content="Faça o teste de transtorno bipolar online gratuito. Avalie sintomas de alterações de humor." />
+        <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Teste de Transtorno Bipolar Online Gratuito | Dr. Gabriel Lopes" />
+        <meta name="twitter:description" content="Faça o teste de transtorno bipolar online gratuito. Resultado imediato." />
+        <meta name="twitter:image" content="https://drgabriel.med.br/og-image.jpg" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

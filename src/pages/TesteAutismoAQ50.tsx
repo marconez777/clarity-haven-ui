@@ -130,6 +130,7 @@ const TesteAutismoAQ50 = () => {
   return (
     <>
       <Helmet>
+        <html lang="pt-BR" />
         <title>Teste de Autismo AQ-50 Completo Online | Dr. Gabriel Lopes</title>
         <meta
           name="description"
@@ -140,6 +141,19 @@ const TesteAutismoAQ50 = () => {
           content="teste autismo, aq-50, teste autismo completo, espectro autista adulto, avaliação autismo"
         />
         <link rel="canonical" href="https://drgabriel.med.br/teste-autismo-aq50" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://drgabriel.med.br/teste-autismo-aq50" />
+        <meta property="og:title" content="Teste de Autismo AQ-50 Completo Online | Dr. Gabriel Lopes" />
+        <meta property="og:description" content="Teste de autismo AQ-50 completo online. Avaliação detalhada de características do espectro autista." />
+        <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Teste de Autismo AQ-50 Completo Online | Dr. Gabriel Lopes" />
+        <meta name="twitter:description" content="Teste de autismo AQ-50 completo online. Avaliação detalhada." />
+        <meta name="twitter:image" content="https://drgabriel.med.br/og-image.jpg" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

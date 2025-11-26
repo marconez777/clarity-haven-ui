@@ -119,6 +119,7 @@ const TesteTDAH = () => {
   return (
     <>
       <Helmet>
+        <html lang="pt-BR" />
         <title>Teste de TDAH Online Gratuito | Dr. Gabriel Lopes</title>
         <meta
           name="description"
@@ -129,6 +130,19 @@ const TesteTDAH = () => {
           content="teste tdah, teste tdah online, tdah adulto, teste hiperatividade"
         />
         <link rel="canonical" href="https://drgabriel.med.br/teste-tdah-hiperatividade" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://drgabriel.med.br/teste-tdah-hiperatividade" />
+        <meta property="og:title" content="Teste de TDAH Online Gratuito | Dr. Gabriel Lopes" />
+        <meta property="og:description" content="Faça o teste de TDAH online gratuito. Questionário rápido para identificar sintomas de TDAH." />
+        <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Teste de TDAH Online Gratuito | Dr. Gabriel Lopes" />
+        <meta name="twitter:description" content="Faça o teste de TDAH online gratuito. Questionário rápido para identificar sintomas de TDAH." />
+        <meta name="twitter:image" content="https://drgabriel.med.br/og-image.jpg" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

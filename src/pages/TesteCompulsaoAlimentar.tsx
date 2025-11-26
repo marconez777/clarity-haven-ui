@@ -232,6 +232,12 @@ const TesteCompulsaoAlimentar = () => {
         <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
         <meta property="og:locale" content="pt_BR" />
         <meta property="og:site_name" content="Dr. Gabriel Lopes - Psiquiatra" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Teste de Compulsão Alimentar | Dr Gabriel Lopes" />
+        <meta name="twitter:description" content="Avalie seus padrões alimentares com o teste de Compulsão Alimentar." />
+        <meta name="twitter:image" content="https://drgabriel.med.br/og-image.jpg" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

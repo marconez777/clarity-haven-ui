@@ -90,6 +90,7 @@ const TesteAnsiedadeGAD7 = () => {
   return (
     <>
       <Helmet>
+        <html lang="pt-BR" />
         <title>Teste de Ansiedade GAD-7 Online Gratuito | Dr. Gabriel Lopes</title>
         <meta
           name="description"
@@ -100,6 +101,19 @@ const TesteAnsiedadeGAD7 = () => {
           content="teste ansiedade, gad-7, teste ansiedade online, ansiedade generalizada, sintomas ansiedade"
         />
         <link rel="canonical" href="https://drgabriel.med.br/teste-ansiedade-gad7" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://drgabriel.med.br/teste-ansiedade-gad7" />
+        <meta property="og:title" content="Teste de Ansiedade GAD-7 Online Gratuito | Dr. Gabriel Lopes" />
+        <meta property="og:description" content="Faça o teste de ansiedade GAD-7 online gratuito. Questionário validado para avaliar sintomas de ansiedade." />
+        <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Teste de Ansiedade GAD-7 Online Gratuito | Dr. Gabriel Lopes" />
+        <meta name="twitter:description" content="Faça o teste de ansiedade GAD-7 online gratuito. Resultado imediato." />
+        <meta name="twitter:image" content="https://drgabriel.med.br/og-image.jpg" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">
