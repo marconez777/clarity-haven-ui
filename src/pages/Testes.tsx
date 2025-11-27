@@ -10,17 +10,17 @@ const Testes = () => {
   const testes = [
     {
       title: "Teste de Autismo Adulto – AQ-10",
-      href: "/teste-autismo-aq10",
+      href: "/autismo-adulto-aq-10",
       disabled: false,
     },
     {
       title: "Teste de Autismo Adulto – AQ-50",
-      href: "/teste-autismo-aq50",
+      href: "/teste-de-autismo-adulto-aq-50",
       disabled: false,
     },
     {
       title: "Teste de Depressão – PHQ9",
-      href: "/teste-depressao-phq9",
+      href: "/teste-de-depressao-phq9",
       disabled: false,
     },
     {
@@ -30,7 +30,7 @@ const Testes = () => {
     },
     {
       title: "Teste de Déficit de Atenção – TDAH Adulto",
-      href: "/teste-tdah-adulto",
+      href: "/teste-de-deficit-de-atencao-tdah-adulto",
       disabled: false,
     },
     {
@@ -50,12 +50,12 @@ const Testes = () => {
     },
     {
       title: "Teste de Transtorno Bipolar",
-      href: "/teste-transtorno-bipolar",
+      href: "/teste-de-transtorno-bipolar",
       disabled: false,
     },
     {
       title: "Teste de Sofrimento Mental",
-      href: "/teste-sofrimento-mental",
+      href: "/teste-de-sofrimento-mental",
       disabled: false,
     },
   ];
@@ -65,7 +65,7 @@ const Testes = () => {
     "@type": "CollectionPage",
     "name": "Testes de Saúde Mental",
     "description": "Testes online gratuitos de avaliação de saúde mental: TDAH, ansiedade, depressão, transtorno bipolar e outros testes validados.",
-    "url": "https://drgabriel.med.br/testes",
+    "url": "https://drgabriel.med.br/testes-de-saude-mental",
     "mainEntity": {
       "@type": "ItemList",
       "itemListElement": testes.map((teste, index) => ({
@@ -86,11 +86,11 @@ const Testes = () => {
           content="Realize testes online de avaliação de saúde mental. TDAH, ansiedade, depressão, transtorno bipolar e outros testes validados."
         />
         <meta name="keywords" content="teste saúde mental, teste TDAH, teste ansiedade, teste depressão, teste bipolar, teste online gratuito" />
-        <link rel="canonical" href="https://drgabriel.med.br/testes" />
+        <link rel="canonical" href="https://drgabriel.med.br/testes-de-saude-mental" />
         
         {/* Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://drgabriel.med.br/testes" />
+        <meta property="og:url" content="https://drgabriel.med.br/testes-de-saude-mental" />
         <meta property="og:title" content="Testes de Saúde Mental | Dr Gabriel Lopes" />
         <meta property="og:description" content="Realize testes online de avaliação de saúde mental. TDAH, ansiedade, depressão, transtorno bipolar e outros testes validados." />
         <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
