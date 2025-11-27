@@ -42,6 +42,7 @@ import PageList from "@/pages/admin/pages/PageList";
 import PageEditor from "@/pages/admin/pages/PageEditor";
 import WordPressImport from "@/pages/admin/import/WordPressImport";
 import DynamicPage from "@/pages/DynamicPage";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +53,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/dr-gabriel-lopes" element={<DrGabriel />} />
