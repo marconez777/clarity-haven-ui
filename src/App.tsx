@@ -59,16 +59,16 @@ const App = () => (
             <Route path="/dr-gabriel-lopes" element={<DrGabriel />} />
             <Route path="/especialidades" element={<Especialidades />} />
             <Route path="/tdah" element={<TDAH />} />
-            <Route path="/testes" element={<Testes />} />
+            <Route path="/testes-de-saude-mental" element={<Testes />} />
             <Route path="/teste-tdah-hiperatividade" element={<TesteTDAH />} />
-            <Route path="/teste-autismo-aq10" element={<TesteAutismoAQ10 />} />
-            <Route path="/teste-autismo-aq50" element={<TesteAutismoAQ50 />} />
-            <Route path="/teste-depressao-phq9" element={<TesteDepressaoPHQ9 />} />
-            <Route path="/teste-tdah-adulto" element={<TesteTDAHAdulto />} />
+            <Route path="/autismo-adulto-aq-10" element={<TesteAutismoAQ10 />} />
+            <Route path="/teste-de-autismo-adulto-aq-50" element={<TesteAutismoAQ50 />} />
+            <Route path="/teste-de-depressao-phq9" element={<TesteDepressaoPHQ9 />} />
+            <Route path="/teste-de-deficit-de-atencao-tdah-adulto" element={<TesteTDAHAdulto />} />
             <Route path="/teste-ansiedade-gad7" element={<TesteAnsiedadeGAD7 />} />
             <Route path="/teste-burnout" element={<TesteBurnout />} />
-            <Route path="/teste-transtorno-bipolar" element={<TesteTranstornoBipolar />} />
-            <Route path="/teste-sofrimento-mental" element={<TesteSofrimentoMental />} />
+            <Route path="/teste-de-transtorno-bipolar" element={<TesteTranstornoBipolar />} />
+            <Route path="/teste-de-sofrimento-mental" element={<TesteSofrimentoMental />} />
             <Route path="/teste-compulsao-alimentar" element={<TesteCompulsaoAlimentar />} />
             <Route path="/modelo-local" element={<ModeloLocal />} />
             <Route path="/psiquiatra-de-tdah" element={<PsiquiatraDeTDAH />} />
