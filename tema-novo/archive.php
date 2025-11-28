@@ -254,6 +254,5 @@ tema_novo_breadcrumbs();
 </main>
 
 <?php
-get_template_part('components/whatsapp-button');
 get_footer();
 ?>
