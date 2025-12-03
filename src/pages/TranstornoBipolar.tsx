@@ -45,7 +45,7 @@ const TranstornoBipolar = () => {
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
                   <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-foreground leading-tight">
                   Oscilações intensas de humor, períodos de euforia seguidos por tristeza profunda?
-                    <span className="block text-primary mt-3 md:mt-4">Você pode estar convivendo com o transtorno bipolar.</span>
+                    <span className="block text-primary mt-3 md:mt-4 mb-[50px] md:mb-0">Você pode estar convivendo com o transtorno bipolar.</span>
                   </h1>
                   <p className="hidden md:block text-lg sm:text-xl md:text-xl text-muted-foreground mb-6 md:mb-8">
                   O Dr. Gabriel Lopes é psiquiatra especializado no diagnóstico e tratamento do transtorno bipolar, unindo ciência, empatia e acompanhamento personalizado.
