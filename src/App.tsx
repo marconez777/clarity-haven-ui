@@ -86,7 +86,7 @@ const App = () => (
             
             {/* Admin Routes */}
             <Route path="/admin/login" element={<Login />} />
-            <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
+            <Route path="/admin/*" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
               <Route index element={<Dashboard />} />
               <Route path="posts" element={<PostList />} />
               <Route path="posts/new" element={<PostCreate />} />
