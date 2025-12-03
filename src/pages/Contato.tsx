@@ -7,6 +7,7 @@ import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 import { handleWhatsAppClick } from "@/hooks/useConversionTracking";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -322,6 +323,7 @@ const Contato = () => {
       </main>
 
       <Footer />
+      <WhatsAppButton />
     </>
   );
 };
