@@ -4,13 +4,11 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-
 import { Button } from "@/components/ui/button";
 import { Brain, Heart, Users, CheckCircle2, AlertCircle } from "lucide-react";
 import drGabrielImage from "@/assets/doctors/dr-gabriel.png";
 import consultorioImage from "@/assets/sections/consultori-psiquiatria2.jpg";
 import { handleWhatsAppClick } from "@/hooks/useConversionTracking";
-
 const TDAH = () => {
   return <>
       <Helmet>
@@ -36,7 +34,12 @@ const TDAH = () => {
 
       <div className="min-h-screen">
         <Navigation />
-        <Breadcrumbs items={[{ label: "Especialidades", href: "/especialidades" }, { label: "TDAH" }]} />
+        <Breadcrumbs items={[{
+        label: "Especialidades",
+        href: "/especialidades"
+      }, {
+        label: "TDAH"
+      }]} />
         <main>
           {/* Hero Section */}
           <section className="relative py-8 md:py-16 overflow-hidden bg-gradient-to-br from-secondary/30 to-background">
@@ -45,7 +48,7 @@ const TDAH = () => {
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
                   <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-foreground leading-tight">
                     Dificuldade de Foco, Impulsividade ou Esquecimento Constante?
-                    <span className="block text-primary mt-3 md:mt-4">Você pode estar convivendo com TDAH.</span>
+                    <span className="block text-primary mt-3 md:mt-4 mb-[50px]">Você pode estar convivendo com TDAH.</span>
                   </h1>
                   <p className="hidden md:block text-lg sm:text-xl md:text-xl text-muted-foreground mb-6 md:mb-8">
                     Avaliação completa e tratamento especializado com o Dr. Gabriel Lopes, psiquiatra referência em saúde mental e TDAH infantil e adulto.
@@ -299,7 +302,9 @@ const TDAH = () => {
           </section>
 
           {/* TDAH Infantil e TDAH Adulto */}
-          <section className="py-20" style={{ backgroundColor: '#087daf' }}>
+          <section className="py-20" style={{
+          backgroundColor: '#087daf'
+        }}>
             <div className="container mx-auto px-4">
               <div className="max-w-5xl mx-auto">
                 <div className="grid md:grid-cols-2 gap-8">
