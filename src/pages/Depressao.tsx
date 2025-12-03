@@ -47,7 +47,7 @@ const Depressao = () => {
                     Tristeza constante, falta de energia ou perda de interesse pelo que antes trazia prazer?
                     <span className="block text-primary mt-3 md:mt-4">Você pode estar enfrentando um quadro de depressão.</span>
                   </h1>
-                  <p className="text-lg sm:text-xl md:text-xl text-muted-foreground mb-6 md:mb-8">
+                  <p className="hidden md:block text-lg sm:text-xl md:text-xl text-muted-foreground mb-6 md:mb-8">
                     Tratamento especializado com o Dr. Gabriel Lopes, psiquiatra referência em saúde mental e transtornos do humor.
                   </p>
                   <div className="flex flex-col gap-3 md:gap-4">
