@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -19,9 +19,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Users, Calendar, MessageSquare, FileText, Download, Search } from 'lucide-react';
+import { Users, Calendar, MessageSquare, FileText, Download, Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+
+const ITEMS_PER_PAGE = 20;
 
 interface Lead {
   id: string;
@@ -37,6 +39,7 @@ interface Lead {
 const Leads = () => {
   const [filter, setFilter] = useState<'all' | 'contact' | 'test'>('all');
   const [search, setSearch] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
 
   // Fetch leads from contacts
   const { data: contactLeads = [], isLoading: loadingContacts } = useQuery({
@@ -108,6 +111,18 @@ const Leads = () => {
 
     return filtered;
   }, [allLeads, filter, search]);
+
+  // Reset page when filter or search changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filter, search]);
+
+  // Pagination
+  const totalPages = Math.ceil(filteredLeads.length / ITEMS_PER_PAGE);
+  const paginatedLeads = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredLeads.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredLeads, currentPage]);
 
   // Stats
   const stats = useMemo(() => {
@@ -245,14 +260,14 @@ const Leads = () => {
                     Carregando leads...
                   </TableCell>
                 </TableRow>
-              ) : filteredLeads.length === 0 ? (
+              ) : paginatedLeads.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
                     Nenhum lead encontrado
                   </TableCell>
                 </TableRow>
               ) : (
-                filteredLeads.map((lead) => (
+                paginatedLeads.map((lead) => (
                   <TableRow key={`${lead.type}-${lead.id}`}>
                     <TableCell className="font-medium">
                       {lead.name || <span className="text-muted-foreground">-</span>}
@@ -283,6 +298,60 @@ const Leads = () => {
             </TableBody>
           </Table>
         </CardContent>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-between px-4 py-3 border-t">
+            <div className="text-sm text-muted-foreground">
+              Mostrando {((currentPage - 1) * ITEMS_PER_PAGE) + 1} a {Math.min(currentPage * ITEMS_PER_PAGE, filteredLeads.length)} de {filteredLeads.length} leads
+            </div>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+              >
+                <ChevronLeft className="h-4 w-4" />
+                Anterior
+              </Button>
+              <div className="flex items-center gap-1">
+                {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                  let pageNum: number;
+                  if (totalPages <= 5) {
+                    pageNum = i + 1;
+                  } else if (currentPage <= 3) {
+                    pageNum = i + 1;
+                  } else if (currentPage >= totalPages - 2) {
+                    pageNum = totalPages - 4 + i;
+                  } else {
+                    pageNum = currentPage - 2 + i;
+                  }
+                  return (
+                    <Button
+                      key={pageNum}
+                      variant={currentPage === pageNum ? 'default' : 'outline'}
+                      size="sm"
+                      onClick={() => setCurrentPage(pageNum)}
+                      className="w-8 h-8 p-0"
+                    >
+                      {pageNum}
+                    </Button>
+                  );
+                })}
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                disabled={currentPage === totalPages}
+              >
+                Próximo
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        )}
       </Card>
     </div>
   );
