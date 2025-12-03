@@ -1,198 +1,226 @@
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Award, MessageCircle } from "lucide-react";
+import { handleWhatsAppClick } from "@/hooks/useConversionTracking";
+
+// Import all doctor images
+import drGabriel from "@/assets/doctors/dr-gabriel.png";
+import draAnaSato from "@/assets/doctors/Dra-Ana-Carolina-Sato.png";
+import draStelaBersan from "@/assets/doctors/dra-stela-bersan-faustino.png";
+import drJulioCesar from "@/assets/doctors/dr-julio-cesar-scaled.png";
+import vanessaOliveira from "@/assets/doctors/vanessa-oliveira-da-silva.png";
+import wladimirMartins from "@/assets/doctors/corpo-clinico-wladimir.png";
+import philippeBenhayon from "@/assets/doctors/philippe-albert-dalle-molle-benhayon.png";
+import israelBusto from "@/assets/doctors/israel-adolfo-mirando-busto.png";
+import lauraSilva from "@/assets/doctors/laura-jessica-siqueira-da-silva.png";
+
+interface TeamMember {
+  name: string;
+  registration: string;
+  specialty: string;
+  image: string;
+  description: string;
+}
+
+const teamMembers: TeamMember[] = [
+  {
+    name: "Dr. Gabriel M. Lopes",
+    registration: "CRM-SP: 131.339 / RQE: 48295",
+    specialty: "Psiquiatra",
+    image: drGabriel,
+    description: "Formado em Medicina pela prestigiosa Faculdade de Medicina da Santa Casa de São Paulo, o Dr. Gabriel M. Lopes deu continuidade na sua jornada acadêmica fazendo Residência Médica em Psiquiatria nesta mesma instituição e um aprofundamento em Psiquiatria da Infância e Adolescência no reconhecido Hospital das Clínicas da Universidade de São Paulo (USP). O Dr. Gabriel também é Psicoterapeuta formado em Análise do Comportamento pelo Instituto Paradigma. Atualmente o psiquiatra Dr. Gabriel M. lidera o Instituto Sanapta, uma clínica multiprofissional, que tem como objetivo principal olhar para o ser humana de forma ampla e integrada. O instituto conta com profissionais renomados e de diversas especialidades, o que permite personalizar os tratamentos de acordo com a necessidade de cada paciente, olhando-o como um todo."
+  },
+  {
+    name: "Dra. Ana Carolina Sato",
+    registration: "CRM-SP 124689 / RQE 36190",
+    specialty: "Acupuntura integrativa",
+    image: draAnaSato,
+    description: "Dra. Ana Carolina Sato é graduada em Medicina pela UNIFESP – Escola Paulista de Medicina, ela traz uma vasta experiência com residências médicas em Pediatria e Medicina do Adolescente, ambas realizadas na UNIFESP. Além de seu título de Especialista pela Sociedade Brasileira de Pediatria, a Dra. Sato é uma especialista em Acupuntura, com uma pós-graduação pelo Center-AO, vinculado à UNIFESP, e o título de Especialista em Acupuntura pela Associação Médica Brasileira de Acupuntura. Depois de muitos anos de estudo, realiza hoje acupuntura médica integrativa, uma combinação única que une a medicina chinesa com práticas modernas, como laserpuntura, fotobiomodulação, psiconeuroimunologia, medicina emocional e medicina holística. A Dra Ana Sato possui ampla experiência em tratar diversas condições, sendo altamente capacitada no atendimento de bebês, gestantes e adultos que queiram buscar a saúde de forma mais completa. Com uma carreira de 21 anos dedicados à medicina chinesa, a Dra. Sato é uma profissional altamente experiente e qualificada, oferecendo cuidados de saúde personalizado e diversificados. Atualmente é mestranda e pesquisadora em psiconeuroimunologia pela Universidad de Salamanca na Espanha e co-fundadora do instituto Sanapta onde desenvolve seu trabalho com equipe multidisciplinar."
+  },
+  {
+    name: "Dra. Stela Bersan Faustino",
+    registration: "CRM SP 248292",
+    specialty: "Psiquiatra",
+    image: draStelaBersan,
+    description: "Médica formada pela Universidade Estadual de Santa Cruz, em especialização em Psiquiatria pela Faculdade de Ciências Médicas da Santa Casa de São Paulo. Atua com dedicação ao cuidado integral em saúde mental, com experiência tanto em contextos de urgência quanto em seguimento clínico de médio e longo prazo. Sua abordagem valoriza a escuta atenta, o vínculo terapêutico e o uso responsável da psicofarmacologia, sempre considerando a singularidade de cada paciente. Complementa sua formação com estudos avançados em Psicofarmacologia Clínica pelo Instituto de Ciências Biomédicas da USP (ICB-USP). Já integrou grupos de estudos em Cuidados Paliativos e ligas acadêmicas de Farmacologia Clínica, além de ter atuado em projetos de saúde comunitária com foco em promoção de bem-estar. É também bacharela em Comunicação Social pela ECA-USP, o que fortalece seu olhar sobre a importância da linguagem, da escuta e da qualidade da relação entre profissional e paciente como elementos centrais no processo de cuidado."
+  },
+  {
+    name: "Dr. Julio Cesar",
+    registration: "CRP 06/130364",
+    specialty: "Psicólogo Analista do Comportamento",
+    image: drJulioCesar,
+    description: "Atendimento clínico de crianças, adolescentes e adultos e especializado em Transtorno do Espectro Autista e outros atrasos do desenvolvimento."
+  },
+  {
+    name: "Vanessa Oliveira da Silva",
+    registration: "CRP 06/161343",
+    specialty: "Neuropsicóloga",
+    image: vanessaOliveira,
+    description: "Neuropsicóloga formada pelo Instituto de Psiquiatria do Hospital das Clínicas de São Paulo (Ipq-HC-FMUSP) com ênfase em avaliação neuropsicológica e expertise na avaliação e diagnósticos diferencial de TDAH em adolescentes e adultos, bem como de todas as suas comorbidades conhecidas. Atendimento a saúde mental em psicoterapia psicodinâmica. Psicóloga clínica de adolescentes e adultos com maior experiência em TDAH e suas comorbidades."
+  },
+  {
+    name: "Wladimir Martins",
+    registration: "CRP 36.438/6",
+    specialty: "Psicólogo Clínico",
+    image: wladimirMartins,
+    description: "Especialização na teoria Psicodramática (EPP) e mestrado em violência como estratégia de convivência (Assédio moral). Atendimento de adultos e casais. Larga experiência na academia e como docente."
+  },
+  {
+    name: "Philippe Albert Dalle Molle Benhayon",
+    registration: "CRP 06/152007",
+    specialty: "Psicólogo Clínico",
+    image: philippeBenhayon,
+    description: "O Dr. Philippe é Psicólogo formado pela PUC-SP, pós-graduado em psicologia da saúde com ênfase em psiconcologia pelo Instituto do Câncer do Hospital das Clínicas da Faculdade de Medicina da Universidade de São Paulo (HCFMUSP – Icesp). Atua como psicólogo clínico propondo uma psicoterapia com olhar pautado pela fenomenologia existencial, tem experiência com casos de Saúde Mental e Dependência Química."
+  },
+  {
+    name: "Israel Adolfo Mirando Busto",
+    registration: "CRN 21752",
+    specialty: "Nutricionista Esportivo",
+    image: israelBusto,
+    description: "Nutricionista Esportivo Especialista em Fisiologista do Exercício, Especialista em Treinamento Desportivo, Especialista em Fisiologia da Alimentação e Especialista em Comportamento Alimentar."
+  },
+  {
+    name: "Laura Jessica Siqueira da Silva",
+    registration: "CREFITO 133524G/SP",
+    specialty: "Educadora Física",
+    image: lauraSilva,
+    description: "Sólida formação em Educação Física e diversas especializações. Sua maior capacitação, interesse e experiência é em saúde mental dentro da educação física, com foco em treinar o corpo com técnicas específicas para manter a saúde mental o mais saudável possível, dependendo de cada transtorno psiquiátrico. Constantemente buscando atualizar e aprimorar seus conhecimentos, Laura cria sempre treinamentos personalizados e adaptáveis, garantindo um serviço de qualidade e exclusivo aos seus clientes, com resultados visíveis e duradouros."
+  }
+];
 
 const Team = () => {
-  const teamMembers = [
-    {
-      name: "Dr. Gabriel Lopes",
-      role: "Fundador do Instituto Sanapta",
-      initials: "GL",
-      image: "",
-      description: `Graduado em Medicina pela Faculdade de Ciências Médicas da Santa Casa de São Paulo (Turma XL).
-Residência Médica em Psiquiatria pela Faculdade de Ciências Médicas da Santa Casa de São Paulo.
-Curso de Formação em Acupuntura e Medicina Tradicional Chinesa (MTC) da Associação Médica Brasileira de Acupuntura, com estágio clínico no Hospital do Servidor Público Estadual (IAMSPE).
-Residência Médica em Psiquiatria da Infância e Adolescência pela USP.
-Formação em Psicoterapia Analítico Funcional pelo Instituto Paradigma.
-Mestrado em Psiconeuroimunologia pela Universidad de Salamanca – Espanha (em andamento).
-Experiência clínica: TDAH, Transtornos de Ansiedade, Transtornos de Humor. Atende principalmente infância, adolescentes e adultos até 65 anos.
-
-21 anos de experiência.`
-    },
-    {
-      name: "Dra. Ana Carolina Sato",
-      role: "Co-fundadora do Instituto Sanapta",
-      initials: "AS",
-      image: "",
-      description: `Graduada em Medicina pela UNIFESP – Escola Paulista de Medicina
-Residência Médica em Pediatria pela UNIFESP – Escola Paulista de Medicina
-Residência Médica em Medicina do Adolescente pela UNIFESP – Escola Paulista de Medicina
-Título de Especialista pela Sociedade Brasileira de Pediatria.
-Pós-graduada com especialização em Acupuntura pelo Center-AO, também vinculado a UNIFESP.
-Título de Especialista em Acupuntura pela Associação Médica Brasileira de Acupuntura.
-Idealizadora do método SATO de acupuntura médica (Sistema de Acupuntura com Tratamento Orientado), terapia que agrega a teoria da medicina chinesa às práticas modernas como psiconeuroimunologia, barra de access, medicina emocional, medicina holística, florais de Bach, aromaterapia, mindfulness e biomagnetismo, possuindo certificação em todas as modalidades.
-Atualmente é mestranda em Psiconeuroimunologia pela Universidad de Salamanca na Espanha.
-Atende desde crianças recém-nascidas a idosos.
-Grande experiência com crianças com problemas neurológicos, paralisia cerebral, autismo. Atende gestantes e mulheres em fase de fertilização com resultados animadores.
-21 anos de experiência em medicina chinesa.`
-    },
-    {
-      name: "Dra. Vanessa Olivers",
-      role: "Neuropsicóloga",
-      initials: "VO",
-      image: "",
-      description: `Neuropsicóloga formada pelo Instituto de Psiquiatria do Hospital das Clínicas de São Paulo (Ipq- HC-FMUSP) com ênfase em avaliação neuropsicológica e expertise na avaliação e diagnósticos diferencial de TDAH em adolescentes e adultos, bem como de todas as suas comorbidades conhecidas. Atendimento a saúde mental em psicoterapia psicodinâmica.
-Psicóloga clínica de adolescentes e adultos com maior experiência em TDAH e suas comorbidades.
-A importância da avaliação neuropsicológica está não só no fato de ser o exame mais importante para confirmar o diagnóstico de TDAH, mas principalmente para nortear o tratamento da própria terapia, realizada em nossa clínica. Coordenadora do setor de avaliação diagnóstica em neuropsicologia do Instituto Sanapta.`
-    },
-    {
-      name: "Wladimir Martins",
-      role: "Psicólogo CRP 36.438/6",
-      initials: "WM",
-      image: "",
-      description: `Especialização na teoria Psicodramática (EPP) e mestrado em violência como estratégia de convivência (Assédio moral). Atendimento de adultos e casais. Larga experiência na academia e como docente.`
-    },
-    {
-      name: "Michelle Ribeiro Teixeira",
-      role: "Psicóloga",
-      initials: "MT",
-      image: "",
-      description: `Psicóloga com atuação na abordagem Terapia Cognitivo Comportamental. Pós-graduada em Medicina Integrativa pelo Hospital Israelita Albert Einstein, e também em Psicologia Positiva pela PUC e com MBA em Desenvolvimento Humano de Líderes pela FGV. Formação em Fundamentos em Coaching pela New York University, em Terapia Cognitiva Narrativa e Focada na Compaixão, e Psicologia e Psiquiatria Positiva na Prática Clínica pelo Instituto de Psiquiatria da FMUSP.`
-    },
-    {
-      name: "Sofia Hamoui",
-      role: "Psicóloga",
-      initials: "SH",
-      image: "",
-      description: `Formada em Psicologia pela Pontifícia Universidade Católica de São Paulo. Realiza a Qualificação Avançada em Análise do Comportamento Aplicada à infância, adolescência e parentalidade no Centro Paradigma Ciências do Comportamento e Pós-graduação em Transtornos Alimentares (Ambulim) no Instituto de Psiquiatria do Hospital das Clínicas da FMUSP. Atua com crianças, jovens e adultos, orientada pela Análise do Comportamento.`
-    },
-    {
-      name: "Philippe Albert Dalle Molle Benhayon",
-      role: "Psicólogo",
-      initials: "PB",
-      image: "",
-      description: `Psicólogo formado pela PUC-SP, pós-graduado em psicologia da saúde com ênfase em psiconcologia pelo Instituto do Câncer do Hospital das Clínicas da Faculdade de Medicina da Universidade de São Paulo(HCFMUSP – Icesp). Atua como psicólogo clínico propondo uma psicoterapia com olhar pautado pela fenomenologia existencial, tem experiência com casos de Saúde Mental e Dependência Química.`
-    },
-    {
-      name: "Laura",
-      role: "Educadora Física",
-      initials: "LA",
-      image: "",
-      description: `Sólida formação em Educação Física e diversas especializações. Sua maior capacitação, interesse e experiência é em saúde mental dentro da educação física, com foco em treinar o corpo com técnicas específicas para manter a saúde mental o mais saudável possível, dependendo de cada transtorno psiquiátrico.
-Constantemente buscando atualizar e aprimorar seus conhecimentos, Laura cria sempre treinamentos personalizados e adaptáveis, garantindo um serviço de qualidade e exclusivo aos seus clientes, com resultados visíveis e duradouros.`
-    }
-  ];
-
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "MedicalOrganization",
     "name": "Instituto Sanapta",
-    "description": "Equipe multidisciplinar especializada em saúde mental: psiquiatras, psicólogos, neuropsicóloga e profissionais especializados em TDAH, ansiedade e depressão.",
-    "url": "https://drgabriel.med.br/equipe",
+    "description": "Equipe multidisciplinar de profissionais de saúde mental em São Paulo",
+    "medicalSpecialty": ["Psychiatry", "Psychology", "Acupuncture", "Nutrition"],
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Rua do Rocio, 423. Cj. 402",
       "addressLocality": "São Paulo",
       "addressRegion": "SP",
-      "postalCode": "04548-020",
       "addressCountry": "BR"
-    },
-    "medicalSpecialty": ["Psychiatry", "Psychology", "Neuropsychology"]
+    }
   };
 
   return (
     <>
       <Helmet>
-        <title>Nossa Equipe - Instituto Sanapta | Profissionais Especializados em Saúde Mental</title>
-        <meta
-          name="description"
-          content="Conheça a equipe multidisciplinar do Instituto Sanapta: psiquiatras, psicólogos, neuropsicóloga e profissionais especializados em TDAH, ansiedade e depressão."
+        <title>Nossa Equipe | Instituto Sanapta - Profissionais de Saúde Mental em SP</title>
+        <meta 
+          name="description" 
+          content="Conheça nossa equipe multidisciplinar de psiquiatras, psicólogos, neuropsicólogos e outros profissionais especializados em saúde mental no Instituto Sanapta." 
         />
-        <meta name="keywords" content="equipe médica, psiquiatras, psicólogos, neuropsicologia, TDAH, saúde mental, Instituto Sanapta" />
-        <link rel="canonical" href="https://drgabriel.med.br/equipe" />
-        
-        {/* Open Graph */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://drgabriel.med.br/equipe" />
-        <meta property="og:title" content="Nossa Equipe - Instituto Sanapta | Profissionais Especializados em Saúde Mental" />
-        <meta property="og:description" content="Conheça a equipe multidisciplinar do Instituto Sanapta: psiquiatras, psicólogos, neuropsicóloga e profissionais especializados." />
-        <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
-        <meta property="og:locale" content="pt_BR" />
-        <meta property="og:site_name" content="Dr. Gabriel Lopes - Psiquiatra" />
-        
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Nossa Equipe - Instituto Sanapta | Profissionais Especializados" />
-        <meta name="twitter:description" content="Conheça a equipe multidisciplinar do Instituto Sanapta: psiquiatras, psicólogos e especialistas." />
-        <meta name="twitter:image" content="https://drgabriel.med.br/og-image.jpg" />
-        
-        {/* JSON-LD */}
-        <script type="application/ld+json">
-          {JSON.stringify(jsonLd)}
-        </script>
+        <meta name="keywords" content="equipe médica, psiquiatra São Paulo, psicólogo, neuropsicólogo, Instituto Sanapta" />
+        <link rel="canonical" href="https://institutosanapta.com.br/equipe" />
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-b from-background to-primary/5">
-        <Navigation />
-        <Breadcrumbs items={[{ label: "Nossa Equipe" }]} />
-        
+      <Navigation />
+      <Breadcrumbs items={[{ label: "Nossa Equipe" }]} />
+
+      <main className="min-h-screen bg-background">
         {/* Hero Section */}
-        <section className="pt-8 pb-20 px-4">
-          <div className="container mx-auto max-w-4xl text-center">
+        <section className="py-16 md:py-20 bg-gradient-to-b from-primary/5 to-background">
+          <div className="container mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               Nossa Equipe
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-              Nossa equipe é composta por profissionais que atuam de forma integrada, para o melhor tratamento do paciente e somos especializados no atendimento integral (visão ampla), integrado (profissionais alinhados) e integrativo (abordagem médica ampla, não restrita somente ao diagnóstico, mas com uma visão ampla de saúde) dos pacientes com TDAH, Ansiedade e Depressão. Atendemos pacientes a partir de 3 anos de idade, com equipe qualificada para esta faixa etária.
-            </p>
-            <p className="text-lg text-foreground font-medium">
-              Somos: Dois psiquiatras, seis psicólogos, uma neuropsicóloga, uma equipe de ATs (acompanhantes terapêuticos), uma acupunturista e médica integrativa, uma equipe de personal trainers e um nutricionista.
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              O Instituto Sanapta conta com uma equipe multidisciplinar de profissionais altamente qualificados, 
+              dedicados a oferecer um cuidado integral e personalizado em saúde mental.
             </p>
           </div>
         </section>
 
         {/* Team Members */}
-        <section className="pb-20 px-4">
-          <div className="container mx-auto max-w-6xl">
-            <div className="grid gap-8">
+        <section className="py-12 md:py-20">
+          <div className="container mx-auto px-4">
+            <div className="space-y-20 md:space-y-32">
               {teamMembers.map((member, index) => (
-                <Card key={index} className="overflow-hidden hover:shadow-[var(--shadow-hover)] transition-shadow duration-300">
-                  <CardHeader className="bg-primary/5 pb-6">
-                    <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-                      <Avatar className="h-32 w-32 border-4 border-background shadow-lg">
-                        <AvatarImage src={member.image} alt={member.name} />
-                        <AvatarFallback className="text-2xl bg-primary/10 text-primary">
-                          {member.initials}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div className="text-center md:text-left flex-1">
-                        <CardTitle className="text-2xl md:text-3xl mb-2">
-                          {member.name}
-                        </CardTitle>
-                        <p className="text-primary font-semibold text-lg">
-                          {member.role}
-                        </p>
-                      </div>
+                <article 
+                  key={member.name}
+                  className="grid md:grid-cols-2 gap-8 md:gap-16 items-center"
+                >
+                  {/* Photo */}
+                  <div className={`${index % 2 === 1 ? 'md:order-2' : ''}`}>
+                    <div className="relative w-fit mx-auto">
+                      {/* Decorative ring */}
+                      <div className="absolute inset-0 w-56 h-56 md:w-72 md:h-72 mx-auto rounded-full border-2 border-dashed border-primary/30 -translate-x-2 -translate-y-2" />
+                      <img
+                        src={member.image}
+                        alt={`Foto de ${member.name}`}
+                        className="w-56 h-56 md:w-72 md:h-72 rounded-full object-cover object-top border-4 border-primary/20 shadow-xl relative z-10"
+                      />
+                      {/* Accent dot */}
+                      <div className="absolute bottom-4 right-4 w-6 h-6 bg-primary rounded-full z-20 shadow-lg" />
                     </div>
-                  </CardHeader>
-                  <CardContent className="pt-6">
-                    <p className="text-muted-foreground whitespace-pre-line leading-relaxed">
+                  </div>
+
+                  {/* Content */}
+                  <div className={`${index % 2 === 1 ? 'md:order-1 md:text-right' : ''}`}>
+                    <div className={`flex flex-wrap items-center gap-3 mb-3 ${index % 2 === 1 ? 'md:justify-end' : ''}`}>
+                      <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                        {member.name}
+                      </h2>
+                      <Badge variant="secondary" className="bg-primary/10 text-primary border-0">
+                        {member.specialty}
+                      </Badge>
+                    </div>
+                    
+                    <p className={`flex items-center gap-2 text-primary font-medium mb-5 ${index % 2 === 1 ? 'md:justify-end' : ''}`}>
+                      <Award className="w-4 h-4 flex-shrink-0" />
+                      {member.registration}
+                    </p>
+                    
+                    <p className="text-muted-foreground leading-relaxed mb-6">
                       {member.description}
                     </p>
-                  </CardContent>
-                </Card>
+                    
+                    <Button 
+                      size="lg"
+                      onClick={() => handleWhatsAppClick(`team_${member.name.toLowerCase().replace(/\s+/g, '_')}`)}
+                      className="gap-2"
+                    >
+                      <MessageCircle className="w-5 h-5" />
+                      Agendar sua consulta
+                    </Button>
+                  </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        <Footer />
-        <WhatsAppButton />
-      </div>
+        {/* CTA Section */}
+        <section className="py-16 md:py-20 bg-primary/5">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Agende sua consulta
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+              Nossa equipe está pronta para ajudar você a cuidar da sua saúde mental. 
+              Entre em contato e agende uma consulta com o profissional mais adequado para suas necessidades.
+            </p>
+            <Button 
+              size="lg" 
+              onClick={() => handleWhatsAppClick('team_cta_section')}
+              className="gap-2"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Fale conosco pelo WhatsApp
+            </Button>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+      <WhatsAppButton />
     </>
   );
 };
