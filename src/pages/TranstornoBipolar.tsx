@@ -54,7 +54,7 @@ const TranstornoBipolar = () => {
                       🔹 Agende sua consulta
                     </Button>
                     <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary w-full sm:w-auto" asChild>
-                      <Link to="/teste-transtorno-bipolar">🔹 Faça o teste de transtorno bipolar gratuito</Link>
+                      <Link to="/teste-de-transtorno-bipolar">🔹 Faça o teste de transtorno bipolar gratuito</Link>
                     </Button>
                   </div>
                 </div>
@@ -155,7 +155,7 @@ const TranstornoBipolar = () => {
 
                 <div className="text-center mt-12">
                   <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary" asChild>
-                    <Link to="/teste-transtorno-bipolar">🔹 Identificou-se com esses sintomas? Faça o teste gratuito de transtorno bipolar</Link>
+                    <Link to="/teste-de-transtorno-bipolar">🔹 Identificou-se com esses sintomas? Faça o teste gratuito de transtorno bipolar</Link>
                   </Button>
                 </div>
               </div>
@@ -258,7 +258,7 @@ const TranstornoBipolar = () => {
                 🧩 O teste não substitui o diagnóstico profissional, mas pode ser o primeiro passo para entender o que você está sentindo.
                 </p>
                 <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" asChild>
-                  <Link to="/teste-transtorno-bipolar">🔹 Iniciar teste gratuito</Link>
+                  <Link to="/teste-de-transtorno-bipolar">🔹 Iniciar teste gratuito</Link>
                 </Button>
               </div>
             </div>

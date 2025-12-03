@@ -152,7 +152,7 @@ const BlogPost = () => {
               {/* Cards de testes - exibidos apenas no post sobre TDAH */}
               {slug === 'teste-online-para-saber-se-voce-tem-deficit-de-atencao-dr-gabriel' && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-                  <Link to="/teste-tdah-adulto">
+                  <Link to="/teste-de-deficit-de-atencao-tdah-adulto">
                     <div className="flex items-start gap-4 p-5 rounded-xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all duration-300 group">
                       <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                         <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -169,7 +169,7 @@ const BlogPost = () => {
                       </div>
                     </div>
                   </Link>
-                  <Link to="/teste-tdah">
+                  <Link to="/teste-tdah-hiperatividade">
                     <div className="flex items-start gap-4 p-5 rounded-xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all duration-300 group">
                       <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                         <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">

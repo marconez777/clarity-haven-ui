@@ -54,7 +54,7 @@ const Depressao = () => {
                       🔹 Agende sua consulta
                     </Button>
                     <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary w-full sm:w-auto" asChild>
-                      <Link to="/teste-depressao-phq9">🔹 Faça o teste de depressão gratuito</Link>
+                      <Link to="/teste-de-depressao-phq9">🔹 Faça o teste de depressão gratuito</Link>
                     </Button>
                   </div>
                 </div>
@@ -159,7 +159,7 @@ const Depressao = () => {
 
                 <div className="text-center mt-12">
                   <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary" asChild>
-                    <Link to="/teste-depressao-phq9">🔹 Identificou-se com esses sintomas? → Faça o teste gratuito de depressão</Link>
+                    <Link to="/teste-de-depressao-phq9">🔹 Identificou-se com esses sintomas? → Faça o teste gratuito de depressão</Link>
                   </Button>
                 </div>
               </div>
@@ -223,7 +223,7 @@ const Depressao = () => {
                   🧩 O teste não substitui o diagnóstico profissional, mas é um ótimo primeiro passo para o autoconhecimento.
                 </p>
                 <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" asChild>
-                  <Link to="/teste-depressao-phq9">🔹 Iniciar teste gratuito</Link>
+                  <Link to="/teste-de-depressao-phq9">🔹 Iniciar teste gratuito</Link>
                 </Button>
               </div>
             </div>
