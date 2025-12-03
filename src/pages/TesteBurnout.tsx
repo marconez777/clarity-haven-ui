@@ -11,6 +11,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, ArrowRight, Brain, AlertCircle } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import EmailCollectionStep from "@/components/tests/EmailCollectionStep";
+import { submitTestResult } from "@/hooks/useTestSubmission";
 
 interface Question {
   id: number;
@@ -48,17 +50,25 @@ const options = [
 ];
 
 const TesteBurnout = () => {
-  const [currentStep, setCurrentStep] = useState<"welcome" | "questions" | "results">("welcome");
+  const [currentStep, setCurrentStep] = useState<"welcome" | "email" | "questions" | "results">("welcome");
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [finalScore, setFinalScore] = useState(0);
+  const [userEmail, setUserEmail] = useState("");
+
+  const totalPossibleScore = questions.length * 4;
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentQuestion, currentStep]);
 
   const startTest = () => {
+    setCurrentStep("email");
+  };
+
+  const handleEmailSubmit = (email: string) => {
+    setUserEmail(email);
     setCurrentStep("questions");
     setAnswers([]);
     setCurrentQuestion(0);
@@ -79,6 +89,15 @@ const TesteBurnout = () => {
       const sum = newAnswers.reduce((acc, val) => acc + val, 0);
       setFinalScore(sum);
       setCurrentStep("results");
+      
+      submitTestResult({
+        email: userEmail,
+        testType: "Burnout",
+        score: sum,
+        maxScore: totalPossibleScore,
+        resultLevel: sum >= 40 ? "Positivo" : "Negativo",
+        answers: newAnswers,
+      });
     }
   };
 
@@ -95,10 +114,10 @@ const TesteBurnout = () => {
     setAnswers([]);
     setSelectedAnswer(null);
     setFinalScore(0);
+    setUserEmail("");
   };
 
   const progress = ((currentQuestion + 1) / questions.length) * 100;
-  const totalPossibleScore = questions.length * 4;
 
   return (
     <>
@@ -115,14 +134,12 @@ const TesteBurnout = () => {
         />
         <link rel="canonical" href="https://drgabriel.med.br/teste-burnout" />
         
-        {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://drgabriel.med.br/teste-burnout" />
         <meta property="og:title" content="Teste de Burnout Online Gratuito | Dr. Gabriel Lopes" />
         <meta property="og:description" content="Faça o teste de burnout online gratuito. Avalie sintomas de esgotamento profissional." />
         <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
         
-        {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Teste de Burnout Online Gratuito | Dr. Gabriel Lopes" />
         <meta name="twitter:description" content="Faça o teste de burnout online gratuito. Resultado imediato." />
@@ -140,7 +157,6 @@ const TesteBurnout = () => {
 
         <main className="flex-grow py-12">
           <div className="container mx-auto px-4 max-w-3xl">
-            {/* Welcome Screen */}
             {currentStep === "welcome" && (
               <div className="space-y-8 animate-fade-in">
                 <div className="text-center space-y-4">
@@ -202,7 +218,13 @@ const TesteBurnout = () => {
               </div>
             )}
 
-            {/* Questions Screen */}
+            {currentStep === "email" && (
+              <EmailCollectionStep 
+                onSubmit={handleEmailSubmit} 
+                testName="Teste de Burnout" 
+              />
+            )}
+
             {currentStep === "questions" && (
               <div className="space-y-6 animate-fade-in">
                 <div className="space-y-2">
@@ -266,7 +288,6 @@ const TesteBurnout = () => {
               </div>
             )}
 
-            {/* Results Screen */}
             {currentStep === "results" && (
               <div className="space-y-8 animate-fade-in">
                 <div className="text-center space-y-4">
