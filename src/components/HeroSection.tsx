@@ -17,7 +17,7 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="max-w-2xl pt-4 md:pt-16">
+        <div className="max-w-2xl pt-24 md:pt-16">
           <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-primary animate-in fade-in slide-in-from-bottom-4 duration-700 leading-tight">
             Saúde Mental com acompanhamento completo
           </h1>
