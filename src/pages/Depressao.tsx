@@ -39,15 +39,15 @@ const Depressao = () => {
         <Breadcrumbs items={[{ label: "Especialidades", href: "/especialidades" }, { label: "Depressão" }]} />
         <main>
           {/* Hero Section */}
-          <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-secondary/30 to-background">
-            <div className="container mx-auto px-4 md:px-6 pt-24 md:pt-32 pb-12 md:pb-20">
+          <section className="relative py-8 md:py-16 overflow-hidden bg-gradient-to-br from-secondary/30 to-background">
+            <div className="container mx-auto px-4 md:px-6">
               <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl mx-auto">
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-foreground leading-tight">
+                  <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-foreground leading-tight">
                     Tristeza constante, falta de energia ou perda de interesse pelo que antes trazia prazer?
                     <span className="block text-primary mt-3 md:mt-4">Você pode estar enfrentando um quadro de depressão.</span>
                   </h1>
-                  <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8">
+                  <p className="text-lg sm:text-xl md:text-xl text-muted-foreground mb-6 md:mb-8">
                     Tratamento especializado com o Dr. Gabriel Lopes, psiquiatra referência em saúde mental e transtornos do humor.
                   </p>
                   <div className="flex flex-col gap-3 md:gap-4">
@@ -57,6 +57,10 @@ const Depressao = () => {
                     <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary w-full sm:w-auto" asChild>
                       <Link to="/teste-de-depressao-phq9">🔹 Faça o teste de depressão gratuito</Link>
                     </Button>
+                  </div>
+                  {/* Dr. Gabriel - Mobile */}
+                  <div className="mt-8 md:hidden animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+                    <img src={drGabrielImage} alt="Dr. Gabriel Lopes - Psiquiatra especialista em Depressão" className="w-full max-w-sm mx-auto h-auto rounded-2xl shadow-[var(--shadow-soft)]" />
                   </div>
                 </div>
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200 hidden md:block">

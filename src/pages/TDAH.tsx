@@ -39,15 +39,15 @@ const TDAH = () => {
         <Breadcrumbs items={[{ label: "Especialidades", href: "/especialidades" }, { label: "TDAH" }]} />
         <main>
           {/* Hero Section */}
-          <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-secondary/30 to-background">
-            <div className="container mx-auto px-4 md:px-6 pt-24 md:pt-32 pb-12 md:pb-20">
+          <section className="relative py-8 md:py-16 overflow-hidden bg-gradient-to-br from-secondary/30 to-background">
+            <div className="container mx-auto px-4 md:px-6">
               <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl mx-auto">
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-foreground leading-tight">
+                  <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-foreground leading-tight">
                     Dificuldade de Foco, Impulsividade ou Esquecimento Constante?
                     <span className="block text-primary mt-3 md:mt-4">Você pode estar convivendo com TDAH.</span>
                   </h1>
-                  <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8">
+                  <p className="text-lg sm:text-xl md:text-xl text-muted-foreground mb-6 md:mb-8">
                     Avaliação completa e tratamento especializado com o Dr. Gabriel Lopes, psiquiatra referência em saúde mental e TDAH infantil e adulto.
                   </p>
                   <div className="flex flex-col gap-3 md:gap-4">
@@ -57,6 +57,10 @@ const TDAH = () => {
                     <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary w-full sm:w-auto" asChild>
                       <Link to="/teste-tdah-hiperatividade">Faça o teste de TDAH gratuito</Link>
                     </Button>
+                  </div>
+                  {/* Dr. Gabriel - Mobile */}
+                  <div className="mt-8 md:hidden animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+                    <img src={drGabrielImage} alt="Dr. Gabriel Lopes - Psiquiatra especialista em TDAH" className="w-full max-w-sm mx-auto h-auto rounded-2xl shadow-[var(--shadow-soft)]" />
                   </div>
                 </div>
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200 hidden md:block">
