@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -65,7 +66,9 @@ const options = [
 ];
 
 const TesteTDAH = () => {
-  const [currentStep, setCurrentStep] = useState<"welcome" | "email" | "questions" | "results">("welcome");
+  const [searchParams] = useSearchParams();
+  const initialStep = searchParams.get("step") === "email" ? "email" : "welcome";
+  const [currentStep, setCurrentStep] = useState<"welcome" | "email" | "questions" | "results">(initialStep);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
