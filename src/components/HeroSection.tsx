@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero/hero-family.jpg";
+import { handleWhatsAppClick } from "@/hooks/useConversionTracking";
 
 const HeroSection = () => {
   return (
@@ -26,9 +27,9 @@ const HeroSection = () => {
           <Button 
             size="lg" 
             className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 w-full sm:w-auto"
-            asChild
+            onClick={() => handleWhatsAppClick('hero_section')}
           >
-            <a href="/especialidades">Conheça a Clínica</a>
+            Agendar Consulta
           </Button>
         </div>
       </div>
