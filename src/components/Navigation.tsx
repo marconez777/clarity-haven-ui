@@ -17,7 +17,7 @@ const Navigation = () => {
   const menuItems = [
     { name: "Dr. Gabriel Lopes", href: "/dr-gabriel-lopes" },
     { name: "Nossa Equipe", href: "/equipe" },
-    { name: "Testes", href: "/testes" },
+    { name: "Testes", href: "/testes-de-saude-mental" },
     { name: "Blog", href: "/blog" },
     { name: "Contato", href: "/contato" },
   ];
