@@ -46,6 +46,7 @@ import Leads from "@/pages/admin/Leads";
 import DynamicPage from "@/pages/DynamicPage";
 import ScrollToTop from "@/components/ScrollToTop";
 import SmartlookAnalytics from "@/components/SmartlookAnalytics";
+import PageTracker from "@/components/PageTracker";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +59,7 @@ const App = () => (
         <BrowserRouter>
           <ScrollToTop />
           <SmartlookAnalytics />
+          <PageTracker />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/dr-gabriel-lopes" element={<DrGabriel />} />
