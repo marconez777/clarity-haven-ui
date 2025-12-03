@@ -214,7 +214,7 @@ const Ansiedade = () => {
 
                 <div className="text-center mt-12">
                   <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary" onClick={() => {}}>
-                    🔹 Identificou-se com esses sintomas? Faça o teste gratuito de ansiedade
+                    🔹 Faça o teste gratuito de ansiedade
                   </Button>
                 </div>
               </div>
@@ -324,7 +324,7 @@ const Ansiedade = () => {
 
                 <div className="text-center">
                   <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => handleWhatsAppClick('ansiedade_tratamento')}>
-                    🔹 Agende sua consulta com o Dr. Gabriel Lopes
+                    🔹 Agende sua Consulta
                   </Button>
                 </div>
               </div>
