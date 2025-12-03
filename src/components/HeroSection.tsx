@@ -12,13 +12,13 @@ const HeroSection = () => {
       {/* Content */}
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="max-w-2xl pt-24 md:pt-16">
-          <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold md:mb-6 text-primary animate-in fade-in slide-in-from-bottom-4 duration-700 leading-tight mx-0 my-0 mb-[10px] mt-[80px]">
+          <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold md:mb-6 text-primary animate-in fade-in slide-in-from-bottom-4 duration-700 leading-tight mx-0 my-0 mb-[10px] mt-[50px]">
             Saúde Mental com acompanhamento completo
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground md:mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200 my-0 mb-[50px]">
             Cuidado integral e humanizado para o seu bem-estar emocional e mental
           </p>
-          <Button size="lg" onClick={() => handleWhatsAppClick('hero_section')} className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 w-full sm:w-auto my-[50px] mb-[100px]">
+          <Button size="lg" onClick={() => handleWhatsAppClick('hero_section')} className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 w-full sm:w-auto my-[50px] mb-[50px] mt-[30px]">
             Agendar Consulta
           </Button>
         </div>
