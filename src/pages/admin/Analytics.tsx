@@ -1,15 +1,26 @@
+import { useState } from 'react';
 import { Helmet } from "react-helmet-async";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart3, MousePointerClick, TrendingUp, Calendar, Eye, Users } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { BarChart3, MousePointerClick, TrendingUp, Calendar as CalendarIcon, Eye, Users } from "lucide-react";
 import { format, subDays, startOfDay } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { cn } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Analytics = () => {
+  const [dateRange, setDateRange] = useState<{ from: Date; to: Date }>({
+    from: subDays(new Date(), 30),
+    to: new Date(),
+  });
+
   // Page views stats
   const { data: viewStats, isLoading: loadingViews } = useQuery({
-    queryKey: ['page-view-stats'],
+    queryKey: ['page-view-stats', dateRange],
     queryFn: async () => {
       const now = new Date();
       const today = startOfDay(now);
@@ -58,13 +69,15 @@ const Analytics = () => {
     },
   });
 
-  // Top pages by views
-  const { data: topPageViews } = useQuery({
-    queryKey: ['top-page-views'],
+  // Top pages by views with date filter
+  const { data: topPageViews, isLoading: loadingTopPages } = useQuery({
+    queryKey: ['top-page-views', dateRange],
     queryFn: async () => {
       const { data } = await supabase
         .from('page_views')
-        .select('page_url, session_id');
+        .select('page_url, session_id')
+        .gte('created_at', dateRange.from.toISOString())
+        .lte('created_at', dateRange.to.toISOString());
       
       if (!data) return [];
       
@@ -90,7 +103,7 @@ const Analytics = () => {
     },
   });
 
-  // Conversion stats (existing)
+  // Conversion stats
   const { data: stats, isLoading } = useQuery({
     queryKey: ['conversion-stats'],
     queryFn: async () => {
@@ -127,7 +140,7 @@ const Analytics = () => {
     },
   });
 
-  const { data: recentEvents } = useQuery({
+  const { data: recentEvents, isLoading: loadingRecent } = useQuery({
     queryKey: ['recent-conversion-events'],
     queryFn: async () => {
       const { data } = await supabase
@@ -140,12 +153,13 @@ const Analytics = () => {
   });
 
   const { data: topPages } = useQuery({
-    queryKey: ['top-conversion-pages'],
+    queryKey: ['top-conversion-pages', dateRange],
     queryFn: async () => {
       const { data } = await supabase
         .from('conversion_events')
         .select('page_url')
-        .order('created_at', { ascending: false });
+        .gte('created_at', dateRange.from.toISOString())
+        .lte('created_at', dateRange.to.toISOString());
       
       if (!data) return [];
       
@@ -163,12 +177,13 @@ const Analytics = () => {
   });
 
   const { data: topLocations } = useQuery({
-    queryKey: ['top-button-locations'],
+    queryKey: ['top-button-locations', dateRange],
     queryFn: async () => {
       const { data } = await supabase
         .from('conversion_events')
         .select('button_location')
-        .order('created_at', { ascending: false });
+        .gte('created_at', dateRange.from.toISOString())
+        .lte('created_at', dateRange.to.toISOString());
       
       if (!data) return [];
       
@@ -192,9 +207,51 @@ const Analytics = () => {
       </Helmet>
 
       <div className="space-y-8">
-        <div>
-          <h1 className="text-3xl font-bold">Analytics</h1>
-          <p className="text-muted-foreground">Acompanhe visitas e conversões do site</p>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-bold">Analytics</h1>
+            <p className="text-muted-foreground">Acompanhe visitas e conversões do site</p>
+          </div>
+          
+          {/* Date Range Picker */}
+          <div className="flex items-center gap-2">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="outline" className={cn("justify-start text-left font-normal")}>
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {format(dateRange.from, "dd/MM/yyyy", { locale: ptBR })} - {format(dateRange.to, "dd/MM/yyyy", { locale: ptBR })}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0" align="end">
+                <Calendar
+                  mode="range"
+                  selected={{ from: dateRange.from, to: dateRange.to }}
+                  onSelect={(range) => {
+                    if (range?.from && range?.to) {
+                      setDateRange({ from: range.from, to: range.to });
+                    }
+                  }}
+                  numberOfMonths={2}
+                  locale={ptBR}
+                  className="pointer-events-auto"
+                />
+              </PopoverContent>
+            </Popover>
+            <Button 
+              variant="ghost" 
+              size="sm"
+              onClick={() => setDateRange({ from: subDays(new Date(), 7), to: new Date() })}
+            >
+              7d
+            </Button>
+            <Button 
+              variant="ghost" 
+              size="sm"
+              onClick={() => setDateRange({ from: subDays(new Date(), 30), to: new Date() })}
+            >
+              30d
+            </Button>
+          </div>
         </div>
 
         {/* Page Views Section */}
@@ -204,60 +261,77 @@ const Analytics = () => {
             Visitas
           </h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Total de Visitas</CardTitle>
-                <Eye className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{loadingViews ? '...' : viewStats?.totalViews}</div>
-                <p className="text-xs text-muted-foreground">Desde o início</p>
-              </CardContent>
-            </Card>
+            {loadingViews ? (
+              Array.from({ length: 5 }).map((_, i) => (
+                <Card key={i}>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <Skeleton className="h-4 w-24" />
+                    <Skeleton className="h-4 w-4" />
+                  </CardHeader>
+                  <CardContent>
+                    <Skeleton className="h-8 w-16" />
+                    <Skeleton className="h-3 w-20 mt-2" />
+                  </CardContent>
+                </Card>
+              ))
+            ) : (
+              <>
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Total de Visitas</CardTitle>
+                    <Eye className="h-4 w-4 text-muted-foreground" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{viewStats?.totalViews}</div>
+                    <p className="text-xs text-muted-foreground">Desde o início</p>
+                  </CardContent>
+                </Card>
 
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Visitas Hoje</CardTitle>
-                <Calendar className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{loadingViews ? '...' : viewStats?.todayViews}</div>
-                <p className="text-xs text-muted-foreground">Total hoje</p>
-              </CardContent>
-            </Card>
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Visitas Hoje</CardTitle>
+                    <CalendarIcon className="h-4 w-4 text-muted-foreground" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{viewStats?.todayViews}</div>
+                    <p className="text-xs text-muted-foreground">Total hoje</p>
+                  </CardContent>
+                </Card>
 
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Únicas Hoje</CardTitle>
-                <Users className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{loadingViews ? '...' : viewStats?.uniqueToday}</div>
-                <p className="text-xs text-muted-foreground">Sessões únicas</p>
-              </CardContent>
-            </Card>
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Únicas Hoje</CardTitle>
+                    <Users className="h-4 w-4 text-muted-foreground" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{viewStats?.uniqueToday}</div>
+                    <p className="text-xs text-muted-foreground">Sessões únicas</p>
+                  </CardContent>
+                </Card>
 
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Únicas 7 dias</CardTitle>
-                <TrendingUp className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{loadingViews ? '...' : viewStats?.unique7Days}</div>
-                <p className="text-xs text-muted-foreground">Últimos 7 dias</p>
-              </CardContent>
-            </Card>
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Únicas 7 dias</CardTitle>
+                    <TrendingUp className="h-4 w-4 text-muted-foreground" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{viewStats?.unique7Days}</div>
+                    <p className="text-xs text-muted-foreground">Últimos 7 dias</p>
+                  </CardContent>
+                </Card>
 
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Únicas 30 dias</CardTitle>
-                <BarChart3 className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{loadingViews ? '...' : viewStats?.unique30Days}</div>
-                <p className="text-xs text-muted-foreground">Último mês</p>
-              </CardContent>
-            </Card>
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Únicas 30 dias</CardTitle>
+                    <BarChart3 className="h-4 w-4 text-muted-foreground" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{viewStats?.unique30Days}</div>
+                    <p className="text-xs text-muted-foreground">Último mês</p>
+                  </CardContent>
+                </Card>
+              </>
+            )}
           </div>
         </div>
 
@@ -278,15 +352,25 @@ const Analytics = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {topPageViews?.map((item, index) => (
-                    <tr key={item.page} className="border-b">
-                      <td className="py-2 text-muted-foreground">{index + 1}</td>
-                      <td className="py-2 truncate max-w-[300px]">{item.page}</td>
-                      <td className="py-2 text-right font-medium">{item.views}</td>
-                      <td className="py-2 text-right">{item.unique}</td>
-                    </tr>
-                  ))}
-                  {(!topPageViews || topPageViews.length === 0) && (
+                  {loadingTopPages ? (
+                    Array.from({ length: 5 }).map((_, i) => (
+                      <tr key={i} className="border-b">
+                        <td className="py-2"><Skeleton className="h-4 w-4" /></td>
+                        <td className="py-2"><Skeleton className="h-4 w-48" /></td>
+                        <td className="py-2"><Skeleton className="h-4 w-12 ml-auto" /></td>
+                        <td className="py-2"><Skeleton className="h-4 w-12 ml-auto" /></td>
+                      </tr>
+                    ))
+                  ) : topPageViews?.length ? (
+                    topPageViews.map((item, index) => (
+                      <tr key={item.page} className="border-b">
+                        <td className="py-2 text-muted-foreground">{index + 1}</td>
+                        <td className="py-2 truncate max-w-[300px]">{item.page}</td>
+                        <td className="py-2 text-right font-medium">{item.views}</td>
+                        <td className="py-2 text-right">{item.unique}</td>
+                      </tr>
+                    ))
+                  ) : (
                     <tr>
                       <td colSpan={4} className="py-4 text-center text-muted-foreground">
                         Nenhum dado disponível ainda
@@ -306,49 +390,66 @@ const Analytics = () => {
             Conversões (Cliques WhatsApp)
           </h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Total de Cliques</CardTitle>
-                <MousePointerClick className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{isLoading ? '...' : stats?.totalClicks}</div>
-                <p className="text-xs text-muted-foreground">Desde o início</p>
-              </CardContent>
-            </Card>
+            {isLoading ? (
+              Array.from({ length: 4 }).map((_, i) => (
+                <Card key={i}>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <Skeleton className="h-4 w-24" />
+                    <Skeleton className="h-4 w-4" />
+                  </CardHeader>
+                  <CardContent>
+                    <Skeleton className="h-8 w-16" />
+                    <Skeleton className="h-3 w-20 mt-2" />
+                  </CardContent>
+                </Card>
+              ))
+            ) : (
+              <>
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Total de Cliques</CardTitle>
+                    <MousePointerClick className="h-4 w-4 text-muted-foreground" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{stats?.totalClicks}</div>
+                    <p className="text-xs text-muted-foreground">Desde o início</p>
+                  </CardContent>
+                </Card>
 
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Hoje</CardTitle>
-                <Calendar className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{isLoading ? '...' : stats?.todayClicks}</div>
-                <p className="text-xs text-muted-foreground">Cliques hoje</p>
-              </CardContent>
-            </Card>
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Hoje</CardTitle>
+                    <CalendarIcon className="h-4 w-4 text-muted-foreground" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{stats?.todayClicks}</div>
+                    <p className="text-xs text-muted-foreground">Cliques hoje</p>
+                  </CardContent>
+                </Card>
 
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Últimos 7 dias</CardTitle>
-                <TrendingUp className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{isLoading ? '...' : stats?.last7DaysClicks}</div>
-                <p className="text-xs text-muted-foreground">Cliques na semana</p>
-              </CardContent>
-            </Card>
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Últimos 7 dias</CardTitle>
+                    <TrendingUp className="h-4 w-4 text-muted-foreground" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{stats?.last7DaysClicks}</div>
+                    <p className="text-xs text-muted-foreground">Cliques na semana</p>
+                  </CardContent>
+                </Card>
 
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Últimos 30 dias</CardTitle>
-                <BarChart3 className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{isLoading ? '...' : stats?.last30DaysClicks}</div>
-                <p className="text-xs text-muted-foreground">Cliques no mês</p>
-              </CardContent>
-            </Card>
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Últimos 30 dias</CardTitle>
+                    <BarChart3 className="h-4 w-4 text-muted-foreground" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{stats?.last30DaysClicks}</div>
+                    <p className="text-xs text-muted-foreground">Cliques no mês</p>
+                  </CardContent>
+                </Card>
+              </>
+            )}
           </div>
         </div>
 
@@ -416,17 +517,27 @@ const Analytics = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {recentEvents?.map((event) => (
-                    <tr key={event.id} className="border-b">
-                      <td className="py-2">
-                        {format(new Date(event.created_at), "dd/MM/yyyy HH:mm", { locale: ptBR })}
-                      </td>
-                      <td className="py-2 truncate max-w-[150px]">{event.page_url || '-'}</td>
-                      <td className="py-2 truncate max-w-[150px]">{event.button_location || '-'}</td>
-                      <td className="py-2 truncate max-w-[150px]">{event.referrer || '-'}</td>
-                    </tr>
-                  ))}
-                  {(!recentEvents || recentEvents.length === 0) && (
+                  {loadingRecent ? (
+                    Array.from({ length: 5 }).map((_, i) => (
+                      <tr key={i} className="border-b">
+                        <td className="py-2"><Skeleton className="h-4 w-28" /></td>
+                        <td className="py-2"><Skeleton className="h-4 w-32" /></td>
+                        <td className="py-2"><Skeleton className="h-4 w-24" /></td>
+                        <td className="py-2"><Skeleton className="h-4 w-24" /></td>
+                      </tr>
+                    ))
+                  ) : recentEvents?.length ? (
+                    recentEvents.map((event) => (
+                      <tr key={event.id} className="border-b">
+                        <td className="py-2">
+                          {format(new Date(event.created_at), "dd/MM/yyyy HH:mm", { locale: ptBR })}
+                        </td>
+                        <td className="py-2 truncate max-w-[150px]">{event.page_url || '-'}</td>
+                        <td className="py-2 truncate max-w-[150px]">{event.button_location || '-'}</td>
+                        <td className="py-2 truncate max-w-[150px]">{event.referrer || '-'}</td>
+                      </tr>
+                    ))
+                  ) : (
                     <tr>
                       <td colSpan={4} className="py-4 text-center text-muted-foreground">
                         Nenhum evento registrado ainda
