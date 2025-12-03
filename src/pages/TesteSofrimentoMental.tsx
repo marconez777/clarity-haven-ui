@@ -11,13 +11,10 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, ArrowRight, Brain, AlertCircle } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import EmailCollectionStep from "@/components/tests/EmailCollectionStep";
+import { submitTestResult } from "@/hooks/useTestSubmission";
 
-interface Question {
-  id: number;
-  text: string;
-}
-
-const questions: Question[] = [
+const questions = [
   { id: 1, text: "Você tem dores de cabeça frequentes?" },
   { id: 2, text: "Você tem tido falta ou aumento de apetite?" },
   { id: 3, text: "Assusta-se com facilidade?" },
@@ -40,302 +37,46 @@ const questions: Question[] = [
   { id: 20, text: "Tem sensações desagradáveis no estômago ou no peito?" },
 ];
 
-const options = [
-  { text: "NÃO", value: 0 },
-  { text: "SIM", value: 1 },
-];
+const options = [{ text: "NÃO", value: 0 }, { text: "SIM", value: 1 }];
 
 const TesteSofrimentoMental = () => {
-  const [currentStep, setCurrentStep] = useState<"welcome" | "questions" | "results">("welcome");
+  const [currentStep, setCurrentStep] = useState<"welcome" | "email" | "questions" | "results">("welcome");
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [finalScore, setFinalScore] = useState(0);
+  const [userEmail, setUserEmail] = useState("");
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [currentQuestion, currentStep]);
+  useEffect(() => { window.scrollTo({ top: 0, behavior: "smooth" }); }, [currentQuestion, currentStep]);
 
-  const startTest = () => {
-    setCurrentStep("questions");
-    setAnswers([]);
-    setCurrentQuestion(0);
-    setSelectedAnswer(null);
-  };
+  const startTest = () => setCurrentStep("email");
+  const handleEmailSubmit = (email: string) => { setUserEmail(email); setCurrentStep("questions"); setAnswers([]); setCurrentQuestion(0); setSelectedAnswer(null); };
 
   const handleAnswer = () => {
     if (selectedAnswer === null) return;
-
-    const newAnswers = [...answers];
-    newAnswers[currentQuestion] = selectedAnswer;
-    setAnswers(newAnswers);
-
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1);
-      setSelectedAnswer(newAnswers[currentQuestion + 1] ?? null);
-    } else {
-      const sum = newAnswers.reduce((acc, val) => acc + val, 0);
-      setFinalScore(sum);
-      setCurrentStep("results");
-    }
+    const newAnswers = [...answers]; newAnswers[currentQuestion] = selectedAnswer; setAnswers(newAnswers);
+    if (currentQuestion < questions.length - 1) { setCurrentQuestion(currentQuestion + 1); setSelectedAnswer(newAnswers[currentQuestion + 1] ?? null); }
+    else { const sum = newAnswers.reduce((a, v) => a + v, 0); setFinalScore(sum); setCurrentStep("results"); submitTestResult({ email: userEmail, testType: "Sofrimento Mental", score: sum, maxScore: questions.length, resultLevel: sum >= 11 ? "Positivo" : "Negativo", answers: newAnswers }); }
   };
 
-  const handleBack = () => {
-    if (currentQuestion > 0) {
-      setCurrentQuestion(currentQuestion - 1);
-      setSelectedAnswer(answers[currentQuestion - 1] ?? null);
-    }
-  };
-
-  const restartTest = () => {
-    setCurrentStep("welcome");
-    setCurrentQuestion(0);
-    setAnswers([]);
-    setSelectedAnswer(null);
-    setFinalScore(0);
-  };
-
+  const handleBack = () => { if (currentQuestion > 0) { setCurrentQuestion(currentQuestion - 1); setSelectedAnswer(answers[currentQuestion - 1] ?? null); } };
+  const restartTest = () => { setCurrentStep("welcome"); setCurrentQuestion(0); setAnswers([]); setSelectedAnswer(null); setFinalScore(0); setUserEmail(""); };
   const progress = ((currentQuestion + 1) / questions.length) * 100;
-  const totalPossibleScore = questions.length;
 
   return (
     <>
-      <Helmet>
-        <html lang="pt-BR" />
-        <title>Teste de Sofrimento Mental Online Gratuito | Dr. Gabriel Lopes</title>
-        <meta
-          name="description"
-          content="Faça o teste de sofrimento mental online gratuito. Avalie sintomas de distress psicológico. Resultado imediato."
-        />
-        <meta
-          name="keywords"
-          content="teste sofrimento mental, teste saúde mental, distress psicológico, bem-estar mental"
-        />
-        <link rel="canonical" href="https://drgabriel.med.br/teste-sofrimento-mental" />
-        
-        {/* Open Graph */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://drgabriel.med.br/teste-sofrimento-mental" />
-        <meta property="og:title" content="Teste de Sofrimento Mental Online Gratuito | Dr. Gabriel Lopes" />
-        <meta property="og:description" content="Faça o teste de sofrimento mental online gratuito. Avalie sintomas de distress psicológico." />
-        <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
-        
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Teste de Sofrimento Mental Online Gratuito | Dr. Gabriel Lopes" />
-        <meta name="twitter:description" content="Faça o teste de sofrimento mental online gratuito. Resultado imediato." />
-        <meta name="twitter:image" content="https://drgabriel.med.br/og-image.jpg" />
-      </Helmet>
-
+      <Helmet><html lang="pt-BR" /><title>Teste de Sofrimento Mental Online Gratuito | Dr. Gabriel Lopes</title><meta name="description" content="Faça o teste de sofrimento mental online gratuito. Avalie sintomas de distress psicológico. Resultado imediato." /><link rel="canonical" href="https://drgabriel.med.br/teste-sofrimento-mental" /></Helmet>
       <div className="min-h-screen flex flex-col">
-        <Navigation />
-        <Breadcrumbs
-          items={[
-            { label: "Testes", href: "/testes" },
-            { label: "Teste de Sofrimento Mental" },
-          ]}
-        />
-
+        <Navigation /><Breadcrumbs items={[{ label: "Testes", href: "/testes" }, { label: "Teste de Sofrimento Mental" }]} />
         <main className="flex-grow py-12">
           <div className="container mx-auto px-4 max-w-3xl">
-            {/* Welcome Screen */}
-            {currentStep === "welcome" && (
-              <div className="space-y-8 animate-fade-in">
-                <div className="text-center space-y-4">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-                    <Brain className="w-8 h-8 text-primary" />
-                  </div>
-                  <h1 className="text-3xl md:text-4xl font-bold text-foreground">
-                    Teste de Sofrimento Mental
-                  </h1>
-                  <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                    Avaliação geral de sintomas de sofrimento psicológico
-                  </p>
-                </div>
-
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Sobre este teste</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-muted-foreground">
-                      Este questionário avalia sintomas gerais de sofrimento mental, incluindo aspectos físicos, emocionais e comportamentais que podem indicar necessidade de cuidado em saúde mental.
-                    </p>
-                    <div className="bg-[hsl(180,60%,85%)] dark:bg-[hsl(180,60%,25%)] p-4 rounded-lg space-y-2">
-                      <h3 className="font-semibold text-foreground">Como funciona:</h3>
-                      <ul className="space-y-2 text-sm text-muted-foreground">
-                        <li className="flex items-start gap-2">
-                          <span className="text-primary">•</span>
-                          <span>{questions.length} perguntas sobre sintomas físicos e emocionais</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="text-primary">•</span>
-                          <span>Responda SIM ou NÃO para cada pergunta</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="text-primary">•</span>
-                          <span>Leva aproximadamente 4-5 minutos</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="text-primary">•</span>
-                          <span>Resultado imediato ao final</span>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="bg-[hsl(45,100%,95%)] dark:bg-[hsl(45,100%,15%)] border border-[hsl(45,100%,70%)] dark:border-[hsl(45,100%,30%)] p-4 rounded-lg">
-                      <p className="text-sm font-medium text-[hsl(45,100%,20%)] dark:text-[hsl(45,100%,80%)]">
-                        <strong>Importante:</strong> Este teste não substitui uma avaliação médica profissional. 
-                        Os resultados são apenas indicativos e devem ser interpretados por um profissional de saúde qualificado.
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <div className="text-center">
-                  <Button onClick={startTest} size="lg" className="gap-2">
-                    Iniciar Teste
-                    <ArrowRight className="w-4 h-4" />
-                  </Button>
-                </div>
-              </div>
-            )}
-
-            {/* Questions Screen */}
-            {currentStep === "questions" && (
-              <div className="space-y-6 animate-fade-in">
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center text-sm text-muted-foreground">
-                    <span>Pergunta {currentQuestion + 1} de {questions.length}</span>
-                    <span>{Math.round(progress)}%</span>
-                  </div>
-                  <Progress value={progress} className="h-2" />
-                </div>
-
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-xl">
-                      {questions[currentQuestion].text}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <RadioGroup
-                      value={selectedAnswer?.toString()}
-                      onValueChange={(value) => setSelectedAnswer(Number(value))}
-                      className="space-y-3"
-                    >
-                      {options.map((option) => (
-                        <div
-                          key={option.value}
-                          className="flex items-center space-x-3 p-4 rounded-lg border-2 border-border hover:border-primary/50 transition-colors cursor-pointer"
-                          onClick={() => setSelectedAnswer(option.value)}
-                        >
-                          <RadioGroupItem value={option.value.toString()} id={`option-${option.value}`} />
-                          <Label
-                            htmlFor={`option-${option.value}`}
-                            className="flex-1 cursor-pointer font-medium"
-                          >
-                            {option.text}
-                          </Label>
-                        </div>
-                      ))}
-                    </RadioGroup>
-                  </CardContent>
-                </Card>
-
-                <div className="flex justify-between gap-4">
-                  <Button
-                    onClick={handleBack}
-                    variant="outline"
-                    disabled={currentQuestion === 0}
-                    className="gap-2"
-                  >
-                    <ArrowLeft className="w-4 h-4" />
-                    Anterior
-                  </Button>
-                  <Button
-                    onClick={handleAnswer}
-                    disabled={selectedAnswer === null}
-                    className="gap-2"
-                  >
-                    {currentQuestion === questions.length - 1 ? "Ver Resultado" : "Próxima"}
-                    <ArrowRight className="w-4 h-4" />
-                  </Button>
-                </div>
-              </div>
-            )}
-
-            {/* Results Screen */}
-            {currentStep === "results" && (
-              <div className="space-y-8 animate-fade-in">
-                <div className="text-center space-y-4">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-                    <Brain className="w-8 h-8 text-primary" />
-                  </div>
-                  <h1 className="text-3xl md:text-4xl font-bold text-primary">
-                    Resultado do Teste
-                  </h1>
-                </div>
-
-                <Card>
-                  <CardContent className="pt-6 space-y-6">
-                    <div className="text-center space-y-4">
-                      <div className="inline-flex flex-col items-center justify-center w-32 h-32 rounded-full bg-[hsl(var(--primary)/0.1)] border-4 border-primary">
-                        <span className="text-4xl font-bold text-primary">{finalScore}</span>
-                        <span className="text-sm text-muted-foreground">de {totalPossibleScore} pontos</span>
-                      </div>
-
-                      <div className="space-y-2">
-                        <h2 className="text-2xl font-bold text-foreground">
-                          {finalScore >= 11 ? "Resultado Positivo" : "Resultado Negativo"}
-                        </h2>
-                        <p className="text-muted-foreground max-w-2xl mx-auto">
-                          {finalScore >= 11 ? (
-                            <>
-                              Sua pontuação de {finalScore} pontos sugere a presença de sintomas significativos de sofrimento mental. 
-                              É altamente recomendado buscar uma avaliação com um profissional de saúde mental para uma análise detalhada.
-                            </>
-                          ) : (
-                            <>
-                              Sua pontuação de {finalScore} pontos está abaixo do indicativo de sofrimento mental significativo. 
-                              No entanto, se você sente que sua qualidade de vida está comprometida, 
-                              considere conversar com um profissional de saúde mental.
-                            </>
-                          )}
-                        </p>
-                      </div>
-                      
-                      {finalScore >= 11 && (
-                        <div className="pt-2">
-                          <Button asChild size="lg" className="w-full sm:w-auto">
-                            <a href="https://wa.me/5511999999999?text=Olá! Gostaria de agendar uma consulta." target="_blank" rel="noopener noreferrer">
-                              Agendar Consulta
-                            </a>
-                          </Button>
-                        </div>
-                      )}
-                    </div>
-
-                    <Alert className="bg-[hsl(180,60%,85%)] dark:bg-[hsl(180,60%,25%)] border-[hsl(180,60%,50%)]">
-                      <AlertCircle className="h-5 w-5 text-[hsl(180,60%,40%)]" />
-                      <AlertDescription className="text-foreground">
-                        <strong>Lembre-se:</strong> Este teste é apenas uma ferramenta de triagem. Um diagnóstico preciso requer avaliação profissional completa e multidisciplinar.
-                      </AlertDescription>
-                    </Alert>
-                  </CardContent>
-                </Card>
-
-                <div className="flex justify-center">
-                  <Button onClick={restartTest} variant="outline" size="lg">
-                    Refazer Teste
-                  </Button>
-                </div>
-              </div>
-            )}
+            {currentStep === "welcome" && (<div className="space-y-8 animate-fade-in"><div className="text-center space-y-4"><div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4"><Brain className="w-8 h-8 text-primary" /></div><h1 className="text-3xl md:text-4xl font-bold text-foreground">Teste de Sofrimento Mental</h1><p className="text-lg text-muted-foreground">Avaliação geral de sintomas de sofrimento psicológico</p></div><Card><CardHeader><CardTitle>Sobre este teste</CardTitle></CardHeader><CardContent className="space-y-4"><p className="text-muted-foreground">Este questionário avalia sintomas gerais de sofrimento mental.</p><div className="bg-[hsl(180,60%,85%)] dark:bg-[hsl(180,60%,25%)] p-4 rounded-lg"><h3 className="font-semibold">Como funciona:</h3><ul className="text-sm text-muted-foreground"><li>• {questions.length} perguntas - Leva 4-5 minutos</li></ul></div><div className="bg-[hsl(45,100%,95%)] dark:bg-[hsl(45,100%,15%)] border border-[hsl(45,100%,70%)] p-4 rounded-lg"><p className="text-sm"><strong>Importante:</strong> Este teste não substitui avaliação médica profissional.</p></div></CardContent></Card><div className="text-center"><Button onClick={startTest} size="lg" className="gap-2">Iniciar Teste<ArrowRight className="w-4 h-4" /></Button></div></div>)}
+            {currentStep === "email" && <EmailCollectionStep onSubmit={handleEmailSubmit} testName="Teste de Sofrimento Mental" />}
+            {currentStep === "questions" && (<div className="space-y-6 animate-fade-in"><div className="space-y-2"><div className="flex justify-between text-sm text-muted-foreground"><span>Pergunta {currentQuestion + 1} de {questions.length}</span><span>{Math.round(progress)}%</span></div><Progress value={progress} className="h-2" /></div><Card><CardHeader><CardTitle className="text-xl">{questions[currentQuestion].text}</CardTitle></CardHeader><CardContent><RadioGroup value={selectedAnswer?.toString()} onValueChange={(v) => setSelectedAnswer(Number(v))} className="space-y-3">{options.map((o) => (<div key={o.value} className="flex items-center space-x-3 p-4 rounded-lg border-2 border-border hover:border-primary/50 cursor-pointer" onClick={() => setSelectedAnswer(o.value)}><RadioGroupItem value={o.value.toString()} /><Label className="flex-1 cursor-pointer font-medium">{o.text}</Label></div>))}</RadioGroup></CardContent></Card><div className="flex justify-between gap-4"><Button onClick={handleBack} variant="outline" disabled={currentQuestion === 0}><ArrowLeft className="w-4 h-4 mr-2" />Anterior</Button><Button onClick={handleAnswer} disabled={selectedAnswer === null}>{currentQuestion === questions.length - 1 ? "Ver Resultado" : "Próxima"}<ArrowRight className="w-4 h-4 ml-2" /></Button></div></div>)}
+            {currentStep === "results" && (<div className="space-y-8 animate-fade-in"><div className="text-center"><div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4"><Brain className="w-8 h-8 text-primary" /></div><h1 className="text-3xl font-bold text-primary">Resultado do Teste</h1></div><Card><CardContent className="pt-6 space-y-6"><div className="text-center space-y-4"><div className="inline-flex flex-col items-center justify-center w-32 h-32 rounded-full bg-[hsl(var(--primary)/0.1)] border-4 border-primary"><span className="text-4xl font-bold text-primary">{finalScore}</span><span className="text-sm text-muted-foreground">de {questions.length}</span></div><h2 className="text-2xl font-bold">{finalScore >= 11 ? "Resultado Positivo" : "Resultado Negativo"}</h2><p className="text-muted-foreground">{finalScore >= 11 ? "Sua pontuação sugere sofrimento mental significativo. Recomendamos avaliação profissional." : "Sua pontuação está abaixo do indicativo."}</p>{finalScore >= 11 && <Button asChild size="lg"><a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">Agendar Consulta</a></Button>}</div><Alert className="bg-[hsl(180,60%,85%)] dark:bg-[hsl(180,60%,25%)]"><AlertCircle className="h-5 w-5" /><AlertDescription><strong>Lembre-se:</strong> Este teste é apenas uma ferramenta de triagem.</AlertDescription></Alert></CardContent></Card><div className="flex justify-center"><Button onClick={restartTest} variant="outline" size="lg">Refazer Teste</Button></div></div>)}
           </div>
         </main>
-
-        <Footer />
-        <WhatsAppButton />
+        <Footer /><WhatsAppButton />
       </div>
     </>
   );

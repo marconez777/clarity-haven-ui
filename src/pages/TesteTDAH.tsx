@@ -10,6 +10,8 @@ import Footer from "@/components/Footer";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Brain, ArrowLeft, ArrowRight, AlertCircle } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import EmailCollectionStep from "@/components/tests/EmailCollectionStep";
+import { submitTestResult } from "@/hooks/useTestSubmission";
 
 interface Question {
   id: number;
@@ -63,11 +65,12 @@ const options = [
 ];
 
 const TesteTDAH = () => {
-  const [currentStep, setCurrentStep] = useState<"welcome" | "questions" | "results">("welcome");
+  const [currentStep, setCurrentStep] = useState<"welcome" | "email" | "questions" | "results">("welcome");
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [finalScore, setFinalScore] = useState(0);
+  const [userEmail, setUserEmail] = useState("");
 
   const totalPossibleScore = questions.length * 1.35;
 
@@ -76,6 +79,11 @@ const TesteTDAH = () => {
   }, [currentQuestion, currentStep]);
 
   const startTest = () => {
+    setCurrentStep("email");
+  };
+
+  const handleEmailSubmit = (email: string) => {
+    setUserEmail(email);
     setCurrentStep("questions");
     setAnswers([]);
     setCurrentQuestion(0);
@@ -96,6 +104,16 @@ const TesteTDAH = () => {
       const sum = newAnswers.reduce((acc, val) => acc + val, 0);
       setFinalScore(sum);
       setCurrentStep("results");
+      
+      // Submit test result
+      submitTestResult({
+        email: userEmail,
+        testType: "TDAH Hiperatividade",
+        score: sum,
+        maxScore: totalPossibleScore,
+        resultLevel: sum >= 5 ? "Positivo" : "Negativo",
+        answers: newAnswers,
+      });
     }
   };
 
@@ -112,6 +130,7 @@ const TesteTDAH = () => {
     setAnswers([]);
     setSelectedAnswer(null);
     setFinalScore(0);
+    setUserEmail("");
   };
 
   const progress = ((currentQuestion + 1) / questions.length) * 100;
@@ -216,6 +235,14 @@ const TesteTDAH = () => {
                   </Button>
                 </div>
               </div>
+            )}
+
+            {/* Email Collection Screen */}
+            {currentStep === "email" && (
+              <EmailCollectionStep 
+                onSubmit={handleEmailSubmit} 
+                testName="Teste de TDAH" 
+              />
             )}
 
             {/* Questions Screen */}
