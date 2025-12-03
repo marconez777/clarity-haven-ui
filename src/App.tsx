@@ -41,6 +41,7 @@ import CategoryManager from "@/pages/admin/categories/CategoryManager";
 import PageList from "@/pages/admin/pages/PageList";
 import PageEditor from "@/pages/admin/pages/PageEditor";
 import WordPressImport from "@/pages/admin/import/WordPressImport";
+import Analytics from "@/pages/admin/Analytics";
 import DynamicPage from "@/pages/DynamicPage";
 import ScrollToTop from "@/components/ScrollToTop";
 
@@ -92,6 +93,7 @@ const App = () => (
               <Route path="pages/new" element={<PageEditor />} />
               <Route path="pages/edit/:id" element={<PageEditor />} />
               <Route path="import" element={<WordPressImport />} />
+              <Route path="analytics" element={<Analytics />} />
             </Route>
             
             {/* Dynamic routes - BEFORE catch-all */}

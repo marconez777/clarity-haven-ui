@@ -8,11 +8,17 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import logo from "@/assets/logo.png";
+import { trackConversion } from "@/hooks/useConversionTracking";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const closeTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleAgendamento = () => {
+    trackConversion({ buttonLocation: 'navigation_header' });
+    window.open('https://api.whatsapp.com/send/?phone=5511941543929&text=Ol%C3%A1%21+Gostaria+de+agendar+uma+consulta.&type=phone_number&app_absent=0', '_blank');
+  };
 
   const menuItems = [
     { name: "Dr. Gabriel Lopes", href: "/dr-gabriel-lopes" },
@@ -102,7 +108,7 @@ const Navigation = () => {
                 {item.name}
               </a>
             ))}
-            <Button className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://api.whatsapp.com/send/?phone=5511941543929&text=Ol%C3%A1%21+Gostaria+de+agendar+uma+consulta.&type=phone_number&app_absent=0', '_blank')}>
+            <Button className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={handleAgendamento}>
               Agendamento on-line
             </Button>
           </div>
@@ -159,7 +165,7 @@ const Navigation = () => {
                   {item.name}
                 </a>
               ))}
-              <Button className="w-full bg-gradient-to-r from-primary to-accent text-white" onClick={() => window.open('https://api.whatsapp.com/send/?phone=5511941543929&text=Ol%C3%A1%21+Gostaria+de+agendar+uma+consulta.&type=phone_number&app_absent=0', '_blank')}>
+              <Button className="w-full bg-gradient-to-r from-primary to-accent text-white" onClick={handleAgendamento}>
                 Agendamento on-line
               </Button>
             </div>

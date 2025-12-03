@@ -1,8 +1,14 @@
 import { Button } from "@/components/ui/button";
 import mentalHealthImage from "@/assets/sections/mental-health.png";
+import { trackConversion } from "@/hooks/useConversionTracking";
 
 const MentalHealthSection = () => {
   const conditions = ["Depressão", "Ansiedade", "TDAH", "Teste sua saúde mental."];
+
+  const handleAgendamento = () => {
+    trackConversion({ buttonLocation: 'mental_health_section' });
+    window.open('https://api.whatsapp.com/send/?phone=5511941543929&text=Ol%C3%A1%21+Gostaria+de+agendar+uma+consulta.&type=phone_number&app_absent=0', '_blank');
+  };
 
   return (
     <section className="py-20 bg-background">
@@ -40,7 +46,7 @@ const MentalHealthSection = () => {
               >
                 Saiba mais
               </Button>
-              <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://api.whatsapp.com/send/?phone=5511941543929&text=Ol%C3%A1%21+Gostaria+de+agendar+uma+consulta.&type=phone_number&app_absent=0', '_blank')}>
+              <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={handleAgendamento}>
                 Agende sua consulta
               </Button>
             </div>
