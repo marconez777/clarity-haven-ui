@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { FileText, FolderOpen, Tags, Users, Eye, TrendingUp, Clock } from 'lucide-react';
+import { FileText, FolderOpen, Users, Eye, TrendingUp, Clock, Shield, CheckCircle, XCircle } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { format, subDays, startOfDay } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { DashboardSkeleton, CardSkeleton } from '@/components/admin/AdminSkeleton';
+import { DashboardSkeleton } from '@/components/admin/AdminSkeleton';
 import { Badge } from '@/components/ui/badge';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
@@ -89,6 +89,18 @@ const Dashboard = () => {
         .select('id, title, status, created_at')
         .order('created_at', { ascending: false })
         .limit(5);
+      return data || [];
+    },
+  });
+
+  const { data: recentLoginAttempts } = useQuery({
+    queryKey: ['admin-recent-login-attempts'],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from('login_attempts')
+        .select('id, email, success, created_at')
+        .order('created_at', { ascending: false })
+        .limit(10);
       return data || [];
     },
   });
@@ -234,7 +246,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          {/* Recent Posts */}
+        {/* Recent Posts */}
           <Card>
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle className="text-lg">Posts Recentes</CardTitle>
@@ -269,6 +281,47 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         </div>
+
+        {/* Security Section */}
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between">
+            <CardTitle className="text-lg flex items-center gap-2">
+              <Shield className="h-5 w-5" />
+              Atividade de Login
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {recentLoginAttempts && recentLoginAttempts.length > 0 ? (
+              <div className="space-y-2">
+                {recentLoginAttempts.map((attempt) => (
+                  <div 
+                    key={attempt.id} 
+                    className="flex items-center justify-between py-2 border-b last:border-0"
+                  >
+                    <div className="flex items-center gap-2">
+                      {attempt.success ? (
+                        <CheckCircle className="h-4 w-4 text-green-500" />
+                      ) : (
+                        <XCircle className="h-4 w-4 text-destructive" />
+                      )}
+                      <span className="text-sm truncate max-w-[200px]">{attempt.email}</span>
+                    </div>
+                    <div className="text-right">
+                      <Badge variant={attempt.success ? 'default' : 'destructive'} className="text-xs">
+                        {attempt.success ? 'Sucesso' : 'Falha'}
+                      </Badge>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        {format(new Date(attempt.created_at), 'dd/MM HH:mm', { locale: ptBR })}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-muted-foreground text-sm text-center py-4">Nenhuma tentativa de login registrada</p>
+            )}
+          </CardContent>
+        </Card>
       </div>
     </>
   );

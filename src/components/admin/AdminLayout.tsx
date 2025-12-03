@@ -1,6 +1,9 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
+import { useActivityTimeout } from '@/hooks/useActivityTimeout';
+import { SessionTimeoutWarning } from '@/components/admin/SessionTimeoutWarning';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
 import { 
   LayoutDashboard, 
   FileText, 
@@ -13,12 +16,27 @@ import {
   BarChart3,
   Users
 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 const AdminLayout = () => {
-  const { signOut, user } = useAuth();
+  const { signOut, user, isAdmin } = useAuth();
   const location = useLocation();
+  const { toast } = useToast();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const handleSessionTimeout = useCallback(() => {
+    toast({
+      title: "Sessão expirada",
+      description: "Você foi desconectado por inatividade.",
+      variant: "destructive",
+    });
+    signOut('timeout');
+  }, [signOut, toast]);
+
+  const { showWarning, remainingSeconds, dismissWarning } = useActivityTimeout({
+    onTimeout: handleSessionTimeout,
+    enabled: !!user && isAdmin,
+  });
 
   const menuItems = [
     { icon: LayoutDashboard, label: 'Dashboard', path: '/admin', exact: true },
@@ -39,6 +57,13 @@ const AdminLayout = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Session Timeout Warning */}
+      <SessionTimeoutWarning 
+        open={showWarning}
+        remainingSeconds={remainingSeconds}
+        onContinue={dismissWarning}
+      />
+
       <header className="border-b bg-card sticky top-0 z-40">
         <div className="flex items-center justify-between px-4 py-3">
           <div className="flex items-center gap-4">
