@@ -9,8 +9,8 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardTitle } from '@/components/ui/card';
-import { Calendar, User, ArrowLeft, Clock } from 'lucide-react';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Calendar, User, ArrowLeft, Clock, ArrowRight } from 'lucide-react';
 import DOMPurify from 'dompurify';
 import { handleWhatsAppClick } from '@/hooks/useConversionTracking';
 
@@ -141,6 +141,45 @@ const BlogPost = () => {
               <h1 className="text-4xl md:text-5xl font-bold mb-8">
                 {post.title}
               </h1>
+
+              {/* Card informativo do teste - acima da imagem */}
+              {slug === 'teste-online-para-saber-se-voce-tem-deficit-de-atencao-dr-gabriel' && (
+                <div className="mb-8 space-y-6">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="text-xl">Sobre este teste</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <p className="text-muted-foreground">
+                        Este questionário ajuda a identificar sintomas de TDAH baseado em critérios validados cientificamente.
+                      </p>
+                      <div className="bg-primary/10 p-4 rounded-lg space-y-2">
+                        <h3 className="font-semibold text-foreground">Como funciona:</h3>
+                        <ul className="space-y-2 text-sm text-muted-foreground">
+                          <li>• 9 perguntas sobre comportamentos nos últimos 6 meses</li>
+                          <li>• Responda com sinceridade - não há respostas certas ou erradas</li>
+                          <li>• Leva aproximadamente 2 minutos</li>
+                          <li>• Resultado imediato ao final</li>
+                        </ul>
+                      </div>
+                      <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 p-4 rounded-lg">
+                        <p className="text-sm text-foreground">
+                          <strong>Importante:</strong> Este teste não substitui uma avaliação médica profissional. Serve como ferramenta de triagem inicial.
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                  
+                  <div className="text-center">
+                    <Link to="/teste-tdah-hiperatividade">
+                      <Button size="lg" className="gap-2">
+                        Iniciar Teste
+                        <ArrowRight className="w-4 h-4" />
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              )}
 
               {post.featured_image && (
                 <img 
