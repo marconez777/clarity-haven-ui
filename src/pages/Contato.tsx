@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, { message: "Nome é obrigatório" }).max(100, { message: "Nome deve ter menos de 100 caracteres" }),
@@ -39,6 +40,17 @@ const Contato = () => {
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     try {
+      // Salvar lead no banco de dados
+      await supabase.from('leads').insert({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        subject: data.subject,
+        message: data.message,
+        source: 'Formulário de Contato',
+        source_url: window.location.pathname
+      });
+
       // Criar mensagem para WhatsApp
       const message = encodeURIComponent(
         `*Novo contato do site*\n\n` +

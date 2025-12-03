@@ -10,7 +10,8 @@ import {
   LogOut,
   Menu,
   X,
-  BarChart3
+  BarChart3,
+  Users
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -24,6 +25,7 @@ const AdminLayout = () => {
     { icon: FileText, label: 'Posts', path: '/admin/posts' },
     { icon: Tags, label: 'Categorias', path: '/admin/categories' },
     { icon: FolderOpen, label: 'Páginas', path: '/admin/pages' },
+    { icon: Users, label: 'Leads', path: '/admin/leads' },
     { icon: BarChart3, label: 'Analytics', path: '/admin/analytics' },
     { icon: Upload, label: 'Importar WordPress', path: '/admin/import' },
   ];
