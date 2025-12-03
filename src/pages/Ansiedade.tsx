@@ -47,7 +47,7 @@ const Ansiedade = () => {
                     Sente angústia constante, medo ou preocupação em excesso?
                     <span className="block text-primary mt-3 md:mt-4">Você pode estar convivendo com um transtorno de ansiedade.</span>
                   </h1>
-                  <p className="text-lg sm:text-xl md:text-xl text-muted-foreground mb-6 md:mb-8">
+                  <p className="hidden md:block text-lg sm:text-xl md:text-xl text-muted-foreground mb-6 md:mb-8">
                     Tratamento especializado com o Dr. Gabriel Lopes, psiquiatra referência em saúde mental e transtornos de ansiedade.
                   </p>
                   <div className="flex flex-col gap-3 md:gap-4">

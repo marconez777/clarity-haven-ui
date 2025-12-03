@@ -47,7 +47,7 @@ const TDAH = () => {
                     Dificuldade de Foco, Impulsividade ou Esquecimento Constante?
                     <span className="block text-primary mt-3 md:mt-4">Você pode estar convivendo com TDAH.</span>
                   </h1>
-                  <p className="text-lg sm:text-xl md:text-xl text-muted-foreground mb-6 md:mb-8">
+                  <p className="hidden md:block text-lg sm:text-xl md:text-xl text-muted-foreground mb-6 md:mb-8">
                     Avaliação completa e tratamento especializado com o Dr. Gabriel Lopes, psiquiatra referência em saúde mental e TDAH infantil e adulto.
                   </p>
                   <div className="flex flex-col gap-3 md:gap-4">
