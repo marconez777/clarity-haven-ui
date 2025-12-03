@@ -106,6 +106,36 @@ export type Database = {
           },
         ]
       }
+      conversion_events: {
+        Row: {
+          button_location: string | null
+          created_at: string
+          event_type: string
+          id: string
+          page_url: string | null
+          referrer: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          button_location?: string | null
+          created_at?: string
+          event_type?: string
+          id?: string
+          page_url?: string | null
+          referrer?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          button_location?: string | null
+          created_at?: string
+          event_type?: string
+          id?: string
+          page_url?: string | null
+          referrer?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       pages: {
         Row: {
           content: string

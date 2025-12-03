@@ -1,7 +1,13 @@
 import { Button } from "@/components/ui/button";
 import drGabrielImage from "@/assets/doctors/dr-gabriel.png";
+import { trackConversion } from "@/hooks/useConversionTracking";
 
 const AboutSection = () => {
+  const handleAgendamento = () => {
+    trackConversion({ buttonLocation: 'about_section' });
+    window.open('https://api.whatsapp.com/send/?phone=5511941543929&text=Ol%C3%A1%21+Gostaria+de+agendar+uma+consulta.&type=phone_number&app_absent=0', '_blank');
+  };
+
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -42,7 +48,7 @@ const AboutSection = () => {
               >
                 Conheço o doutor
               </Button>
-              <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://api.whatsapp.com/send/?phone=5511941543929&text=Ol%C3%A1%21+Gostaria+de+agendar+uma+consulta.&type=phone_number&app_absent=0', '_blank')}>
+              <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={handleAgendamento}>
                 Agende sua consulta
               </Button>
             </div>

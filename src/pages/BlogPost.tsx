@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { Calendar, User, ArrowLeft, Clock } from 'lucide-react';
 import DOMPurify from 'dompurify';
+import { handleWhatsAppClick } from '@/hooks/useConversionTracking';
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -201,7 +202,7 @@ const BlogPost = () => {
                 </p>
                 <Button 
                   size="lg"
-                  onClick={() => window.open('https://api.whatsapp.com/send/?phone=5511941543929&text=Ol%C3%A1%21+Gostaria+de+agendar+uma+consulta.&type=phone_number&app_absent=0', '_blank')}
+                  onClick={() => handleWhatsAppClick('blog_post_sidebar')}
                 >
                   Agendar Consulta
                 </Button>

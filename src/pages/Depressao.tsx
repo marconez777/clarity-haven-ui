@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Brain, Heart, Users, CheckCircle2 } from "lucide-react";
 import drGabrielImage from "@/assets/doctors/dr-gabriel.png";
 import consultorioImage from "@/assets/sections/consultori-psiquiatria2.jpg";
+import { handleWhatsAppClick } from "@/hooks/useConversionTracking";
 
 const Depressao = () => {
   return <>
@@ -50,7 +51,7 @@ const Depressao = () => {
                     Tratamento especializado com o Dr. Gabriel Lopes, psiquiatra referência em saúde mental e transtornos do humor.
                   </p>
                   <div className="flex flex-col gap-3 md:gap-4">
-                    <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all w-full sm:w-auto" onClick={() => window.open('https://api.whatsapp.com/send/?phone=5511941543929&text=Ol%C3%A1%21+Gostaria+de+agendar+uma+consulta.&type=phone_number&app_absent=0', '_blank')}>
+                    <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all w-full sm:w-auto" onClick={() => handleWhatsAppClick('depressao_hero')}>
                       🔹 Agende sua consulta
                     </Button>
                     <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary w-full sm:w-auto" asChild>
@@ -289,7 +290,7 @@ const Depressao = () => {
                 </div>
 
                 <div className="text-center">
-                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://api.whatsapp.com/send/?phone=5511941543929&text=Ol%C3%A1%21+Gostaria+de+agendar+uma+consulta.&type=phone_number&app_absent=0', '_blank')}>
+                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => handleWhatsAppClick('depressao_tratamento')}>
                     🔹 Agende sua consulta com o Dr. Gabriel Lopes
                   </Button>
                 </div>
@@ -309,7 +310,7 @@ const Depressao = () => {
                   A depressão tem tratamento — e a recuperação é possível. Com acompanhamento médico adequado e apoio multidisciplinar, é possível retomar o equilíbrio emocional e viver com leveza novamente.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => window.open('https://api.whatsapp.com/send/?phone=5511941543929&text=Ol%C3%A1%21+Gostaria+de+agendar+uma+consulta.&type=phone_number&app_absent=0', '_blank')}>
+                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={() => handleWhatsAppClick('depressao_cta_final')}>
                     🔹 Agende sua consulta
                   </Button>
                   <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary" asChild>
