@@ -8,13 +8,9 @@ import {
   LayoutDashboard, 
   FileText, 
   FolderOpen, 
-  Tags, 
-  Upload, 
   LogOut,
   Menu,
   X,
-  BarChart3,
-  Users
 } from 'lucide-react';
 import { useState, useCallback } from 'react';
 
@@ -40,12 +36,8 @@ const AdminLayout = () => {
 
   const menuItems = [
     { icon: LayoutDashboard, label: 'Dashboard', path: '/admin', exact: true },
-    { icon: FileText, label: 'Posts', path: '/admin/posts' },
-    { icon: Tags, label: 'Categorias', path: '/admin/categories' },
+    { icon: FileText, label: 'Conteúdo', path: '/admin/posts' },
     { icon: FolderOpen, label: 'Páginas', path: '/admin/pages' },
-    { icon: Users, label: 'Leads', path: '/admin/leads' },
-    { icon: BarChart3, label: 'Analytics', path: '/admin/analytics' },
-    { icon: Upload, label: 'Importar WordPress', path: '/admin/import' },
   ];
 
   const isActive = (path: string, exact?: boolean) => {

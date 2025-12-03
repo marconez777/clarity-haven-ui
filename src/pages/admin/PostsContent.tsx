@@ -15,7 +15,6 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Plus, Edit, Trash2, Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { Helmet } from 'react-helmet-async';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -30,7 +29,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 const ITEMS_PER_PAGE = 15;
 
-const PostList = () => {
+const PostsContent = () => {
   const [search, setSearch] = useState('');
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -89,11 +88,6 @@ const PostList = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Posts - Admin</title>
-        <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
-
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <h2 className="text-3xl font-bold">Posts do Blog</h2>
@@ -235,4 +229,4 @@ const PostList = () => {
   );
 };
 
-export default PostList;
+export default PostsContent;

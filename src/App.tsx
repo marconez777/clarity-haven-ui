@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import TDAH from "./pages/TDAH";
@@ -33,16 +33,12 @@ import Especialidades from "./pages/Especialidades";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { ProtectedRoute } from "@/components/admin/ProtectedRoute";
 import Login from "@/pages/admin/Login";
-import Dashboard from "@/pages/admin/Dashboard";
-import PostList from "@/pages/admin/posts/PostList";
+import DashboardTabs from "@/pages/admin/DashboardTabs";
+import ContentTabs from "@/pages/admin/ContentTabs";
 import PostCreate from "@/pages/admin/posts/PostCreate";
 import PostEdit from "@/pages/admin/posts/PostEdit";
-import CategoryManager from "@/pages/admin/categories/CategoryManager";
 import PageList from "@/pages/admin/pages/PageList";
 import PageEditor from "@/pages/admin/pages/PageEditor";
-import WordPressImport from "@/pages/admin/import/WordPressImport";
-import Analytics from "@/pages/admin/Analytics";
-import Leads from "@/pages/admin/Leads";
 import DynamicPage from "@/pages/DynamicPage";
 import ScrollToTop from "@/components/ScrollToTop";
 import SmartlookAnalytics from "@/components/SmartlookAnalytics";
@@ -89,17 +85,18 @@ const App = () => (
             {/* Admin Routes */}
             <Route path="/admin/login" element={<Login />} />
             <Route path="/admin/*" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
-              <Route index element={<Dashboard />} />
-              <Route path="posts" element={<PostList />} />
+              <Route index element={<DashboardTabs />} />
+              <Route path="posts" element={<ContentTabs />} />
               <Route path="posts/new" element={<PostCreate />} />
               <Route path="posts/edit/:id" element={<PostEdit />} />
-              <Route path="categories" element={<CategoryManager />} />
               <Route path="pages" element={<PageList />} />
               <Route path="pages/new" element={<PageEditor />} />
               <Route path="pages/edit/:id" element={<PageEditor />} />
-              <Route path="import" element={<WordPressImport />} />
-              <Route path="analytics" element={<Analytics />} />
-              <Route path="leads" element={<Leads />} />
+              {/* Redirects for old routes */}
+              <Route path="categories" element={<Navigate to="/admin/posts?tab=categories" replace />} />
+              <Route path="import" element={<Navigate to="/admin/posts?tab=import" replace />} />
+              <Route path="analytics" element={<Navigate to="/admin?tab=analytics" replace />} />
+              <Route path="leads" element={<Navigate to="/admin?tab=leads" replace />} />
             </Route>
             
             {/* Dynamic routes - BEFORE catch-all */}
