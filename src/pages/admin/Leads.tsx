@@ -248,21 +248,21 @@ const Leads = () => {
               <TableRow>
                 <TableHead>Nome</TableHead>
                 <TableHead>Email</TableHead>
-                <TableHead>Telefone</TableHead>
                 <TableHead>Origem</TableHead>
+                <TableHead>Página</TableHead>
                 <TableHead>Data</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {isLoading ? (
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center py-8">
+                  <TableCell colSpan={6} className="text-center py-8">
                     Carregando leads...
                   </TableCell>
                 </TableRow>
               ) : paginatedLeads.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
+                  <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
                     Nenhum lead encontrado
                   </TableCell>
                 </TableRow>
@@ -274,18 +274,24 @@ const Leads = () => {
                     </TableCell>
                     <TableCell>{lead.email}</TableCell>
                     <TableCell>
-                      {lead.phone || <span className="text-muted-foreground">-</span>}
-                    </TableCell>
-                    <TableCell>
                       <span
                         className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                           lead.type === 'contact'
                             ? 'bg-primary/10 text-primary'
-                            : 'bg-accent/10 text-accent'
+                            : 'bg-secondary text-secondary-foreground'
                         }`}
                       >
                         {lead.source}
                       </span>
+                    </TableCell>
+                    <TableCell className="max-w-[200px]">
+                      {lead.source_url ? (
+                        <span className="text-xs text-muted-foreground truncate block" title={lead.source_url}>
+                          {lead.source_url.replace(/^https?:\/\/[^/]+/, '')}
+                        </span>
+                      ) : (
+                        <span className="text-muted-foreground">-</span>
+                      )}
                     </TableCell>
                     <TableCell>
                       {format(new Date(lead.created_at), "dd 'de' MMM, HH:mm", {
