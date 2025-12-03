@@ -142,7 +142,13 @@ const Team = () => {
         <section className="py-12 md:py-20">
           <div className="container mx-auto px-4">
             <div className="space-y-20 md:space-y-32">
-              {teamMembers.map((member, index) => (
+              {teamMembers.map((member, index) => {
+                const isFounder = index === 0 || index === 1;
+                const photoSize = isFounder 
+                  ? 'w-72 h-72 md:w-96 md:h-96' 
+                  : 'w-56 h-56 md:w-72 md:h-72';
+                
+                return (
                 <article 
                   key={member.name}
                   className="grid md:grid-cols-2 gap-8 md:gap-16 items-center"
@@ -151,14 +157,14 @@ const Team = () => {
                   <div className={`${index % 2 === 1 ? 'md:order-2' : ''}`}>
                     <div className="relative w-fit mx-auto">
                       {/* Decorative ring */}
-                      <div className="absolute inset-0 w-56 h-56 md:w-72 md:h-72 mx-auto rounded-full border-2 border-dashed border-primary/30 -translate-x-2 -translate-y-2" />
+                      <div className={`absolute inset-0 mx-auto rounded-full border-2 border-dashed border-primary/30 -translate-x-2 -translate-y-2 ${photoSize}`} />
                       <img
                         src={member.image}
                         alt={`Foto de ${member.name}`}
-                        className="w-56 h-56 md:w-72 md:h-72 rounded-full object-cover object-top border-4 border-primary/20 shadow-xl relative z-10"
+                        className={`rounded-full object-cover object-top border-4 border-primary/20 shadow-xl relative z-10 ${photoSize}`}
                       />
                       {/* Accent dot */}
-                      <div className="absolute bottom-4 right-4 w-6 h-6 bg-primary rounded-full z-20 shadow-lg" />
+                      <div className={`absolute w-6 h-6 bg-primary rounded-full z-20 shadow-lg ${isFounder ? 'bottom-6 right-6' : 'bottom-4 right-4'}`} />
                     </div>
                   </div>
 
@@ -192,7 +198,8 @@ const Team = () => {
                     </Button>
                   </div>
                 </article>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
