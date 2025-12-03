@@ -171,7 +171,7 @@ const BlogPost = () => {
                   </Card>
                   
                   <div className="text-center">
-                    <Link to="/teste-tdah-hiperatividade">
+                    <Link to="/teste-tdah-hiperatividade?step=email">
                       <Button size="lg" className="gap-2">
                         Iniciar Teste
                         <ArrowRight className="w-4 h-4" />
