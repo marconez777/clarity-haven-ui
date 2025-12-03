@@ -7,7 +7,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Plus, Trash2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { Helmet } from 'react-helmet-async';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -20,7 +19,7 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Skeleton } from '@/components/ui/skeleton';
 
-const CategoryManager = () => {
+const CategoriesContent = () => {
   const [name, setName] = useState('');
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [deleteName, setDeleteName] = useState<string>('');
@@ -93,11 +92,6 @@ const CategoryManager = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Categorias - Admin</title>
-        <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
-
       <div className="space-y-6">
         <h2 className="text-3xl font-bold">Categorias</h2>
 
@@ -186,4 +180,4 @@ const CategoryManager = () => {
   );
 };
 
-export default CategoryManager;
+export default CategoriesContent;

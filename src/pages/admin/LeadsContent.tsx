@@ -36,7 +36,7 @@ interface Lead {
   type: 'contact' | 'test';
 }
 
-const Leads = () => {
+const LeadsContent = () => {
   const [filter, setFilter] = useState<'all' | 'contact' | 'test'>('all');
   const [search, setSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -363,4 +363,4 @@ const Leads = () => {
   );
 };
 
-export default Leads;
+export default LeadsContent;
