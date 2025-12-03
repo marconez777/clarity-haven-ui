@@ -5,6 +5,7 @@ import { useToast } from '@/hooks/use-toast';
 import PostForm from './PostForm';
 import { Helmet } from 'react-helmet-async';
 import { Loader2 } from 'lucide-react';
+import AdminBreadcrumbs from '@/components/admin/AdminBreadcrumbs';
 
 const PostEdit = () => {
   const { id } = useParams<{ id: string }>();
@@ -69,6 +70,10 @@ const PostEdit = () => {
       </Helmet>
       
       <div className="space-y-6">
+        <AdminBreadcrumbs items={[
+          { label: 'Posts', href: '/admin/posts' },
+          { label: 'Editar Post' }
+        ]} />
         <h2 className="text-3xl font-bold">Editar Post</h2>
         {post && (
           <PostForm

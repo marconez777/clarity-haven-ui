@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import PostForm from './PostForm';
 import { Helmet } from 'react-helmet-async';
+import AdminBreadcrumbs from '@/components/admin/AdminBreadcrumbs';
 
 const PostCreate = () => {
   const navigate = useNavigate();
@@ -42,6 +43,10 @@ const PostCreate = () => {
       </Helmet>
       
       <div className="space-y-6">
+        <AdminBreadcrumbs items={[
+          { label: 'Posts', href: '/admin/posts' },
+          { label: 'Novo Post' }
+        ]} />
         <h2 className="text-3xl font-bold">Novo Post</h2>
         <PostForm
           onSubmit={(data) => createMutation.mutate(data)}

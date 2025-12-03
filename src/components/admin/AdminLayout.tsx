@@ -21,7 +21,7 @@ const AdminLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const menuItems = [
-    { icon: LayoutDashboard, label: 'Dashboard', path: '/admin' },
+    { icon: LayoutDashboard, label: 'Dashboard', path: '/admin', exact: true },
     { icon: FileText, label: 'Posts', path: '/admin/posts' },
     { icon: Tags, label: 'Categorias', path: '/admin/categories' },
     { icon: FolderOpen, label: 'Páginas', path: '/admin/pages' },
@@ -29,6 +29,13 @@ const AdminLayout = () => {
     { icon: BarChart3, label: 'Analytics', path: '/admin/analytics' },
     { icon: Upload, label: 'Importar WordPress', path: '/admin/import' },
   ];
+
+  const isActive = (path: string, exact?: boolean) => {
+    if (exact) {
+      return location.pathname === path;
+    }
+    return location.pathname === path || location.pathname.startsWith(path + '/');
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -43,7 +50,10 @@ const AdminLayout = () => {
             >
               {sidebarOpen ? <X /> : <Menu />}
             </Button>
-            <h1 className="text-xl font-bold">Admin Panel</h1>
+            <Link to="/admin" className="flex items-center gap-2">
+              <img src="/favicon.png" alt="Logo" className="w-8 h-8" />
+              <h1 className="text-xl font-bold">Admin Panel</h1>
+            </Link>
           </div>
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground hidden sm:block">
@@ -63,16 +73,16 @@ const AdminLayout = () => {
           w-64 border-r bg-card transition-transform lg:translate-x-0
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
         `}>
-          <nav className="p-4 space-y-2">
+          <nav className="p-4 space-y-1">
             {menuItems.map((item) => {
               const Icon = item.icon;
-              const isActive = location.pathname === item.path;
+              const active = isActive(item.path, item.exact);
               
               return (
                 <Link key={item.path} to={item.path}>
                   <Button
-                    variant={isActive ? "secondary" : "ghost"}
-                    className="w-full justify-start"
+                    variant={active ? "secondary" : "ghost"}
+                    className={`w-full justify-start ${active ? 'bg-secondary font-medium' : ''}`}
                     onClick={() => setSidebarOpen(false)}
                   >
                     <Icon className="w-4 h-4 mr-2" />

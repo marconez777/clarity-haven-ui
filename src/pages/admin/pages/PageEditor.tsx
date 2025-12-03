@@ -11,9 +11,9 @@ import * as z from 'zod';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
-import { ArrowLeft } from 'lucide-react';
 import RichTextEditor from '@/components/admin/RichTextEditor';
 import { useState, useEffect } from 'react';
+import AdminBreadcrumbs from '@/components/admin/AdminBreadcrumbs';
 import {
   Select,
   SelectContent,
@@ -151,14 +151,13 @@ const PageEditor = () => {
       </Helmet>
 
       <div className="space-y-6">
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" onClick={() => navigate('/admin/pages')}>
-            <ArrowLeft className="h-4 w-4" />
-          </Button>
-          <h2 className="text-3xl font-bold">
-            {isEditMode ? 'Editar Página' : 'Nova Página'}
-          </h2>
-        </div>
+        <AdminBreadcrumbs items={[
+          { label: 'Páginas', href: '/admin/pages' },
+          { label: isEditMode ? 'Editar Página' : 'Nova Página' }
+        ]} />
+        <h2 className="text-3xl font-bold">
+          {isEditMode ? 'Editar Página' : 'Nova Página'}
+        </h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <Card>
