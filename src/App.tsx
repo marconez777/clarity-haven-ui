@@ -44,6 +44,7 @@ import WordPressImport from "@/pages/admin/import/WordPressImport";
 import Analytics from "@/pages/admin/Analytics";
 import DynamicPage from "@/pages/DynamicPage";
 import ScrollToTop from "@/components/ScrollToTop";
+import SmartlookAnalytics from "@/components/SmartlookAnalytics";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <ScrollToTop />
+          <SmartlookAnalytics />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/dr-gabriel-lopes" element={<DrGabriel />} />
