@@ -1,8 +1,38 @@
+import { useLocation } from "react-router-dom";
 import { trackConversion } from "@/hooks/useConversionTracking";
 
+const pageMessages: Record<string, string> = {
+  '/tdah': 'Olá! Estou no site do Dr. Gabriel e gostaria de saber mais sobre o tratamento de TDAH.',
+  '/ansiedade': 'Olá! Estou no site do Dr. Gabriel e gostaria de saber mais sobre o tratamento de Ansiedade.',
+  '/depressao': 'Olá! Estou no site do Dr. Gabriel e gostaria de saber mais sobre o tratamento de Depressão.',
+  '/transtorno-bipolar': 'Olá! Estou no site do Dr. Gabriel e gostaria de saber mais sobre o tratamento de Transtorno Bipolar.',
+  '/especialidades': 'Olá! Estou no site do Dr. Gabriel e gostaria de saber mais sobre as especialidades.',
+  '/consulta-tdah-online': 'Olá! Estou no site do Dr. Gabriel e gostaria de saber mais sobre consulta de TDAH online.',
+  '/psiquiatra-de-tdah': 'Olá! Estou no site do Dr. Gabriel e gostaria de saber mais sobre psiquiatra especialista em TDAH.',
+  '/teste-tdah': 'Olá! Fiz o teste de TDAH no site do Dr. Gabriel e gostaria de agendar uma avaliação.',
+  '/teste-tdah-adulto': 'Olá! Fiz o teste de TDAH Adulto no site do Dr. Gabriel e gostaria de agendar uma avaliação.',
+  '/teste-ansiedade-gad7': 'Olá! Fiz o teste de Ansiedade no site do Dr. Gabriel e gostaria de agendar uma avaliação.',
+  '/teste-depressao-phq9': 'Olá! Fiz o teste de Depressão no site do Dr. Gabriel e gostaria de agendar uma avaliação.',
+  '/teste-autismo-aq10': 'Olá! Fiz o teste de Autismo no site do Dr. Gabriel e gostaria de agendar uma avaliação.',
+  '/teste-autismo-aq50': 'Olá! Fiz o teste de Autismo no site do Dr. Gabriel e gostaria de agendar uma avaliação.',
+  '/teste-burnout': 'Olá! Fiz o teste de Burnout no site do Dr. Gabriel e gostaria de agendar uma avaliação.',
+  '/teste-transtorno-bipolar': 'Olá! Fiz o teste de Transtorno Bipolar no site do Dr. Gabriel e gostaria de agendar uma avaliação.',
+  '/teste-compulsao-alimentar': 'Olá! Fiz o teste de Compulsão Alimentar no site do Dr. Gabriel e gostaria de agendar uma avaliação.',
+  '/teste-sofrimento-mental': 'Olá! Fiz o teste de Sofrimento Mental no site do Dr. Gabriel e gostaria de agendar uma avaliação.',
+};
+
+const defaultMessage = 'Olá! Estou no site do Dr. Gabriel e gostaria de saber mais sobre os tratamentos.';
+
+const getMessage = (pathname: string): string => {
+  if (pageMessages[pathname]) return pageMessages[pathname];
+  if (pathname.startsWith('/blog/')) return 'Olá! Li um artigo no site do Dr. Gabriel e gostaria de saber mais sobre os tratamentos.';
+  return defaultMessage;
+};
+
 const WhatsAppButton = () => {
+  const location = useLocation();
   const whatsappNumber = "5511941543929";
-  const message = "Olá! Gostaria de agendar uma consulta.";
+  const message = getMessage(location.pathname);
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
     message
   )}`;
