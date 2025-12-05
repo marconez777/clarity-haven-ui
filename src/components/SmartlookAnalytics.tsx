@@ -18,19 +18,24 @@ const SmartlookAnalytics = () => {
     // Check if Smartlook is already loaded
     if (window.smartlook) return;
 
-    // Load Smartlook script
-    window.smartlook = window.smartlook || function() {
-      (window.smartlook.api = window.smartlook.api || []).push(arguments);
-    };
+    // Delay Smartlook loading by 3 seconds to prioritize critical content
+    const timeoutId = setTimeout(() => {
+      // Load Smartlook script
+      window.smartlook = window.smartlook || function() {
+        (window.smartlook.api = window.smartlook.api || []).push(arguments);
+      };
 
-    const script = document.createElement('script');
-    script.async = true;
-    script.type = 'text/javascript';
-    script.charset = 'utf-8';
-    script.src = 'https://web-sdk.smartlook.com/recorder.js';
-    document.head.appendChild(script);
+      const script = document.createElement('script');
+      script.async = true;
+      script.type = 'text/javascript';
+      script.charset = 'utf-8';
+      script.src = 'https://web-sdk.smartlook.com/recorder.js';
+      document.head.appendChild(script);
 
-    window.smartlook('init', '4a42b280a917350f729a368877041c9d9dfc72c5', { region: 'eu' });
+      window.smartlook('init', '4a42b280a917350f729a368877041c9d9dfc72c5', { region: 'eu' });
+    }, 3000);
+
+    return () => clearTimeout(timeoutId);
   }, [isAdminPage]);
 
   return null;

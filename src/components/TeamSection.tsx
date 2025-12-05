@@ -30,6 +30,8 @@ const TeamSection = () => {
             alt="Profissionais da equipe"
             className="rounded-2xl shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-hover)] transition-shadow duration-300"
             style={{ width: '328px', height: '125px' }}
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </div>

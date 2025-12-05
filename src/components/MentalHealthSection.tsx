@@ -19,6 +19,8 @@ const MentalHealthSection = () => {
               src={mentalHealthImage}
               alt="Pessoa relaxando na natureza"
               className="rounded-[3rem] shadow-[var(--shadow-soft)] w-full h-auto"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 

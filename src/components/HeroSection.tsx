@@ -5,7 +5,13 @@ const HeroSection = () => {
   return <section className="relative min-h-[60vh] md:min-h-[80vh] flex items-center overflow-hidden pb-12 md:pb-0">
       {/* Background Image */}
       <div className="absolute inset-0">
-        <img src={heroImage} alt="Família feliz na praia" className="w-full h-full object-cover" />
+        <img 
+          src={heroImage} 
+          alt="Família feliz na praia" 
+          className="w-full h-full object-cover"
+          fetchPriority="high"
+          decoding="async"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/80 to-background/70 md:bg-gradient-to-r md:from-background/90 md:via-background/50 md:to-transparent" />
       </div>
 

@@ -1,12 +1,35 @@
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import drGabrielImage from "@/assets/doctors/dr-gabriel.png";
 import { trackConversion } from "@/hooks/useConversionTracking";
 
 const AboutSection = () => {
+  const [loadIframe, setLoadIframe] = useState(false);
+  const iframeRef = useRef<HTMLDivElement>(null);
+
   const handleAgendamento = () => {
     trackConversion({ buttonLocation: 'about_section' });
     window.open('https://api.whatsapp.com/send/?phone=5511941543929&text=Ol%C3%A1%21+Gostaria+de+agendar+uma+consulta.&type=phone_number&app_absent=0', '_blank');
   };
+
+  // Lazy load iframe when it comes into view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setLoadIframe(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+
+    if (iframeRef.current) {
+      observer.observe(iframeRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section className="py-20 bg-background">
@@ -53,16 +76,21 @@ const AboutSection = () => {
               </Button>
             </div>
             
-            <div className="mt-8 flex justify-center md:justify-start">
-              <iframe 
-                frameBorder="0" 
-                scrolling="no" 
-                allowTransparency={true}
-                data-id="pnh0yj0mfi" 
-                title="Docplanner Booking Widget" 
-                src="https://widgets.doctoralia.com.br/doctor/widget/certificate/gabriel-lopes?customUtm=null&id=pnh0yj0mfi&header=null&content=null&fullwidth=null&referer=https%3A%2F%2Fdrgabriel.med.br%2Fdr-gabriel-lopes%2F&hide_branding=true&widget_position=bottom&opinion=false&saasonly=false&expand_calendar=false" 
-                style={{ border: "none", overflow: "hidden", width: "245px", height: "284px" }}
-              />
+            <div ref={iframeRef} className="mt-8 flex justify-center md:justify-start min-h-[284px]">
+              {loadIframe ? (
+                <iframe 
+                  frameBorder="0" 
+                  scrolling="no" 
+                  allowTransparency={true}
+                  data-id="pnh0yj0mfi" 
+                  title="Docplanner Booking Widget" 
+                  src="https://widgets.doctoralia.com.br/doctor/widget/certificate/gabriel-lopes?customUtm=null&id=pnh0yj0mfi&header=null&content=null&fullwidth=null&referer=https%3A%2F%2Fdrgabriel.med.br%2Fdr-gabriel-lopes%2F&hide_branding=true&widget_position=bottom&opinion=false&saasonly=false&expand_calendar=false" 
+                  style={{ border: "none", overflow: "hidden", width: "245px", height: "284px" }}
+                  loading="lazy"
+                />
+              ) : (
+                <div className="w-[245px] h-[284px] bg-muted animate-pulse rounded-lg" />
+              )}
             </div>
           </div>
 
@@ -72,6 +100,8 @@ const AboutSection = () => {
                 src={drGabrielImage}
                 alt="Dr. Gabriel Lopes"
                 className="rounded-2xl shadow-[var(--shadow-soft)] w-full h-auto transform hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
