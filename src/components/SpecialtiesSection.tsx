@@ -40,7 +40,13 @@ const SpecialtiesSection = () => {
             animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`
           }}>
                 <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-white flex items-center justify-center shadow-[var(--shadow-soft)] group-hover:shadow-[var(--shadow-hover)] transition-all group-hover:scale-110 duration-300 overflow-hidden">
-                  <img src={specialty.image} alt={specialty.name} className="w-16 h-16 object-contain" />
+                  <img 
+                    src={specialty.image} 
+                    alt={specialty.name} 
+                    className="w-16 h-16 object-contain" 
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-2">
                   {specialty.name}
