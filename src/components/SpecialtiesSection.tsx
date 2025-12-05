@@ -1,8 +1,8 @@
-import psiquiatriaIcon from "@/assets/specialties/psiquiatria.png";
-import psicoterapiaIcon from "@/assets/specialties/psicoterapia.png";
-import acupunturaIcon from "@/assets/specialties/acupuntura.png";
-import nutricaoIcon from "@/assets/specialties/nutricao.png";
-import neuropsicologiaIcon from "@/assets/specialties/neuropsicologia.png";
+import psiquiatriaIcon from "@/assets/specialties/psiquiatria.png?format=webp";
+import psicoterapiaIcon from "@/assets/specialties/psicoterapia.png?format=webp";
+import acupunturaIcon from "@/assets/specialties/acupuntura.png?format=webp";
+import nutricaoIcon from "@/assets/specialties/nutricao.png?format=webp";
+import neuropsicologiaIcon from "@/assets/specialties/neuropsicologia.png?format=webp";
 const SpecialtiesSection = () => {
   const specialties = [{
     image: psiquiatriaIcon,

@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.png?format=webp";
 import { trackConversion } from "@/hooks/useConversionTracking";
 
 const Navigation = () => {

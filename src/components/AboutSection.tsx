@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import drGabrielImage from "@/assets/doctors/dr-gabriel.png";
+import drGabrielImage from "@/assets/doctors/dr-gabriel.png?format=webp";
 import { trackConversion } from "@/hooks/useConversionTracking";
 
 const AboutSection = () => {

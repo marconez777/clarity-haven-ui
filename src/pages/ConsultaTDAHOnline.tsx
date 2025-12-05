@@ -6,8 +6,8 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 
 import { Button } from "@/components/ui/button";
 import { Brain, Heart, Users, CheckCircle2, AlertCircle } from "lucide-react";
-import drGabrielImage from "@/assets/doctors/dr-gabriel.png";
-import consultorioImage from "@/assets/sections/consultori-psiquiatria2.jpg";
+import drGabrielImage from "@/assets/doctors/dr-gabriel.png?format=webp";
+import consultorioImage from "@/assets/sections/consultori-psiquiatria2.jpg?format=webp";
 import { handleWhatsAppClick } from "@/hooks/useConversionTracking";
 
 const ConsultaTDAHOnline = () => {

@@ -9,15 +9,15 @@ import { Award, MessageCircle } from "lucide-react";
 import { handleWhatsAppClick } from "@/hooks/useConversionTracking";
 
 // Import all doctor images
-import drGabriel from "@/assets/doctors/dr-gabriel.png";
-import draAnaSato from "@/assets/doctors/Dra-Ana-Carolina-Sato.png";
-import draStelaBersan from "@/assets/doctors/dra-stela-bersan-faustino.png";
-import drJulioCesar from "@/assets/doctors/dr-julio-cesar-scaled.png";
-import vanessaOliveira from "@/assets/doctors/vanessa-oliveira-da-silva.png";
-import wladimirMartins from "@/assets/doctors/corpo-clinico-wladimir.png";
-import philippeBenhayon from "@/assets/doctors/philippe-albert-dalle-molle-benhayon.png";
-import israelBusto from "@/assets/doctors/israel-adolfo-mirando-busto.png";
-import lauraSilva from "@/assets/doctors/laura-jessica-siqueira-da-silva.png";
+import drGabriel from "@/assets/doctors/dr-gabriel.png?format=webp";
+import draAnaSato from "@/assets/doctors/Dra-Ana-Carolina-Sato.png?format=webp";
+import draStelaBersan from "@/assets/doctors/dra-stela-bersan-faustino.png?format=webp";
+import drJulioCesar from "@/assets/doctors/dr-julio-cesar-scaled.png?format=webp";
+import vanessaOliveira from "@/assets/doctors/vanessa-oliveira-da-silva.png?format=webp";
+import wladimirMartins from "@/assets/doctors/corpo-clinico-wladimir.png?format=webp";
+import philippeBenhayon from "@/assets/doctors/philippe-albert-dalle-molle-benhayon.png?format=webp";
+import israelBusto from "@/assets/doctors/israel-adolfo-mirando-busto.png?format=webp";
+import lauraSilva from "@/assets/doctors/laura-jessica-siqueira-da-silva.png?format=webp";
 
 interface TeamMember {
   name: string;

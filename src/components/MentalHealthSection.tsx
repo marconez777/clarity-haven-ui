@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import mentalHealthImage from "@/assets/sections/mental-health.png";
+import mentalHealthImage from "@/assets/sections/mental-health.png?format=webp";
 import { trackConversion } from "@/hooks/useConversionTracking";
 
 const MentalHealthSection = () => {
