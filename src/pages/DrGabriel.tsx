@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import drGabrielImage from "@/assets/doctors/gabriel-lopes-sobre.jpg";
+import drGabrielImage from "@/assets/doctors/gabriel-lopes-sobre.jpg?format=webp";
 
 const DrGabriel = () => {
   const jsonLd = {

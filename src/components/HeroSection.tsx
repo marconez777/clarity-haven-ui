@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero/hero-family.jpg";
+import heroImage from "@/assets/hero/hero-family.jpg?format=webp";
 import { handleWhatsAppClick } from "@/hooks/useConversionTracking";
 const HeroSection = () => {
   return <section className="relative min-h-[60vh] md:min-h-[80vh] flex items-center overflow-hidden pb-12 md:pb-0">

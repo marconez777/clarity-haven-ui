@@ -1,4 +1,4 @@
-import teamImage from "@/assets/doctors/team-professionals.png";
+import teamImage from "@/assets/doctors/team-professionals.png?format=webp";
 
 const TeamSection = () => {
   const features = [

@@ -7,8 +7,8 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2 } from "lucide-react";
-import drGabrielImage from "@/assets/doctors/dr-gabriel.png";
-import consultorioImage from "@/assets/sections/consultori-psiquiatria2.jpg";
+import drGabrielImage from "@/assets/doctors/dr-gabriel.png?format=webp";
+import consultorioImage from "@/assets/sections/consultori-psiquiatria2.jpg?format=webp";
 import DOMPurify from 'dompurify';
 import { handleWhatsAppClick } from "@/hooks/useConversionTracking";
 
