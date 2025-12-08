@@ -108,10 +108,10 @@ const AboutSection = () => {
                 href="https://www.instagram.com/drgabriellopes/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute bottom-4 right-4 inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737] text-white shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300"
+                className="absolute bottom-4 right-4 inline-flex items-center justify-center w-[86px] h-[86px] rounded-full bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737] text-white shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300"
                 aria-label="Instagram do Dr. Gabriel Lopes"
               >
-                <Instagram className="w-6 h-6" />
+                <Instagram className="w-11 h-11" />
               </a>
             </div>
           </div>
