@@ -4,4 +4,4 @@ project_id = "avoiuqhlnunlujnzmjgv"
 verify_jwt = false
 
 [functions.download-image]
-verify_jwt = false
+verify_jwt = true
