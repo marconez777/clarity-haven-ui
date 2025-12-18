@@ -14,6 +14,7 @@ import { Brain, ArrowLeft, ArrowRight, AlertCircle } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import EmailCollectionStep from "@/components/tests/EmailCollectionStep";
 import { submitTestResult } from "@/hooks/useTestSubmission";
+import { handleWhatsAppClick } from "@/hooks/useConversionTracking";
 
 interface Question {
   id: number;
@@ -355,10 +356,8 @@ const TesteTDAH = () => {
                       
                       {finalScore >= 5 && (
                         <div className="pt-2">
-                          <Button asChild size="lg" className="w-full sm:w-auto">
-                            <a href="https://wa.me/5511999999999?text=Olá! Gostaria de agendar uma consulta para avaliação de TDAH." target="_blank" rel="noopener noreferrer">
-                              Agendar Consulta
-                            </a>
+                          <Button size="lg" className="w-full sm:w-auto" onClick={() => handleWhatsAppClick('tdah_hiperatividade_resultado')}>
+                            Agendar Consulta
                           </Button>
                         </div>
                       )}
