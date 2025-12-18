@@ -10,7 +10,7 @@ const Testes = () => {
   const testes = [
     {
       title: "Teste de Autismo Adulto – AQ-10",
-      href: "/autismo-adulto-aq-10",
+      href: "/teste-autismo-aq10",
       disabled: false,
     },
     {
@@ -20,7 +20,7 @@ const Testes = () => {
     },
     {
       title: "Teste de Depressão – PHQ9",
-      href: "/teste-de-depressao-phq9",
+      href: "/teste-depressao-phq9",
       disabled: false,
     },
     {
@@ -30,17 +30,17 @@ const Testes = () => {
     },
     {
       title: "Teste de Déficit de Atenção – TDAH Adulto",
-      href: "/teste-de-deficit-de-atencao-tdah-adulto",
+      href: "/teste-de-tdah-hiperatividade-adulto",
       disabled: false,
     },
     {
       title: "Teste de Ansiedade – GAD-7",
-      href: "/teste-ansiedade-gad7",
+      href: "/teste-de-ansiedade-gad-7",
       disabled: false,
     },
     {
       title: "Teste de Compulsão Alimentar",
-      href: "/teste-compulsao-alimentar",
+      href: "/teste-de-compulsao-alimentar",
       disabled: false,
     },
     {
@@ -50,7 +50,7 @@ const Testes = () => {
     },
     {
       title: "Teste de Transtorno Bipolar",
-      href: "/teste-de-transtorno-bipolar",
+      href: "/teste-transtorno-bipolar",
       disabled: false,
     },
     {

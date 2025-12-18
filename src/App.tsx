@@ -81,15 +81,15 @@ const App = () => (
               <Route path="/tdah" element={<TDAH />} />
               <Route path="/testes-de-saude-mental" element={<Testes />} />
               <Route path="/teste-tdah-hiperatividade" element={<TesteTDAH />} />
-              <Route path="/autismo-adulto-aq-10" element={<TesteAutismoAQ10 />} />
+              <Route path="/teste-autismo-aq10" element={<TesteAutismoAQ10 />} />
               <Route path="/teste-de-autismo-adulto-aq-50" element={<TesteAutismoAQ50 />} />
-              <Route path="/teste-de-depressao-phq9" element={<TesteDepressaoPHQ9 />} />
-              <Route path="/teste-de-deficit-de-atencao-tdah-adulto" element={<TesteTDAHAdulto />} />
-              <Route path="/teste-ansiedade-gad7" element={<TesteAnsiedadeGAD7 />} />
+              <Route path="/teste-depressao-phq9" element={<TesteDepressaoPHQ9 />} />
+              <Route path="/teste-de-tdah-hiperatividade-adulto" element={<TesteTDAHAdulto />} />
+              <Route path="/teste-de-ansiedade-gad-7" element={<TesteAnsiedadeGAD7 />} />
               <Route path="/teste-burnout" element={<TesteBurnout />} />
-              <Route path="/teste-de-transtorno-bipolar" element={<TesteTranstornoBipolar />} />
+              <Route path="/teste-transtorno-bipolar" element={<TesteTranstornoBipolar />} />
               <Route path="/teste-de-sofrimento-mental" element={<TesteSofrimentoMental />} />
-              <Route path="/teste-compulsao-alimentar" element={<TesteCompulsaoAlimentar />} />
+              <Route path="/teste-de-compulsao-alimentar" element={<TesteCompulsaoAlimentar />} />
               <Route path="/modelo-local" element={<ModeloLocal />} />
               <Route path="/psiquiatra-de-tdah" element={<PsiquiatraDeTDAH />} />
               <Route path="/consulta-para-tdah-online" element={<ConsultaTDAHOnline />} />
@@ -116,6 +116,19 @@ const App = () => (
                 <Route path="analytics" element={<Navigate to="/admin?tab=analytics" replace />} />
                 <Route path="leads" element={<Navigate to="/admin?tab=leads" replace />} />
               </Route>
+              
+              {/* Redirects de URLs antigas de testes */}
+              <Route path="/autismo-adulto-aq-10" element={<Navigate to="/teste-autismo-aq10" replace />} />
+              <Route path="/teste-de-depressao-phq9" element={<Navigate to="/teste-depressao-phq9" replace />} />
+              <Route path="/teste-de-deficit-de-atencao-tdah-adulto" element={<Navigate to="/teste-de-tdah-hiperatividade-adulto" replace />} />
+              <Route path="/teste-ansiedade-gad7" element={<Navigate to="/teste-de-ansiedade-gad-7" replace />} />
+              <Route path="/teste-de-transtorno-bipolar" element={<Navigate to="/teste-transtorno-bipolar" replace />} />
+              <Route path="/teste-compulsao-alimentar" element={<Navigate to="/teste-de-compulsao-alimentar" replace />} />
+              
+              {/* Redirects para URLs inexistentes */}
+              <Route path="/transtornos-de-adaptacao-ajustamento" element={<Navigate to="/" replace />} />
+              <Route path="/agende-sua-consulta" element={<Navigate to="/" replace />} />
+              <Route path="/entrevistas" element={<Navigate to="/blog" replace />} />
               
               {/* Dynamic routes - BEFORE catch-all */}
               <Route path="/:slug" element={<DynamicPage />} />
