@@ -95,7 +95,7 @@ const TesteAutismoAQ10 = () => {
 
       <div className="min-h-screen flex flex-col">
         <Navigation />
-        <Breadcrumbs items={[{ label: "Testes", href: "/testes" }, { label: "Teste de Autismo AQ-10" }]} />
+        <Breadcrumbs items={[{ label: "Testes", href: "/testes-de-saude-mental" }, { label: "Teste de Autismo AQ-10" }]} />
 
         <main className="flex-grow py-12">
           <div className="container mx-auto px-4 max-w-3xl">

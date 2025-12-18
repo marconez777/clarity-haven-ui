@@ -143,7 +143,7 @@ const TesteDepressaoPHQ9 = () => {
         <Navigation />
         <Breadcrumbs
           items={[
-            { label: "Testes", href: "/testes" },
+            { label: "Testes", href: "/testes-de-saude-mental" },
             { label: "Teste de Depressão PHQ-9" },
           ]}
         />
