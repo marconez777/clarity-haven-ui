@@ -81,7 +81,7 @@ const App = () => (
               <Route path="/tdah" element={<TDAH />} />
               <Route path="/testes-de-saude-mental" element={<Testes />} />
               <Route path="/teste-tdah-hiperatividade" element={<TesteTDAH />} />
-              <Route path="/autismo-adulto-aq-10" element={<TesteAutismoAQ10 />} />
+              <Route path="/teste-autismo-aq10" element={<TesteAutismoAQ10 />} />
               <Route path="/teste-de-autismo-adulto-aq-50" element={<TesteAutismoAQ50 />} />
               <Route path="/teste-de-depressao-phq9" element={<TesteDepressaoPHQ9 />} />
               <Route path="/teste-de-deficit-de-atencao-tdah-adulto" element={<TesteTDAHAdulto />} />
@@ -116,6 +116,12 @@ const App = () => (
                 <Route path="analytics" element={<Navigate to="/admin?tab=analytics" replace />} />
                 <Route path="leads" element={<Navigate to="/admin?tab=leads" replace />} />
               </Route>
+              
+              {/* Redirects de URLs antigas */}
+              <Route path="/autismo-adulto-aq-10" element={<Navigate to="/teste-autismo-aq10" replace />} />
+              <Route path="/teste-de-tdah-hiperatividade-adulto" element={<Navigate to="/teste-de-deficit-de-atencao-tdah-adulto" replace />} />
+              <Route path="/teste-transtorno-bipolar" element={<Navigate to="/teste-de-transtorno-bipolar" replace />} />
+              <Route path="/teste-depressao-phq9" element={<Navigate to="/teste-de-depressao-phq9" replace />} />
               
               {/* Dynamic routes - BEFORE catch-all */}
               <Route path="/:slug" element={<DynamicPage />} />
