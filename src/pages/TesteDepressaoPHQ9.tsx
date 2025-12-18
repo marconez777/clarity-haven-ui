@@ -46,6 +46,7 @@ const TesteDepressaoPHQ9 = () => {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [finalScore, setFinalScore] = useState(0);
   const [userEmail, setUserEmail] = useState("");
+  const [userWhatsapp, setUserWhatsapp] = useState("");
 
   const totalPossibleScore = questions.length * 3;
 
@@ -57,8 +58,9 @@ const TesteDepressaoPHQ9 = () => {
     setCurrentStep("email");
   };
 
-  const handleEmailSubmit = (email: string) => {
-    setUserEmail(email);
+  const handleEmailSubmit = (data: { email: string; whatsapp: string }) => {
+    setUserEmail(data.email);
+    setUserWhatsapp(data.whatsapp);
     setCurrentStep("questions");
     setAnswers([]);
     setCurrentQuestion(0);
@@ -82,6 +84,7 @@ const TesteDepressaoPHQ9 = () => {
       
       submitTestResult({
         email: userEmail,
+        whatsapp: userWhatsapp,
         testType: "Depressão PHQ-9",
         score: sum,
         maxScore: totalPossibleScore,
@@ -159,6 +162,12 @@ const TesteDepressaoPHQ9 = () => {
                   <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                     Questionário validado para avaliar sintomas de depressão
                   </p>
+                  <div className="pt-4">
+                    <Button onClick={startTest} size="lg" className="w-full sm:w-auto py-4 px-10 text-lg font-semibold gap-2">
+                      Iniciar Teste
+                      <ArrowRight className="w-5 h-5" />
+                    </Button>
+                  </div>
                 </div>
 
                 <Card>
@@ -198,13 +207,6 @@ const TesteDepressaoPHQ9 = () => {
                     </div>
                   </CardContent>
                 </Card>
-
-                <div className="text-center">
-                  <Button onClick={startTest} size="lg" className="gap-2">
-                    Iniciar Teste
-                    <ArrowRight className="w-4 h-4" />
-                  </Button>
-                </div>
               </div>
             )}
 

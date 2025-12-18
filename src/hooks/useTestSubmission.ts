@@ -2,6 +2,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 interface TestSubmissionData {
   email: string;
+  whatsapp?: string;
   testType: string;
   score: number;
   maxScore: number;
@@ -15,6 +16,7 @@ export const submitTestResult = async (data: TestSubmissionData): Promise<boolea
       .from('test_submissions')
       .insert({
         email: data.email,
+        whatsapp: data.whatsapp || null,
         test_type: data.testType,
         score: data.score,
         max_score: data.maxScore,

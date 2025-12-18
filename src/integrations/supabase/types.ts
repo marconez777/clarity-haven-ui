@@ -320,6 +320,7 @@ export type Database = {
           result_level: string
           score: number
           test_type: string
+          whatsapp: string | null
         }
         Insert: {
           answers?: Json
@@ -330,6 +331,7 @@ export type Database = {
           result_level: string
           score: number
           test_type: string
+          whatsapp?: string | null
         }
         Update: {
           answers?: Json
@@ -340,6 +342,7 @@ export type Database = {
           result_level?: string
           score?: number
           test_type?: string
+          whatsapp?: string | null
         }
         Relationships: []
       }

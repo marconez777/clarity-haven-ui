@@ -57,6 +57,7 @@ const TesteBurnout = () => {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [finalScore, setFinalScore] = useState(0);
   const [userEmail, setUserEmail] = useState("");
+  const [userWhatsapp, setUserWhatsapp] = useState("");
 
   const totalPossibleScore = questions.length * 4;
 
@@ -68,8 +69,9 @@ const TesteBurnout = () => {
     setCurrentStep("email");
   };
 
-  const handleEmailSubmit = (email: string) => {
-    setUserEmail(email);
+  const handleEmailSubmit = (data: { email: string; whatsapp: string }) => {
+    setUserEmail(data.email);
+    setUserWhatsapp(data.whatsapp);
     setCurrentStep("questions");
     setAnswers([]);
     setCurrentQuestion(0);
@@ -93,6 +95,7 @@ const TesteBurnout = () => {
       
       submitTestResult({
         email: userEmail,
+        whatsapp: userWhatsapp,
         testType: "Burnout",
         score: sum,
         maxScore: totalPossibleScore,
@@ -170,6 +173,12 @@ const TesteBurnout = () => {
                   <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                     Avalie sintomas de esgotamento profissional e emocional
                   </p>
+                  <div className="pt-4">
+                    <Button onClick={startTest} size="lg" className="w-full sm:w-auto py-4 px-10 text-lg font-semibold gap-2">
+                      Iniciar Teste
+                      <ArrowRight className="w-5 h-5" />
+                    </Button>
+                  </div>
                 </div>
 
                 <Card>
@@ -209,13 +218,6 @@ const TesteBurnout = () => {
                     </div>
                   </CardContent>
                 </Card>
-
-                <div className="text-center">
-                  <Button onClick={startTest} size="lg" className="gap-2">
-                    Iniciar Teste
-                    <ArrowRight className="w-4 h-4" />
-                  </Button>
-                </div>
               </div>
             )}
 

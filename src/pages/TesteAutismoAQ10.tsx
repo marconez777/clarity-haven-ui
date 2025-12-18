@@ -39,6 +39,7 @@ const TesteAutismoAQ10 = () => {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [finalScore, setFinalScore] = useState(0);
   const [userEmail, setUserEmail] = useState("");
+  const [userWhatsapp, setUserWhatsapp] = useState("");
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -46,8 +47,9 @@ const TesteAutismoAQ10 = () => {
 
   const startTest = () => setCurrentStep("email");
 
-  const handleEmailSubmit = (email: string) => {
-    setUserEmail(email);
+  const handleEmailSubmit = (data: { email: string; whatsapp: string }) => {
+    setUserEmail(data.email);
+    setUserWhatsapp(data.whatsapp);
     setCurrentStep("questions");
     setAnswers([]);
     setCurrentQuestion(0);
@@ -67,7 +69,7 @@ const TesteAutismoAQ10 = () => {
       const sum = newAnswers.reduce((acc, val) => acc + val, 0);
       setFinalScore(sum);
       setCurrentStep("results");
-      submitTestResult({ email: userEmail, testType: "Autismo AQ-10", score: sum, maxScore: questions.length, resultLevel: sum >= 5 ? "Positivo" : "Negativo", answers: newAnswers });
+      submitTestResult({ email: userEmail, whatsapp: userWhatsapp, testType: "Autismo AQ-10", score: sum, maxScore: questions.length, resultLevel: sum >= 5 ? "Positivo" : "Negativo", answers: newAnswers });
     }
   };
 
@@ -103,6 +105,12 @@ const TesteAutismoAQ10 = () => {
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4"><Brain className="w-8 h-8 text-primary" /></div>
                   <h1 className="text-3xl md:text-4xl font-bold text-foreground">Teste de Autismo Adulto AQ-10</h1>
                   <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Questionário rápido de triagem para características do espectro autista</p>
+                  <div className="pt-4">
+                    <Button onClick={startTest} size="lg" className="w-full sm:w-auto py-4 px-10 text-lg font-semibold gap-2">
+                      Iniciar Teste
+                      <ArrowRight className="w-5 h-5" />
+                    </Button>
+                  </div>
                 </div>
                 <Card>
                   <CardHeader><CardTitle>Sobre este teste</CardTitle></CardHeader>
@@ -112,7 +120,6 @@ const TesteAutismoAQ10 = () => {
                     <div className="bg-[hsl(45,100%,95%)] dark:bg-[hsl(45,100%,15%)] border border-[hsl(45,100%,70%)] p-4 rounded-lg"><p className="text-sm"><strong>Importante:</strong> Este teste não substitui uma avaliação médica profissional.</p></div>
                   </CardContent>
                 </Card>
-                <div className="text-center"><Button onClick={startTest} size="lg" className="gap-2">Iniciar Teste<ArrowRight className="w-4 h-4" /></Button></div>
               </div>
             )}
 
