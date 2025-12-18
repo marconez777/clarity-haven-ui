@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail } from "lucide-react";
 import logo from "@/assets/logo.png?format=webp";
 
@@ -8,13 +9,13 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Logo e Descrição */}
           <div>
-            <a href="/" className="inline-block mb-4">
+            <Link to="/" className="inline-block mb-4">
               <img 
                 src={logo}
                 alt="Dr Gabriel Lopes - Saúde Mental Integrada" 
                 className="h-12 w-auto"
               />
-            </a>
+            </Link>
             <p className="text-muted-foreground">
               Cuidado integral e humanizado para o seu bem-estar emocional e mental.
             </p>
