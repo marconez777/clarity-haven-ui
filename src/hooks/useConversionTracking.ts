@@ -19,11 +19,14 @@ export const trackConversion = async ({ eventType = 'whatsapp_click', buttonLoca
   }
 };
 
-const WHATSAPP_URL = 'https://api.whatsapp.com/send/?phone=5511941543929&text=Ol%C3%A1%21+Gostaria+de+agendar+uma+consulta.&type=phone_number&app_absent=0';
+const WHATSAPP_PHONE = '5511941543929';
+const DEFAULT_MESSAGE = 'Olá! Gostaria de agendar uma consulta.';
 
-export const handleWhatsAppClick = (buttonLocation: string) => {
+export const handleWhatsAppClick = (buttonLocation: string, customMessage?: string) => {
   trackConversion({ buttonLocation });
-  window.open(WHATSAPP_URL, '_blank');
+  const message = encodeURIComponent(customMessage || DEFAULT_MESSAGE);
+  const url = `https://api.whatsapp.com/send/?phone=${WHATSAPP_PHONE}&text=${message}&type=phone_number&app_absent=0`;
+  window.open(url, '_blank');
 };
 
 export const useConversionTracking = () => {
