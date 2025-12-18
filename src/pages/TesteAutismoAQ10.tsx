@@ -13,6 +13,7 @@ import { ArrowLeft, ArrowRight, Brain, AlertCircle } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import EmailCollectionStep from "@/components/tests/EmailCollectionStep";
 import { submitTestResult } from "@/hooks/useTestSubmission";
+import { handleWhatsAppClick } from "@/hooks/useConversionTracking";
 
 const questions = [
   { id: 1, text: "Acho difícil entender como as outras pessoas se sentem." },
@@ -128,7 +129,7 @@ const TesteAutismoAQ10 = () => {
             {currentStep === "results" && (
               <div className="space-y-8 animate-fade-in">
                 <div className="text-center space-y-4"><div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4"><Brain className="w-8 h-8 text-primary" /></div><h1 className="text-3xl font-bold text-primary">Resultado do Teste</h1></div>
-                <Card><CardContent className="pt-6 space-y-6"><div className="text-center space-y-4"><div className="inline-flex flex-col items-center justify-center w-32 h-32 rounded-full bg-[hsl(var(--primary)/0.1)] border-4 border-primary"><span className="text-4xl font-bold text-primary">{finalScore}</span><span className="text-sm text-muted-foreground">de {questions.length} pontos</span></div><h2 className="text-2xl font-bold">{finalScore >= 5 ? "Resultado Positivo" : "Resultado Negativo"}</h2><p className="text-muted-foreground">{finalScore >= 5 ? "Sua pontuação sugere características do espectro autista. Recomendamos avaliação profissional." : "Sua pontuação está abaixo do indicativo."}</p>{finalScore >= 5 && <Button asChild size="lg"><a href="https://wa.me/5511999999999?text=Olá! Gostaria de agendar uma consulta." target="_blank" rel="noopener noreferrer">Agendar Consulta</a></Button>}</div><Alert className="bg-[hsl(180,60%,85%)] dark:bg-[hsl(180,60%,25%)] border-[hsl(180,60%,50%)]"><AlertCircle className="h-5 w-5" /><AlertDescription><strong>Lembre-se:</strong> Este teste é apenas uma ferramenta de triagem.</AlertDescription></Alert></CardContent></Card>
+                <Card><CardContent className="pt-6 space-y-6"><div className="text-center space-y-4"><div className="inline-flex flex-col items-center justify-center w-32 h-32 rounded-full bg-[hsl(var(--primary)/0.1)] border-4 border-primary"><span className="text-4xl font-bold text-primary">{finalScore}</span><span className="text-sm text-muted-foreground">de {questions.length} pontos</span></div><h2 className="text-2xl font-bold">{finalScore >= 5 ? "Resultado Positivo" : "Resultado Negativo"}</h2><p className="text-muted-foreground">{finalScore >= 5 ? "Sua pontuação sugere características do espectro autista. Recomendamos avaliação profissional." : "Sua pontuação está abaixo do indicativo."}</p>{finalScore >= 5 && <Button size="lg" onClick={() => handleWhatsAppClick('autismo_aq10_resultado')}>Agendar Consulta</Button>}</div><Alert className="bg-[hsl(180,60%,85%)] dark:bg-[hsl(180,60%,25%)] border-[hsl(180,60%,50%)]"><AlertCircle className="h-5 w-5" /><AlertDescription><strong>Lembre-se:</strong> Este teste é apenas uma ferramenta de triagem.</AlertDescription></Alert></CardContent></Card>
                 <div className="flex justify-center"><Button onClick={restartTest} variant="outline" size="lg">Refazer Teste</Button></div>
               </div>
             )}
