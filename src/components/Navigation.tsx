@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -54,34 +55,34 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center">
+          <Link to="/" className="flex items-center">
             <img 
               src={logo}
               alt="Dr Gabriel Lopes - Saúde Mental Integrada" 
               className="h-12 w-auto"
             />
-          </a>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-6">
             {menuItems.slice(0, 1).map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className="text-sm font-medium text-foreground hover:text-primary transition-colors"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
             
             {/* Dropdown Especialidades */}
             <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
               <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen} modal={false}>
                 <DropdownMenuTrigger asChild>
-                  <a href="/especialidades" className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary transition-all duration-200 focus:outline-none focus-visible:outline-none data-[state=open]:text-primary">
+                  <Link to="/especialidades" className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary transition-all duration-200 focus:outline-none focus-visible:outline-none data-[state=open]:text-primary">
                     Especialidades
                     <ChevronDown size={16} className={`transition-transform duration-300 ease-out ${isDropdownOpen ? 'rotate-180' : ''}`} />
-                  </a>
+                  </Link>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent 
                   className="bg-background/95 backdrop-blur-md border border-border/50 shadow-lg min-w-[200px] data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out"
@@ -90,9 +91,9 @@ const Navigation = () => {
                 >
                   {especialidadesItems.map((item) => (
                     <DropdownMenuItem key={item.name} asChild>
-                      <a href={item.href} className="cursor-pointer text-foreground hover:text-primary hover:bg-accent/50 transition-all duration-200 rounded-sm px-3 py-2">
+                      <Link to={item.href} className="cursor-pointer text-foreground hover:text-primary hover:bg-accent/50 transition-all duration-200 rounded-sm px-3 py-2">
                         {item.name}
-                      </a>
+                      </Link>
                     </DropdownMenuItem>
                   ))}
                 </DropdownMenuContent>
@@ -100,13 +101,13 @@ const Navigation = () => {
             </div>
 
             {menuItems.slice(1).map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className="text-sm font-medium text-foreground hover:text-primary transition-colors"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
             <Button className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-[var(--shadow-hover)] transition-all" onClick={handleAgendamento}>
               Agendamento on-line
@@ -128,42 +129,42 @@ const Navigation = () => {
           <div className="lg:hidden py-4 border-t border-border">
             <div className="flex flex-col gap-4">
               {menuItems.slice(0, 1).map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
               
               {/* Especialidades no mobile */}
-              <a href="/especialidades" className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2" onClick={() => setIsOpen(false)}>
+              <Link to="/especialidades" className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2" onClick={() => setIsOpen(false)}>
                 Especialidades
-              </a>
+              </Link>
               <div className="flex flex-col gap-2 pl-4">
                 {especialidadesItems.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
-                    href={item.href}
+                    to={item.href}
                     className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors py-2"
                     onClick={() => setIsOpen(false)}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
 
               {menuItems.slice(1).map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
               <Button className="w-full bg-gradient-to-r from-primary to-accent text-white" onClick={handleAgendamento}>
                 Agendamento on-line

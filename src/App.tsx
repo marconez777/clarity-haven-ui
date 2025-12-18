@@ -53,14 +53,9 @@ const ProtectedRoute = lazy(() => import("@/components/admin/ProtectedRoute").th
 
 const queryClient = new QueryClient();
 
-// Loading fallback component
+// Loading fallback component - lightweight for faster transitions
 const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center bg-background">
-    <div className="animate-pulse flex flex-col items-center gap-4">
-      <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-      <p className="text-muted-foreground">Carregando...</p>
-    </div>
-  </div>
+  <div className="min-h-screen bg-background" />
 );
 
 const App = () => (
