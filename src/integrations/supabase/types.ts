@@ -428,11 +428,9 @@ export type Database = {
           email: string
           id: string
           lead_type: string
-          name: string
-          phone: string
           source: string
-          source_url: string
           total_count: number
+          whatsapp: string
         }[]
       }
       has_role: {

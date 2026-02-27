@@ -122,11 +122,9 @@ const LeadsContent = () => {
 
   const leads = (leadsData || []) as Array<{
     id: string;
-    name: string | null;
     email: string;
-    phone: string | null;
+    whatsapp: string | null;
     source: string;
-    source_url: string | null;
     created_at: string;
     lead_type: string;
     total_count: number;
@@ -146,15 +144,13 @@ const LeadsContent = () => {
     if (error) return;
 
     const rows = (data || []).map((lead: any) => [
-      lead.name || '-',
       lead.email,
-      lead.phone || '-',
+      lead.whatsapp || '-',
       lead.source,
-      lead.source_url || '-',
       format(new Date(lead.created_at), 'dd/MM/yyyy HH:mm'),
     ]);
 
-    const headers = ['Nome', 'Email', 'Telefone', 'Origem', 'URL de Origem', 'Data'];
+    const headers = ['Email', 'WhatsApp', 'Origem', 'Data'];
     const csvContent = [headers.join(','), ...rows.map((row: string[]) => row.map(v => `"${v}"`).join(','))].join('\n');
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
@@ -250,33 +246,32 @@ const LeadsContent = () => {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Nome</TableHead>
                 <TableHead>Email</TableHead>
+                <TableHead>WhatsApp</TableHead>
                 <TableHead>Origem</TableHead>
-                <TableHead>Página</TableHead>
                 <TableHead>Data</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {isLoading ? (
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center py-8">
+                  <TableCell colSpan={4} className="text-center py-8">
                     Carregando leads...
                   </TableCell>
                 </TableRow>
               ) : leads.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
+                  <TableCell colSpan={4} className="text-center py-8 text-muted-foreground">
                     Nenhum lead encontrado
                   </TableCell>
                 </TableRow>
               ) : (
                 leads.map((lead) => (
                   <TableRow key={`${lead.lead_type}-${lead.id}`}>
-                    <TableCell className="font-medium">
-                      {lead.name || <span className="text-muted-foreground">-</span>}
-                    </TableCell>
                     <TableCell>{lead.email}</TableCell>
+                    <TableCell>
+                      {lead.whatsapp || <span className="text-muted-foreground">-</span>}
+                    </TableCell>
                     <TableCell>
                       <span
                         className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
@@ -287,15 +282,6 @@ const LeadsContent = () => {
                       >
                         {lead.source}
                       </span>
-                    </TableCell>
-                    <TableCell className="max-w-[200px]">
-                      {lead.source_url ? (
-                        <span className="text-xs text-muted-foreground truncate block" title={lead.source_url}>
-                          {lead.source_url.replace(/^https?:\/\/[^/]+/, '')}
-                        </span>
-                      ) : (
-                        <span className="text-muted-foreground">-</span>
-                      )}
                     </TableCell>
                     <TableCell>
                       {format(new Date(lead.created_at), "dd 'de' MMM, HH:mm", { locale: ptBR })}
