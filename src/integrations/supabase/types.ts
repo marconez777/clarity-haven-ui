@@ -409,6 +409,32 @@ export type Database = {
     }
     Functions: {
       clean_old_login_attempts: { Args: never; Returns: undefined }
+      get_test_type_counts: {
+        Args: never
+        Returns: {
+          count: number
+          test_type: string
+        }[]
+      }
+      get_unified_leads: {
+        Args: {
+          p_filter?: string
+          p_limit?: number
+          p_offset?: number
+          p_search?: string
+        }
+        Returns: {
+          created_at: string
+          email: string
+          id: string
+          lead_type: string
+          name: string
+          phone: string
+          source: string
+          source_url: string
+          total_count: number
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
