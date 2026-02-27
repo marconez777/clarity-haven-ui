@@ -38,32 +38,18 @@ const LeadsContent = () => {
     setCurrentPage(1);
   };
 
-  // Determine if we're filtering contacts, tests, or a specific test type
-  const isContactFilter = filter === 'contact';
-  const isTestFilter = filter === 'test';
-  const isSpecificTest = !['all', 'contact', 'test'].includes(filter);
-  const showContacts = filter === 'all' || isContactFilter;
-  const showTests = filter === 'all' || isTestFilter || isSpecificTest;
-
-  // Fetch test types dynamically
+  // Fetch test types dynamically via DB function
   const { data: testTypes = [] } = useQuery({
-    queryKey: ['test-types'],
+    queryKey: ['test-type-counts'],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('test_submissions')
-        .select('test_type');
+      const { data, error } = await supabase.rpc('get_test_type_counts');
       if (error) throw error;
-      const counts: Record<string, number> = {};
-      (data || []).forEach((r) => {
-        counts[r.test_type] = (counts[r.test_type] || 0) + 1;
-      });
-      // This still hits the 1000 limit for counting per type, so let's use a workaround
-      return Object.entries(counts).sort((a, b) => b[1] - a[1]).map(([type, count]) => ({ type, count }));
+      return (data || []) as { test_type: string; count: number }[];
     },
     staleTime: 60000,
   });
 
-  // Stats: use exact counts
+  // Stats: exact counts
   const { data: totalContacts = 0 } = useQuery({
     queryKey: ['leads-count-contacts'],
     queryFn: async () => {
@@ -117,95 +103,49 @@ const LeadsContent = () => {
   const totalLeads = totalContacts + totalTests;
   const todayLeads = todayContacts + todayTests;
 
-  // Server-side paginated query for contacts
-  const { data: contactsData, isLoading: loadingContacts } = useQuery({
-    queryKey: ['leads-contacts-page', currentPage, debouncedSearch, filter],
+  // Server-side paginated leads via DB function
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+
+  const { data: leadsData, isLoading } = useQuery({
+    queryKey: ['unified-leads', filter, debouncedSearch, currentPage],
     queryFn: async () => {
-      if (!showContacts) return { items: [], count: 0 };
-
-      let query = supabase
-        .from('leads')
-        .select('*', { count: 'exact' })
-        .order('created_at', { ascending: false });
-
-      if (debouncedSearch) {
-        query = query.or(`email.ilike.%${debouncedSearch}%,name.ilike.%${debouncedSearch}%,source.ilike.%${debouncedSearch}%`);
-      }
-
-      // For "all" filter, we need to merge both tables. We'll fetch contacts separately.
-      const { data, count, error } = await query;
+      const { data, error } = await supabase.rpc('get_unified_leads', {
+        p_filter: filter,
+        p_search: debouncedSearch,
+        p_limit: ITEMS_PER_PAGE,
+        p_offset: offset,
+      });
       if (error) throw error;
-      return {
-        items: (data || []).map((lead) => ({
-          ...lead,
-          type: 'contact' as const,
-        })),
-        count: count || 0,
-      };
+      return data || [];
     },
-    enabled: showContacts,
   });
 
-  // Server-side paginated query for tests
-  const { data: testsData, isLoading: loadingTests } = useQuery({
-    queryKey: ['leads-tests-page', currentPage, debouncedSearch, filter],
-    queryFn: async () => {
-      if (!showTests) return { items: [], count: 0 };
+  const leads = (leadsData || []) as Array<{
+    id: string;
+    name: string | null;
+    email: string;
+    phone: string | null;
+    source: string;
+    source_url: string | null;
+    created_at: string;
+    lead_type: string;
+    total_count: number;
+  }>;
 
-      let query = supabase
-        .from('test_submissions')
-        .select('*', { count: 'exact' })
-        .order('created_at', { ascending: false });
-
-      if (debouncedSearch) {
-        query = query.or(`email.ilike.%${debouncedSearch}%,test_type.ilike.%${debouncedSearch}%`);
-      }
-
-      if (isSpecificTest) {
-        query = query.eq('test_type', filter);
-      }
-
-      const { data, count, error } = await query;
-      if (error) throw error;
-      return {
-        items: (data || []).map((submission) => ({
-          id: submission.id,
-          name: null as string | null,
-          email: submission.email,
-          phone: null as string | null,
-          source: submission.test_type,
-          source_url: null as string | null,
-          created_at: submission.created_at,
-          type: 'test' as const,
-        })),
-        count: count || 0,
-      };
-    },
-    enabled: showTests,
-  });
-
-  // Combine, sort, and paginate client-side from full results
-  const combined = useMemo(() => {
-    const contacts = contactsData?.items || [];
-    const tests = testsData?.items || [];
-    const all = [...contacts, ...tests];
-    all.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
-    return all;
-  }, [contactsData, testsData]);
-
-  const filteredCount = (contactsData?.count || 0) + (testsData?.count || 0);
-  // Since we still get all from each table (Supabase 1000 limit), let's use count for total
-  // but paginate from combined
+  const filteredCount = leads.length > 0 ? leads[0].total_count : 0;
   const totalPages = Math.ceil(filteredCount / ITEMS_PER_PAGE);
-  const paginatedLeads = useMemo(() => {
-    const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    return combined.slice(start, start + ITEMS_PER_PAGE);
-  }, [combined, currentPage]);
 
-  // Export to CSV
-  const exportToCSV = () => {
-    const headers = ['Nome', 'Email', 'Telefone', 'Origem', 'URL de Origem', 'Data'];
-    const rows = combined.map((lead) => [
+  // Export to CSV - fetch all matching leads
+  const exportToCSV = async () => {
+    const { data, error } = await supabase.rpc('get_unified_leads', {
+      p_filter: filter,
+      p_search: debouncedSearch,
+      p_limit: 100000,
+      p_offset: 0,
+    });
+    if (error) return;
+
+    const rows = (data || []).map((lead: any) => [
       lead.name || '-',
       lead.email,
       lead.phone || '-',
@@ -213,15 +153,15 @@ const LeadsContent = () => {
       lead.source_url || '-',
       format(new Date(lead.created_at), 'dd/MM/yyyy HH:mm'),
     ]);
-    const csvContent = [headers.join(','), ...rows.map((row) => row.join(','))].join('\n');
+
+    const headers = ['Nome', 'Email', 'Telefone', 'Origem', 'URL de Origem', 'Data'];
+    const csvContent = [headers.join(','), ...rows.map((row: string[]) => row.map(v => `"${v}"`).join(','))].join('\n');
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
     link.download = `leads-${format(new Date(), 'yyyy-MM-dd')}.csv`;
     link.click();
   };
-
-  const isLoading = loadingContacts || loadingTests;
 
   return (
     <div className="space-y-6">
@@ -243,7 +183,6 @@ const LeadsContent = () => {
             <div className="text-2xl font-bold">{totalLeads}</div>
           </CardContent>
         </Card>
-
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Leads Hoje</CardTitle>
@@ -253,7 +192,6 @@ const LeadsContent = () => {
             <div className="text-2xl font-bold">{todayLeads}</div>
           </CardContent>
         </Card>
-
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Formulário de Contato</CardTitle>
@@ -263,7 +201,6 @@ const LeadsContent = () => {
             <div className="text-2xl font-bold">{totalContacts}</div>
           </CardContent>
         </Card>
-
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Testes</CardTitle>
@@ -286,7 +223,6 @@ const LeadsContent = () => {
             className="pl-10"
           />
         </div>
-
         <Select value={filter} onValueChange={handleFilterChange}>
           <SelectTrigger className="w-full sm:w-[280px]">
             <SelectValue placeholder="Filtrar por tipo" />
@@ -296,13 +232,12 @@ const LeadsContent = () => {
             <SelectItem value="contact">Formulário de Contato</SelectItem>
             <SelectItem value="test">Todos os Testes</SelectItem>
             {testTypes.map((t) => (
-              <SelectItem key={t.type} value={t.type}>
-                {t.type} ({t.count})
+              <SelectItem key={t.test_type} value={t.test_type}>
+                {t.test_type} ({t.count})
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
-
         <Button onClick={exportToCSV} variant="outline">
           <Download className="h-4 w-4 mr-2" />
           Exportar CSV
@@ -329,15 +264,15 @@ const LeadsContent = () => {
                     Carregando leads...
                   </TableCell>
                 </TableRow>
-              ) : paginatedLeads.length === 0 ? (
+              ) : leads.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
                     Nenhum lead encontrado
                   </TableCell>
                 </TableRow>
               ) : (
-                paginatedLeads.map((lead) => (
-                  <TableRow key={`${lead.type}-${lead.id}`}>
+                leads.map((lead) => (
+                  <TableRow key={`${lead.lead_type}-${lead.id}`}>
                     <TableCell className="font-medium">
                       {lead.name || <span className="text-muted-foreground">-</span>}
                     </TableCell>
@@ -345,7 +280,7 @@ const LeadsContent = () => {
                     <TableCell>
                       <span
                         className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                          lead.type === 'contact'
+                          lead.lead_type === 'contact'
                             ? 'bg-primary/10 text-primary'
                             : 'bg-secondary text-secondary-foreground'
                         }`}
@@ -363,9 +298,7 @@ const LeadsContent = () => {
                       )}
                     </TableCell>
                     <TableCell>
-                      {format(new Date(lead.created_at), "dd 'de' MMM, HH:mm", {
-                        locale: ptBR,
-                      })}
+                      {format(new Date(lead.created_at), "dd 'de' MMM, HH:mm", { locale: ptBR })}
                     </TableCell>
                   </TableRow>
                 ))
@@ -374,34 +307,26 @@ const LeadsContent = () => {
           </Table>
         </CardContent>
 
-        {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex items-center justify-between px-4 py-3 border-t">
             <div className="text-sm text-muted-foreground">
-              Mostrando {((currentPage - 1) * ITEMS_PER_PAGE) + 1} a {Math.min(currentPage * ITEMS_PER_PAGE, filteredCount)} de {filteredCount} leads
+              Mostrando {offset + 1} a {Math.min(offset + ITEMS_PER_PAGE, filteredCount)} de {filteredCount} leads
             </div>
             <div className="flex items-center gap-2">
               <Button
-                variant="outline"
-                size="sm"
+                variant="outline" size="sm"
                 onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
               >
-                <ChevronLeft className="h-4 w-4" />
-                Anterior
+                <ChevronLeft className="h-4 w-4" /> Anterior
               </Button>
               <div className="flex items-center gap-1">
                 {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
                   let pageNum: number;
-                  if (totalPages <= 5) {
-                    pageNum = i + 1;
-                  } else if (currentPage <= 3) {
-                    pageNum = i + 1;
-                  } else if (currentPage >= totalPages - 2) {
-                    pageNum = totalPages - 4 + i;
-                  } else {
-                    pageNum = currentPage - 2 + i;
-                  }
+                  if (totalPages <= 5) pageNum = i + 1;
+                  else if (currentPage <= 3) pageNum = i + 1;
+                  else if (currentPage >= totalPages - 2) pageNum = totalPages - 4 + i;
+                  else pageNum = currentPage - 2 + i;
                   return (
                     <Button
                       key={pageNum}
@@ -416,13 +341,11 @@ const LeadsContent = () => {
                 })}
               </div>
               <Button
-                variant="outline"
-                size="sm"
+                variant="outline" size="sm"
                 onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                 disabled={currentPage === totalPages}
               >
-                Próximo
-                <ChevronRight className="h-4 w-4" />
+                Próximo <ChevronRight className="h-4 w-4" />
               </Button>
             </div>
           </div>
