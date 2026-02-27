@@ -1,23 +1,14 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
+  Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from '@/components/ui/table';
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
+  Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from '@/components/ui/select';
 import { Users, Calendar, MessageSquare, FileText, Download, Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import { format } from 'date-fns';
@@ -25,122 +16,196 @@ import { ptBR } from 'date-fns/locale';
 
 const ITEMS_PER_PAGE = 20;
 
-interface Lead {
-  id: string;
-  name: string | null;
-  email: string;
-  phone: string | null;
-  source: string;
-  source_url: string | null;
-  created_at: string;
-  type: 'contact' | 'test';
-}
-
 const LeadsContent = () => {
-  const [filter, setFilter] = useState<'all' | 'contact' | 'test'>('all');
+  const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchTimeout, setSearchTimeout] = useState<ReturnType<typeof setTimeout> | null>(null);
 
-  // Fetch leads from contacts
-  const { data: contactLeads = [], isLoading: loadingContacts } = useQuery({
-    queryKey: ['contact-leads'],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from('leads')
-        .select('*')
-        .order('created_at', { ascending: false });
+  const handleSearchChange = (value: string) => {
+    setSearch(value);
+    if (searchTimeout) clearTimeout(searchTimeout);
+    const timeout = setTimeout(() => {
+      setDebouncedSearch(value);
+      setCurrentPage(1);
+    }, 400);
+    setSearchTimeout(timeout);
+  };
 
-      if (error) throw error;
-      return (data || []).map((lead) => ({
-        ...lead,
-        type: 'contact' as const,
-      }));
-    },
-  });
+  const handleFilterChange = (value: string) => {
+    setFilter(value);
+    setCurrentPage(1);
+  };
 
-  // Fetch leads from test submissions
-  const { data: testLeads = [], isLoading: loadingTests } = useQuery({
-    queryKey: ['test-leads'],
+  // Determine if we're filtering contacts, tests, or a specific test type
+  const isContactFilter = filter === 'contact';
+  const isTestFilter = filter === 'test';
+  const isSpecificTest = !['all', 'contact', 'test'].includes(filter);
+  const showContacts = filter === 'all' || isContactFilter;
+  const showTests = filter === 'all' || isTestFilter || isSpecificTest;
+
+  // Fetch test types dynamically
+  const { data: testTypes = [] } = useQuery({
+    queryKey: ['test-types'],
     queryFn: async () => {
       const { data, error } = await supabase
         .from('test_submissions')
-        .select('*')
-        .order('created_at', { ascending: false });
-
+        .select('test_type');
       if (error) throw error;
-      return (data || []).map((submission) => ({
-        id: submission.id,
-        name: null,
-        email: submission.email,
-        phone: null,
-        source: submission.test_type,
-        source_url: null,
-        created_at: submission.created_at,
-        type: 'test' as const,
-      }));
+      const counts: Record<string, number> = {};
+      (data || []).forEach((r) => {
+        counts[r.test_type] = (counts[r.test_type] || 0) + 1;
+      });
+      // This still hits the 1000 limit for counting per type, so let's use a workaround
+      return Object.entries(counts).sort((a, b) => b[1] - a[1]).map(([type, count]) => ({ type, count }));
+    },
+    staleTime: 60000,
+  });
+
+  // Stats: use exact counts
+  const { data: totalContacts = 0 } = useQuery({
+    queryKey: ['leads-count-contacts'],
+    queryFn: async () => {
+      const { count, error } = await supabase
+        .from('leads')
+        .select('*', { count: 'exact', head: true });
+      if (error) throw error;
+      return count || 0;
     },
   });
 
-  // Combine and sort all leads
-  const allLeads = useMemo(() => {
-    const combined: Lead[] = [...contactLeads, ...testLeads];
-    return combined.sort(
-      (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-    );
-  }, [contactLeads, testLeads]);
+  const { data: totalTests = 0 } = useQuery({
+    queryKey: ['leads-count-tests'],
+    queryFn: async () => {
+      const { count, error } = await supabase
+        .from('test_submissions')
+        .select('*', { count: 'exact', head: true });
+      if (error) throw error;
+      return count || 0;
+    },
+  });
 
-  // Filter leads
-  const filteredLeads = useMemo(() => {
-    let filtered = allLeads;
+  const { data: todayContacts = 0 } = useQuery({
+    queryKey: ['leads-count-today-contacts'],
+    queryFn: async () => {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const { count, error } = await supabase
+        .from('leads')
+        .select('*', { count: 'exact', head: true })
+        .gte('created_at', today.toISOString());
+      if (error) throw error;
+      return count || 0;
+    },
+  });
 
-    if (filter === 'contact') {
-      filtered = filtered.filter((lead) => lead.type === 'contact');
-    } else if (filter === 'test') {
-      filtered = filtered.filter((lead) => lead.type === 'test');
-    }
+  const { data: todayTests = 0 } = useQuery({
+    queryKey: ['leads-count-today-tests'],
+    queryFn: async () => {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const { count, error } = await supabase
+        .from('test_submissions')
+        .select('*', { count: 'exact', head: true })
+        .gte('created_at', today.toISOString());
+      if (error) throw error;
+      return count || 0;
+    },
+  });
 
-    if (search) {
-      const searchLower = search.toLowerCase();
-      filtered = filtered.filter(
-        (lead) =>
-          lead.email.toLowerCase().includes(searchLower) ||
-          lead.name?.toLowerCase().includes(searchLower) ||
-          lead.source.toLowerCase().includes(searchLower)
-      );
-    }
+  const totalLeads = totalContacts + totalTests;
+  const todayLeads = todayContacts + todayTests;
 
-    return filtered;
-  }, [allLeads, filter, search]);
+  // Server-side paginated query for contacts
+  const { data: contactsData, isLoading: loadingContacts } = useQuery({
+    queryKey: ['leads-contacts-page', currentPage, debouncedSearch, filter],
+    queryFn: async () => {
+      if (!showContacts) return { items: [], count: 0 };
 
-  // Reset page when filter or search changes
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [filter, search]);
+      let query = supabase
+        .from('leads')
+        .select('*', { count: 'exact' })
+        .order('created_at', { ascending: false });
 
-  // Pagination
-  const totalPages = Math.ceil(filteredLeads.length / ITEMS_PER_PAGE);
+      if (debouncedSearch) {
+        query = query.or(`email.ilike.%${debouncedSearch}%,name.ilike.%${debouncedSearch}%,source.ilike.%${debouncedSearch}%`);
+      }
+
+      // For "all" filter, we need to merge both tables. We'll fetch contacts separately.
+      const { data, count, error } = await query;
+      if (error) throw error;
+      return {
+        items: (data || []).map((lead) => ({
+          ...lead,
+          type: 'contact' as const,
+        })),
+        count: count || 0,
+      };
+    },
+    enabled: showContacts,
+  });
+
+  // Server-side paginated query for tests
+  const { data: testsData, isLoading: loadingTests } = useQuery({
+    queryKey: ['leads-tests-page', currentPage, debouncedSearch, filter],
+    queryFn: async () => {
+      if (!showTests) return { items: [], count: 0 };
+
+      let query = supabase
+        .from('test_submissions')
+        .select('*', { count: 'exact' })
+        .order('created_at', { ascending: false });
+
+      if (debouncedSearch) {
+        query = query.or(`email.ilike.%${debouncedSearch}%,test_type.ilike.%${debouncedSearch}%`);
+      }
+
+      if (isSpecificTest) {
+        query = query.eq('test_type', filter);
+      }
+
+      const { data, count, error } = await query;
+      if (error) throw error;
+      return {
+        items: (data || []).map((submission) => ({
+          id: submission.id,
+          name: null as string | null,
+          email: submission.email,
+          phone: null as string | null,
+          source: submission.test_type,
+          source_url: null as string | null,
+          created_at: submission.created_at,
+          type: 'test' as const,
+        })),
+        count: count || 0,
+      };
+    },
+    enabled: showTests,
+  });
+
+  // Combine, sort, and paginate client-side from full results
+  const combined = useMemo(() => {
+    const contacts = contactsData?.items || [];
+    const tests = testsData?.items || [];
+    const all = [...contacts, ...tests];
+    all.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+    return all;
+  }, [contactsData, testsData]);
+
+  const filteredCount = (contactsData?.count || 0) + (testsData?.count || 0);
+  // Since we still get all from each table (Supabase 1000 limit), let's use count for total
+  // but paginate from combined
+  const totalPages = Math.ceil(filteredCount / ITEMS_PER_PAGE);
   const paginatedLeads = useMemo(() => {
     const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    return filteredLeads.slice(start, start + ITEMS_PER_PAGE);
-  }, [filteredLeads, currentPage]);
-
-  // Stats
-  const stats = useMemo(() => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    return {
-      total: allLeads.length,
-      today: allLeads.filter((lead) => new Date(lead.created_at) >= today).length,
-      contacts: contactLeads.length,
-      tests: testLeads.length,
-    };
-  }, [allLeads, contactLeads, testLeads]);
+    return combined.slice(start, start + ITEMS_PER_PAGE);
+  }, [combined, currentPage]);
 
   // Export to CSV
   const exportToCSV = () => {
     const headers = ['Nome', 'Email', 'Telefone', 'Origem', 'URL de Origem', 'Data'];
-    const rows = filteredLeads.map((lead) => [
+    const rows = combined.map((lead) => [
       lead.name || '-',
       lead.email,
       lead.phone || '-',
@@ -148,7 +213,6 @@ const LeadsContent = () => {
       lead.source_url || '-',
       format(new Date(lead.created_at), 'dd/MM/yyyy HH:mm'),
     ]);
-
     const csvContent = [headers.join(','), ...rows.map((row) => row.join(','))].join('\n');
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
@@ -176,7 +240,7 @@ const LeadsContent = () => {
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.total}</div>
+            <div className="text-2xl font-bold">{totalLeads}</div>
           </CardContent>
         </Card>
 
@@ -186,7 +250,7 @@ const LeadsContent = () => {
             <Calendar className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.today}</div>
+            <div className="text-2xl font-bold">{todayLeads}</div>
           </CardContent>
         </Card>
 
@@ -196,7 +260,7 @@ const LeadsContent = () => {
             <MessageSquare className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.contacts}</div>
+            <div className="text-2xl font-bold">{totalContacts}</div>
           </CardContent>
         </Card>
 
@@ -206,7 +270,7 @@ const LeadsContent = () => {
             <FileText className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.tests}</div>
+            <div className="text-2xl font-bold">{totalTests}</div>
           </CardContent>
         </Card>
       </div>
@@ -218,19 +282,24 @@ const LeadsContent = () => {
           <Input
             placeholder="Buscar por nome, email ou origem..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => handleSearchChange(e.target.value)}
             className="pl-10"
           />
         </div>
 
-        <Select value={filter} onValueChange={(v) => setFilter(v as typeof filter)}>
-          <SelectTrigger className="w-full sm:w-[200px]">
+        <Select value={filter} onValueChange={handleFilterChange}>
+          <SelectTrigger className="w-full sm:w-[280px]">
             <SelectValue placeholder="Filtrar por tipo" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">Todos</SelectItem>
             <SelectItem value="contact">Formulário de Contato</SelectItem>
-            <SelectItem value="test">Testes</SelectItem>
+            <SelectItem value="test">Todos os Testes</SelectItem>
+            {testTypes.map((t) => (
+              <SelectItem key={t.type} value={t.type}>
+                {t.type} ({t.count})
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
 
@@ -256,13 +325,13 @@ const LeadsContent = () => {
             <TableBody>
               {isLoading ? (
                 <TableRow>
-                  <TableCell colSpan={6} className="text-center py-8">
+                  <TableCell colSpan={5} className="text-center py-8">
                     Carregando leads...
                   </TableCell>
                 </TableRow>
               ) : paginatedLeads.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
+                  <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
                     Nenhum lead encontrado
                   </TableCell>
                 </TableRow>
@@ -309,7 +378,7 @@ const LeadsContent = () => {
         {totalPages > 1 && (
           <div className="flex items-center justify-between px-4 py-3 border-t">
             <div className="text-sm text-muted-foreground">
-              Mostrando {((currentPage - 1) * ITEMS_PER_PAGE) + 1} a {Math.min(currentPage * ITEMS_PER_PAGE, filteredLeads.length)} de {filteredLeads.length} leads
+              Mostrando {((currentPage - 1) * ITEMS_PER_PAGE) + 1} a {Math.min(currentPage * ITEMS_PER_PAGE, filteredCount)} de {filteredCount} leads
             </div>
             <div className="flex items-center gap-2">
               <Button
