@@ -13,7 +13,7 @@ export const useAuth = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
-  const adminCheckIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const adminCheckIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const checkAdminStatus = useCallback(async (userId: string): Promise<boolean> => {
     try {

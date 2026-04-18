@@ -14,7 +14,7 @@ import { trackConversion } from "@/hooks/useConversionTracking";
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const closeTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleAgendamento = () => {
     trackConversion({ buttonLocation: 'navigation_header' });
