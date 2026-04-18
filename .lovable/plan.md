@@ -1,50 +1,45 @@
 
 
-## Diagnóstico de 404s
+The user already has the sitemap edge function. They want a static `public/sitemap.xml` served at the main domain, plus updated robots.txt, plus keep edge function as dynamic reference.
 
-A análise dos dados revela **2329 hits na página /404** vindos de 3 categorias:
+I have two questions: domain and which dynamic tables. Looking at existing code: domain is `https://drgabriel.med.br` (in edge function). Tables are `blog_posts` and `pages` with `status='published'`. Let me confirm with the user.
 
-### 1. Trailing slashes (URLs com barra final)
-URLs como `/testes-de-saude-mental/`, `/nossa-equipe/`, `/dr-gabriel-lopes/` estão gerando 404 porque o React Router não faz match com a barra final.
-- **~2000+ hits** só de trailing slashes em rotas que existem
+## Plano: Sitemap estático em /sitemap.xml
 
-### 2. URLs antigas do WordPress não mapeadas
-Páginas como `/nossa-equipe/` → `/equipe`, `/onde-atendo/`, `/agende-sua-consulta/` que eram do site antigo e não têm redirect.
+### Perguntas antes de implementar
 
-### 3. Blog posts antigos do WordPress
-Posts como `/remedios-tarja-preta`, `/transtorno-bipolar-tipo-ii`, `/transtorno-da-personalidade-esquizoide` que existiam no WordPress mas não foram importados para o banco atual. Muitos destes existem como blog_posts com slugs diferentes ou não foram importados.
+Preciso confirmar 2 pontos com você antes de gerar o arquivo:
 
----
+1. **Domínio principal** — no edge function atual está `https://drgabriel.med.br`. Mantemos esse?
+2. **Tabelas dinâmicas** — confirmo que devo incluir:
+   - `blog_posts` (status='published') → URL: `/{slug}`
+   - `pages` (status='published') → URL: `/{slug}`
 
-## Plano de implementação
+### Implementação (após confirmação)
 
-### 1. Normalizar trailing slashes no ScrollToTop/App
-- No componente `ScrollToTop.tsx` (ou criar um novo `TrailingSlashRedirect`), detectar URLs com trailing slash e fazer `<Navigate>` para a mesma URL sem a barra
-- Isso resolve automaticamente centenas de 404s
+**1. Criar `public/sitemap.xml` estático** com:
+- Todas as rotas estáticas do `src/App.tsx` (exceto `/admin/*`, `/:slug` dinâmica e redirects `<Navigate>`)
+- Todos os `blog_posts` publicados (consultados agora via SQL)
+- Todas as `pages` publicadas (consultadas agora via SQL)
+- Formato sitemap 0.9 com `<loc>`, `<lastmod>`, `<changefreq>`, `<priority>`
+- Prioridades:
+  - `/` → 1.0
+  - `/dr-gabriel-lopes`, `/especialidades`, especialidades clínicas (TDAH, ansiedade, depressão, bipolar) → 0.9
+  - `/blog`, `/testes-de-saude-mental`, `/equipe` → 0.8
+  - posts do blog, páginas dinâmicas → 0.7
+  - LPs de teste, `/contato`, `/modelo-local` → 0.5–0.6
 
-### 2. Criar tabela `redirects` no banco
-- Colunas: `id`, `from_path` (unique), `to_path`, `created_at`
-- Permitir cadastrar redirects de URLs antigas para URLs novas
-- Sem RLS (público, somente leitura via anon)
+**2. Atualizar `public/robots.txt`**:
+- Manter `Disallow: /admin/`
+- Trocar `Sitemap:` para `https://drgabriel.med.br/sitemap.xml`
 
-### 3. Atualizar `DynamicPage` para consultar redirects
-- Antes de retornar 404, consultar a tabela `redirects` para ver se o `slug` tem um redirect cadastrado
-- Se encontrar, fazer `<Navigate to={redirect.to_path} replace />`
+**3. Manter edge function `supabase/functions/sitemap/index.ts`** como referência dinâmica (já existe e funciona com SERVICE_ROLE_KEY + CORS + XML).
 
-### 4. Popular redirects iniciais
-- Inserir os redirects mais acessados via migration:
-  - `/nossa-equipe` → `/equipe`
-  - `/onde-atendo` → `/contato`
-  - `/agende-sua-consulta` → `https://wa.me/5511941543929` (ou `/contato`)
-  - `/teste-online-para-saber-se-voce-tem-deficit-de-atencao-dr-gabriel` → `/teste-tdah-hiperatividade`
-  - `/teste-de-tdah-hiperatividade-adulto` → `/teste-tdah-hiperatividade` (já existe redirect mas só sem trailing slash)
-  - E os demais top 404s que mapeiam para páginas existentes
+### Aviso importante (a ser repetido na entrega)
+- `public/sitemap.xml` é **estático** e **não atualiza sozinho**
+- Sempre que publicar novo post ou página no admin, **me peça para regenerar** o `public/sitemap.xml`
+- A edge function `/functions/v1/sitemap` continua disponível como versão sempre atualizada (alternativa)
 
-### 5. Adicionar UI de gerenciamento de redirects no admin (opcional)
-- Tela simples para criar/editar/deletar redirects no painel admin
-
-### Arquivos modificados
-- `src/components/ScrollToTop.tsx` ou novo `TrailingSlashRedirect.tsx` — normalizar trailing slashes
-- `src/pages/DynamicPage.tsx` — consultar tabela `redirects` antes de 404
-- Migration SQL — criar tabela `redirects` e popular com dados iniciais
+### Entregável final
+URL para cadastrar no Google Search Console: `https://drgabriel.med.br/sitemap.xml`
 
