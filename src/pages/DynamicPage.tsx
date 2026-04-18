@@ -7,7 +7,7 @@ import BlogPost from './BlogPost';
 const DynamicPage = () => {
   const { slug } = useParams<{ slug: string }>();
 
-  // First, check if it's a page
+  // Check page
   const { data: page, isLoading: pageLoading } = useQuery({
     queryKey: ['page-check', slug],
     queryFn: async () => {
@@ -21,7 +21,7 @@ const DynamicPage = () => {
     },
   });
 
-  // If not a page, check if it's a blog post
+  // Check post
   const { data: post, isLoading: postLoading } = useQuery({
     queryKey: ['post-check', slug],
     queryFn: async () => {
@@ -36,7 +36,21 @@ const DynamicPage = () => {
     enabled: !pageLoading && !page,
   });
 
-  if (pageLoading || postLoading) {
+  // Check redirect
+  const { data: redirect, isLoading: redirectLoading } = useQuery({
+    queryKey: ['redirect-check', slug],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from('redirects')
+        .select('to_path')
+        .eq('from_path', slug)
+        .maybeSingle();
+      return data;
+    },
+    enabled: !pageLoading && !page && !postLoading && !post,
+  });
+
+  if (pageLoading || postLoading || redirectLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <p>Carregando...</p>
@@ -44,17 +58,17 @@ const DynamicPage = () => {
     );
   }
 
-  // If it's a page, render LocalPage
-  if (page) {
-    return <LocalPage />;
+  if (page) return <LocalPage />;
+  if (post) return <BlogPost />;
+
+  if (redirect?.to_path) {
+    if (/^https?:\/\//i.test(redirect.to_path)) {
+      window.location.replace(redirect.to_path);
+      return null;
+    }
+    return <Navigate to={redirect.to_path} replace />;
   }
 
-  // If it's a blog post, render BlogPost
-  if (post) {
-    return <BlogPost />;
-  }
-
-  // If neither, redirect to 404
   return <Navigate to="/404" replace />;
 };
 

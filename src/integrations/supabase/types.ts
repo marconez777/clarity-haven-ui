@@ -310,6 +310,30 @@ export type Database = {
         }
         Relationships: []
       }
+      redirects: {
+        Row: {
+          created_at: string
+          from_path: string
+          id: string
+          to_path: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          from_path: string
+          id?: string
+          to_path: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          from_path?: string
+          id?: string
+          to_path?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       test_submissions: {
         Row: {
           answers: Json
