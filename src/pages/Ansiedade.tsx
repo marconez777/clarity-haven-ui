@@ -15,21 +15,21 @@ const Ansiedade = () => {
   return <>
       <Helmet>
         <html lang="pt-BR" />
-        <title>Tratamento de Ansiedade - Dr. Gabriel Lopes | Psiquiatra Vila Olímpia</title>
-        <meta name="description" content="Tratamento especializado para transtornos de ansiedade com o Dr. Gabriel Lopes. Abordagem humanizada para uma vida com mais tranquilidade na Vila Olímpia, SP." />
+        <title>Tratamento de Ansiedade - Dr. Gabriel Lopes | Psiquiatra Vila Clementino</title>
+        <meta name="description" content="Tratamento especializado para transtornos de ansiedade com o Dr. Gabriel Lopes. Abordagem humanizada para uma vida com mais tranquilidade na Vila Clementino, SP." />
         <meta name="keywords" content="ansiedade, transtorno de ansiedade, tratamento para ansiedade, psiquiatra para ansiedade, TAG, pânico, ansiedade social, Dr. Gabriel Lopes" />
         <link rel="canonical" href="https://drgabriel.med.br/ansiedade" />
         
         {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://drgabriel.med.br/ansiedade" />
-        <meta property="og:title" content="Tratamento de Ansiedade - Dr. Gabriel Lopes | Psiquiatra Vila Olímpia" />
+        <meta property="og:title" content="Tratamento de Ansiedade - Dr. Gabriel Lopes | Psiquiatra Vila Clementino" />
         <meta property="og:description" content="Tratamento especializado para transtornos de ansiedade com o Dr. Gabriel Lopes." />
         <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Tratamento de Ansiedade - Dr. Gabriel Lopes | Psiquiatra Vila Olímpia" />
+        <meta name="twitter:title" content="Tratamento de Ansiedade - Dr. Gabriel Lopes | Psiquiatra Vila Clementino" />
         <meta name="twitter:description" content="Tratamento especializado para transtornos de ansiedade com o Dr. Gabriel Lopes." />
         <meta name="twitter:image" content="https://drgabriel.med.br/og-image.jpg" />
       </Helmet>

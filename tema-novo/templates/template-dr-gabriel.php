@@ -208,7 +208,7 @@ tema_novo_breadcrumbs();
                             "Antes de tudo um ser humano atento ao sofrimento de outro ser humano."
                         </blockquote>
 
-                        <p>Além da prática clínica, também atuo como psiquiatra no Instituto Sanapta, referência em saúde mental e cuidado integral na Vila Olímpia.</p>
+                        <p>Além da prática clínica, também atuo como psiquiatra no Instituto Sanapta, referência em saúde mental e cuidado integral na Vila Clementino.</p>
                     </div>
                 </div>
 

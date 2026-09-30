@@ -54,7 +54,7 @@ const Especialidades = () => {
         <title>Especialidades em Saúde Mental | Dr. Gabriel Lopes</title>
         <meta
           name="description"
-          content="Conheça nossas especialidades: TDAH, Ansiedade, Depressão e Transtorno Bipolar. Tratamento especializado com abordagem integrada na Vila Olímpia/SP."
+          content="Conheça nossas especialidades: TDAH, Ansiedade, Depressão e Transtorno Bipolar. Tratamento especializado com abordagem integrada na Vila Clementino/SP."
         />
         <meta name="keywords" content="especialidades psiquiatria, TDAH, ansiedade, depressão, transtorno bipolar, saúde mental" />
         <link rel="canonical" href="https://drgabriel.med.br/especialidades" />

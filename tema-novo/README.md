@@ -248,7 +248,7 @@ Copyright © 2025 Dr Gabriel Lopes - Todos os direitos reservados.
 ## 📞 Contato
 
 Dr Gabriel Lopes - Saúde Mental Integrada
-- **Endereço:** Rua do Rocio, 423. Cj. 402. (Vila Olímpia) - São Paulo, CEP: 04548-020
+- **Endereço:** Av. Onze de Junho, 1070, Cj. 201 – Vila Clementino, São Paulo
 - **Telefone:** (11) 94154-3929 | (11) 3044-1690
 - **Email:** contato@drgabriellopes.com.br
 - **Website:** https://drgabriellopes.com.br

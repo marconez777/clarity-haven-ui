@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tratamento de Ansiedade - Dr. Gabriel Lopes | Psiquiatra Vila Olímpia</title>
-    <meta name="description" content="Tratamento especializado para transtornos de ansiedade com o Dr. Gabriel Lopes. Abordagem humanizada para uma vida com mais tranquilidade na Vila Olímpia, SP.">
+    <title>Tratamento de Ansiedade - Dr. Gabriel Lopes | Psiquiatra Vila Clementino</title>
+    <meta name="description" content="Tratamento especializado para transtornos de ansiedade com o Dr. Gabriel Lopes. Abordagem humanizada para uma vida com mais tranquilidade na Vila Clementino, SP.">
     <meta name="keywords" content="ansiedade, transtorno de ansiedade, tratamento para ansiedade, psiquiatra para ansiedade, TAG, pânico, ansiedade social, Dr. Gabriel Lopes">
     <link rel="canonical" href="https://drgabriellopes.com.br/ansiedade">
     
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
-    <meta property="og:title" content="Tratamento de Ansiedade - Dr. Gabriel Lopes | Psiquiatra Vila Olímpia">
+    <meta property="og:title" content="Tratamento de Ansiedade - Dr. Gabriel Lopes | Psiquiatra Vila Clementino">
     <meta property="og:description" content="Tratamento especializado para transtornos de ansiedade com abordagem humanizada para uma vida com mais tranquilidade.">
     
     <meta name="twitter:card" content="summary_large_image">

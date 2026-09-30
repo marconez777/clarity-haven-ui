@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tratamento de TDAH - Dr. Gabriel Lopes | Psiquiatra Vila Olímpia</title>
-    <meta name="description" content="Avaliação completa e tratamento especializado para TDAH infantil e adulto com o Dr. Gabriel Lopes. Abordagem integrativa e humanizada na Vila Olímpia, SP.">
+    <title>Tratamento de TDAH - Dr. Gabriel Lopes | Psiquiatra Vila Clementino</title>
+    <meta name="description" content="Avaliação completa e tratamento especializado para TDAH infantil e adulto com o Dr. Gabriel Lopes. Abordagem integrativa e humanizada na Vila Clementino, SP.">
     <meta name="keywords" content="TDAH, déficit de atenção, hiperatividade, tratamento TDAH, TDAH infantil, TDAH adulto, psiquiatra TDAH, Dr. Gabriel Lopes">
     <link rel="canonical" href="https://drgabriellopes.com.br/tdah">
     
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
-    <meta property="og:title" content="Tratamento de TDAH - Dr. Gabriel Lopes | Psiquiatra Vila Olímpia">
+    <meta property="og:title" content="Tratamento de TDAH - Dr. Gabriel Lopes | Psiquiatra Vila Clementino">
     <meta property="og:description" content="Avaliação completa e tratamento especializado para TDAH infantil e adulto.">
     
     <meta name="twitter:card" content="summary_large_image">

@@ -25,8 +25,8 @@
                             <circle cx="12" cy="10" r="3"></circle>
                         </svg>
                         <div class="footer-contact-text">
-                            <p>Rua do Rocio, 423. Cj. 402. (Vila Olímpia)</p>
-                            <p>São Paulo, CEP: 04548-020</p>
+                            <p><a href="https://maps.app.goo.gl/sJQio73YiokX33Tj6" target="_blank" rel="noopener noreferrer">Av. Onze de Junho, 1070, Cj. 201 – Vila Clementino</a></p>
+                            <p>São Paulo</p>
                         </div>
                     </div>
                     <div class="footer-contact-item">
@@ -55,7 +55,6 @@
                 <h3 class="footer-section-title">Horário de Atendimento</h3>
                 <div class="footer-hours">
                     <p>Segunda a Sexta: 8h às 20h</p>
-                    <p>Sábado: 8h às 14h</p>
                 </div>
             </div>
         </div>
