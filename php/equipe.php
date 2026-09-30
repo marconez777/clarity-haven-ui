@@ -217,7 +217,7 @@ Constantemente buscando atualizar e aprimorar seus conhecimentos, Laura cria sem
                     Nossa equipe é composta por profissionais que atuam de forma integrada, para o melhor tratamento do paciente e somos especializados no atendimento integral (visão ampla), integrado (profissionais alinhados) e integrativo (abordagem médica ampla, não restrita somente ao diagnóstico, mas com uma visão ampla de saúde) dos pacientes com TDAH, Ansiedade e Depressão. Atendemos pacientes a partir de 3 anos de idade, com equipe qualificada para esta faixa etária.
                 </p>
                 <p class="highlight">
-                    Somos: Dois psiquiatras, seis psicólogos, uma neuropsicóloga, uma equipe de ATs (acompanhantes terapêuticos), uma acupunturista e médica integrativa, uma equipe de personal trainers e um nutricionista.
+                    Somos uma equipe multidisciplinar com psiquiatra, psicólogos, neuropsicóloga, acupunturista e médica integrativa, além de profissionais de educação física.
                 </p>
             </div>
         </section>

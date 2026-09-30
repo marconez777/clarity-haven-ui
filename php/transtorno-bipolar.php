@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tratamento de Transtorno Bipolar - Dr. Gabriel Lopes | Psiquiatra Vila Olímpia</title>
-    <meta name="description" content="Tratamento especializado para transtorno bipolar com o Dr. Gabriel Lopes. Abordagem humanizada para uma vida com mais equilíbrio na Vila Olímpia, SP.">
+    <title>Tratamento de Transtorno Bipolar - Dr. Gabriel Lopes | Psiquiatra Vila Clementino</title>
+    <meta name="description" content="Tratamento especializado para transtorno bipolar com o Dr. Gabriel Lopes. Abordagem humanizada para uma vida com mais equilíbrio na Vila Clementino, SP.">
     <meta name="keywords" content="transtorno bipolar, bipolaridade, tratamento para transtorno bipolar, psiquiatra para transtorno bipolar, mania, hipomania, depressão, Dr. Gabriel Lopes">
     <link rel="canonical" href="https://drgabriellopes.com.br/transtorno-bipolar">
     
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
-    <meta property="og:title" content="Tratamento de Transtorno Bipolar - Dr. Gabriel Lopes | Psiquiatra Vila Olímpia">
-    <meta property="og:description" content="Tratamento especializado para transtorno bipolar com o Dr. Gabriel Lopes. Abordagem humanizada para uma vida com mais equilíbrio na Vila Olímpia, SP.">
+    <meta property="og:title" content="Tratamento de Transtorno Bipolar - Dr. Gabriel Lopes | Psiquiatra Vila Clementino">
+    <meta property="og:description" content="Tratamento especializado para transtorno bipolar com o Dr. Gabriel Lopes. Abordagem humanizada para uma vida com mais equilíbrio na Vila Clementino, SP.">
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Tratamento de Transtorno Bipolar - Dr. Gabriel Lopes">
-    <meta name="twitter:description" content="Tratamento especializado para transtorno bipolar com o Dr. Gabriel Lopes. Abordagem humanizada para uma vida com mais equilíbrio na Vila Olímpia, SP.">
+    <meta name="twitter:description" content="Tratamento especializado para transtorno bipolar com o Dr. Gabriel Lopes. Abordagem humanizada para uma vida com mais equilíbrio na Vila Clementino, SP.">
     
     <link rel="stylesheet" href="styles.css">
     <style>

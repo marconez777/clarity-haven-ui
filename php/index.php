@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Gabriel Lopes - Psiquiatra Vila Olímpia | Saúde Mental Integrada</title>
-    <meta name="description" content="Dr. Gabriel Lopes - Psiquiatra especializado em saúde mental infantil e adultos na Vila Olímpia, SP. Tratamento de ansiedade, depressão e TDAH com acompanhamento completo.">
-    <meta name="keywords" content="psiquiatra, psiquiatria, saúde mental, ansiedade, depressão, TDAH, Vila Olímpia, São Paulo, Dr. Gabriel Lopes">
+    <title>Dr. Gabriel Lopes - Psiquiatra Vila Clementino | Saúde Mental Integrada</title>
+    <meta name="description" content="Dr. Gabriel Lopes - Psiquiatra especializado em saúde mental infantil e adultos na Vila Clementino, SP. Tratamento de ansiedade, depressão e TDAH com acompanhamento completo.">
+    <meta name="keywords" content="psiquiatra, psiquiatria, saúde mental, ansiedade, depressão, TDAH, Vila Clementino, São Paulo, Dr. Gabriel Lopes">
     <meta name="author" content="Dr. Gabriel Lopes">
     <link rel="canonical" href="https://drgabriellopes.com.br">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
-    <meta property="og:title" content="Dr. Gabriel Lopes - Psiquiatra Vila Olímpia | Saúde Mental Integrada">
+    <meta property="og:title" content="Dr. Gabriel Lopes - Psiquiatra Vila Clementino | Saúde Mental Integrada">
     <meta property="og:description" content="Psiquiatra especializado em saúde mental infantil e adultos. Tratamento de ansiedade, depressão e TDAH com acompanhamento completo.">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Dr. Gabriel Lopes - Psiquiatra Vila Olímpia">
+    <meta name="twitter:title" content="Dr. Gabriel Lopes - Psiquiatra Vila Clementino">
     <meta name="twitter:description" content="Saúde mental com acompanhamento completo. Especialista em ansiedade, depressão e TDAH.">
     
     <link rel="stylesheet" href="styles.css">
@@ -76,7 +76,7 @@
         <section class="specialties-section">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Saúde Mental Integrada na Vila Olímpia/SP</h2>
+                    <h2 class="section-title">Saúde Mental Integrada na Vila Clementino/SP</h2>
                     <div class="section-divider"></div>
                 </div>
                 

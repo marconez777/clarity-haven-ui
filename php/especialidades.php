@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Especialidades em Saúde Mental | Dr. Gabriel Lopes</title>
-    <meta name="description" content="Conheça nossas especialidades: TDAH, Ansiedade, Depressão e Transtorno Bipolar. Tratamento especializado com abordagem integrada na Vila Olímpia/SP.">
+    <meta name="description" content="Conheça nossas especialidades: TDAH, Ansiedade, Depressão e Transtorno Bipolar. Tratamento especializado com abordagem integrada na Vila Clementino/SP.">
     <meta name="keywords" content="especialidades, psiquiatria, TDAH, ansiedade, depressão, transtorno bipolar, saúde mental">
     <meta name="author" content="Dr. Gabriel Lopes">
     <link rel="canonical" href="https://drgabriellopes.com.br/especialidades">

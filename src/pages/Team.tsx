@@ -83,7 +83,7 @@ const Team = () => {
     "@type": "MedicalOrganization",
     "name": "Instituto Sanapta",
     "description": "Equipe multidisciplinar de profissionais de saúde mental em São Paulo",
-    "medicalSpecialty": ["Psychiatry", "Psychology", "Acupuncture", "Nutrition"],
+    "medicalSpecialty": ["Psychiatry", "Psychology", "Acupuncture", "Physical Therapy"],
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "São Paulo",

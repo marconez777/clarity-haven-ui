@@ -182,7 +182,7 @@ tema_novo_breadcrumbs();
                     </div>
                     <div class="info-content">
                         <h3>Endereço</h3>
-                        <p>Rua do Rocio, 423. Cj. 402. (Vila Olímpia)<br>São Paulo, CEP: 04548-020</p>
+                        <p><a href="https://maps.app.goo.gl/sJQio73YiokX33Tj6" target="_blank" rel="noopener noreferrer">Av. Onze de Junho, 1070, Cj. 201 – Vila Clementino, São Paulo</a><br>A 500 metros da Estação Hospital São Paulo do Metrô.<br>Estacionamento rotativo pago no prédio.</p>
                     </div>
                 </div>
 
@@ -227,8 +227,7 @@ tema_novo_breadcrumbs();
                     <div class="info-content">
                         <h3>Horário de Atendimento</h3>
                         <p>
-                            Segunda a Sexta: 8h às 20h<br>
-                            Sábado: 8h às 14h
+                            Segunda a Sexta: 8h às 20h
                         </p>
                     </div>
                 </div>
@@ -278,7 +277,7 @@ tema_novo_breadcrumbs();
             <h2 style="text-align: center; margin-bottom: 2rem; font-size: 1.875rem; font-weight: 700;">Como Chegar</h2>
             <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
                 <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.7944676!2d-46.6839!3d-23.5942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDM1JzM5LjEiUyA0NsKwNDEnMDIuMCJX!5e0!3m2!1spt-BR!2sbr!4v1234567890" 
+                    src="https://www.google.com/maps?q=Av.%20Onze%20de%20Junho%2C%201070%2C%20Vila%20Clementino%2C%20S%C3%A3o%20Paulo&output=embed" 
                     width="100%" 
                     height="450" 
                     style="border:0;" 

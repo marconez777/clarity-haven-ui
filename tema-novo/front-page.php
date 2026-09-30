@@ -64,7 +64,7 @@ get_header();
     <section class="specialties-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Saúde Mental Integrada na Vila Olímpia/SP</h2>
+                <h2 class="section-title">Saúde Mental Integrada na Vila Clementino/SP</h2>
                 <div class="section-divider"></div>
             </div>
             

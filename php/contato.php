@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contato - Dr Gabriel Lopes - Psiquiatra em São Paulo</title>
-    <meta name="description" content="Entre em contato com o Dr Gabriel Lopes. Estamos na Vila Olímpia, São Paulo. Agende sua consulta de psiquiatria.">
-    <meta name="keywords" content="contato psiquiatra, agendar consulta psiquiatria, Vila Olímpia, São Paulo">
+    <meta name="description" content="Entre em contato com o Dr Gabriel Lopes. Estamos na Vila Clementino, São Paulo. Agende sua consulta de psiquiatria.">
+    <meta name="keywords" content="contato psiquiatra, agendar consulta psiquiatria, Vila Clementino, São Paulo">
     <link rel="canonical" href="https://drgabriellopes.com.br/contato">
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -237,9 +237,9 @@
                         <div class="info-content">
                             <h3>Endereço</h3>
                             <p>
-                                Rua Gomes de Carvalho, 1195 - 9º Andar - Sala 93<br>
-                                Vila Olímpia, São Paulo - SP<br>
-                                CEP: 04547-004
+                                <a href="https://maps.app.goo.gl/sJQio73YiokX33Tj6" target="_blank" rel="noopener noreferrer">Av. Onze de Junho, 1070, Cj. 201 – Vila Clementino, São Paulo</a><br>
+                                A 500 metros da Estação Hospital São Paulo do Metrô.<br>
+                                Estacionamento rotativo pago no prédio.
                             </p>
                         </div>
                     </div>
@@ -285,8 +285,7 @@
                         <div class="info-content">
                             <h3>Horário de Atendimento</h3>
                             <p>
-                                Segunda a Sexta: 8h às 20h<br>
-                                Sábado: 8h às 14h
+                                Segunda a Sexta: 8h às 20h
                             </p>
                         </div>
                     </div>
