@@ -1,45 +1,32 @@
+# Plano: atualizar endereço, horários, equipe e foto da Laura
 
+## 1. Novo endereço em todo o site
+- Substituir o endereço antigo por: **Av. Onze de Junho, 1070, Cj. 201 – Vila Clementino, São Paulo**.
+- Incluir a referência: **a 500 metros da Estação Hospital São Paulo do Metrô**.
+- Informar: **estacionamento rotativo pago no prédio**.
+- Adicionar o link do Google Maps enviado: `https://maps.app.goo.gl/sJQio73YiokX33Tj6`.
+- Atualizar o mapa incorporado da página de contato para apontar ao novo endereço.
+- Trocar “Vila Olímpia” por “Vila Clementino” nos títulos, descrições, textos visíveis e dados estruturados usados pelos buscadores.
 
-The user already has the sitemap edge function. They want a static `public/sitemap.xml` served at the main domain, plus updated robots.txt, plus keep edge function as dynamic reference.
+## 2. Horário de atendimento
+- Remover “Sábado: 8h às 14h” de todas as áreas do site.
+- Manter apenas **Segunda a Sexta: 8h às 20h**.
 
-I have two questions: domain and which dynamic tables. Looking at existing code: domain is `https://drgabriel.med.br` (in edge function). Tables are `blog_posts` and `pages` with `status='published'`. Let me confirm with the user.
+## 3. Equipe
+- Remover **Dra. Stela Bersan Faustino** e **Israel Adolfo Mirando Busto** da página Nossa Equipe.
+- Remover também os arquivos de foto desses profissionais caso não tenham outro uso no projeto.
+- Conferir os textos gerais da equipe para evitar quantidades ou especialidades desatualizadas após as remoções.
 
-## Plano: Sitemap estático em /sitemap.xml
+## 4. Nova foto da Laura
+- Armazenar a imagem enviada como ativo otimizado do site.
+- Substituir a foto atual de **Laura Jessica Siqueira da Silva**, preservando enquadramento, proporção e apresentação circular da página.
+- Validar a nitidez e o enquadramento no celular e no computador.
 
-### Perguntas antes de implementar
+## 5. Cobertura das versões do site
+- Aplicar as informações nas páginas atuais em React e nas cópias PHP/tema WordPress mantidas no projeto, para evitar divergências futuras.
+- Revisar rodapés, página de contato, página da equipe, página inicial e textos de localização/especialidades.
 
-Preciso confirmar 2 pontos com você antes de gerar o arquivo:
-
-1. **Domínio principal** — no edge function atual está `https://drgabriel.med.br`. Mantemos esse?
-2. **Tabelas dinâmicas** — confirmo que devo incluir:
-   - `blog_posts` (status='published') → URL: `/{slug}`
-   - `pages` (status='published') → URL: `/{slug}`
-
-### Implementação (após confirmação)
-
-**1. Criar `public/sitemap.xml` estático** com:
-- Todas as rotas estáticas do `src/App.tsx` (exceto `/admin/*`, `/:slug` dinâmica e redirects `<Navigate>`)
-- Todos os `blog_posts` publicados (consultados agora via SQL)
-- Todas as `pages` publicadas (consultadas agora via SQL)
-- Formato sitemap 0.9 com `<loc>`, `<lastmod>`, `<changefreq>`, `<priority>`
-- Prioridades:
-  - `/` → 1.0
-  - `/dr-gabriel-lopes`, `/especialidades`, especialidades clínicas (TDAH, ansiedade, depressão, bipolar) → 0.9
-  - `/blog`, `/testes-de-saude-mental`, `/equipe` → 0.8
-  - posts do blog, páginas dinâmicas → 0.7
-  - LPs de teste, `/contato`, `/modelo-local` → 0.5–0.6
-
-**2. Atualizar `public/robots.txt`**:
-- Manter `Disallow: /admin/`
-- Trocar `Sitemap:` para `https://drgabriel.med.br/sitemap.xml`
-
-**3. Manter edge function `supabase/functions/sitemap/index.ts`** como referência dinâmica (já existe e funciona com SERVICE_ROLE_KEY + CORS + XML).
-
-### Aviso importante (a ser repetido na entrega)
-- `public/sitemap.xml` é **estático** e **não atualiza sozinho**
-- Sempre que publicar novo post ou página no admin, **me peça para regenerar** o `public/sitemap.xml`
-- A edge function `/functions/v1/sitemap` continua disponível como versão sempre atualizada (alternativa)
-
-### Entregável final
-URL para cadastrar no Google Search Console: `https://drgabriel.med.br/sitemap.xml`
-
+## 6. Validação
+- Fazer uma varredura final para confirmar que não restaram endereço antigo, atendimento aos sábados, Dra. Stela, Israel ou a foto antiga da Laura.
+- Verificar visualmente a página de contato, o mapa, o rodapé e a página da equipe em telas de celular e computador.
+- Confirmar que os links do Google Maps e WhatsApp continuam funcionando.
