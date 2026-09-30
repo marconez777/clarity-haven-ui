@@ -15,14 +15,14 @@ const Index = () => {
     <>
       <Helmet>
         <html lang="pt-BR" />
-        <title>Dr. Gabriel Lopes - Psiquiatra Vila Olímpia | Saúde Mental Integrada</title>
+        <title>Dr. Gabriel Lopes - Psiquiatra Vila Clementino | Saúde Mental Integrada</title>
         <meta
           name="description"
-          content="Dr. Gabriel Lopes - Psiquiatra especializado em saúde mental infantil e adultos na Vila Olímpia, SP. Tratamento de ansiedade, depressão e TDAH com acompanhamento completo."
+          content="Dr. Gabriel Lopes - Psiquiatra especializado em saúde mental infantil e adultos na Vila Clementino, SP. Tratamento de ansiedade, depressão e TDAH com acompanhamento completo."
         />
         <meta
           name="keywords"
-          content="psiquiatra, psiquiatria, saúde mental, ansiedade, depressão, TDAH, Vila Olímpia, São Paulo, Dr. Gabriel Lopes"
+          content="psiquiatra, psiquiatria, saúde mental, ansiedade, depressão, TDAH, Vila Clementino, São Paulo, Dr. Gabriel Lopes"
         />
         <meta name="author" content="Dr. Gabriel Lopes" />
         <link rel="canonical" href="https://drgabriel.med.br" />
@@ -33,7 +33,7 @@ const Index = () => {
         <meta property="og:locale" content="pt_BR" />
         <meta
           property="og:title"
-          content="Dr. Gabriel Lopes - Psiquiatra Vila Olímpia | Saúde Mental Integrada"
+          content="Dr. Gabriel Lopes - Psiquiatra Vila Clementino | Saúde Mental Integrada"
         />
         <meta
           property="og:description"
@@ -45,7 +45,7 @@ const Index = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Dr. Gabriel Lopes - Psiquiatra Vila Olímpia | Saúde Mental Integrada"
+          content="Dr. Gabriel Lopes - Psiquiatra Vila Clementino | Saúde Mental Integrada"
         />
         <meta
           name="twitter:description"
@@ -65,15 +65,14 @@ const Index = () => {
             medicalSpecialty: "Psychiatry",
             address: {
               "@type": "PostalAddress",
-              streetAddress: "Rua do Rocio, 423. Cj. 402",
+              streetAddress: "Avenida Onze de Junho, 1070, Conjunto 201",
               addressLocality: "São Paulo",
               addressRegion: "SP",
-              postalCode: "04548-020",
               addressCountry: "BR",
             },
             telephone: "+55-11-94154-3929",
             url: "https://drgabriel.med.br",
-            openingHours: "Mo-Fr 08:00-20:00, Sa 08:00-14:00",
+            openingHours: "Mo-Fr 08:00-20:00",
           })}
         </script>
       </Helmet>

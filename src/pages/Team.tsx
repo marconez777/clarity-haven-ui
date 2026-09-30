@@ -11,13 +11,11 @@ import { handleWhatsAppClick } from "@/hooks/useConversionTracking";
 // Import all doctor images
 import drGabriel from "@/assets/doctors/dr-gabriel.png?format=webp";
 import draAnaSato from "@/assets/doctors/Dra-Ana-Carolina-Sato.png?format=webp";
-import draStelaBersan from "@/assets/doctors/dra-stela-bersan-faustino.png?format=webp";
 import drJulioCesar from "@/assets/doctors/dr-julio-cesar-scaled.png?format=webp";
 import vanessaOliveira from "@/assets/doctors/vanessa-oliveira-da-silva.png?format=webp";
 import wladimirMartins from "@/assets/doctors/corpo-clinico-wladimir.png?format=webp";
 import philippeBenhayon from "@/assets/doctors/philippe-albert-dalle-molle-benhayon.png?format=webp";
-import israelBusto from "@/assets/doctors/israel-adolfo-mirando-busto.png?format=webp";
-import lauraSilva from "@/assets/doctors/laura-jessica-siqueira-da-silva.png?format=webp";
+import lauraSilva from "@/assets/doctors/laura-jessica-siqueira-da-silva-2026.jpg?format=webp";
 
 interface TeamMember {
   name: string;
@@ -41,13 +39,6 @@ const teamMembers: TeamMember[] = [
     specialty: "Acupuntura integrativa",
     image: draAnaSato,
     description: "Dra. Ana Carolina Sato é graduada em Medicina pela UNIFESP – Escola Paulista de Medicina, ela traz uma vasta experiência com residências médicas em Pediatria e Medicina do Adolescente, ambas realizadas na UNIFESP. Além de seu título de Especialista pela Sociedade Brasileira de Pediatria, a Dra. Sato é uma especialista em Acupuntura, com uma pós-graduação pelo Center-AO, vinculado à UNIFESP, e o título de Especialista em Acupuntura pela Associação Médica Brasileira de Acupuntura. Depois de muitos anos de estudo, realiza hoje acupuntura médica integrativa, uma combinação única que une a medicina chinesa com práticas modernas, como laserpuntura, fotobiomodulação, psiconeuroimunologia, medicina emocional e medicina holística. A Dra Ana Sato possui ampla experiência em tratar diversas condições, sendo altamente capacitada no atendimento de bebês, gestantes e adultos que queiram buscar a saúde de forma mais completa. Com uma carreira de 21 anos dedicados à medicina chinesa, a Dra. Sato é uma profissional altamente experiente e qualificada, oferecendo cuidados de saúde personalizado e diversificados. Atualmente é mestranda e pesquisadora em psiconeuroimunologia pela Universidad de Salamanca na Espanha e co-fundadora do instituto Sanapta onde desenvolve seu trabalho com equipe multidisciplinar."
-  },
-  {
-    name: "Dra. Stela Bersan Faustino",
-    registration: "CRM SP 248292",
-    specialty: "Psiquiatra",
-    image: draStelaBersan,
-    description: "Médica formada pela Universidade Estadual de Santa Cruz, em especialização em Psiquiatria pela Faculdade de Ciências Médicas da Santa Casa de São Paulo. Atua com dedicação ao cuidado integral em saúde mental, com experiência tanto em contextos de urgência quanto em seguimento clínico de médio e longo prazo. Sua abordagem valoriza a escuta atenta, o vínculo terapêutico e o uso responsável da psicofarmacologia, sempre considerando a singularidade de cada paciente. Complementa sua formação com estudos avançados em Psicofarmacologia Clínica pelo Instituto de Ciências Biomédicas da USP (ICB-USP). Já integrou grupos de estudos em Cuidados Paliativos e ligas acadêmicas de Farmacologia Clínica, além de ter atuado em projetos de saúde comunitária com foco em promoção de bem-estar. É também bacharela em Comunicação Social pela ECA-USP, o que fortalece seu olhar sobre a importância da linguagem, da escuta e da qualidade da relação entre profissional e paciente como elementos centrais no processo de cuidado."
   },
   {
     name: "Dr. Julio Cesar",
@@ -76,13 +67,6 @@ const teamMembers: TeamMember[] = [
     specialty: "Psicólogo Clínico",
     image: philippeBenhayon,
     description: "O Dr. Philippe é Psicólogo formado pela PUC-SP, pós-graduado em psicologia da saúde com ênfase em psiconcologia pelo Instituto do Câncer do Hospital das Clínicas da Faculdade de Medicina da Universidade de São Paulo (HCFMUSP – Icesp). Atua como psicólogo clínico propondo uma psicoterapia com olhar pautado pela fenomenologia existencial, tem experiência com casos de Saúde Mental e Dependência Química."
-  },
-  {
-    name: "Israel Adolfo Mirando Busto",
-    registration: "CRN 21752",
-    specialty: "Nutricionista Esportivo",
-    image: israelBusto,
-    description: "Nutricionista Esportivo Especialista em Fisiologista do Exercício, Especialista em Treinamento Desportivo, Especialista em Fisiologia da Alimentação e Especialista em Comportamento Alimentar."
   },
   {
     name: "Laura Jessica Siqueira da Silva",

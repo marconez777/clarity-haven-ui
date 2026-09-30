@@ -29,7 +29,7 @@ const SpecialtiesSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-foreground mb-4">
-            Saúde Mental Integrada na Vila Olímpia/SP
+            Saúde Mental Integrada na Vila Clementino/SP
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto" />
         </div>

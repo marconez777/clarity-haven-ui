@@ -30,8 +30,15 @@ const Footer = () => {
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
                 <div className="text-muted-foreground">
-                  <p>Rua do Rocio, 423. Cj. 402. (Vila Olímpia)</p>
-                  <p>São Paulo, CEP: 04548-020</p>
+                  <a
+                    href="https://maps.app.goo.gl/sJQio73YiokX33Tj6"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Av. Onze de Junho, 1070, Cj. 201<br />
+                    Vila Clementino, São Paulo
+                  </a>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -65,7 +72,6 @@ const Footer = () => {
             </h3>
             <div className="space-y-2 text-muted-foreground">
               <p>Segunda a Sexta: 8h às 20h</p>
-              <p>Sábado: 8h às 14h</p>
             </div>
           </div>
         </div>

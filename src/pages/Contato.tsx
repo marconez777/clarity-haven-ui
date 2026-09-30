@@ -88,21 +88,21 @@ const Contato = () => {
       <Helmet>
         <html lang="pt-BR" />
         <title>Contato - Dr Gabriel Lopes - Psiquiatra em São Paulo</title>
-        <meta name="description" content="Entre em contato com o Dr Gabriel Lopes. Estamos na Vila Olímpia, São Paulo. Agende sua consulta de psiquiatria." />
-        <meta name="keywords" content="contato psiquiatra, agendar consulta psiquiatria, Vila Olímpia, São Paulo" />
+        <meta name="description" content="Entre em contato com o Dr Gabriel Lopes. Estamos na Vila Clementino, São Paulo. Agende sua consulta de psiquiatria." />
+        <meta name="keywords" content="contato psiquiatra, agendar consulta psiquiatria, Vila Clementino, São Paulo" />
         <link rel="canonical" href="https://drgabriel.med.br/contato" />
         
         {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://drgabriel.med.br/contato" />
         <meta property="og:title" content="Contato - Dr Gabriel Lopes - Psiquiatra em São Paulo" />
-        <meta property="og:description" content="Entre em contato com o Dr Gabriel Lopes. Estamos na Vila Olímpia, São Paulo." />
+        <meta property="og:description" content="Entre em contato com o Dr Gabriel Lopes. Estamos na Vila Clementino, São Paulo." />
         <meta property="og:image" content="https://drgabriel.med.br/og-image.jpg" />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Contato - Dr Gabriel Lopes - Psiquiatra em São Paulo" />
-        <meta name="twitter:description" content="Entre em contato com o Dr Gabriel Lopes. Estamos na Vila Olímpia, São Paulo." />
+        <meta name="twitter:description" content="Entre em contato com o Dr Gabriel Lopes. Estamos na Vila Clementino, São Paulo." />
         <meta name="twitter:image" content="https://drgabriel.med.br/og-image.jpg" />
       </Helmet>
 
@@ -248,11 +248,19 @@ const Contato = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">Endereço</h3>
-                        <p className="text-muted-foreground">
-                          Rua do Rocio, 423. Cj. 402<br />
-                          Vila Olímpia - São Paulo<br />
-                          CEP: 04548-020
-                        </p>
+                        <div className="text-muted-foreground space-y-1">
+                          <a
+                            href="https://maps.app.goo.gl/sJQio73YiokX33Tj6"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-primary transition-colors"
+                          >
+                            Av. Onze de Junho, 1070, Cj. 201<br />
+                            Vila Clementino - São Paulo
+                          </a>
+                          <p>A 500 metros da Estação Hospital São Paulo do Metrô.</p>
+                          <p>Estacionamento rotativo pago no prédio.</p>
+                        </div>
                       </div>
                     </div>
 
@@ -295,8 +303,7 @@ const Contato = () => {
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">Horário de Atendimento</h3>
                         <p className="text-muted-foreground">
-                          Segunda a Sexta: 8h às 20h<br />
-                          Sábado: 8h às 14h
+                          Segunda a Sexta: 8h às 20h
                         </p>
                       </div>
                     </div>
@@ -306,7 +313,7 @@ const Contato = () => {
                 {/* Mapa */}
                 <div className="bg-card border border-border rounded-lg overflow-hidden shadow-sm">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.7742934487796!2d-46.68455!3d-23.598123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce574d6e11d4b1%3A0x5b12c8b9e4f1b1e5!2sRua%20do%20Rocio%2C%20423%20-%20Vila%20Ol%C3%ADmpia%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004548-020!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+                    src="https://www.google.com/maps?q=Av.%20Onze%20de%20Junho%2C%201070%2C%20Vila%20Clementino%2C%20S%C3%A3o%20Paulo&output=embed"
                     width="100%"
                     height="400"
                     style={{ border: 0 }}

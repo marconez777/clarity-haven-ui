@@ -21,10 +21,9 @@ const DrGabriel = () => {
     "memberOf": { "@type": "Organization", "name": "Instituto Sanapta" },
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Rua do Rocio, 423. Cj. 402",
+      "streetAddress": "Avenida Onze de Junho, 1070, Conjunto 201",
       "addressLocality": "São Paulo",
       "addressRegion": "SP",
-      "postalCode": "04548-020",
       "addressCountry": "BR"
     },
     "telephone": "+55-11-94154-3929",
