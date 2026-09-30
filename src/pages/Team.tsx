@@ -15,7 +15,9 @@ import drJulioCesar from "@/assets/doctors/dr-julio-cesar-scaled.png?format=webp
 import vanessaOliveira from "@/assets/doctors/vanessa-oliveira-da-silva.png?format=webp";
 import wladimirMartins from "@/assets/doctors/corpo-clinico-wladimir.png?format=webp";
 import philippeBenhayon from "@/assets/doctors/philippe-albert-dalle-molle-benhayon.png?format=webp";
-import lauraSilva from "@/assets/doctors/laura-jessica-siqueira-da-silva-2026.jpg?format=webp";
+import lauraAsset from "@/assets/doctors/laura-jessica-siqueira-da-silva-2026.jpg.asset.json";
+
+const lauraSilva = lauraAsset.url;
 
 interface TeamMember {
   name: string;
