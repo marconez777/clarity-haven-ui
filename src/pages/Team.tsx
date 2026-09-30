@@ -86,6 +86,8 @@ const Team = () => {
     "medicalSpecialty": ["Psychiatry", "Psychology", "Acupuncture", "Physical Therapy"],
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "Avenida Onze de Junho, 1070, Conjunto 201",
+      "addressNeighborhood": "Vila Clementino",
       "addressLocality": "São Paulo",
       "addressRegion": "SP",
       "addressCountry": "BR"
